@@ -1,0 +1,9 @@
+✰
+	publish
+	
+	statud connected = 22
+	.\mosquitto_pub -t "sensor-monitoring" -m '{"sensorId": 3, "status": 22}'
+
+	status reading parameters = 32
+	.\mosquitto_pub -t "sensor-monitoring" -m '{"sensorId": 3, "status": 32, "humidity": 51, "temperature": 9}'
+

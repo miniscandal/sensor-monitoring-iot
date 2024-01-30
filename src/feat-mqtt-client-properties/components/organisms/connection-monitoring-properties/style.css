@@ -1,0 +1,5 @@
+.connection_monitoring_properties {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+	gap: var(--gap);
+}

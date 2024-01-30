@@ -1,0 +1,47 @@
+.font_icon {
+	display: block;
+}
+
+.font_icon[data-size=large] {
+	font-size: 50px;
+}
+
+.font_icon[data-size=medium] {
+	font-size: 35px;
+}
+
+.font_icon[data-size=regular] {
+	font-size: 25px;
+}
+
+.font_icon[data-size=small] {
+	font-size: 20px;
+}
+
+.font_icon[data-size=current-size] {
+	font-size: 100%;
+}
+
+.font_icon[data-color=prefers-scheme] {
+	color: var(--color-prefers-scheme);
+}
+
+.font_icon[data-color=successful] {
+	color: var(--color-successful);
+}
+
+.font_icon[data-color=water] {
+	color: var(--color-water);
+}
+
+.font_icon[data-color=fire] {
+	color: var(--color-fire);
+}
+
+.font_icon[data-color=symbol] {
+	color: var(--color-symbol);
+}
+
+.font_icon[data-color=current-color] {
+	color: currentColor;
+}

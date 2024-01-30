@@ -1,0 +1,19 @@
+.monitoring_property {
+	display: flex;
+	align-items: center;
+	gap: var(--gap);
+	border: solid 1px;
+	border-color: var(--color-symbol);
+	padding: var(--padding);
+	border-radius: var(--border-radius);
+}
+
+.monitoring_property[data-size=resizable] {
+	width: 100%;
+	height: 100%;
+}
+
+.monitoring_property[data-size=regular] {
+	width: 200px;
+	height: 65px;
+}

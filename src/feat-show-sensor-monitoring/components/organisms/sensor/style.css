@@ -1,0 +1,27 @@
+.sensor {
+	width: 140px;
+	height: 200px;
+	padding: var(--padding);
+	border: var(--border);
+	border-radius: var(--border-radius);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color: var(--background-color-prefers-scheme-element);
+}
+
+.sensor__connected {
+	display: flex;
+	justify-content: end;
+}
+
+.sensor__values {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+}
+
+.sensor__footer {
+	border-top: var(--border);
+	padding-top: var(--padding);
+}

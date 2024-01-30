@@ -1,0 +1,20 @@
+.data_log_list {
+	height: 200px;
+	border: var(--border);
+	padding: var(--padding);
+	border-radius: var(--border-radius);
+	background-color: var(--background-color-prefers-scheme-element);
+}
+
+.data_log_list__data {
+	height: 100%;
+	overflow-y: scroll;
+}
+
+.data_log_list__data > .paragraph {
+	padding: 0.5rem 0;
+}
+
+.data_log_list__scroll {
+	height: 2rem;
+}
