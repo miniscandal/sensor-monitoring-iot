@@ -1,17 +1,19 @@
+/**
+ * Module responsibility
+ */
+
 import mqtt from 'mqtt';
 
 import { publishSubscribe } from '@shared-constants/mqtt-client-publish';
 import { notifyConnected } from '@shared-constants/mqtt-client-notify';
 
-const client = mqtt.connect(import.meta.env.VITE_MQTT_BROKER);
-
 class MqttClientSingleton {
 	static instance: MqttClientSingleton;
 
-	private client: any;
+	private client: mqtt.MqttClient
 	private observers: any[] = [];
 
-	constructor(client: any) {
+	constructor(client: mqtt.MqttClient) {
 		if (MqttClientSingleton.instance) {
 			return MqttClientSingleton.instance;
 		}
@@ -24,7 +26,7 @@ class MqttClientSingleton {
 
 	static getInstance() {
 		if (!MqttClientSingleton.instance) {
-			MqttClientSingleton.instance = new MqttClientSingleton(client);
+			MqttClientSingleton.instance = new MqttClientSingleton(mqtt.connect(import.meta.env.VITE_MQTT_BROKER));
 		}
 
 		return MqttClientSingleton.instance;
@@ -41,9 +43,11 @@ class MqttClientSingleton {
 		this.subscribe(publishSubscribe);
 	}
 
-	private onMessage(topic: string, message: string) {
-		const onMessage = { topic, message: JSON.parse(message) };
+	private onMessage(topic: string, message: string | Buffer) {
+		if (typeof message !== 'string')
+			return;
 
+		const onMessage = { topic, message: JSON.parse(message) };
 		this.observerNotify(onMessage);
 	}
 
@@ -104,7 +108,5 @@ class MqttClientSingleton {
 		});
 	}
 }
-
-new MqttClientSingleton(client);
 
 export { MqttClientSingleton };

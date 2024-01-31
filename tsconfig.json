@@ -35,7 +35,8 @@
 			"@shared-constants/*": [
 				"./src/shared/constants/*"
 			]
-		}
+		},
+		"strictNullChecks": true,
 	},
 	"include": [
 		"node_modules/vite/client.d.ts",

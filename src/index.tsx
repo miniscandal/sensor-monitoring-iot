@@ -36,4 +36,5 @@ export function App() {
 	);
 }
 
+// @ts-expect-error: Irrelevant for Pikachu
 render(<App />, document.getElementById('app'));

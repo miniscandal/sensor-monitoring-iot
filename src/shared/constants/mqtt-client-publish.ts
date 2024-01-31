@@ -5,6 +5,7 @@ const publishSubscribe = {
 	topic: 'sensor-monitoring',
 	message: { status: statusSubscribeClient }
 }
+
 const publishRequestConnectedSensors = {
 	topic: 'sensor',
 	message: { command: statusReadingSensorParameters }
