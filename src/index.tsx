@@ -1,13 +1,16 @@
-import { useEffect } from 'preact/hooks';
+/**
+ * Module responsibility
+ * 
+ */
+
 import { render } from 'preact';
+import { useEffect } from 'preact/hooks';
 
 import { MqttClientSingleton } from '@core-services/mqtt-client';
 
 import { Header } from '@shared-components/organisms/header';
 
 import { FeatMqttClientInformation } from './feat-mqtt-client-properties';
-import { FeatSensorMonitoring } from './feat-show-sensor-monitoring';
-import { FeatSensorDataLogging } from './feat-registered-data-on-listen-sensor';
 
 import './style.css';
 
@@ -25,16 +28,10 @@ export function App() {
 				<article>
 					<FeatMqttClientInformation />
 				</article>
-				<article>
-					<FeatSensorMonitoring />
-				</article>
-				<article>
-					<FeatSensorDataLogging />
-				</article>
 			</main>
 		</>
 	);
 }
 
-// @ts-expect-error: Irrelevant for Pikachu
+// @ts-expect-error: Irrelevant.
 render(<App />, document.getElementById('app'));

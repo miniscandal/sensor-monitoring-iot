@@ -1,0 +1,19 @@
+import { statusSubscribeClient } from '@shared-constants/mqttt-client-status-codes';
+import { statusReadingSensorParameters } from '@shared-constants/mqttt-client-status-codes';
+
+import { MessagePublishType } from '../types/messages-publish';
+
+const MSG_PUBLISH_SUBSCRIBE: MessagePublishType = {
+    topic: 'control-system',
+    message: { status: statusSubscribeClient },
+};
+
+const MSG_PUBLISH_REQ_CONNECT_SENSORS: MessagePublishType = {
+    topic: 'device',
+    message: { procedure_code_request: statusReadingSensorParameters },
+};
+
+export {
+    MSG_PUBLISH_SUBSCRIBE,
+    MSG_PUBLISH_REQ_CONNECT_SENSORS,
+};

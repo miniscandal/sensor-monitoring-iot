@@ -1,53 +1,46 @@
+/**
+ * Module responsibility
+ * 
+ */
+
 import { useState, useEffect } from 'preact/hooks';
 
 import { MqttClientSingleton } from '@core-services/mqtt-client';
 
-import { clientMqtt } from '@shared-constants/mqtt-client-properties';
-import { host } from '@shared-constants/mqtt-client-properties';
-import { protocol } from '@shared-constants/mqtt-client-properties';
-import { subscribe } from '@shared-constants/mqtt-client-properties';
-import { port } from '@shared-constants/mqtt-client-properties';
-import { clientId } from '@shared-constants/mqtt-client-properties';
-import { connected } from '@shared-constants/mqtt-client-properties';
+import { ObserverArgumentType } from '@core-services/mqtt-client/types/observer-argument';
+import { ClientMqttPropertiesType } from '@core-services/mqtt-client/types/client-mqtt-properties';
+import { ObserverType } from '@core-services/mqtt-client/types/observer';
 
-import { statusConnectedClient } from '@shared-constants/mqttt-client-status-codes';
+import { CLIENT_MQTT_PROPERTIES } from '../../../core/services/mqtt-client/constants/client-mqtt-properties';
+import { OBSERVER_ID_MQTT_CLIENT_PROPERTIES } from './constants/observer-id';
 
-function handleMqttClientProperties({ data, properties, setProperties }) {
-	const { message } = data;
-	const { status } = message;
+function observerOnConnectCallback(
+	observerId: string, argument: ObserverArgumentType, setProperties,
+) {
+	if (observerId !== OBSERVER_ID_MQTT_CLIENT_PROPERTIES) {
 
-	if (status !== statusConnectedClient) {
 		return;
 	}
-
-	setProperties(prevState => {
+	setProperties((prevState: ClientMqttPropertiesType) => {
 		return {
 			...prevState,
-			...properties
+			...(argument as ClientMqttPropertiesType),
 		};
 	});
-};
+}
 
 function useMqttClientProperties() {
-	const [properties, setProperties] = useState({
-		clientMqtt,
-		clientId,
-		host,
-		protocol,
-		subscribe,
-		port,
-		connected: connected
-	});
+	const [properties, setProperties] = useState(CLIENT_MQTT_PROPERTIES);
 
 	useEffect(() => {
 		const client = MqttClientSingleton.getInstance();
-		const observer = ({ data, properties }) => {
-			handleMqttClientProperties({ data, properties, setProperties });
+		const observerOnConnect: ObserverType = (observerId, argument) => {
+			observerOnConnectCallback(observerId, argument, setProperties);
 		};
-		client.addObserver(observer);
+		client.addObserver(observerOnConnect);
 	}, []);
 
-	return [properties];
+	return properties;
 }
 
 export { useMqttClientProperties };

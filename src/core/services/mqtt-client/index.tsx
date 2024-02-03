@@ -1,22 +1,31 @@
 /**
  * Module responsibility
+ * 
  */
 
 import mqtt from 'mqtt';
 
-import { publishSubscribe } from '@shared-constants/mqtt-client-publish';
-import { notifyConnected } from '@shared-constants/mqtt-client-notify';
+import { ObserverType } from './types/observer';
+import { MessagePublishType } from './types/messages-publish';
+import { ObserverArgumentType } from './types/observer-argument';
+import { ClientMqttPropertiesType } from './types/client-mqtt-properties';
+
+import { OBSERVER_ID_MQTT_CLIENT_PROPERTIES } from '@shared-custom-hooks/useMqttClientProperties/constants/observer-id';
 
 class MqttClientSingleton {
 	static instance: MqttClientSingleton;
 
-	private client: mqtt.MqttClient
-	private observers: any[] = [];
+	private client: mqtt.MqttClient;
+	private observers: ObserverType[] = [];
+	private subscribePriveTopic: boolean = false;
+	private envPrivateTopic: string = import.meta.env.VITE_MQTT_PRIVATE_TOPIC;
 
 	constructor(client: mqtt.MqttClient) {
 		if (MqttClientSingleton.instance) {
+
 			return MqttClientSingleton.instance;
 		}
+
 		this.client = client;
 		this.onConnect = this.onConnect.bind(this);
 		this.onMessage = this.onMessage.bind(this);
@@ -26,10 +35,46 @@ class MqttClientSingleton {
 
 	static getInstance() {
 		if (!MqttClientSingleton.instance) {
-			MqttClientSingleton.instance = new MqttClientSingleton(mqtt.connect(import.meta.env.VITE_MQTT_BROKER));
+			const mqttConnect = mqtt.connect(import.meta.env.VITE_MQTT_BROKER);
+			MqttClientSingleton.instance = new MqttClientSingleton(mqttConnect);
 		}
 
 		return MqttClientSingleton.instance;
+	}
+
+	protected observerNotify(observerId: string, argument: ObserverArgumentType) {
+		this.observers.forEach(observer => observer(observerId, argument));
+	}
+
+	protected getClientProperties(): ClientMqttPropertiesType {
+		const { connected, options } = this.client;
+		const { clientId, host, port, protocol } = options;
+
+		return {
+			clientMqtt: connected ? 'Connected' : undefined,
+			clientId,
+			host,
+			port,
+			protocol,
+			subscribe: this.subscribePriveTopic ? this.envPrivateTopic : undefined,
+			connected,
+		};
+	}
+
+	private onReconnect() {
+		const mqttClientProperties = this.getClientProperties();
+		this.observerNotify(OBSERVER_ID_MQTT_CLIENT_PROPERTIES, mqttClientProperties);
+	}
+
+	private onMessage(topic: string, message: string | Buffer) {
+		const messageString = message.toString();
+		this.observerNotify(OBSERVER_ID_MQTT_CLIENT_PROPERTIES, JSON.parse(messageString));
+	}
+
+	private onConnect() {
+		const mqttClientProperties = this.getClientProperties();
+		this.observerNotify(OBSERVER_ID_MQTT_CLIENT_PROPERTIES, mqttClientProperties);
+		this.subscribe(this.envPrivateTopic);
 	}
 
 	private configureClient() {
@@ -38,74 +83,42 @@ class MqttClientSingleton {
 		this.client.on('reconnect', this.onReconnect);
 	}
 
-	private onConnect() {
-		this.observerNotify(notifyConnected);
-		this.subscribe(publishSubscribe);
+	subscribe(topic: string) {
+		this.client.subscribe(topic, (error: Error) => {
+			if (error) {
+				console.error(`Error subscribe to topic ${topic}:`, error);
+
+				return;
+			}
+			this.subscribePriveTopic = true;
+			const mqttClientProperties = this.getClientProperties();
+			this.observerNotify(OBSERVER_ID_MQTT_CLIENT_PROPERTIES, mqttClientProperties);
+		});
 	}
 
-	private onMessage(topic: string, message: string | Buffer) {
-		if (typeof message !== 'string')
-			return;
-
-		const onMessage = { topic, message: JSON.parse(message) };
-		this.observerNotify(onMessage);
+	unsubscribe(topic: string) {
+		this.client.unsubscribe(topic, (error: Error) => {
+			if (error) {
+				console.error(`Error unsubscribe to topic ${topic}:`, error);
+			}
+		});
 	}
 
-	private onReconnect() {
-		this.observerNotify(notifyConnected);
+	publish(topic: string, message: MessagePublishType) {
+		const argument = JSON.stringify({ ...message });
+		this.client.publish(topic, argument);
 	}
 
 	end() {
 		this.client.end();
 	}
 
-	publish({ topic, message }) {
-		const data = JSON.stringify({ ...message });
-		this.client.publish(topic, data);
+	addObserver(argument: ObserverType) {
+		this.observers.push(argument);
 	}
 
-	subscribe({ topic = '', message = {} }) {
-		this.client.subscribe(topic, (err) => {
-			if (!err) {
-				this.publish({ topic, message });
-			}
-		});
-	}
-
-	unsubscribe({ topic = '' }) {
-		this.client.unsubscribe(topic, (err) => {
-			if (!err) {
-				return;
-			}
-		});
-	}
-
-	addObserver(observer) {
-		this.observers.push({ observer });
-	}
-
-	removeObserver(observer) {
-		this.observers = this.observers.filter(obs => obs !== observer);
-	}
-
-	protected retrieveClientProperties() {
-		const { connected, options } = this.client;
-		const { clientId, host, port, protocol } = options;
-
-		return {
-			clientMqtt: connected ? 'Connected' : 'Disconnecting',
-			clientId,
-			host,
-			port,
-			protocol,
-			connected
-		};
-	}
-
-	protected observerNotify(data) {
-		this.observers.forEach(({ observer }) => {
-			observer({ data, properties: this.retrieveClientProperties() })
-		});
+	removeObserver(argument: ObserverType) {
+		this.observers = this.observers.filter(obs => obs !== argument);
 	}
 }
 

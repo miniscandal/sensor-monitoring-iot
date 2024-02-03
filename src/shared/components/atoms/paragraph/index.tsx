@@ -8,4 +8,4 @@ function Paragraph({ text = 'Paragraph', color = 'prefers-scheme', size = 'regul
 }
 
 
-export { Paragraph }
+export { Paragraph };

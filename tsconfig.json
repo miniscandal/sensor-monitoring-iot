@@ -34,6 +34,9 @@
 			],
 			"@shared-constants/*": [
 				"./src/shared/constants/*"
+			],
+			"@shared-types/*": [
+				"./src/shared/types/*"
 			]
 		},
 		"strictNullChecks": true,
