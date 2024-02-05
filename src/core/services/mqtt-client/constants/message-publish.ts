@@ -1,7 +1,7 @@
 import { statusSubscribeClient } from '@shared-constants/mqttt-client-status-codes';
 import { statusReadingSensorParameters } from '@shared-constants/mqttt-client-status-codes';
 
-import { MessagePublishType } from '../types/messages-publish';
+import { MessagePublishType } from '../types/publish-message-to-device';
 
 const MSG_PUBLISH_SUBSCRIBE: MessagePublishType = {
     topic: 'control-system',

@@ -1,6 +1,6 @@
 import mqtt from 'mqtt';
 
-type ClientMqttPropertiesType = {
+type MqttClientPropertiesType = {
     clientMqtt: string | undefined;
     clientId: string | undefined;
     host: string | undefined;
@@ -10,4 +10,4 @@ type ClientMqttPropertiesType = {
     connected: boolean;
 };
 
-export { ClientMqttPropertiesType };
+export { MqttClientPropertiesType };

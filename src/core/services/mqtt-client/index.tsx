@@ -6,11 +6,15 @@
 import mqtt from 'mqtt';
 
 import { ObserverType } from './types/observer';
-import { MessagePublishType } from './types/messages-publish';
-import { ObserverArgumentType } from './types/observer-argument';
-import { ClientMqttPropertiesType } from './types/client-mqtt-properties';
+import { PublicMessageToDeviceType } from './types/publish-message-to-device';
+import { ObserverDataType } from './types/observer-data';
+import { MqttClientPropertiesType } from './types/mqtt-client-properties';
 
-import { OBSERVER_ID_MQTT_CLIENT_PROPERTIES } from '@shared-custom-hooks/useMqttClientProperties/constants/observer-id';
+import { ReceivedMessageByDeviceType } from './types/received-message-by-device';
+
+import { OBS_ID_MQTT_CLIENT_PROPS } from '@shared-custom-hooks/use-mqtt-client-properties/constants/observer-id';
+import { DEVICE_STATUS_CODE } from '@shared-constants/mqttt-client-status-codes';
+import { OBS_ID_CONNECTED_DEVICE } from '@shared-custom-hooks/use-connected-devices/constants/observer-id';
 
 class MqttClientSingleton {
 	static instance: MqttClientSingleton;
@@ -42,11 +46,11 @@ class MqttClientSingleton {
 		return MqttClientSingleton.instance;
 	}
 
-	protected observerNotify(observerId: string, argument: ObserverArgumentType) {
-		this.observers.forEach(observer => observer(observerId, argument));
+	protected observerNotify(observerId: string, data: ObserverDataType) {
+		this.observers.forEach(observer => observer(observerId, data));
 	}
 
-	protected getClientProperties(): ClientMqttPropertiesType {
+	protected getClientProperties(): MqttClientPropertiesType {
 		const { connected, options } = this.client;
 		const { clientId, host, port, protocol } = options;
 
@@ -62,18 +66,28 @@ class MqttClientSingleton {
 	}
 
 	private onReconnect() {
-		const mqttClientProperties = this.getClientProperties();
-		this.observerNotify(OBSERVER_ID_MQTT_CLIENT_PROPERTIES, mqttClientProperties);
+		const clientProperties = this.getClientProperties();
+		this.observerNotify(OBS_ID_MQTT_CLIENT_PROPS, clientProperties);
+	}
+
+	private handleOnMessage(message: ReceivedMessageByDeviceType) {
+		switch (message.status_code) {
+			case DEVICE_STATUS_CODE:
+				this.observerNotify(OBS_ID_CONNECTED_DEVICE, message);
+				break;
+			default:
+				break;
+		}
 	}
 
 	private onMessage(topic: string, message: string | Buffer) {
 		const messageString = message.toString();
-		this.observerNotify(OBSERVER_ID_MQTT_CLIENT_PROPERTIES, JSON.parse(messageString));
+		this.handleOnMessage(JSON.parse(messageString));
 	}
 
 	private onConnect() {
-		const mqttClientProperties = this.getClientProperties();
-		this.observerNotify(OBSERVER_ID_MQTT_CLIENT_PROPERTIES, mqttClientProperties);
+		const clientProperties = this.getClientProperties();
+		this.observerNotify(OBS_ID_MQTT_CLIENT_PROPS, clientProperties);
 		this.subscribe(this.envPrivateTopic);
 	}
 
@@ -91,8 +105,8 @@ class MqttClientSingleton {
 				return;
 			}
 			this.subscribePriveTopic = true;
-			const mqttClientProperties = this.getClientProperties();
-			this.observerNotify(OBSERVER_ID_MQTT_CLIENT_PROPERTIES, mqttClientProperties);
+			const clientProperties = this.getClientProperties();
+			this.observerNotify(OBS_ID_MQTT_CLIENT_PROPS, clientProperties);
 		});
 	}
 
@@ -104,21 +118,21 @@ class MqttClientSingleton {
 		});
 	}
 
-	publish(topic: string, message: MessagePublishType) {
-		const argument = JSON.stringify({ ...message });
-		this.client.publish(topic, argument);
+	publish(topic: string, message: PublicMessageToDeviceType) {
+		const data = JSON.stringify({ ...message });
+		this.client.publish(topic, data);
 	}
 
 	end() {
 		this.client.end();
 	}
 
-	addObserver(argument: ObserverType) {
-		this.observers.push(argument);
+	addObserver(observer: ObserverType) {
+		this.observers.push(observer);
 	}
 
-	removeObserver(argument: ObserverType) {
-		this.observers = this.observers.filter(obs => obs !== argument);
+	removeObserver(observer: ObserverType) {
+		this.observers = this.observers.filter(obs => obs !== observer);
 	}
 }
 

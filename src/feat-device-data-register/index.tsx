@@ -1,10 +1,10 @@
 import { DataLogList } from './components/organisms/data-log-list';
 
-function FeatSensorDataLogging() {
+function FeatDeviceDataRegister() {
 
 	return (
 		<DataLogList />
 	);
 }
 
-export { FeatSensorDataLogging };
+export { FeatDeviceDataRegister };

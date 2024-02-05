@@ -1,10 +1,10 @@
-import { ConnectionMonitoringProperties } from './components/organisms/connection-monitoring-properties';
+import { PropertiesMonitoring } from './components/organisms/properties-monitoring';
 
-function FeatMqttClientInformation() {
+function FeatMqttClientProperties() {
 
 	return (
-		<ConnectionMonitoringProperties />
+		<PropertiesMonitoring />
 	);
 }
 
-export { FeatMqttClientInformation };
+export { FeatMqttClientProperties };

@@ -1,5 +1,0 @@
-const OBSERVER_ID_MQTT_CLIENT_PROPERTIES = 'obs_id_umcp';
-
-export {
-    OBSERVER_ID_MQTT_CLIENT_PROPERTIES,
-};

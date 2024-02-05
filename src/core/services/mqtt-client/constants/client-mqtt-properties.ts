@@ -1,6 +1,6 @@
-import { ClientMqttPropertiesType } from '@core-services/mqtt-client/types/client-mqtt-properties';
+import { MqttClientProperties } from '@core-services/mqtt-client/types/mqtt-client-properties';
 
-const CLIENT_MQTT_PROPERTIES: ClientMqttPropertiesType = {
+const MQTT_CLIENT_PROPERTIES: MqttClientProperties = {
     clientMqtt: undefined,
     clientId: undefined,
     host: undefined,
@@ -10,4 +10,4 @@ const CLIENT_MQTT_PROPERTIES: ClientMqttPropertiesType = {
     connected: false,
 };
 
-export { CLIENT_MQTT_PROPERTIES };
+export { MQTT_CLIENT_PROPERTIES };

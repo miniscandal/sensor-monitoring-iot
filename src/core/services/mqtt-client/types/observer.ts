@@ -1,5 +1,5 @@
-import { ObserverArgumentType } from './observer-argument';
+import { ObserverDataType } from './observer-data';
 
-type ObserverType = (id: string, argument: ObserverArgumentType) => void;
+type ObserverType = (id: string, data: ObserverDataType) => void;
 
 export { ObserverType };

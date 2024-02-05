@@ -3,7 +3,7 @@
  * 
  */
 
-import { useMqttClientProperties } from '@shared-custom-hooks/useMqttClientProperties';
+import { useMqttClientProperties } from '@shared-custom-hooks/use-mqtt-client-properties';
 
 import { MonitoringPropertyType } from '@shared-components/molecules/monitoring-property/type';
 
@@ -18,7 +18,7 @@ import { subscribe } from '@shared-components/molecules/monitoring-property/vari
 
 import './style.css';
 
-function ConnectionMonitoringProperties() {
+function PropertiesMonitoring() {
 	const { connected, ...properties } = useMqttClientProperties();
 	const monitoringProperties: { [key: string]: MonitoringPropertyType } = {
 		clientMqtt,
@@ -39,10 +39,10 @@ function ConnectionMonitoringProperties() {
 	});
 
 	return (
-		<section class="connection_monitoring_properties">
+		<section class="properties_monitoring">
 			{elements}
 		</section>
 	);
 }
 
-export { ConnectionMonitoringProperties };
+export { PropertiesMonitoring };

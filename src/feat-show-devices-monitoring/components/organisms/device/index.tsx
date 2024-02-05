@@ -1,4 +1,4 @@
-import { useReadingSensorParameters } from '@shared-custom-hooks/useReadingSensorParameters';
+// import { useReadingSensorParameters } from '@shared-custom-hooks/useReadingSensorParameters';
 
 import { FontIcon } from '@shared-components/atoms/font-icon';
 import { PropertyWithValue } from '@shared-components/molecules/property-with-value';
@@ -13,12 +13,12 @@ import { iconWithValueTemperature } from '../../molecules/icon-with-value/varian
 
 import './style.css';
 
-function Sensor({ sensorId = '0' }) {
-	const { humidity, temperature } = useReadingSensorParameters({ sensorId });
+function Device({ deviceId = '0' }) {
+	// const { humidity, temperature } = useReadingSensorParameters({ sensorId });
 
 	return (
 		<section class="sensor">
-			<header class="sensor__connected">
+			{/* <header class="sensor__connected">
 				<FontIcon name={sensors} size="small" color="successful" />
 			</header>
 			<section>
@@ -31,9 +31,9 @@ function Sensor({ sensorId = '0' }) {
 			</section>
 			<footer class="sensor__footer">
 				<ButtonPanel />
-			</footer>
+			</footer> */}
 		</section>
 	);
 }
 
-export { Sensor };
+export { Device };
