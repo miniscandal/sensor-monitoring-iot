@@ -12,7 +12,7 @@ import { iconWithValueTemperature } from '../../molecules/icon-with-value/varian
 
 import './style.css';
 
-function Device({ deviceId }) {
+function Device({ deviceId }: { deviceId: string }) {
 	const { humidity, temperature } = useDeviceParametersReading(deviceId);
 
 	return (
@@ -25,8 +25,8 @@ function Device({ deviceId }) {
 				<PropertyWithValue property="Device ID:" value={deviceId} />
 			</section>
 			<section class="device__values">
-				<IconWithValue {...iconWithValueHumidity} value={humidity.value} />
-				<IconWithValue {...iconWithValueTemperature} value={temperature.value} />
+				<IconWithValue {...iconWithValueHumidity} value={humidity.value.toString()} />
+				<IconWithValue {...iconWithValueTemperature} value={temperature.value.toString()} />
 			</section>
 			<footer class="device__footer">
 				<ButtonPanel />

@@ -4,19 +4,17 @@ import { button } from '@shared-components/atoms/font-icon/variants';
 
 import './style.css';
 
-type Props = {
+function IconWithValue({ icon = button, color = 'prefers-scheme', value = 'value' }: {
 	icon?: string;
 	color?: string;
-	value?: string | number;
-};
-
-function IconWithValue({ icon = button, color = 'prefers-scheme', value = 'value' }: Props) {
+	value?: string;
+}) {
 
 	return (
 		<div class="icon_with_value">
 			<FontIcon name={icon} size="regular" color={color} />
 			<div class="icon_with_value__text">
-				<Paragraph text={value.toString()} />
+				<Paragraph text={value} />
 			</div>
 		</div>
 	);
