@@ -1,5 +1,5 @@
-.sensor {
-	width: 140px;
+.device {
+	width: 180px;
 	height: 200px;
 	padding: var(--padding);
 	border: var(--border);
@@ -10,18 +10,17 @@
 	background-color: var(--background-color-prefers-scheme-element);
 }
 
-.sensor__connected {
+.device__connected {
 	display: flex;
 	justify-content: end;
 }
 
-.sensor__values {
+.device__values {
 	display: flex;
 	justify-content: center;
-	gap: 20px;
 }
 
-.sensor__footer {
+.device__footer {
 	border-top: var(--border);
 	padding-top: var(--padding);
 }

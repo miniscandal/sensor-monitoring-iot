@@ -8,7 +8,7 @@ type Props = {
 	icon?: string;
 	color?: string;
 	value?: string | number;
-}
+};
 
 function IconWithValue({ icon = button, color = 'prefers-scheme', value = 'value' }: Props) {
 

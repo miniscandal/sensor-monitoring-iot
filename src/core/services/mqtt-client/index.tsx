@@ -13,8 +13,9 @@ import { MqttClientPropertiesType } from './types/mqtt-client-properties';
 import { ReceivedMessageByDeviceType } from './types/received-message-by-device';
 
 import { OBS_ID_MQTT_CLIENT_PROPS } from '@shared-custom-hooks/use-mqtt-client-properties/constants/observer-id';
-import { DEVICE_STATUS_CODE } from '@shared-constants/mqttt-client-status-codes';
+import { DEVICE_STATUS_CODE_CONNECTED, DEVICE_STATUS_CODE_REPORTED_PARAMETERS } from '@shared-constants/mqttt-client-status-codes';
 import { OBS_ID_CONNECTED_DEVICE } from '@shared-custom-hooks/use-connected-devices/constants/observer-id';
+import { OBS_ID_DEVICE_PARAMETERS_READING } from '@shared-custom-hooks/use-device-parameters-reading/constants/observer-id';
 
 class MqttClientSingleton {
 	static instance: MqttClientSingleton;
@@ -72,8 +73,11 @@ class MqttClientSingleton {
 
 	private handleOnMessage(message: ReceivedMessageByDeviceType) {
 		switch (message.status_code) {
-			case DEVICE_STATUS_CODE:
+			case DEVICE_STATUS_CODE_CONNECTED:
 				this.observerNotify(OBS_ID_CONNECTED_DEVICE, message);
+				break;
+			case DEVICE_STATUS_CODE_REPORTED_PARAMETERS:
+				this.observerNotify(OBS_ID_DEVICE_PARAMETERS_READING, message);
 				break;
 			default:
 				break;
