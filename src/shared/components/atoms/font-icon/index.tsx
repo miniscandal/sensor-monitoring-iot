@@ -4,7 +4,7 @@ import { button } from './variants';
 
 function FontIcon({ name = button, size = 'regular', color = 'prefers-scheme' }) {
 
-	return <span>'✰'</span>;
+	// return <span>'✰'</span>;
 
 	return (
 		<span
