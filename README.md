@@ -95,7 +95,7 @@ npm run dev
 
 * [Preact](https://preactjs.com/)
 * [Vite](https://vitejs.dev/)
-* [Mosquitto](https://https://mosquitto.org//) 
+* [Mosquitto](https://mosquitto.org/) 
 * [MQTT.js](https://github.com/mqttjs/MQTT.js/)
 
 
