@@ -1,4 +1,4 @@
-.data_log_list {
+.data_tracking {
 	height: 200px;
 	border: var(--border);
 	padding: var(--padding);
@@ -6,15 +6,16 @@
 	background-color: var(--background-color-prefers-scheme-element);
 }
 
-.data_log_list__data {
+.data_tracking__div {
 	height: 100%;
 	overflow-y: scroll;
+	overflow-x: scroll;
 }
 
-.data_log_list__data > .paragraph {
+.data_tracking__div > .paragraph {
 	padding: 0.5rem 0;
 }
 
-.data_log_list__scroll {
+.data_tracking__scroll {
 	height: 2rem;
 }

@@ -11,7 +11,8 @@ import { MqttClientSingleton } from '@core-services/mqtt-client';
 import { Header } from '@shared-components/organisms/header';
 
 import { FeatMqttClientProperties } from './feat-mqtt-client-properties';
-import { FeatShowConnectedDevices } from './feat-show-connected-devices';
+import { FeatConnectedDeviceMonitoring } from './feat-connected-devices-monitoring';
+import { FeatDataTracking } from './feat-device-data-tracking';
 
 import './style.css';
 
@@ -30,7 +31,10 @@ export function App() {
 					<FeatMqttClientProperties />
 				</article>
 				<article>
-					<FeatShowConnectedDevices />
+					<FeatConnectedDeviceMonitoring />
+				</article>
+				<article>
+					<FeatDataTracking />
 				</article>
 			</main>
 		</>
