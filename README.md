@@ -1,9 +1,9 @@
-# Internet de las cosas, monitoreo de dispositivos sensores
+# Monitoreo de sensores, IoT
 
 Desarrollo web para monitorear publicaciones MQTT que representan el estado y los parametros
 de dispositivos sensores.
 
-<img src="./docs/pictures/terminal-capture.png" width="540">
+<img src="./docs/pictures/web-capture.png" width="540">
 
 ## Recomendación importante
 ≧◠‿◠≦
@@ -45,6 +45,8 @@ un entorno de producción sin realizar las adecuaciones de seguridad necesarias.
       ```bash
       ./mosquitto.exe -c <ruta_al_archivo_de_configuracion> -v
       ```
+* Este proyecto se integra con este otro proyecto complementario.
+[device-sensor-emulator](https://github.com/miniscandal/device-sensor-emulator)
 
 ### Proceso de implementación
 
@@ -80,7 +82,7 @@ npm run dev
 ![Terminal](https://img.shields.io/badge/Terminal-%23474745.svg?style=for-the-badge)
 ![CSS](https://img.shields.io/badge/CSS-%231572B6.svg?style=for-the-badge)
 ![HTML](https://img.shields.io/badge/HTML-%23E34F26.svg?style=for-the-badge)
-![React](https://img.shields.io/badge/React-%2361DAFB.svg?style=for-the-badge&logo=react&logoColor=black)
+![Preact](https://img.shields.io/badge/preact-%23007ACC.svg?style=for-the-badge&logo=preact&logoColor=white)
 ![JSON](https://img.shields.io/badge/JSON-%2348494a.svg?style=for-the-badge)  
 ![Atomic Design](https://img.shields.io/badge/Atomic%20Design-red.svg?style=for-the-badge&logo=atomic-design&logoColor=white)
 ![MQTT](https://img.shields.io/badge/MQTT-%23007ACC.svg?style=for-the-badge&logo=MQTT&logoColor=white)
@@ -90,7 +92,7 @@ npm run dev
 
 ### Referencias
 
-* [React](https://react.dev/)
+* [Preact](https://preactjs.com/)
 * [Vite](https://vitejs.dev/)
 * [Mosquitto](https://https://mosquitto.org//) 
 * [MQTT.js](https://github.com/mqttjs/MQTT.js/)
@@ -100,6 +102,11 @@ npm run dev
 ## Reflexiones y aprendizajes
 
 ≧◠‿◠≦
+
+Este proyecto nace de la necesidad de comprender más profundamente la implementación  
+del Internet de las Cosas (IoT). Se basa en la experiencia de un primer proyecto  
+colaborativo llevado a cabo durante mis estudios universitarios, como aporte para mi  
+especialización en IoT.
 
 En el proceso de desarrollo de esta aplicación web, mejoré mis habilidades y utilicé  
 el diseño atómico para generar componentes reutilizables, lo que resultó en un  
