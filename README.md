@@ -1,4 +1,4 @@
-# Monitoreo en tiempo real de sensores, IoT
+# Monitoreo de sensores, IoT
 
 Desarrollo de una plataforma web para el monitoreo en tiempo real de publicaciones  
 utilizando el protocolo MQTT, las cuales representan el estado actual y los parámetros  
