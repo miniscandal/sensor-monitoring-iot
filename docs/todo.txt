@@ -8,11 +8,11 @@ shered
 constants
 
 ✰
-Convertir el formato json recivido de python a un formato de javascript, ejemplo
-de {pokemon_name: "chikorita" } a {pokemonName: "chikorita"}
+Convertir el formato JSON recibido de Python a un formato de JavaScript, ejemplo:
+{pokemon_name: "chikorita" } a {pokemonName: "chikorita"}
 
 ✰
-Replantear si core deberia ir en shared
+Replantear si core debería ir en shared
 
 ✰
 Ideas para mejoras futuras:
