@@ -122,7 +122,7 @@ del código.
 
 #### Recursos de código abierto
 
-* [Mosquitto](https://https://mosquitto.org//):
+* [Mosquitto](https://mosquitto.org/):
   Broker de mensajes que implementa el protocolo MQTT.
 * [MQTT.js](https://github.com/mqttjs/MQTT.js/)
   Biblioteca de cliente para el protocolo MQTT.
