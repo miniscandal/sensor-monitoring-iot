@@ -1,7 +1,7 @@
 # Monitoreo de sensores, IoT
 
-Desarrollo web para monitorear publicaciones MQTT que representan el estado y los parametros
-de dispositivos sensores.
+Implementación de una plataforma web para la supervisión de publicaciones MQTT que  
+reflejan el estado y los parámetros de dispositivos de detección.
 
 <img src="./docs/pictures/web-capture.png" width="540">
 
