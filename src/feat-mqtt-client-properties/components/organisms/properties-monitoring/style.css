@@ -1,5 +1,5 @@
 .properties_monitoring {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
-	gap: var(--gap);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    gap: var(--gap);
 }

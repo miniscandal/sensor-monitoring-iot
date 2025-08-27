@@ -13,131 +13,132 @@ import { MqttClientPropertiesType } from './types/mqtt-client-properties';
 import { ReceivedMessageByDeviceType } from './types/received-message-by-device';
 
 import { OBS_ID_MQTT_CLIENT_PROPS } from '@shared-custom-hooks/use-mqtt-client-properties/constants/observer-id';
-import { DEVICE_STATUS_CODE_CONNECTED, DEVICE_STATUS_CODE_REPORTED_PARAMETERS } from '@shared-constants/mqttt-client-status-codes';
+import { DEVICE_STATUS_CODE_CONNECTED } from '@shared-constants/mqttt-client-status-codes';
+import { DEVICE_STATUS_CODE_REPORTED_PARAMETERS } from '@shared-constants/mqttt-client-status-codes';
 import { OBS_ID_CONNECTED_DEVICE } from '@shared-custom-hooks/use-connected-devices/constants/observer-id';
 import { OBS_ID_DEVICE_PARAMETERS_READING } from '@shared-custom-hooks/use-device-parameters-reading/constants/observer-id';
 
 class MqttClientSingleton {
-	static instance: MqttClientSingleton;
+    private static instance: MqttClientSingleton;
 
-	private client: mqtt.MqttClient;
-	private observers: ObserverType[] = [];
-	private subscribePriveTopic: boolean = false;
-	private envPrivateTopic: string = import.meta.env.VITE_MQTT_PRIVATE_TOPIC;
+    private client: mqtt.MqttClient;
+    private observers: ObserverType[] = [];
+    private subscribePriveTopic: boolean = false;
+    private envPrivateTopic: string = import.meta.env.VITE_MQTT_PRIVATE_TOPIC;
 
-	constructor(client: mqtt.MqttClient) {
-		if (MqttClientSingleton.instance) {
+    private constructor(client: mqtt.MqttClient) {
+        this.client = client;
+        this.configureClient();
+    }
 
-			return MqttClientSingleton.instance;
-		}
+    static getInstance(): MqttClientSingleton {
+        if (!MqttClientSingleton.instance) {
+            const mqttConnect = mqtt.connect(import.meta.env.VITE_MQTT_BROKER);
+            MqttClientSingleton.instance = new MqttClientSingleton(mqttConnect);
+        }
 
-		this.client = client;
-		this.onConnect = this.onConnect.bind(this);
-		this.onMessage = this.onMessage.bind(this);
-		this.onReconnect = this.onReconnect.bind(this);
-		this.configureClient();
-	}
+        return MqttClientSingleton.instance;
+    }
 
-	static getInstance() {
-		if (!MqttClientSingleton.instance) {
-			const mqttConnect = mqtt.connect(import.meta.env.VITE_MQTT_BROKER);
-			MqttClientSingleton.instance = new MqttClientSingleton(mqttConnect);
-		}
+    protected observerNotify(observerId: string, data: ObserverDataType) {
+        this.observers.forEach(observer => {
+            try {
+                observer(observerId, data);
+            } catch (err) {
+                console.error('Observer execution error: ', err);
+            }
+        });
+    }
 
-		return MqttClientSingleton.instance;
-	}
+    protected getClientProperties(): MqttClientPropertiesType {
+        const { connected, options } = this.client;
+        const { clientId, host, port, protocol } = options;
 
-	protected observerNotify(observerId: string, data: ObserverDataType) {
-		this.observers.forEach(observer => observer(observerId, data));
-	}
+        return {
+            clientMqtt: connected ? 'Connected' : undefined,
+            clientId,
+            host,
+            port,
+            protocol,
+            subscribe: this.subscribePriveTopic ? this.envPrivateTopic : undefined,
+            connected,
+        };
+    }
 
-	protected getClientProperties(): MqttClientPropertiesType {
-		const { connected, options } = this.client;
-		const { clientId, host, port, protocol } = options;
+    private onReconnect = () => {
+        this.observerNotify(OBS_ID_MQTT_CLIENT_PROPS, this.getClientProperties());
+    };
 
-		return {
-			clientMqtt: connected ? 'Connected' : undefined,
-			clientId,
-			host,
-			port,
-			protocol,
-			subscribe: this.subscribePriveTopic ? this.envPrivateTopic : undefined,
-			connected,
-		};
-	}
+    private handleOnMessage(message: ReceivedMessageByDeviceType) {
+        switch (message.status_code) {
+            case DEVICE_STATUS_CODE_CONNECTED:
+                this.observerNotify(OBS_ID_CONNECTED_DEVICE, message);
+                break;
+            case DEVICE_STATUS_CODE_REPORTED_PARAMETERS:
+                this.observerNotify(OBS_ID_DEVICE_PARAMETERS_READING, message);
+                break;
+            default:
+                break;
+        }
+    }
 
-	private onReconnect() {
-		const clientProperties = this.getClientProperties();
-		this.observerNotify(OBS_ID_MQTT_CLIENT_PROPS, clientProperties);
-	}
+    private onMessage = (topic: string, message: string | Buffer) => {
+        try {
+            const parsed: ReceivedMessageByDeviceType = JSON.parse(message.toString());
+            this.handleOnMessage(parsed);
+        } catch (err) {
+            console.error('Invalid MQTT message:', message.toString(), err);
+        }
+    };
 
-	private handleOnMessage(message: ReceivedMessageByDeviceType) {
-		switch (message.status_code) {
-			case DEVICE_STATUS_CODE_CONNECTED:
-				this.observerNotify(OBS_ID_CONNECTED_DEVICE, message);
-				break;
-			case DEVICE_STATUS_CODE_REPORTED_PARAMETERS:
-				this.observerNotify(OBS_ID_DEVICE_PARAMETERS_READING, message);
-				break;
-			default:
-				break;
-		}
-	}
+    private onConnect = () => {
+        this.observerNotify(OBS_ID_MQTT_CLIENT_PROPS, this.getClientProperties());
+        this.subscribe(this.envPrivateTopic);
+    };
 
-	private onMessage(topic: string, message: string | Buffer) {
-		const messageString = message.toString();
-		this.handleOnMessage(JSON.parse(messageString));
-	}
+    private configureClient() {
+        this.client.on('connect', this.onConnect);
+        this.client.on('message', this.onMessage);
+        this.client.on('reconnect', this.onReconnect);
+        this.client.on('error', (err) => console.error('MQTT error:', err));
+        this.client.on('close', () => console.warn('MQTT connection closed'));
+    }
 
-	private onConnect() {
-		const clientProperties = this.getClientProperties();
-		this.observerNotify(OBS_ID_MQTT_CLIENT_PROPS, clientProperties);
-		this.subscribe(this.envPrivateTopic);
-	}
+    subscribe(topic: string) {
+        this.client.subscribe(topic, (error: Error) => {
+            if (error) {
+                console.error(`Error subscribe to topic ${topic}:`, error);
 
-	private configureClient() {
-		this.client.on('connect', this.onConnect);
-		this.client.on('message', this.onMessage);
-		this.client.on('reconnect', this.onReconnect);
-	}
+                return;
+            }
+            this.subscribePriveTopic = true;
+            this.observerNotify(OBS_ID_MQTT_CLIENT_PROPS, this.getClientProperties());
+        });
+    }
 
-	subscribe(topic: string) {
-		this.client.subscribe(topic, (error: Error) => {
-			if (error) {
-				console.error(`Error subscribe to topic ${topic}:`, error);
+    unsubscribe(topic: string) {
+        this.client.unsubscribe(topic, (error: Error) => {
+            if (error) {
+                console.error(`Error unsubscribe to topic ${topic}:`, error);
+            }
+        });
+    }
 
-				return;
-			}
-			this.subscribePriveTopic = true;
-			const clientProperties = this.getClientProperties();
-			this.observerNotify(OBS_ID_MQTT_CLIENT_PROPS, clientProperties);
-		});
-	}
+    publish(topic: string, message: PublicMessageToDeviceType) {
+        this.client.publish(topic, JSON.stringify(message));
+    }
 
-	unsubscribe(topic: string) {
-		this.client.unsubscribe(topic, (error: Error) => {
-			if (error) {
-				console.error(`Error unsubscribe to topic ${topic}:`, error);
-			}
-		});
-	}
+    end() {
+        this.client.end();
+    }
 
-	publish(topic: string, message: PublicMessageToDeviceType) {
-		const data = JSON.stringify({ ...message });
-		this.client.publish(topic, data);
-	}
+    addObserver(observer: ObserverType) {
+        this.observers.push(observer);
+    }
 
-	end() {
-		this.client.end();
-	}
-
-	addObserver(observer: ObserverType) {
-		this.observers.push(observer);
-	}
-
-	removeObserver(observer: ObserverType) {
-		this.observers = this.observers.filter(obs => obs !== observer);
-	}
+    removeObserver(observer: ObserverType) {
+        this.observers = this.observers.filter(obs => obs !== observer);
+    }
 }
 
 export { MqttClientSingleton };

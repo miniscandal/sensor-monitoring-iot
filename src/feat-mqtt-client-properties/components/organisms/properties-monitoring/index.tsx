@@ -19,30 +19,30 @@ import { subscribe } from '@shared-components/molecules/monitoring-property/vari
 import './style.css';
 
 function PropertiesMonitoring() {
-	const { connected, ...properties } = useMqttClientProperties();
-	const monitoringProperties: { [key: string]: MonitoringPropertyType } = {
-		clientMqtt,
-		clientId,
-		host,
-		protocol,
-		port,
-		subscribe,
-	};
+    const { connected, ...properties } = useMqttClientProperties();
+    const monitoringProperties: { [key: string]: MonitoringPropertyType } = {
+        clientMqtt,
+        clientId,
+        host,
+        protocol,
+        port,
+        subscribe,
+    };
 
-	const elements = Object.keys(properties).map(key => {
-		const monitoringProperty: MonitoringPropertyType = {
-			...monitoringProperties[key],
-			value: connected ? properties[key] : monitoringProperties[key].value,
-		};
+    const elements = Object.keys(properties).map(key => {
+        const monitoringProperty: MonitoringPropertyType = {
+            ...monitoringProperties[key],
+            value: connected ? properties[key] : monitoringProperties[key].value,
+        };
 
-		return <MonitoringProperty {...monitoringProperty} />;
-	});
+        return <MonitoringProperty {...monitoringProperty} />;
+    });
 
-	return (
-		<section class="properties_monitoring">
-			{elements}
-		</section>
-	);
+    return (
+        <section class="properties_monitoring">
+            {elements}
+        </section>
+    );
 }
 
 export { PropertiesMonitoring };

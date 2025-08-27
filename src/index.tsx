@@ -17,28 +17,22 @@ import { FeatDataTracking } from './feat-device-data-tracking';
 import './style.css';
 
 export function App() {
-	useEffect(() => {
-		const client = MqttClientSingleton.getInstance();
+    useEffect(() => {
+        const client = MqttClientSingleton.getInstance();
 
-		return () => client.end();
-	}, []);
+        return () => client.end();
+    }, []);
 
-	return (
-		<>
-			<Header />
-			<main>
-				<article>
-					<FeatMqttClientProperties />
-				</article>
-				<article>
-					<FeatConnectedDeviceMonitoring />
-				</article>
-				<article>
-					<FeatDataTracking />
-				</article>
-			</main>
-		</>
-	);
+    return (
+        <>
+            <Header />
+            <main>
+                <FeatMqttClientProperties />
+                <FeatConnectedDeviceMonitoring />
+                <FeatDataTracking />
+            </main>
+        </>
+    );
 }
 
 // @ts-expect-error: Irrelevant.

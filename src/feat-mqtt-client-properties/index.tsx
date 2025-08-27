@@ -2,9 +2,9 @@ import { PropertiesMonitoring } from './components/organisms/properties-monitori
 
 function FeatMqttClientProperties() {
 
-	return (
-		<PropertiesMonitoring />
-	);
+    return (
+        <PropertiesMonitoring />
+    );
 }
 
 export { FeatMqttClientProperties };
