@@ -1,0 +1,48 @@
+Import Order
+
+✰ hooks
+✰ types
+✰ core
+✰ shared
+✰ constants
+
+TodoList
+
+✰ Reconsider if core should be in shared
+
+Ideas for Future Improvements:
+
+✰ Implementing an error tracking service, such as Sentry or LogRocket, could help identify and resolve issues more efficiently.
+
+✰ A more robust logging system could provide valuable insights into the application's real-time behavior and help pinpoint areas for improvement.
+
+/** ************************************************************************ **/
+
+           __-----_.                        ________
+          /  \      \           o  O  O   _(        )__
+         /    |  |   \_---_   o._.      _(             )_
+        |     |            \   | |""""(_   Hello World!  )
+        |     |             |@ | |    (_               _)
+         \___/   ___       /   | |      (__          _)
+           \____(____\___/     | |         (________)
+           |__|                | |          |
+           /   \-_             | |         |'
+         /      \_ "__ _       !_!--v---v--"
+        /         "|  |>)      |""""""""|
+       |          _|  | ._--""||        |
+       _\_____________|_|_____||________|_
+      /                                   \
+     /_____________________________________\
+     /                                     \
+    /_______________________________________\
+    /                                       \
+   /_________________________________________\
+        {                               }
+        <_______________________________|
+        |                               >
+        {_______________________________|               ________
+        <                               }              / MINIMI \
+        |_______________________________|             /__________\
+\|/       \\/             \||//           |//                       \|/    |/
+
+/** ************************************************************************ **/
