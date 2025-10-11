@@ -16,6 +16,7 @@ import { FeatDataTracking } from './feat-device-data-tracking';
 
 import './style.css';
 
+
 export function App() {
     useEffect(() => {
         const client = MqttClientSingleton.getInstance();
@@ -35,5 +36,5 @@ export function App() {
     );
 }
 
-// @ts-expect-error: Irrelevant.
+
 render(<App />, document.getElementById('app'));

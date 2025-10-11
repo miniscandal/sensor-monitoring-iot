@@ -1,9 +1,10 @@
-import { PropertiesMonitoring } from './components/organisms/properties-monitoring';
+import { ParameterMonitoring } from './components/organisms/parameter-monitoring';
+
 
 function FeatMqttClientProperties() {
 
     return (
-        <PropertiesMonitoring />
+        <ParameterMonitoring />
     );
 }
 
