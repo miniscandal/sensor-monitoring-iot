@@ -2,12 +2,12 @@ import { ConnectedDeviceCount } from "./components/organisms/connected-device-co
 import { ConnectedDeviceView } from "./components/organisms/connected-device-view";
 
 function FeatConnectedDeviceMonitoring() {
-	return (
-		<>
-			<ConnectedDeviceCount />
-			<ConnectedDeviceView />
-		</>
-	);
+    return (
+        <>
+            <ConnectedDeviceCount />
+            <ConnectedDeviceView />
+        </>
+    );
 }
 
 export { FeatConnectedDeviceMonitoring };

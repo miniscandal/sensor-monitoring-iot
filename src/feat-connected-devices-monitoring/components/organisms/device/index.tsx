@@ -13,26 +13,26 @@ import { iconWithValueTemperature } from '../../molecules/icon-with-value/varian
 import './style.css';
 
 function Device({ deviceId }: { deviceId: string }) {
-	const { humidity, temperature } = useDeviceParametersReading(deviceId);
+    const { humidity, temperature } = useDeviceParametersReading(deviceId);
 
-	return (
-		<section class="device">
-			<header class="device__connected">
-				<FontIcon name={sensors} size="small" color="successful" />
-			</header>
-			<section>
-				<FontIcon name={sensorActive} size="medium" color="symbol" />
-				<PropertyWithValue property="Device ID:" value={deviceId} />
-			</section>
-			<section class="device__values">
-				<IconWithValue {...iconWithValueHumidity} value={humidity.value.toString()} />
-				<IconWithValue {...iconWithValueTemperature} value={temperature.value.toString()} />
-			</section>
-			<footer class="device__footer">
-				<ButtonPanel />
-			</footer>
-		</section>
-	);
+    return (
+        <section class="device">
+            <header class="device__connected">
+                <FontIcon name={sensors} size="small" color="successful" />
+            </header>
+            <section>
+                <FontIcon name={sensorActive} size="medium" color="symbol" />
+                <PropertyWithValue property="Device ID:" value={deviceId} />
+            </section>
+            <section class="device__values">
+                <IconWithValue {...iconWithValueTemperature} value={temperature.value.toString()} />
+                <IconWithValue {...iconWithValueHumidity} value={humidity.value.toString()} />
+            </section>
+            <footer class="device__footer">
+                <ButtonPanel />
+            </footer>
+        </section>
+    );
 }
 
 export { Device };
