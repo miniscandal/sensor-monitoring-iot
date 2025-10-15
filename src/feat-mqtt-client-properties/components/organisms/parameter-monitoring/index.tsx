@@ -5,7 +5,7 @@
 
 import { useMqttClientProperties } from '@shared-custom-hooks/use-mqtt-client-properties';
 
-import { Parameter } from '../../parameter';
+import { Parameter } from '@shared-components/molecules/parameter';
 
 import './style.css';
 
