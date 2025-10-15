@@ -2,13 +2,13 @@ import { Icon } from "../atoms/icons";
 
 import { PropertyWithValue } from "@shared-components/molecules/property-with-value";
 
-import mqttClientStatusSvg from '@assets/images/icons/mqtt-client-status.svg';
-import hostSvg from '@assets/images/icons/host.svg';
-import portSvg from '@assets/images/icons/port.svg';
-import protocolSvg from '@assets/images/icons/protocol.svg';
-import clientIdSvg from '@assets/images/icons/client-id.svg';
-import topicSubscribeSvg from '@assets/images/icons/topic-subscribe.svg';
-import countSensorDeviceSvg from '@assets/images/icons/count-sensor-device.svg';
+import mqttClientStatusSvg from '@assets/images/mqtt-icons/mqtt-client-status.svg';
+import hostSvg from '@assets/images/mqtt-icons/host.svg';
+import portSvg from '@assets/images/mqtt-icons/port.svg';
+import protocolSvg from '@assets/images/mqtt-icons/protocol.svg';
+import clientIdSvg from '@assets/images/mqtt-icons/client-id.svg';
+import topicSubscribeSvg from '@assets/images/mqtt-icons/topic-subscribe.svg';
+import countSensorDeviceSvg from '@assets/images/mqtt-icons/count-sensor-device.svg';
 
 import './style.css';
 
