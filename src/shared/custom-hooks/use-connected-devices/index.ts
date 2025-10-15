@@ -14,37 +14,37 @@ import { ReceivedMessageByDeviceType } from '@core-services/mqtt-client/types/re
 import { OBS_ID_CONNECTED_DEVICE } from './constants/observer-id';
 
 function observerCallback(
-	observerId: string, data: ObserverDataType, setConnectedDevice,
+    observerId: string, data: ObserverDataType, setConnectedDevice,
 ) {
-	if (observerId !== OBS_ID_CONNECTED_DEVICE) {
+    if (observerId !== OBS_ID_CONNECTED_DEVICE) {
 
-		return;
-	}
+        return;
+    }
 
-	const { device_id } = data as ReceivedMessageByDeviceType;
+    const { device_id } = data as ReceivedMessageByDeviceType;
 
-	setConnectedDevice((prevState: ReceivedMessageByDeviceType[]) => {
-		const isNewDevice = prevState.some(device => device.device_id === device_id);
+    setConnectedDevice((prevState: ReceivedMessageByDeviceType[]) => {
+        const isNewDevice = prevState.some(device => device.device_id === device_id);
 
-		return isNewDevice ? prevState : [...prevState, data];
-	});
+        return isNewDevice ? prevState : [...prevState, data];
+    });
 }
 
 function useConnectedDevices() {
-	const [connectedDevice, setConnectedDevice] = useState([]);
-	const countDevice = connectedDevice.length;
+    const [connectedDevice, setConnectedDevice] = useState([]);
+    const countDevice = connectedDevice.length;
 
-	useEffect(() => {
-		const client = MqttClientSingleton.getInstance();
+    useEffect(() => {
+        const client = MqttClientSingleton.getInstance();
 
-		const observer: ObserverType = (observerId, data) => {
-			observerCallback(observerId, data, setConnectedDevice);
-		};
+        const observer: ObserverType = (observerId, data) => {
+            observerCallback(observerId, data, setConnectedDevice);
+        };
 
-		client.addObserver(observer);
-	}, []);
+        client.addObserver(observer);
+    }, []);
 
-	return { devices: connectedDevice, countDevice };
+    return { devices: connectedDevice, countDevice };
 }
 
 export { useConnectedDevices };
