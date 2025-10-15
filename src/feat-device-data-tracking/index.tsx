@@ -1,10 +1,11 @@
 import { DataTracking } from './components/organisms/data-tracking';
 
+
 function FeatDataTracking() {
 
-	return (
-		<DataTracking />
-	);
+    return (
+        <DataTracking />
+    );
 }
 
 export { FeatDataTracking };
