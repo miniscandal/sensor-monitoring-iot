@@ -1,6 +1,7 @@
+import svgCat from '@assets/images/icons/cat.svg';
+
 import './style.css';
 
-import svgCat from '@assets/images/icons/cat.svg';
 
 function Icon({ size = 'small', type = svgCat }) {
     const classList = [

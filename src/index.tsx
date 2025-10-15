@@ -8,11 +8,11 @@ import { useEffect } from 'preact/hooks';
 
 import { MqttClientSingleton } from '@core-services/mqtt-client';
 
-import { Header } from '@shared-components/organisms/header';
-
 import { FeatMqttClientProperties } from './feat-mqtt-client-properties';
 import { FeatConnectedDeviceMonitoring } from './feat-connected-devices-monitoring';
 import { FeatDataTracking } from './feat-device-data-tracking';
+
+import { Header } from '@shared-components/organisms/header';
 
 import './style.css';
 

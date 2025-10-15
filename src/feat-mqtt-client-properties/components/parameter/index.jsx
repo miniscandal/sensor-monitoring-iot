@@ -1,5 +1,6 @@
-import { PropertyWithValue } from "@shared-components/molecules/property-with-value";
 import { Icon } from "../atoms/icons";
+
+import { PropertyWithValue } from "@shared-components/molecules/property-with-value";
 
 import mqttClientStatusSvg from '@assets/images/icons/mqtt-client-status.svg';
 import hostSvg from '@assets/images/icons/host.svg';
