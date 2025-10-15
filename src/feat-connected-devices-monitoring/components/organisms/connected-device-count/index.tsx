@@ -5,7 +5,7 @@
 
 import { useConnectedDevices } from '@shared-custom-hooks/use-connected-devices';
 
-import { Parameter } from '../../../../feat-mqtt-client-properties/components/parameter';
+import { Parameter } from '@shared-components/molecules/parameter';
 
 import './style.css';
 
