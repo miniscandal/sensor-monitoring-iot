@@ -6,6 +6,7 @@ export default defineConfig({
     resolve: {
         alias: {
             '@core-services': '/src/core/services',
+            '@core-observers': '/src/core/observers',
             '@assets': '/src/assets',
             '@shared-components': '/src/shared/components',
             '@shared-contexts': '/src/shared/contexts',

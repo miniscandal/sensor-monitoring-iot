@@ -20,6 +20,9 @@
             "@core-services/*": [
                 "./src/core/services/*"
             ],
+            "@core-observers/*": [
+                "./src/core/observers/*"
+            ],
             "@assets/*": [
                 "./src/assets/*"
             ],
