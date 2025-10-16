@@ -47,7 +47,7 @@ function ParameterMonitoring() {
     ];
 
     const parameterComponents = parameters.map(parameter => (
-        <Parameter {...parameter} value={connected ? properties[parameter.name] : 'disconnected'} />
+        <Parameter {...parameter} value={connected ? properties[parameter.name] : 'N/A'} />
     ));
 
 

@@ -3,21 +3,18 @@
  *
  */
 
-import { useConnectedDevices } from '@shared-custom-hooks/use-connected-devices';
-
 import { Parameter } from '@shared-components/molecules/parameter';
 
 import './style.css';
 
 
 function ConnectedDeviceCount() {
-    const { countDevice } = useConnectedDevices();
 
     const parameter = {
         name: 'subscribe',
         text: 'Sensors',
         icon: 'countSensorDevice',
-        value: countDevice.toString(),
+        value: 0,
         size: 'regular',
     };
 

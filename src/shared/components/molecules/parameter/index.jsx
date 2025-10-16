@@ -13,7 +13,7 @@ import countSensorDeviceSvg from '@assets/images/mqtt-icons/count-sensor-device.
 import './style.css';
 
 
-function Parameter({ text = 'parameter', icon = 'broadcast', value = '0', size = 'resizable' }) {
+function Parameter({ text = 'parameter', icon = 'broadcast', value = 'N/A', size = 'resizable' }) {
     const types = {
         mqttClientStatus: mqttClientStatusSvg,
         host: hostSvg,

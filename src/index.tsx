@@ -21,6 +21,7 @@ export function App() {
     useEffect(() => {
         const client = MqttClientSingleton.getInstance();
 
+
         return () => client.end();
     }, []);
 
