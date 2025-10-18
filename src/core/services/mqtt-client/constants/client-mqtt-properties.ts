@@ -1,12 +1,9 @@
-import { MqttClientProperties } from '@core-services/mqtt-client/types/mqtt-client-properties';
-
-const MQTT_CLIENT_PROPERTIES: MqttClientProperties = {
+const MQTT_CLIENT_PROPERTIES = {
     clientMqtt: undefined,
-    clientId: undefined,
     host: undefined,
-    protocol: undefined,
     port: undefined,
-    subscribe: undefined,
+    protocol: undefined,
+    clientId: undefined,
     connected: false,
 };
 

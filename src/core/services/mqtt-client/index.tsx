@@ -7,9 +7,12 @@ import mqtt from 'mqtt';
 
 import { mqttClientObserverManager } from '@core-observers/mqtt-client-observer-manager';
 
-import { MQTT_CLIENT_EVENT_ON_CONNECT } from '@shared-constants/mqtt-client-events';
-import { MQTT_CLIENT_EVENT_ON_CLOSE } from '@shared-constants/mqtt-client-events';
-import { MQTT_CLIENT_EVENT_ON_MESSAGE } from '@shared-constants/mqtt-client-events';
+import { MQTT_CLIENT_EVENT_CONNECT } from '@shared-constants/mqtt-client-events';
+import { MQTT_CLIENT_EVENT_RECONNECT } from '@shared-constants/mqtt-client-events';
+import { MQTT_CLIENT_EVENT_CLOSE } from '@shared-constants/mqtt-client-events';
+import { MQTT_CLIENT_EVENT_OFFLINE } from '@shared-constants/mqtt-client-events';
+import { MQTT_CLIENT_EVENT_SUBSCRIBE } from '@shared-constants/mqtt-client-events';
+import { MQTT_CLIENT_EVENT_MESSAGE } from '@shared-constants/mqtt-client-events';
 
 
 class MqttClientSingleton {
@@ -21,9 +24,11 @@ class MqttClientSingleton {
 
     private constructor() {
         this.client = mqtt.connect(import.meta.env.VITE_MQTT_BROKER);
-        this.client.on(MQTT_CLIENT_EVENT_ON_CONNECT, this.onConnect);
-        this.client.on(MQTT_CLIENT_EVENT_ON_CLOSE, this.onClose);
-        this.client.on(MQTT_CLIENT_EVENT_ON_MESSAGE, this.onMessage);
+        this.client.on(MQTT_CLIENT_EVENT_RECONNECT, this.onReconnect);
+        this.client.on(MQTT_CLIENT_EVENT_CONNECT, this.onConnect);
+        this.client.on(MQTT_CLIENT_EVENT_CLOSE, this.onClose);
+        this.client.on(MQTT_CLIENT_EVENT_OFFLINE, this.onOffline);
+        this.client.on(MQTT_CLIENT_EVENT_MESSAGE, this.onMessage);
     }
 
     static getInstance() {
@@ -35,11 +40,26 @@ class MqttClientSingleton {
     }
 
     private onConnect = () => {
-        mqttClientObserverManager.notify(MQTT_CLIENT_EVENT_ON_CONNECT, this.getClientProperties());
+        mqttClientObserverManager.notify(MQTT_CLIENT_EVENT_CONNECT, {
+            mqttClientProperties: this.getClientProperties(),
+        });
+        this.subscribe(this.envPrivateTopic);
     };
 
     private onClose = () => {
-        mqttClientObserverManager.notify(MQTT_CLIENT_EVENT_ON_CLOSE, this.getClientProperties());
+        mqttClientObserverManager.notify(MQTT_CLIENT_EVENT_CLOSE, this.getClientProperties());
+    };
+
+    private onOffline = () => {
+        mqttClientObserverManager.notify(MQTT_CLIENT_EVENT_OFFLINE, {
+            mqttClientProperties: this.getClientProperties(),
+        });
+    };
+
+    private onReconnect = () => {
+        mqttClientObserverManager.notify(MQTT_CLIENT_EVENT_RECONNECT, {
+            mqttClientProperties: this.getClientProperties(),
+        });
     };
 
     private onMessage = (topic, message) => {
@@ -58,7 +78,7 @@ class MqttClientSingleton {
             }
 
             this.shouldSubscribeToPrivateTopic = true;
-            mqttClientObserverManager.notify('subscribe', this.getClientProperties());
+            mqttClientObserverManager.notify(MQTT_CLIENT_EVENT_SUBSCRIBE, { topic });
         });
     }
 
@@ -69,12 +89,16 @@ class MqttClientSingleton {
 
         return {
             clientMqtt: connected ? 'Connected' : undefined,
-            clientId,
             host,
             port,
             protocol,
+            clientId,
             connected,
         };
+    }
+
+    end() {
+        this.client.end();
     }
 }
 

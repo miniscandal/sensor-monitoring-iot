@@ -11,16 +11,16 @@ import { MqttClientPropertiesType } from '@core-services/mqtt-client/types/mqtt-
 
 import { MQTT_CLIENT_PROPERTIES } from '@core-services/mqtt-client/constants/client-mqtt-properties';
 
-import { MQTT_CLIENT_EVENT_ON_CONNECT } from '@shared-constants/mqtt-client-events';
-import { MQTT_CLIENT_EVENT_ON_CLOSE } from '@shared-constants/mqtt-client-events';
+import { MQTT_CLIENT_EVENT_CONNECT } from '@shared-constants/mqtt-client-events';
+import { MQTT_CLIENT_EVENT_OFFLINE } from '@shared-constants/mqtt-client-events';
 
 
 function useMqttClientProperties() {
     const [properties, setProperties] = useState(MQTT_CLIENT_PROPERTIES);
 
     useEffect(() => {
-        const observer = (event, mqttClientProperties) => {
-            if (event !== MQTT_CLIENT_EVENT_ON_CONNECT && event !== MQTT_CLIENT_EVENT_ON_CLOSE) {
+        const observer = (event, { mqttClientProperties }) => {
+            if (event !== MQTT_CLIENT_EVENT_CONNECT && event !== MQTT_CLIENT_EVENT_OFFLINE) {
 
                 return;
             }

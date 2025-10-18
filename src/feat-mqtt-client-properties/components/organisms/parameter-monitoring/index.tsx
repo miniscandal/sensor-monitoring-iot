@@ -39,11 +39,6 @@ function ParameterMonitoring() {
             text: 'ID',
             icon: 'clientId',
         },
-        {
-            name: 'subscribe',
-            text: 'Topic Subscribe',
-            icon: 'topicSubscribe',
-        },
     ];
 
     const parameterComponents = parameters.map(parameter => (

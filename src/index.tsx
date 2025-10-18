@@ -9,6 +9,7 @@ import { useEffect } from 'preact/hooks';
 import { MqttClientSingleton } from '@core-services/mqtt-client';
 
 import { FeatMqttClientProperties } from './feat-mqtt-client-properties';
+import { FeatTopicSubscription } from './feat-topic-subscription';
 import { FeatConnectedDeviceMonitoring } from './feat-connected-devices-monitoring';
 import { FeatDataTracking } from './feat-device-data-tracking';
 
@@ -30,6 +31,7 @@ export function App() {
             <Header />
             <main>
                 <FeatMqttClientProperties />
+                <FeatTopicSubscription />
                 <FeatConnectedDeviceMonitoring />
                 <FeatDataTracking />
             </main>
