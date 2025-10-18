@@ -1,0 +1,12 @@
+.property_with_value {
+	display: flex;
+}
+
+.property_with_value[data-direction=row] {
+	flex-direction: row;
+	gap: var(--gap);
+}
+
+.property_with_value[data-direction=column] {
+	flex-direction: column;
+}
