@@ -4,8 +4,10 @@ import { PropertyItem } from '@shared-components/molecules/property-item';
 
 import topicSubscribe from '@assets/images/mqtt-icons/topic-subscribe.svg';
 
+import './style.css';
 
-function FeatTopicSubscription() {
+
+function SubscribeTopicPanel() {
     const topic = useTopicSubscription();
 
     const parameter = {
@@ -21,4 +23,4 @@ function FeatTopicSubscription() {
     );
 }
 
-export { FeatTopicSubscription };
+export { SubscribeTopicPanel };

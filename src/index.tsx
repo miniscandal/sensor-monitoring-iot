@@ -9,7 +9,7 @@ import { useEffect } from 'preact/hooks';
 import { MqttClientSingleton } from '@core-services/mqtt-client';
 
 import { FeatMqttClientStatus } from './feat-mqtt-client-status';
-import { FeatTopicSubscription } from './feat-topic-subscription';
+import { FeatTopicSubscription } from './feat-topics-subscription-status';
 import { FeatConnectedDeviceMonitoring } from './feat-connected-devices-monitoring';
 import { FeatDataTracking } from './feat-device-data-tracking';
 
