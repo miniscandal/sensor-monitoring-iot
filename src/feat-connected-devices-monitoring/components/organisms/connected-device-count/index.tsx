@@ -3,7 +3,9 @@
  *
  */
 
-import { Parameter } from '@shared-components/molecules/parameter';
+import { PropertyItem } from '@shared-components/molecules/property-item';
+
+import countSensorDevice from '@assets/images/mqtt-icons/count-sensor-device.svg';
 
 import './style.css';
 
@@ -12,8 +14,8 @@ function ConnectedDeviceCount() {
 
     const parameter = {
         name: 'subscribe',
-        text: 'Sensors',
-        icon: 'countSensorDevice',
+        label: 'Sensors',
+        svgIcon: countSensorDevice,
         value: 0,
         size: 'regular',
     };
@@ -21,7 +23,7 @@ function ConnectedDeviceCount() {
 
     return (
         <section class="connected_device_count">
-            <Parameter {...parameter} />
+            <PropertyItem {...parameter} />
         </section>
     );
 }

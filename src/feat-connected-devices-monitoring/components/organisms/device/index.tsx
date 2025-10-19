@@ -1,7 +1,7 @@
 import { useDeviceParametersReading } from '@shared-custom-hooks/use-device-parameters-reading';
 
 import { FontIcon } from '@shared-components/atoms/font-icon';
-import { PropertyWithValue } from '@shared-components/molecules/property-with-value';
+import { LabelValue } from '@shared-components/molecules/label-value';
 import { sensors } from '@shared-components/atoms/font-icon/variants';
 import { sensorActive } from '@shared-components/atoms/font-icon/variants';
 
@@ -22,7 +22,7 @@ function Device({ deviceId }: { deviceId: string }) {
             </header>
             <section>
                 <FontIcon name={sensorActive} size="medium" color="symbol" />
-                <PropertyWithValue property="Device ID:" value={deviceId} />
+                <LabelValue label="Device ID:" value={deviceId} />
             </section>
             <section class="device__values">
                 <IconWithValue {...iconWithValueTemperature} value={temperature.value.toString()} />

@@ -1,6 +1,8 @@
 import { useTopicSubscription } from '@shared-custom-hooks/use-topic-subscription';
 
-import { Parameter } from '@shared-components/molecules/parameter';
+import { PropertyItem } from '@shared-components/molecules/property-item';
+
+import topicSubscribe from '@assets/images/mqtt-icons/topic-subscribe.svg';
 
 
 function FeatTopicSubscription() {
@@ -8,13 +10,14 @@ function FeatTopicSubscription() {
 
     const parameter = {
         name: 'subscribe',
-        text: 'Topic Subscribe',
-        icon: 'topicSubscribe',
+        label: 'Topic Subscribe',
+        svgIcon: topicSubscribe,
         value: topic,
     };
 
+
     return (
-        <Parameter {...parameter} />
+        <PropertyItem {...parameter} />
     );
 }
 
