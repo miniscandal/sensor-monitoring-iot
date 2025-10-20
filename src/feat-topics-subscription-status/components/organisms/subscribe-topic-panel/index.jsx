@@ -1,4 +1,4 @@
-import { useTopicSubscription } from '@shared-custom-hooks/use-topic-subscription';
+import { useTopicsSubscription } from '@shared-custom-hooks/use-topics-subscription';
 
 import { PropertyItem } from '@shared-components/molecules/property-item';
 
@@ -8,7 +8,7 @@ import './style.css';
 
 
 function SubscribeTopicPanel() {
-    const topic = useTopicSubscription();
+    const topic = useTopicsSubscription();
 
     const parameter = {
         name: 'subscribe',
