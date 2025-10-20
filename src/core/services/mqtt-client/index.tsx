@@ -52,6 +52,7 @@ class MqttClientSingleton {
 
     private onOffline = () => {
         mqttClientObserverManager.notify(MQTT_CLIENT_EVENT_OFFLINE, {
+            message: {},
             mqttClientProperties: this.getClientProperties(),
         });
     };
@@ -63,10 +64,9 @@ class MqttClientSingleton {
     };
 
     private onMessage = (topic, message) => {
-        const payload = JSON.parse(message.toString());
-
-        console.log('topic', topic);
-        console.log('payload', payload);
+        mqttClientObserverManager.notify(MQTT_CLIENT_EVENT_MESSAGE, {
+            message: JSON.parse(message.toString()),
+        });
     };
 
     private subscribe(topic) {
