@@ -1,5 +1,5 @@
 import { ConnectedDeviceCount } from './components/organisms/connected-device-count';
-import { ConnectedDeviceView } from './components/organisms/connected-device-view';
+import { ConnectedDeviceList } from './components/organisms/connected-device-list';
 
 
 function FeatConnectedDeviceMonitoring() {
@@ -7,7 +7,7 @@ function FeatConnectedDeviceMonitoring() {
     return (
         <>
             <ConnectedDeviceCount />
-            <ConnectedDeviceView />
+            <ConnectedDeviceList />
         </>
     );
 }
