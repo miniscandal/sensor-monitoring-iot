@@ -1,5 +1,5 @@
-import { statusSubscribeClient } from '@shared-constants/mqttt-client-status-codes';
-import { statusReadingSensorParameters } from '@shared-constants/mqttt-client-status-codes';
+import { statusSubscribeClient } from '@shared-constants/iot-device-status-codes';
+import { statusReadingSensorParameters } from '@shared-constants/iot-device-status-codes';
 
 import { MessagePublishType } from '../types/publish-message-to-device';
 
