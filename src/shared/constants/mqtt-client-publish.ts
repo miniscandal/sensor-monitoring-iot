@@ -1,5 +1,5 @@
-import { statusSubscribeClient } from './mqttt-client-status-codes';
-import { statusReadingSensorParameters } from './mqttt-client-status-codes';
+import { statusSubscribeClient } from './iot-device-status-codes';
+import { statusReadingSensorParameters } from './iot-device-status-codes';
 
 
 const publishSubscribe = {
@@ -14,5 +14,5 @@ const publishRequestConnectedSensors = {
 
 export {
     publishSubscribe,
-    publishRequestConnectedSensors
+    publishRequestConnectedSensors,
 };
