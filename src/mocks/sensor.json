@@ -1,0 +1,8 @@
+{
+    "deviceId": "sensor-01",
+    "statusCode": 2,
+    "temperature": 25.3,
+    "humidity": 60,
+    "pressure": 1013,
+    "timestamp": "2025-10-18T14:32:00Z"
+}
