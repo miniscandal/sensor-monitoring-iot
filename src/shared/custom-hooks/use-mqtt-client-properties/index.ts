@@ -20,11 +20,6 @@ function useMqttClientProperties() {
 
     useEffect(() => {
         const observer = (event, { mqttClientProperties }) => {
-            if (event !== MQTT_CLIENT_EVENT_CONNECT && event !== MQTT_CLIENT_EVENT_OFFLINE) {
-
-                return;
-            }
-
             setProperties((prevState: MqttClientPropertiesType) => (
                 {
                     ...prevState,
@@ -33,7 +28,10 @@ function useMqttClientProperties() {
             ));
         };
 
-        mqttClientObserverManager.subscribe(observer);
+        mqttClientObserverManager.subscribe({
+            events: [MQTT_CLIENT_EVENT_CONNECT, MQTT_CLIENT_EVENT_OFFLINE],
+            observer,
+        });
 
 
         return () => mqttClientObserverManager.unsubscribe(observer);

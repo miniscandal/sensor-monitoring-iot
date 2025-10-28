@@ -10,17 +10,12 @@ function useTopicsSubscription() {
     const [topic, setTopic] = useState();
 
     useEffect(() => {
-        const observer = (event, { topic }) => {
+        const observer = (event, { topic }) => setTopic(topic);
 
-            if (event !== MQTT_CLIENT_EVENT_SUBSCRIBE && event !== MQTT_CLIENT_EVENT_OFFLINE) {
-
-                return;
-            }
-
-            setTopic(topic);
-        };
-
-        mqttClientObserverManager.subscribe(observer);
+        mqttClientObserverManager.subscribe({
+            events: [MQTT_CLIENT_EVENT_SUBSCRIBE, MQTT_CLIENT_EVENT_OFFLINE],
+            observer,
+        });
 
 
         return () => mqttClientObserverManager.unsubscribe(observer);

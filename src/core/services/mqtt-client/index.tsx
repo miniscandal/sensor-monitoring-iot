@@ -40,33 +40,47 @@ class MqttClientSingleton {
     }
 
     private onConnect = () => {
-        mqttClientObserverManager.notify(MQTT_CLIENT_EVENT_CONNECT, {
-            mqttClientProperties: this.getClientProperties(),
-        });
+        mqttClientObserverManager.notify(
+            MQTT_CLIENT_EVENT_CONNECT,
+            {
+                mqttClientProperties: this.getClientProperties(),
+            },
+        );
         this.subscribe(this.envPrivateTopic);
     };
 
     private onClose = () => {
-        mqttClientObserverManager.notify(MQTT_CLIENT_EVENT_CLOSE, this.getClientProperties());
+        mqttClientObserverManager.notify(
+            MQTT_CLIENT_EVENT_CLOSE,
+            {
+                mqttClientProperties: this.getClientProperties()
+            },
+        );
     };
 
     private onOffline = () => {
-        mqttClientObserverManager.notify(MQTT_CLIENT_EVENT_OFFLINE, {
-            message: {},
-            mqttClientProperties: this.getClientProperties(),
-        });
+        mqttClientObserverManager.notify(
+            MQTT_CLIENT_EVENT_OFFLINE,
+            {
+                mqttClientProperties: this.getClientProperties(),
+            },
+        );
     };
 
     private onReconnect = () => {
-        mqttClientObserverManager.notify(MQTT_CLIENT_EVENT_RECONNECT, {
-            mqttClientProperties: this.getClientProperties(),
-        });
+        mqttClientObserverManager.notify(
+            MQTT_CLIENT_EVENT_RECONNECT,
+            {
+                mqttClientProperties: this.getClientProperties(),
+            },
+        );
     };
 
     private onMessage = (topic, message) => {
-        mqttClientObserverManager.notify(MQTT_CLIENT_EVENT_MESSAGE, {
-            message: JSON.parse(message.toString()),
-        });
+        mqttClientObserverManager.notify(
+            MQTT_CLIENT_EVENT_MESSAGE,
+            JSON.parse(message.toString()),
+        );
     };
 
     private subscribe(topic) {
@@ -78,7 +92,12 @@ class MqttClientSingleton {
             }
 
             this.shouldSubscribeToPrivateTopic = true;
-            mqttClientObserverManager.notify(MQTT_CLIENT_EVENT_SUBSCRIBE, { topic });
+
+            mqttClientObserverManager.notify(
+                MQTT_CLIENT_EVENT_SUBSCRIBE,
+                {
+                    topic,
+                });
         });
     }
 
