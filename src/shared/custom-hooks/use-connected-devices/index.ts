@@ -7,10 +7,6 @@ import { useState, useEffect } from 'preact/hooks';
 
 import { MqttClientSingleton } from '@core-services/mqtt-client';
 
-import { ObserverType } from '@core-services/mqtt-client/types/observer';
-import { ObserverDataType } from '@core-services/mqtt-client/types/observer-data';
-import { ReceivedMessageByDeviceType } from '@core-services/mqtt-client/types/received-message-by-device';
-
 import { OBS_ID_CONNECTED_DEVICE } from './constants/observer-id';
 
 function observerCallback(
