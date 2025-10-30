@@ -1,5 +1,6 @@
 .connected_device_count {
-	display: flex;
-	justify-content: center;
-	padding-bottom: var(--gap);
+    display: flex;
+    justify-content: center;
+    padding-bottom: var(--gap);
+    color: #00b2d4;
 }

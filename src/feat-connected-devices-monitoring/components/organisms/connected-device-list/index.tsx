@@ -8,14 +8,16 @@ import './style.css';
 
 
 function ConnectedDeviceList() {
-    const devices = [];
+    const devices = [{ divice_id: '1' }];
     const deviceElements = devices.map(device => {
         const { device_id } = device;
+
 
         return (
             <Device deviceId={device_id} />
         );
     });
+
 
     return (
         <section class="connected_device_view">

@@ -1,18 +1,17 @@
-import { IconButton } from '@shared-components/atoms/icon-button';
-
-import { logs, modeOffOn, terminal } from '@shared-components/atoms/font-icon/variants';
+import { SvgIcon } from '@shared-components/atoms/svg-icon';
 
 import './style.css';
 
+
 function ButtonPanel() {
 
-	return (
-		<ul class="button_panel">
-			<li><IconButton name={terminal} size="small" handleClick={({ mode, setMode }) => { }} /></li>
-			<li><IconButton name={modeOffOn} size="small" /></li>
-			<li><IconButton name={logs} size="small" /></li>
-		</ul>
-	);
+    return (
+        <ul class="button_panel">
+            <li><SvgIcon name="terminal" size="small" /></li>
+            <li><SvgIcon name="modeOffOn" size="small" /></li>
+            <li><SvgIcon name="analytics" size="small" /></li>
+        </ul>
+    );
 }
 
 export { ButtonPanel };

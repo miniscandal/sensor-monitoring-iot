@@ -6,8 +6,6 @@
 import { useConnectedDeviceCount } from '@shared-custom-hooks/use-connected-device-count';
 import { PropertyItem } from '@shared-components/molecules/property-item';
 
-import countSensorDevice from '@assets/images/mqtt-icons/count-sensor-device.svg';
-
 import './style.css';
 
 
@@ -17,7 +15,7 @@ function ConnectedDeviceCount() {
     const parameter = {
         name: 'subscribe',
         label: 'Sensors',
-        svgIcon: countSensorDevice,
+        svgIconName: 'sensorDeviceCounter',
         value: count,
         size: 'regular',
     };
