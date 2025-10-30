@@ -7,12 +7,6 @@ import { useMqttClientProperties } from '@shared-custom-hooks/use-mqtt-client-pr
 
 import { PropertyItem } from '@shared-components/molecules/property-item';
 
-import mqttClientStatus from '@assets/images/mqtt-icons/mqtt-client-status.svg';
-import host from '@assets/images/mqtt-icons/host.svg';
-import port from '@assets/images/mqtt-icons/port.svg';
-import protocol from '@assets/images/mqtt-icons/protocol.svg';
-import clientId from '@assets/images/mqtt-icons/client-id.svg';
-
 import './style.css';
 
 
@@ -23,27 +17,27 @@ function MqttClientPropertiesPanel() {
         {
             name: 'clientMqtt',
             label: 'MQTT Client Status',
-            svgIcon: mqttClientStatus,
+            svgIconName: 'mqttClientStatus',
         },
         {
             name: 'host',
             label: 'Host',
-            svgIcon: host,
+            svgIconName: 'host',
         },
         {
             name: 'port',
             label: 'Port',
-            svgIcon: port,
+            svgIconName: 'port',
         },
         {
             name: 'protocol',
             label: 'Protocol',
-            svgIcon: protocol,
+            svgIconName: 'protocol',
         },
         {
             name: 'clientId',
             label: 'ID',
-            svgIcon: clientId,
+            svgIconName: 'clientId',
         },
     ];
 
