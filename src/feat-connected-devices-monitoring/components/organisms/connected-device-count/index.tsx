@@ -3,7 +3,7 @@
  *
  */
 
-import { useConnectedDeviceCount } from '@shared-custom-hooks/use-connected-device-count';
+import { useConnectedDeviceCount } from '@shared-custom-hooks/device/status/connected-device-count';
 import { PropertyItem } from '@shared-components/molecules/property-item';
 
 import './style.css';

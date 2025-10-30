@@ -1,4 +1,4 @@
-import { useTopicsSubscription } from '@shared-custom-hooks/use-topics-subscription';
+import { useTopicSubscriptions } from '@shared-custom-hooks/mqtt-client/topic-subscriptions';
 
 import { PropertyItem } from '@shared-components/molecules/property-item';
 
@@ -6,7 +6,7 @@ import './style.css';
 
 
 function SubscribeTopicPanel() {
-    const topic = useTopicsSubscription();
+    const topic = useTopicSubscriptions();
 
     const parameter = {
         name: 'subscribe',

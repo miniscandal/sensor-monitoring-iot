@@ -33,7 +33,7 @@ export function App() {
                 <FeatMqttClientStatus />
                 <FeatTopicSubscription />
                 <FeatConnectedDeviceMonitoring />
-                {/* <FeatDataTracking /> */}
+                <FeatDataTracking />
             </main>
         </>
     );

@@ -1,5 +1,3 @@
-import { useDeviceParametersReading } from '@shared-custom-hooks/use-device-parameters-reading';
-
 import { IconWithValue } from '../../molecules/icon-with-value';
 import { ButtonPanel } from '../../molecules/button-panel';
 
@@ -10,8 +8,6 @@ import './style.css';
 
 
 function Device({ deviceId }: { deviceId: string }) {
-    const { humidity, temperature } = useDeviceParametersReading(deviceId);
-
 
     return (
         <section class="device">
@@ -23,8 +19,8 @@ function Device({ deviceId }: { deviceId: string }) {
                 <LabelValue label="Device ID:" value={deviceId} />
             </section>
             <section class="device__values">
-                <IconWithValue svgIconName="humidityPercentage" value={temperature.value.toString()} />
-                <IconWithValue svgIconName="deviceThermostat" value={humidity.value.toString()} />
+                <IconWithValue svgIconName="humidityPercentage" value="12" />
+                <IconWithValue svgIconName="deviceThermostat" value="5" />
             </section>
             <footer class="device__footer">
                 <ButtonPanel />

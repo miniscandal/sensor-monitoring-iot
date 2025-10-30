@@ -8,7 +8,7 @@ import './style.css';
 
 
 function ConnectedDeviceList() {
-    const devices = [{ divice_id: '1' }];
+    const devices = [{ divice_id: '1' }, 2];
     const deviceElements = devices.map(device => {
         const { device_id } = device;
 
