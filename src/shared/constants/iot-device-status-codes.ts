@@ -1,5 +1,5 @@
 // Connection and presentation states (100–199)
-const IOT_DEVICE_STATUS_CONNECTED = 101;             // Device is connected / presenting
+const IOT_DEVICE_STATUS_CONNECTED = 101;             // Device is connected
 const IOT_DEVICE_STATUS_DISCONNECTED = 102;          // Device disconnected
 const IOT_DEVICE_STATUS_HEARTBEAT = 103;             // Heartbeat signal
 
