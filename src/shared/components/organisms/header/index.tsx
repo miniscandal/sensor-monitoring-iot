@@ -8,7 +8,7 @@ function Header() {
 
     return (
         <header class="header">
-            <Title text="SENSOR MONITORING IOT" />
+            <Title text="IoT Device Control Panel" />
             <Logo />
         </header>
     );
