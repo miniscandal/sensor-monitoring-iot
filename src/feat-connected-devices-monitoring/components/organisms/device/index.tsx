@@ -7,7 +7,7 @@ import { SvgIcon } from '@shared-components/atoms/svg-icon';
 import './style.css';
 
 
-function Device({ deviceId }: { deviceId: string }) {
+function Device({ deviceId, humidity, temperature }) {
 
     return (
         <section class="device">
@@ -19,8 +19,8 @@ function Device({ deviceId }: { deviceId: string }) {
                 <LabelValue label="Device ID:" value={deviceId} />
             </section>
             <section class="device__values">
-                <IconWithValue svgIconName="humidityPercentage" value="12" />
-                <IconWithValue svgIconName="deviceThermostat" value="5" />
+                <IconWithValue svgIconName="humidity" value={humidity} />
+                <IconWithValue svgIconName="temperature" value={temperature} />
             </section>
             <footer class="device__footer">
                 <ButtonPanel />

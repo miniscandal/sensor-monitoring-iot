@@ -2,19 +2,21 @@
  * Module responsibility
  *
  */
+import { useDeviceRegistry } from '@shared-custom-hooks/device/onboarding/device-registry';
 import { Device } from '../device';
 
 import './style.css';
 
 
 function ConnectedDeviceList() {
-    const devices = [{ divice_id: '1' }, 2];
+    const devices = useDeviceRegistry();
+
     const deviceElements = devices.map(device => {
-        const { device_id } = device;
+        const { deviceId } = device;
 
 
         return (
-            <Device deviceId={device_id} />
+            <Device deviceId={deviceId} />
         );
     });
 

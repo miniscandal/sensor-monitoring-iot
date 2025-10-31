@@ -4,7 +4,7 @@ import { SvgIcon } from '@shared-components/atoms/svg-icon';
 import './style.css';
 
 
-function IconWithValue({ svgIconName, value = 'value' }) {
+function IconWithValue({ svgIconName, value = 'N/A' }) {
 
     return (
         <div class="icon_with_value">
