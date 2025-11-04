@@ -1,4 +1,4 @@
-import { useTopicSubscriptions } from '@shared-custom-hooks/mqtt-client/topic-subscriptions';
+import { useTopicSubscriptions } from '@shared-custom-hooks/mqtt-client/use-topic-subscriptions';
 
 import { PropertyItem } from '@shared-components/molecules/property-item';
 
