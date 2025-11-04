@@ -1,0 +1,13 @@
+mosquitto_pub.exe -h localhost -p 1883 -t "web-iot-control-panel" -m '{
+    "deviceId": "01",
+    "statusCode": 102,
+    "firmwareVersion": "1.3.0",
+    "location": {
+        "lat": 20.5244,
+        "lng": -99.8956,
+        "zone": "assembly",
+        "line": "3",
+        "station": "welding robot"
+    },
+    "timestamp": "2025-10-30T18:00:00Z"
+}'
