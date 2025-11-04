@@ -1,14 +1,16 @@
-import { ConnectedDeviceCount } from './components/organisms/connected-device-count';
-import { ConnectedDeviceList } from './components/organisms/connected-device-list';
+import { IoTDeviceProvider } from '@shared-contexts/iot-device';
+
+import { IoTDeviceCountPanel } from './components/organisms/iot-device-count-panel';
+import { IoTDeviceListPanel } from './components/organisms/iot-device-list-panel';
 
 
 function FeatConnectedDeviceMonitoring() {
 
     return (
-        <>
-            <ConnectedDeviceCount />
-            <ConnectedDeviceList />
-        </>
+        <IoTDeviceProvider>
+            <IoTDeviceCountPanel />
+            <IoTDeviceListPanel />
+        </IoTDeviceProvider>
     );
 }
 
