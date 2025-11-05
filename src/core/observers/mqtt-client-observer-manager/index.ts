@@ -9,10 +9,11 @@ class MqttClientObserverManager {
         };
     }
 
-    subscribe({ events = [], observer }) {
+    subscribe({ events, statusCodes, observer }) {
         const observerReg = {
             id: crypto.randomUUID(),
             fn: observer,
+            statusCodes: new Set(statusCodes),
         };
         this.observers.add(observerReg);
 
@@ -37,21 +38,40 @@ class MqttClientObserverManager {
         }
     }
 
-    notify(event, message) {
+    notifyStatusCode(event, message) {
         const observerIds = this.mqttClientEvent[event];
 
+        console.log('method', 'notifyStatusCode');
         console.log('event', event);
         console.log('message', message);
 
-        if (!observerIds) {
+        this.observers.forEach(observer => {
+            if (!observerIds.has(observer.id)) {
 
-            return;
-        }
+                return;
+            }
+
+            if (!observer.statusCodes.has(message.statusCode)) {
+
+                return;
+            }
+            observer.fn(event, message);
+        });
+    }
+
+    notify(event, message) {
+        const observerIds = this.mqttClientEvent[event];
+
+        console.log('method', 'notify');
+        console.log('event', event);
+        console.log('message', message);
 
         this.observers.forEach(observer => {
-            if (observerIds.has(observer.id)) {
-                observer.fn(event, message);
+            if (!observerIds.has(observer.id)) {
+
+                return;
             }
+            observer.fn(event, message);
         });
     }
 }
