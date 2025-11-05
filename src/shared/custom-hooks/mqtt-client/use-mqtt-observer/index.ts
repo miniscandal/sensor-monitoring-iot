@@ -3,10 +3,11 @@ import { useEffect } from 'preact/hooks';
 import { mqttClientObserverManager } from '@core-observers/mqtt-client-observer-manager';
 
 
-function useMQTTObserver({ events, observer }) {
+function useMQTTObserver({ events, statusCodes, observer }) {
     useEffect(() => {
         mqttClientObserverManager.subscribe({
             events,
+            statusCodes,
             observer,
         });
 
