@@ -79,7 +79,7 @@ class MqttClientSingleton {
     };
 
     private onMessage = (topic, message) => {
-        mqttClientObserverManager.notify(
+        mqttClientObserverManager.notifyStatusCode(
             MQTT_CLIENT_EVENT_MESSAGE,
             JSON.parse(message.toString()),
         );
