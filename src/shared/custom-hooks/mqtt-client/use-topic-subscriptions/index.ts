@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'preact/hooks';
+import { useState } from 'preact/hooks';
 
-import { mqttClientObserverManager } from '@core-observers/mqtt-client-observer-manager';
+import { useMQTTObserver } from '../use-mqtt-observer';
 
 import { MQTT_CLIENT_EVENT_SUBSCRIBE } from '@shared-constants/mqtt-client-events';
 import { MQTT_CLIENT_EVENT_OFFLINE } from '@shared-constants/mqtt-client-events';
@@ -9,17 +9,10 @@ import { MQTT_CLIENT_EVENT_OFFLINE } from '@shared-constants/mqtt-client-events'
 function useTopicSubscriptions() {
     const [topic, setTopic] = useState();
 
-    useEffect(() => {
-        const observer = (event, { topic }) => setTopic(topic);
-
-        mqttClientObserverManager.subscribe({
-            events: [MQTT_CLIENT_EVENT_SUBSCRIBE, MQTT_CLIENT_EVENT_OFFLINE],
-            observer,
-        });
-
-
-        return () => mqttClientObserverManager.unsubscribe(observer);
-    }, []);
+    useMQTTObserver({
+        events: [MQTT_CLIENT_EVENT_SUBSCRIBE, MQTT_CLIENT_EVENT_OFFLINE],
+        observer: (event, { topic }) => setTopic(topic),
+    });
 
 
     return topic;
