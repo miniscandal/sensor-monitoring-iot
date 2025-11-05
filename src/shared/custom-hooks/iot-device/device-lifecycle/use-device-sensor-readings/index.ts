@@ -1,3 +1,4 @@
+import { signal } from '@preact/signals';
 import { useContext } from 'preact/hooks';
 
 import { useMQTTObserver } from '@shared-custom-hooks/mqtt-client/use-mqtt-observer';
@@ -5,7 +6,9 @@ import { useMQTTObserver } from '@shared-custom-hooks/mqtt-client/use-mqtt-obser
 import { IoTDevicesContext } from '@shared-contexts/iot-device';
 
 import { MQTT_CLIENT_EVENT_MESSAGE } from '@shared-constants/mqtt-client-events';
-import { signal } from '@preact/signals';
+
+import { IOT_DEVICE_STATUS_SENSOR_DATA_SENT } from '@shared-constants/iot-device-status-codes';
+
 
 
 function useDeviceSensorReadings() {
@@ -13,13 +16,8 @@ function useDeviceSensorReadings() {
 
     useMQTTObserver({
         events: [MQTT_CLIENT_EVENT_MESSAGE],
-        observer: (event, { statusCode, deviceId, ...readings }) => {
-            if (statusCode !== 201) {
-
-                return;
-            }
-
-
+        statusCodes: [IOT_DEVICE_STATUS_SENSOR_DATA_SENT],
+        observer: (event, { deviceId, ...readings }) => {
             setIoTDevices(prevState => {
                 const nextState = new Map(prevState);
                 const device = nextState.get(deviceId);
