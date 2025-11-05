@@ -3,11 +3,9 @@
  * 
  */
 
-import { useState, useEffect } from 'preact/hooks';
+import { useState } from 'preact/hooks';
 
-import { mqttClientObserverManager } from '@core-observers/mqtt-client-observer-manager';
-
-import { MqttClientPropertiesType } from '@core-services/mqtt-client/types/mqtt-client-properties';
+import { useMQTTObserver } from '../use-mqtt-observer';
 
 import { MQTT_CLIENT_PROPERTIES } from '@core-services/mqtt-client/constants/client-mqtt-properties';
 
@@ -18,24 +16,17 @@ import { MQTT_CLIENT_EVENT_OFFLINE } from '@shared-constants/mqtt-client-events'
 function useMqttClientProperties() {
     const [properties, setProperties] = useState(MQTT_CLIENT_PROPERTIES);
 
-    useEffect(() => {
-        const observer = (event, { mqttClientProperties }) => {
-            setProperties((prevState: MqttClientPropertiesType) => (
+    useMQTTObserver({
+        events: [MQTT_CLIENT_EVENT_CONNECT, MQTT_CLIENT_EVENT_OFFLINE],
+        observer: (event, { mqttClientProperties }) => {
+            setProperties((prevState) => (
                 {
                     ...prevState,
                     ...mqttClientProperties,
                 }
             ));
-        };
-
-        mqttClientObserverManager.subscribe({
-            events: [MQTT_CLIENT_EVENT_CONNECT, MQTT_CLIENT_EVENT_OFFLINE],
-            observer,
-        });
-
-
-        return () => mqttClientObserverManager.unsubscribe(observer);
-    }, []);
+        },
+    });
 
 
     return properties;
