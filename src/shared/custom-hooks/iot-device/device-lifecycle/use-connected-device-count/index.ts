@@ -14,6 +14,7 @@ function useConnectedDeviceCount() {
 
     useMQTTObserver({
         events: [MQTT_CLIENT_EVENT_MESSAGE, MQTT_CLIENT_EVENT_OFFLINE],
+        statusCodes: [IOT_DEVICE_STATUS_CONNECTED, IOT_DEVICE_STATUS_DISCONNECTED],
         observer: (event, { statusCode }) => {
             if (event === MQTT_CLIENT_EVENT_OFFLINE) {
                 setCount(0);
