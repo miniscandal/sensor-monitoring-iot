@@ -16,15 +16,11 @@ function useDeviceRegistry() {
 
     useMQTTObserver({
         events: [MQTT_CLIENT_EVENT_MESSAGE, MQTT_CLIENT_EVENT_OFFLINE],
-        observer: (event, { statusCode, deviceId, ...metadata }) => {
+        statusCodes: [IOT_DEVICE_STATUS_CONNECTED, IOT_DEVICE_STATUS_DISCONNECTED],
+        observer: (event, { deviceId, statusCode, ...metadata }) => {
             if (event === MQTT_CLIENT_EVENT_OFFLINE) {
                 setIoTDevices(new Map());
 
-
-                return;
-            }
-
-            if (statusCode !== 101 && statusCode !== 102) {
 
                 return;
             }
