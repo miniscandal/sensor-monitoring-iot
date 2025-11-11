@@ -8,12 +8,14 @@ import mqtt from 'mqtt';
 import { mqttClientObserverManager } from '@core-observers/mqtt-client-observer-manager';
 
 import { MQTT_CLIENT_EVENT_CONNECT } from '@shared-constants/mqtt-client-events';
-import { MQTT_CLIENT_EVENT_RECONNECT } from '@shared-constants/mqtt-client-events';
-import { MQTT_CLIENT_EVENT_CLOSE } from '@shared-constants/mqtt-client-events';
 import { MQTT_CLIENT_EVENT_OFFLINE } from '@shared-constants/mqtt-client-events';
 import { MQTT_CLIENT_EVENT_SUBSCRIBE } from '@shared-constants/mqtt-client-events';
 import { MQTT_CLIENT_EVENT_MESSAGE } from '@shared-constants/mqtt-client-events';
 import { MQTT_CLIENT_EVENT_ERROR } from '@shared-constants/mqtt-client-events';
+import { MQTT_CLIENT_EVENT_PACKETSEND } from '@shared-constants/mqtt-client-events';
+import { MQTT_CLIENT_EVENT_PACKETRECEIVE } from '@shared-constants/mqtt-client-events';
+import { MQTT_CLIENT_EVENT_RECONNECT } from '@shared-constants/mqtt-client-events';
+import { MQTT_CLIENT_EVENT_CLOSE } from '@shared-constants/mqtt-client-events';
 
 
 class MqttClientSingleton {
@@ -31,6 +33,9 @@ class MqttClientSingleton {
         this.client.on(MQTT_CLIENT_EVENT_OFFLINE, this.onOffline);
         this.client.on(MQTT_CLIENT_EVENT_MESSAGE, this.onMessage);
         this.client.on(MQTT_CLIENT_EVENT_ERROR, (err) => console.error('MQTT error:', err));
+
+        this.client.on(MQTT_CLIENT_EVENT_PACKETSEND, this.onPacketSend);
+        this.client.on(MQTT_CLIENT_EVENT_PACKETRECEIVE, this.onPacketReceive);
     }
 
     static getInstance() {
@@ -51,15 +56,6 @@ class MqttClientSingleton {
         this.subscribe(this.envPrivateTopic);
     };
 
-    private onClose = () => {
-        mqttClientObserverManager.notify(
-            MQTT_CLIENT_EVENT_CLOSE,
-            {
-                mqttClientProperties: this.getClientProperties(),
-            },
-        );
-    };
-
     private onOffline = () => {
         mqttClientObserverManager.notify(
             MQTT_CLIENT_EVENT_OFFLINE,
@@ -67,15 +63,23 @@ class MqttClientSingleton {
                 mqttClientProperties: this.getClientProperties(),
             },
         );
+        this.shouldSubscribeToPrivateTopic = false;
+    };
+
+    private onPacketSend = (packet) => {
+        console.debug('[MQTT] Packet sent:', packet.cmd, packet);
+    };
+
+    private onPacketReceive = (packet) => {
+        console.debug('[MQTT] Packet received:', packet.cmd, packet);
     };
 
     private onReconnect = () => {
-        mqttClientObserverManager.notify(
-            MQTT_CLIENT_EVENT_RECONNECT,
-            {
-                mqttClientProperties: this.getClientProperties(),
-            },
-        );
+        console.warn('[MQTT] Attempting to reconnect to broker...');
+    };
+
+    private onClose = () => {
+        console.error('[MQTT] Connection closed. Client is no longer connected to broker.');
     };
 
     private onMessage = (topic, message) => {
