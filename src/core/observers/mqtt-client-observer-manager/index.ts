@@ -1,3 +1,6 @@
+import { MQTT_CLIENT_MESSAGE_TRACKING } from '@shared-constants/mqtt-client';
+
+
 class MqttClientObserverManager {
     constructor() {
         this.observers = new Set();
@@ -51,7 +54,7 @@ class MqttClientObserverManager {
                 return;
             }
 
-            if (!observer.statusCodes.has(message.statusCode)) {
+            if (!observer.statusCodes.has(message.statusCode) && !observer.statusCodes.has(MQTT_CLIENT_MESSAGE_TRACKING)) {
 
                 return;
             }
