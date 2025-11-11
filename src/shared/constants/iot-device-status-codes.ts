@@ -24,6 +24,7 @@ const IOT_DEVICE_STATUS_POWER_FAILURE = 311;             // Power interruption o
 const IOT_DEVICE_STATUS_MEMORY_OVERFLOW = 312;           // Internal memory overflow or exhaustion
 const IOT_DEVICE_STATUS_INVALID_CONFIGURATION = 313;     // Device configuration is invalid or missing
 
+
 export {
     IOT_DEVICE_STATUS_CONNECTED,
     IOT_DEVICE_STATUS_DISCONNECTED,
