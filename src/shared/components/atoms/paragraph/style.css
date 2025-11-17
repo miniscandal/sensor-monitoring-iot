@@ -1,16 +1,16 @@
 .paragraph {
-	font-weight: bold;
-	letter-spacing: 1px;
-}
+    line-height: 1.5em;
+    color: var(--text-color);
 
-.paragraph[data-color=prefers-scheme] {
-	color: var(--color-prefers-scheme);
-}
+    &.body {
+        font-size: 1rem;
+    }
 
-.paragraph[data-size=regular] {
-	font-size: 1.6rem;
-}
+    &.lead {
+        font-size: 1.25rem;
+    }
 
-.paragraph[data-size=small] {
-	font-size: 1.45rem;
+    &.caption {
+        font-size: 0.875rem;
+    }
 }

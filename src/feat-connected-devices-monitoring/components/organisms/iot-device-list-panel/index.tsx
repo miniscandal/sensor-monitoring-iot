@@ -25,11 +25,21 @@ function IoTDeviceListPanel() {
         <IoTDeviceCard key={key} deviceId={key} {...iotDevice.sensorReadings} />
     ));
 
+    const handleClick = (event) => {
+        const button = event.target.closest('li[data-action]');
+        if (!button) {
+
+            return;
+        }
+
+        const iotDevice = button.closest('.iot-device-card');
+    };
+
 
     return (
-        <section class="connected_device_view">
+        <ul class="iot-device-list-panel" onClick={handleClick}>
             {deviceElements}
-        </section>
+        </ul>
     );
 }
 

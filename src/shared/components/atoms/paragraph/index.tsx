@@ -1,10 +1,13 @@
 import './style.css';
 
-function Paragraph({ text = 'Paragraph', color = 'prefers-scheme', size = 'regular' }) {
 
-	return (
-		<p class="paragraph" data-color={color} data-size={size}>{text}</p>
-	);
+function Paragraph({ text = 'Paragraph', size = 'regular' }) {
+
+    return (
+        <p class={`paragraph ${size}`}>
+            {text}
+        </p>
+    );
 }
 
 

@@ -1,0 +1,8 @@
+.stat-item {
+    display: flex;
+    gap: var(--gap-simple-molecule);
+
+    &.column {
+        flex-direction: column;
+    }
+}

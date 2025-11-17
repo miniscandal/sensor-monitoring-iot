@@ -1,6 +1,6 @@
 import { useTopicSubscriptions } from '@shared-custom-hooks/mqtt-client/use-topic-subscriptions';
 
-import { PropertyItem } from '@shared-components/molecules/property-item';
+import { IconStat } from '@shared-components/molecules/icon-stat';
 
 import './style.css';
 
@@ -8,17 +8,16 @@ import './style.css';
 function SubscribeTopicPanel() {
     const topic = useTopicSubscriptions();
 
-    const parameter = {
-        name: 'subscribe',
+    const iconStat = {
         label: 'Topic Subscribe',
-        svgIconName: 'topicSubscribe',
         value: topic,
+        svgIconName: 'topicSubscribe',
     };
 
 
     return (
-        <section class="subscribe_topic_panel">
-            <PropertyItem {...parameter} />
+        <section class="subscribe-topic-panel">
+            <IconStat {...iconStat} />
         </section>
     );
 }

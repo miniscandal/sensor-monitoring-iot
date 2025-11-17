@@ -1,0 +1,8 @@
+.icon-stat {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-simple-molecule);
+    border: solid var(--border-width-medium) var(--border-color-molecule);
+    padding: var(--padding-simple-molecule);
+    border-radius: var(--border-radius-simple-molecule);
+}

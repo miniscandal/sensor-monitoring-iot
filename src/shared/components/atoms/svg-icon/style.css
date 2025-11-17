@@ -1,14 +1,26 @@
-.icon.regular {
-    width: 5rem;
-    height: 5rem;
-}
+.svg-icon {
+    width: 3rem;
+    height: 3rem;
+    color: var(--color-icon);
 
-.icon.small {
-    width: 2.5rem;
-    height: 2.5rem;
-}
+    &.small {
+        width: 2rem;
+        height: 2rem;
+    }
 
-.icon > svg {
-    width: 100%;
-    height: 100%;
+    &.medium {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    &.large {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    > svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
 }

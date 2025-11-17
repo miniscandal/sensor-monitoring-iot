@@ -4,7 +4,7 @@
  */
 
 import { useConnectedDeviceCount } from '@shared-custom-hooks/iot-device/device-lifecycle/use-connected-device-count';
-import { PropertyItem } from '@shared-components/molecules/property-item';
+import { IconStat } from '@shared-components/molecules/icon-stat';
 
 import './style.css';
 
@@ -12,18 +12,10 @@ import './style.css';
 function IoTDeviceCountPanel() {
     const count = useConnectedDeviceCount();
 
-    const parameter = {
-        name: 'subscribe',
-        label: 'Sensors',
-        svgIconName: 'sensorDeviceCounter',
-        value: count,
-        size: 'regular',
-    };
-
 
     return (
-        <section class="connected_device_count">
-            <PropertyItem {...parameter} />
+        <section class="iot-device-count-panel">
+            <IconStat label="Sensors" value={count} svgIconName="iotDevice" />
         </section>
     );
 }

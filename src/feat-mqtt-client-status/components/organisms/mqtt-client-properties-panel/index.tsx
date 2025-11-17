@@ -5,7 +5,7 @@
 
 import { useMqttClientProperties } from '@shared-custom-hooks/mqtt-client/use-mqtt-client-properties';
 
-import { PropertyItem } from '@shared-components/molecules/property-item';
+import { IconStat } from '@shared-components/molecules/icon-stat';
 
 import './style.css';
 
@@ -41,14 +41,14 @@ function MqttClientPropertiesPanel() {
         },
     ];
 
-    const propertyItemComponents = propertyDefinitions.map(property => (
-        <PropertyItem {...property} value={connected ? properties[property.name] : 'N/A'} />
+    const iconStatComponents = propertyDefinitions.map(property => (
+        <IconStat {...property} value={connected ? properties[property.name] : 'N/A'} />
     ));
 
 
     return (
-        <section class="parameters_monitoring">
-            {propertyItemComponents}
+        <section class="mqtt-client-properties-panel">
+            {iconStatComponents}
         </section>
     );
 }

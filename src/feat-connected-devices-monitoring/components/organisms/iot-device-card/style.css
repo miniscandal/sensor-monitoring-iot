@@ -1,26 +1,29 @@
-.device {
-	width: 180px;
-	height: 200px;
-	padding: var(--padding);
-	border: var(--border);
-	border-radius: var(--border-radius);
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	background-color: var(--background-color-prefers-scheme-element);
-}
+.iot-device-card {
+    width: 12rem;
+    height: 17rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: solid var(--border-width-thin) var(--border-color);
+    border-radius: var(--border-radius-simple-organism);
+    padding: var(--padding-molecule);
 
-.device__connected {
-	display: flex;
-	justify-content: end;
-}
+    > header {
+        margin-left: auto;
+    }
 
-.device__values {
-	display: flex;
-	justify-content: center;
-}
+    > .iot-device-card__device-id {
+        > .svg-icon {
+            margin-bottom: var(--margin-simple-molecule);
+        }
+    }
 
-.device__footer {
-	border-top: var(--border);
-	padding-top: var(--padding);
+    > .iot-device-card__sensor-readings {
+        display: flex;
+    }
+
+    > .iot-device-card__footer {
+        border-top: solid var(--border-width-thin);
+        padding-top: var(--padding-simple-molecule);
+    }
 }
