@@ -1,56 +1,105 @@
 @font-face {
-	font-family: 'IBMPlex-Thin';
-	font-display: block;
-	src: url('./assets/fonts/IBMPlexSans-Thin.ttf');
+    font-family: 'IBMPlex-Thin';
+    font-display: block;
+    src: url('./assets/fonts/IBMPlexSans-Thin.ttf');
 }
 
 :root {
-	--background-color-prefers-scheme: #f2f1f6;
-	--background-color-prefers-scheme-element: #d4dbe2;
-	--border-radius: 10px;
-	--padding: 10px;
-	--border: solid 1px #adaec0;
-	--gap: 20px;
+    /*
 	--color-prefers-scheme: #3f3937;
 	--color-successful: #00ce0a;
-	--color-symbol: #e273d9;
 	--color-water: #4285f4;
 	--color-fire: #f68769;
 	--color-activated: #26b62d;
+    --color-urgent: #ee9b01;
+    */
+    color-scheme: light dark;
 
-	/* Not used */
-	--color-urgent: #ee9b01;
+
+    --margin-simple-molecule: 0.5rem;
+    --margin-molecule: 1rem;
+
+    --padding-viewport: 1rem;
+
+    --padding-atom: 0.25rem;
+
+    --padding-simple-molecule: 0.5rem;
+    --padding-molecule: 1rem;
+
+    --padding-simple-organism: 2rem;
+    --padding-organism: 4rem;
+
+    /* --padding-simple-container: 6rem; */
+    --padding-container: 8rem;
+
+
+    --gap-simple-molecule: 0.5rem;
+    --gap-molecule: 1rem;
+
+    --gap-simple-organism: 2rem;
+    --gap-organism: 4rem;
+
+    --gap-simple-container: 6rem;
+    /* --gap-container: 8rem; */
+
+
+    --border-radius-atom: 0.25rem;
+
+    --border-radius-simple-molecule: 0.5rem;
+    --border-radius-molecule: 0.75rem;
+
+    --border-radius-simple-organism: 0.85rem;
+
+    --border-width-thin: 0.05rem;
+    --border-width-medium: 0.15rem;
+    --border-width-thick: 0.2rem;
+
+    --border-light: #e0e0e0;
+    --border-dark: #4e4e4e;
+
+
+    /* Dynamic color scheme */
+
+    --border-color: #4e4e4e;
+    --bg-body: #e0e0e0;
+    --text-title-color: #4e4e4e;
+    --text-color: #2e2e2e;
+
+    --color-icon: #00b2d4;
+    --border-color-molecule: #e273d9;
 }
 
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html {
-	font-size: 10px;
-	scrollbar-gutter: stable;
+    scroll-behavior: smooth;
+    /* scrollbar-gutter: stable; */
 }
 
 body {
-	background-color: var(--background-color-prefers-scheme);
-	font-family: IBMPlex-Thin;
-	min-width: 300px;
-	max-width: 900px;
-	padding: 0 10px;
-	margin: auto;
+    background-color: var(--bg-body);
+    font-family: IBMPlex-Thin_, helvetica;
 }
 
 main {
-	display: grid;
-	gap: 50px;
+    display: grid;
+    gap: var(--gap-organism);
 }
 
 @media (prefers-color-scheme: dark) {
-	:root {
-		--color-prefers-scheme: #f2f1f6;
-		--background-color-prefers-scheme: #3f3937;
-		--background-color-prefers-scheme-element: #7b586b;
-	}
+    :root {
+        --border-color: #e0e0e0;
+        --bg-body: #2b2b2b;
+        --text-title-color: #e5e5e5;
+        --text-color: #e0e0e0;
+
+        --color-icon: #00b2d4;
+        --border-color-molecule: #e273d9;
+    }
 }
