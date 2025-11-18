@@ -8,10 +8,11 @@ export default defineConfig({
             '@core-services': '/src/core/services',
             '@core-observers': '/src/core/observers',
             '@assets': '/src/assets',
+            '@mocks': '/src/mocks',
             '@shared-components': '/src/shared/components',
+            '@shared-constants': '/src/shared/constants',
             '@shared-contexts': '/src/shared/contexts',
             '@shared-custom-hooks': '/src/shared/custom-hooks',
-            '@shared-constants': '/src/shared/constants',
         },
     },
 });

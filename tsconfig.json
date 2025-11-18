@@ -26,17 +26,20 @@
             "@assets/*": [
                 "./src/assets/*"
             ],
+            "@mocks/*": [
+                "./src/mocks/*"
+            ],
             "@shared-components/*": [
                 "./src/shared/components/*"
+            ],
+            "@shared-constants/*": [
+                "./src/shared/constants/*"
             ],
             "@shared-contexts/*": [
                 "./src/shared/contexts/*"
             ],
             "@shared-custom-hooks/*": [
                 "./src/shared/custom-hooks/*"
-            ],
-            "@shared-constants/*": [
-                "./src/shared/constants/*"
             ],
             "@shared-types/*": [
                 "./src/shared/types/*"
