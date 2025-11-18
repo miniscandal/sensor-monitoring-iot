@@ -8,10 +8,10 @@ import { useEffect } from 'preact/hooks';
 
 import { MqttClientSingleton } from '@core-services/mqtt-client';
 
-import { FeatMqttClientStatus } from './feat-mqtt-client-status';
-import { FeatTopicSubscription } from './feat-topics-subscription-status';
-import { FeatConnectedDeviceMonitoring } from './feat-connected-devices-monitoring';
-import { FeatLiveDataFeed } from './feat-live-data-feed';
+import { MqttClientStatus } from './features/mqtt-client-status/components/templates/mqtt-client-status';
+import { TopicSubscription } from './features/topics-subscription/components/templates/topic-subscription';
+import { DeviceManagement } from './features/device-management/components/templates/device-management';
+import { LiveDataFeed } from './features/live-data-feed/components/templates/live-data-feed';
 
 import { Header } from '@shared-components/organisms/header';
 
@@ -30,10 +30,10 @@ export function App() {
         <>
             <Header />
             <main>
-                <FeatMqttClientStatus />
-                <FeatTopicSubscription />
-                <FeatConnectedDeviceMonitoring />
-                <FeatLiveDataFeed />
+                <MqttClientStatus />
+                <TopicSubscription />
+                <DeviceManagement />
+                <LiveDataFeed />
             </main>
         </>
     );
