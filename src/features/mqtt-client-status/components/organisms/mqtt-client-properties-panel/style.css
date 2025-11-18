@@ -1,0 +1,7 @@
+.mqtt-client-properties-panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(20rem - var(--gap-simple-organism))), 1fr));
+    gap: var(--gap-simple-organism);
+    max-width: 60rem;
+    margin: auto;
+}
