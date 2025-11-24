@@ -2,4 +2,28 @@
     list-style: none;
     display: flex;
     justify-content: space-between;
+
+    > li {
+
+        &.item-terminal,
+        &.item-analytics {
+            color: var(--color-sensor-button);
+        }
+
+        &.item-mode-active-paused {
+
+            &.active {
+                color: var(--color-iot-device-connected);
+            }
+
+            &.paused {
+                color: #dd6060;
+            }
+        }
+
+        &:hover {
+            filter: var(--filter-hover);
+            cursor: pointer;
+        }
+    }
 }

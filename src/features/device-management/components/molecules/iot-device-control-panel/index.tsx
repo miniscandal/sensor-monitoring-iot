@@ -3,18 +3,19 @@ import { SvgIcon } from '@shared-components/atoms/svg-icon';
 import './style.css';
 
 
-function IoTDeviceControlPanel() {
+function IoTDeviceControlPanel({ iotDeviceState = {} }) {
+    const { isActive = true } = iotDeviceState;
 
     return (
         <ul class="iot-device-control-panel">
-            <li data-action="terminal">
-                <SvgIcon name="terminal" size="small" />
+            <li class={`item-terminal`} data-action="terminal">
+                <SvgIcon name="terminal" size="small" enableHover={true} />
             </li>
-            <li data-action="modeOffOn">
-                <SvgIcon name="modeOffOn" size="small" />
+            <li class={`item-mode-active-paused ${isActive ? 'active' : 'paused'}`} data-action="modeOffOn">
+                <SvgIcon name="modeOffOn" size="small" enableHover={true} />
             </li>
-            <li data-action="analytics">
-                <SvgIcon name="analytics" size="small" />
+            <li class={`item-analytics`}>
+                <SvgIcon name="analytics" size="small" enableHover={true} />
             </li>
         </ul>
     );
