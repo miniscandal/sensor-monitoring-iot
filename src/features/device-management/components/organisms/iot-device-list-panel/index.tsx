@@ -3,7 +3,7 @@
  *
  */
 
-import { useContext } from 'preact/hooks';
+import { useState, useContext } from 'preact/hooks';
 
 import { IoTDeviceCard } from '../iot-device-card';
 
@@ -17,22 +17,37 @@ import './style.css';
 
 function IoTDeviceListPanel() {
     const { iotDevices } = useContext(IoTDevicesContext);
+    const [selectedIoTDeviceId, setSelectedIoTDeviceId] = useState(null);
 
     useDeviceRegistry();
     useDeviceSensorReadings();
 
-    const deviceElements = Array.from(iotDevices.entries()).map(([key, iotDevice]) => (
-        <IoTDeviceCard key={key} deviceId={key} {...iotDevice.sensorReadings} />
-    ));
+    const deviceElements = Array.from(iotDevices.entries()).map(([key, iotDevice]) => {
+        console.log(selectedIoTDeviceId === iotDevice.deviceId);
+
+        return <IoTDeviceCard
+            key={key}
+            deviceId={key}
+            isSelected={selectedIoTDeviceId === iotDevice.deviceId}
+            {...iotDevice.sensorReadings}
+        />;
+    });
 
     const handleClick = (event) => {
         const button = event.target.closest('li[data-action]');
+        console.log(button);
+
         if (!button) {
 
             return;
         }
 
         const iotDevice = button.closest('.iot-device-card');
+
+
+        console.log(iotDevice.dataset.deviceId);
+
+        setSelectedIoTDeviceId(iotDevice.dataset.deviceId);
     };
 
 
