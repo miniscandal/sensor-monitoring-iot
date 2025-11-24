@@ -4,26 +4,55 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: solid var(--border-width-thin) var(--border-color);
-    border-radius: var(--border-radius-simple-organism);
+    border-radius: var(--border-radius-organism);
+    background-color: var(--card-bg-default);
     padding: var(--padding-molecule);
+
+    transition: var(--transition-translate-y-card);
+
+    &.selected {
+        background-color: var(--card-bg-selected);
+        transform: var(--transform-translate-y-card);
+        box-shadow: var(--shadow-selected);
+    }
 
     > header {
         margin-left: auto;
+
+        color: var(--color-iot-device-connected);
     }
 
     > .iot-device-card__device-id {
+
         > .svg-icon {
-            margin-bottom: var(--margin-simple-molecule);
+            color: var(--color-iot-device);
+            margin-bottom: var(--margin-atom);
         }
     }
 
     > .iot-device-card__sensor-readings {
         display: flex;
+        justify-content: space-around;
+
+        > .metric-item {
+            &:first-child {
+                color: var(--color-sensor-reading-humidity);
+            }
+
+            &:last-child {
+                color: var(--color-sensor-reading-temperature);
+            }
+        }
+
     }
 
     > .iot-device-card__footer {
-        border-top: solid var(--border-width-thin);
-        padding-top: var(--padding-simple-molecule);
+        border-top: solid var(--border-width-medium);
+        padding-top: var(--padding-molecule);
+        border-color: #5a606d;
+    }
+
+    &:hover {
+        background-color: var(--card-bg-hover);
     }
 }

@@ -7,10 +7,10 @@ import { SvgIcon } from '@shared-components/atoms/svg-icon';
 import './style.css';
 
 
-function IoTDeviceCard({ deviceId, humidity, temperature }) {
+function IoTDeviceCard({ deviceId, humidity, temperature, isSelected, isActive }) {
 
     return (
-        <li class="iot-device-card" data-device-id={deviceId}>
+        <li class={`iot-device-card ${isSelected ? "selected" : ""}`} data-device-id={deviceId}>
             <header>
                 <SvgIcon name="transmit" size="small" />
             </header>
