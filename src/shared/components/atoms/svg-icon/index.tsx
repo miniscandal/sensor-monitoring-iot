@@ -50,10 +50,10 @@ const icons = {
     ),
 };
 
-function SvgIcon({ name = 'chessPawn', size = '' }) {
+function SvgIcon({ name = 'chessPawn', size = '', enableHover = false }) {
 
     return (
-        <div class={`svg-icon ${size}`}>
+        <div class={`svg-icon ${size} ${enableHover ? 'enableHover' : ''}`}>
             {icons[name]}
         </div>
     );

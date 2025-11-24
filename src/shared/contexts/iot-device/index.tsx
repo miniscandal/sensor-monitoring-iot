@@ -12,7 +12,9 @@ const IoTDevicesContext = createContext({
 
 
 function IoTDeviceProvider({ children }) {
-    const [iotDevices, setIoTDevices] = useState(new Map());
+    const [iotDevices, setIoTDevices] = useState(new Map(
+        mocksIoTDevices.map(iotDevice => [iotDevice.deviceId, iotDevice]),
+    ));
 
     const value = {
         iotDevices,

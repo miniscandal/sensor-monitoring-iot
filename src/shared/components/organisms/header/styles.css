@@ -2,7 +2,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: var(--padding-simple-organism);
-    gap: var(--gap-molecule);
+    padding: var(--padding-organism);
     text-align: center;
+
+    > .heading {
+        margin-bottom: var(--margin-atom);
+    }
 }

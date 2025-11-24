@@ -1,8 +1,11 @@
 .stat-item {
     display: flex;
-    gap: var(--gap-simple-molecule);
 
     &.column {
         flex-direction: column;
+    }
+
+    > .label {
+        padding-bottom: var(--padding-molecule-medium);
     }
 }

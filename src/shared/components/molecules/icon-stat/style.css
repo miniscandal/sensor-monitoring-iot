@@ -1,8 +1,11 @@
 .icon-stat {
     display: flex;
     align-items: center;
-    gap: var(--gap-simple-molecule);
-    border: solid var(--border-width-medium) var(--border-color-molecule);
-    padding: var(--padding-simple-molecule);
-    border-radius: var(--border-radius-simple-molecule);
+    background-color: var(--pill-bg-highlight);
+    padding: var(--padding-molecule);
+    border-radius: var(--border-radius-molecule);
+
+    > .stat-item {
+        padding-left: var(--padding-molecule-medium);
+    }
 }

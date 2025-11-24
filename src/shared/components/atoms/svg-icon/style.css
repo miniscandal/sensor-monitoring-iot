@@ -1,7 +1,6 @@
 .svg-icon {
-    width: 3rem;
-    height: 3rem;
-    color: var(--color-icon);
+    width: 4rem;
+    height: 4rem;
 
     &.small {
         width: 2rem;
@@ -9,13 +8,13 @@
     }
 
     &.medium {
-        width: 4rem;
-        height: 4rem;
+        width: 3.5rem;
+        height: 3.5rem;
     }
 
     &.large {
-        width: 6rem;
-        height: 6rem;
+        width: 5rem;
+        height: 5rem;
     }
 
     > svg {

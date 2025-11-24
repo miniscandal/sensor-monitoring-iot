@@ -5,6 +5,7 @@ import './style.css';
 
 
 function StatItem({ label = 'Stat Item', value = 'N/A', direction = '' }) {
+
     return (
         <div className={`stat-item ${direction}`}>
             <Label text={label} />
