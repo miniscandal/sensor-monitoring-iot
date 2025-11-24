@@ -5,68 +5,77 @@
 }
 
 :root {
-    /*
-	--color-prefers-scheme: #3f3937;
-	--color-successful: #00ce0a;
-	--color-water: #4285f4;
-	--color-fire: #f68769;
-	--color-activated: #26b62d;
-    --color-urgent: #ee9b01;
-    */
     color-scheme: light dark;
 
-
-    --margin-simple-molecule: 0.5rem;
-    --margin-molecule: 1rem;
-
-    --padding-viewport: 1rem;
+    /* Unused
+    --color-successful: #00ce0a;
+    --color-activated: #26b62d;
+    --color-urgent: #ee9b01;
 
     --padding-atom: 0.25rem;
-
-    --padding-simple-molecule: 0.5rem;
-    --padding-molecule: 1rem;
-
-    --padding-simple-organism: 2rem;
-    --padding-organism: 4rem;
-
-    /* --padding-simple-container: 6rem; */
-    --padding-container: 8rem;
-
-
-    --gap-simple-molecule: 0.5rem;
-    --gap-molecule: 1rem;
-
-    --gap-simple-organism: 2rem;
-    --gap-organism: 4rem;
-
-    --gap-simple-container: 6rem;
-    /* --gap-container: 8rem; */
-
+    --margin-molecule: 1rem;
 
     --border-radius-atom: 0.25rem;
-
-    --border-radius-simple-molecule: 0.5rem;
-    --border-radius-molecule: 0.75rem;
-
-    --border-radius-simple-organism: 0.85rem;
-
     --border-width-thin: 0.05rem;
-    --border-width-medium: 0.15rem;
+
     --border-width-thick: 0.2rem;
 
     --border-light: #e0e0e0;
     --border-dark: #4e4e4e;
 
+    Dynamic color scheme
+
+    --border-color: #4e4e4e;
+    --border-color: #e0e0e0;
+
+    */
+
+    --margin-atom: 0.5rem;
+
+    --padding-viewport: 2vw;
+
+    --padding-molecule: 1rem;
+
+    --padding-organism: 2rem;
+
+    --padding-molecule-medium: 0.5rem;
+
+    --gap-organism: 2rem;
+
+    --gap-template: 4rem;
+
+
+    --border-radius-molecule: 0.5rem;
+    --border-radius-organism: 1rem;
+
+    --border-width-medium: 0.15rem;
+
+    --transform-translate-y-card: translateY(-0.5rem);
+    --transition-translate-y-card: transform 0.4s ease;
+
+    --filter-hover: opacity(0.6);
+
+    --shadow-selected: 0 0.5rem 0.5rem 0.2rem #4e4e4e;
+
+    --color-sensor-reading-humidity: #5499d1;
+    --color-sensor-reading-temperature: #e69142;
+    --color-iot-device-connected: #0bac26;
+
 
     /* Dynamic color scheme */
 
-    --border-color: #4e4e4e;
     --bg-body: #e0e0e0;
-    --text-title-color: #4e4e4e;
     --text-color: #2e2e2e;
 
-    --color-icon: #00b2d4;
-    --border-color-molecule: #e273d9;
+    --card-bg-default: #c0c0c0;
+    --card-bg-hover: #c5c5c5cc;
+    --card-bg-selected: #c2c2c2;
+
+    --pill-bg-highlight: #d0d4cc;
+
+    --color-sensor-button: #006377;
+    --color-iot-device: #00819b;
+    --color-mqtt-client-property: #186456;
 }
 
 *,
@@ -79,27 +88,33 @@
 
 html {
     scroll-behavior: smooth;
-    /* scrollbar-gutter: stable; */
+    scrollbar-gutter: stable;
 }
 
 body {
     background-color: var(--bg-body);
     font-family: IBMPlex-Thin_, helvetica;
+    padding: 0 var(--padding-viewport);
 }
 
 main {
     display: grid;
-    gap: var(--gap-organism);
+    gap: var(--gap-template);
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --border-color: #e0e0e0;
         --bg-body: #2b2b2b;
-        --text-title-color: #e5e5e5;
         --text-color: #e0e0e0;
 
-        --color-icon: #00b2d4;
-        --border-color-molecule: #e273d9;
+        --card-bg-default: #363636;
+        --card-bg-hover: #363636cc;
+        --card-bg-selected: #303030;
+
+        --pill-bg-highlight: #3d3941;
+
+        --color-sensor-button: #4dd0e1;
+        --color-iot-device: #06dacf;
+        --color-mqtt-client-property: #29c7a9;
     }
 }
