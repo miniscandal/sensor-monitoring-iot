@@ -1,0 +1,9 @@
+.subscribe-topic-panel {
+
+    > .icon-stat {
+
+        > .svg-icon {
+            color: var(--color-mqtt-client-property);
+        }
+    }
+}

@@ -1,10 +1,14 @@
 import { SubscribeTopicPanel } from '../../organisms/subscribe-topic-panel';
 
+import './style.css';
+
 
 function TopicSubscription() {
 
     return (
-        <SubscribeTopicPanel />
+        <article class="topic-subscription">
+            <SubscribeTopicPanel />
+        </article>
     );
 }
 
