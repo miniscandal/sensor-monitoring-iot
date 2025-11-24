@@ -1,0 +1,9 @@
+.iot-device-count-panel {
+
+    > .icon-stat {
+
+        > .svg-icon {
+            color: var(--color-iot-device);
+        }
+    }
+}
