@@ -1,10 +1,14 @@
 import { LiveMqttMessageFeed } from '../../organisms/live-mqtt-message-feed';
 
+import './style.css';
+
 
 function LiveDataFeed() {
 
     return (
-        <LiveMqttMessageFeed />
+        <article class="live-data-feed">
+            <LiveMqttMessageFeed />
+        </article>
     );
 }
 
