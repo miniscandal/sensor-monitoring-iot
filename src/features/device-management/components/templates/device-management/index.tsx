@@ -3,14 +3,18 @@ import { IoTDeviceListPanel } from '../../organisms/iot-device-list-panel';
 
 import { IoTDeviceProvider } from '@shared-contexts/iot-device';
 
+import './style.css';
+
 
 function DeviceManagement() {
 
     return (
-        <IoTDeviceProvider>
-            <IoTDeviceCountPanel />
-            <IoTDeviceListPanel />
-        </IoTDeviceProvider>
+        <article class="device-management">
+            <IoTDeviceProvider>
+                <IoTDeviceCountPanel />
+                <IoTDeviceListPanel />
+            </IoTDeviceProvider>
+        </article>
     );
 }
 
