@@ -1,10 +1,18 @@
 .svg-icon {
-    width: 4rem;
-    height: 4rem;
+
+    &.tiny {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
 
     &.small {
         width: 2rem;
         height: 2rem;
+    }
+
+    &.regular {
+        width: 2.5rem;
+        height: 2.5rem;
     }
 
     &.medium {
