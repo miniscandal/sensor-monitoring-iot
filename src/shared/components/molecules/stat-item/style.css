@@ -3,9 +3,9 @@
 
     &.column {
         flex-direction: column;
-    }
 
-    > .label {
-        padding-bottom: var(--padding-molecule-medium);
+        > .label {
+            padding-bottom: var(--padding-molecule-medium);
+        }
     }
 }
