@@ -7,26 +7,83 @@
     border-radius: var(--border-radius-organism);
     background-color: var(--card-bg-default);
     padding: var(--padding-molecule);
+    cursor: pointer;
 
-    transition: var(--transition-translate-y-card);
 
     &.selected {
         background-color: var(--card-bg-selected);
         transform: var(--transform-translate-y-card);
         box-shadow: var(--shadow-selected);
+        transition: var(--transition-translate-y-card), var(--transition-background-color);
+        cursor: default;
+
+        &:hover {
+            background-color: var(--card-bg-selected);
+        }
+    }
+
+    &:hover {
+        background-color: var(--card-bg-hover);
     }
 
     > header {
         margin-left: auto;
 
-        color: var(--color-iot-device-connected);
+        &.sensors {
+            color: var(--color-connected);
+        }
+
+        &.sensors-off {
+            color: var(--color-disconnected);
+        }
     }
 
     > .iot-device-card__device-id {
 
         > .svg-icon {
-            color: var(--color-iot-device);
             margin-bottom: var(--margin-atom);
+        }
+
+        > div {
+            display: flex;
+            justify-content: space-between;
+
+            > .stat-item {
+                align-self: self-end;
+            }
+
+            > .svg-icon {
+                margin-left: var(--margin-atom);
+                color: var(--icon-color);
+            }
+        }
+
+        &.active {
+
+            > .svg-icon {
+                color: var(--color-active);
+            }
+        }
+
+        &.alert {
+
+            > .svg-icon {
+                color: var(--color-alert);
+            }
+        }
+
+        &.idle {
+
+            > .svg-icon {
+                color: var(--color-idle);
+            }
+        }
+
+        &.urgent {
+
+            > .svg-icon {
+                color: var(--color-urgent);
+            }
         }
     }
 
@@ -36,11 +93,11 @@
 
         > .metric-item {
             &:first-child {
-                color: var(--color-sensor-reading-humidity);
+                color: var(--color-humidity);
             }
 
             &:last-child {
-                color: var(--color-sensor-reading-temperature);
+                color: var(--color-temperature);
             }
         }
 
@@ -50,9 +107,5 @@
         border-top: solid var(--border-width-medium);
         padding-top: var(--padding-molecule);
         border-color: #5a606d;
-    }
-
-    &:hover {
-        background-color: var(--card-bg-hover);
     }
 }
