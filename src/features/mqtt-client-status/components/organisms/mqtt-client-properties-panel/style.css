@@ -6,7 +6,7 @@
     > .icon-stat {
 
         > .svg-icon {
-            color: var(--color-mqtt-client-property);
+            color: var(--color-mqtt-client);
         }
     }
 }
