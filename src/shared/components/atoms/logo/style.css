@@ -1,7 +1,7 @@
 .logo {
     width: 4rem;
     height: 4rem;
-    color: var(--color-iot-device);
+    color: var(--color-iot);
 
     > svg {
         width: 100%;
