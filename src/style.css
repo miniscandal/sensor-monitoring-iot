@@ -8,10 +8,6 @@
     color-scheme: light dark;
 
     /* Unused
-    --color-successful: #00ce0a;
-    --color-activated: #26b62d;
-    --color-urgent: #ee9b01;
-
     --padding-atom: 0.25rem;
     --margin-molecule: 1rem;
 
@@ -22,6 +18,8 @@
 
     --border-light: #e0e0e0;
     --border-dark: #4e4e4e;
+
+
 
     Dynamic color scheme
 
@@ -44,22 +42,31 @@
 
     --gap-template: 4rem;
 
-
     --border-radius-molecule: 0.5rem;
     --border-radius-organism: 1rem;
 
     --border-width-medium: 0.15rem;
 
-    --transform-translate-y-card: translateY(-0.5rem);
+    --transform-translate-y-card: translateY(-1rem);
+
     --transition-translate-y-card: transform 0.4s ease;
+    --transition-background-color: background-color 0.4s ease;
 
     --filter-hover: opacity(0.6);
 
-    --shadow-selected: 0 0.5rem 0.5rem 0.2rem #4e4e4e;
+    --shadow-selected: 0 0.4rem 0.5rem 0 #5a5a5a;
 
-    --color-sensor-reading-humidity: #5499d1;
-    --color-sensor-reading-temperature: #e69142;
-    --color-iot-device-connected: #0bac26;
+    --color-humidity: #5499d1;
+    --color-temperature: #e69142;
+    --color-connected: #0bac26;
+    --color-disconnected: #a9a9a9;
+    --color-active: #28a745;
+    --color-paused: #9b705c;
+    --color-alert: #b99b3f;
+    --color-idle: #3995a3;
+    --color-urgent: #ff6171;
+
+
 
 
     /* Dynamic color scheme */
@@ -68,14 +75,16 @@
     --text-color: #2e2e2e;
 
     --card-bg-default: #c0c0c0;
-    --card-bg-hover: #c5c5c5cc;
-    --card-bg-selected: #c2c2c2;
+    --card-bg-hover: #c0c0c0cc;
+    --card-bg-selected: #cdcdcd;
 
     --pill-bg-highlight: #d0d4cc;
 
-    --color-sensor-button: #006377;
-    --color-iot-device: #00819b;
-    --color-mqtt-client-property: #186456;
+    --icon-color: #2f3b47;
+
+    --color-sensor-control: #006377;
+    --color-iot: #00819b;
+    --color-mqtt-client: #186456;
 }
 
 *,
@@ -107,14 +116,16 @@ main {
         --bg-body: #2b2b2b;
         --text-color: #e0e0e0;
 
-        --card-bg-default: #363636;
-        --card-bg-hover: #363636cc;
-        --card-bg-selected: #303030;
+        --card-bg-default: #3f3f3f;
+        --card-bg-hover: #3f3f3fcc;
+        --card-bg-selected: #323232;
 
         --pill-bg-highlight: #3d3941;
 
-        --color-sensor-button: #4dd0e1;
-        --color-iot-device: #06dacf;
-        --color-mqtt-client-property: #29c7a9;
+        --icon-color: #e0e0e0;
+
+        --color-sensor-control: #4dd0e1;
+        --color-iot: #06dacf;
+        --color-mqtt-client: #4acab3;
     }
 }
