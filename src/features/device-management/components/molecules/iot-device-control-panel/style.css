@@ -3,27 +3,33 @@
     display: flex;
     justify-content: space-between;
 
+    &.selected {
+
+        > li {
+
+            &:hover {
+                filter: var(--filter-hover);
+                cursor: pointer;
+            }
+        }
+    }
+
     > li {
 
         &.item-terminal,
         &.item-analytics {
-            color: var(--color-sensor-button);
+            color: var(--color-sensor-control);
         }
 
         &.item-mode-active-paused {
 
             &.active {
-                color: var(--color-iot-device-connected);
+                color: var(--color-paused);
             }
 
             &.paused {
-                color: #dd6060;
+                color: var(--color-connected);
             }
-        }
-
-        &:hover {
-            filter: var(--filter-hover);
-            cursor: pointer;
         }
     }
 }
