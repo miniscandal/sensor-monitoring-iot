@@ -15,7 +15,7 @@ function IoTDeviceCountPanel() {
 
     return (
         <section class="iot-device-count-panel">
-            <IconStat label="Sensors" value={count} svgIconName="iotDevice" />
+            <IconStat label="Devices:" value={count} svgIconName="iotDevice" />
         </section>
     );
 }
