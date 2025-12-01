@@ -17,7 +17,7 @@ function useDeviceSensorReadings() {
     useMQTTObserver({
         events: [MQTT_CLIENT_EVENT_MESSAGE],
         statusCodes: [IOT_DEVICE_STATUS_SENSOR_DATA_SENT],
-        observer: (event, { deviceId, ...readings }) => {
+        observer: (event, { deviceId, statusCode, ...readings }) => {
             setIoTDevices(prevState => {
                 const nextState = new Map(prevState);
                 const device = nextState.get(deviceId);
@@ -27,28 +27,24 @@ function useDeviceSensorReadings() {
                     return prevState;
                 }
 
-                const { temperature, humidity } = readings.sensorReadings || {};
+                const { temperature, humidity } = readings.sensorReadings;
 
-                if (!(Number.isFinite(temperature) && Number.isFinite(humidity))) {
+                if (device.sensorReadings) {
+                    device.sensorReadings.temperature.value = readings.sensorReadings.temperature;
+                    device.sensorReadings.humidity.value = readings.sensorReadings.humidity;
 
-                    return prevState;
-                }
-
-                if (!device.sensorReadings) {
-                    device.sensorReadings = {
-                        temperature: signal(readings.sensorReadings.temperature),
-                        humidity: signal(readings.sensorReadings.humidity),
+                    nextState.set(deviceId, { ...device, statusCode });
+                } else {
+                    const sensorReadings = {
+                        temperature: signal(temperature),
+                        humidity: signal(humidity),
                     };
 
-
-                    return nextState;
+                    nextState.set(deviceId, { ...device, statusCode, sensorReadings });
                 }
 
-                device.sensorReadings.temperature.value = readings.sensorReadings.temperature;
-                device.sensorReadings.humidity.value = readings.sensorReadings.humidity;
 
-
-                return prevState;
+                return nextState;
             });
         },
     });
