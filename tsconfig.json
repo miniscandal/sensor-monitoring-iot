@@ -20,9 +20,6 @@
             "@core-services/*": [
                 "./src/core/services/*"
             ],
-            "@core-observers/*": [
-                "./src/core/observers/*"
-            ],
             "@assets/*": [
                 "./src/assets/*"
             ],
@@ -41,9 +38,6 @@
             "@shared-hooks/*": [
                 "./src/shared/hooks/*"
             ],
-            "@shared-types/*": [
-                "./src/shared/types/*"
-            ]
         },
         "strictNullChecks": true,
     },
