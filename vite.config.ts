@@ -12,7 +12,7 @@ export default defineConfig({
             '@shared-components': '/src/shared/components',
             '@shared-constants': '/src/shared/constants',
             '@shared-contexts': '/src/shared/contexts',
-            '@shared-custom-hooks': '/src/shared/custom-hooks',
+            '@shared-hooks': '/src/shared/hooks',
         },
     },
 });

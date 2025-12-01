@@ -6,7 +6,7 @@ import { MQTT_CLIENT_EVENT_SUBSCRIBE } from '@shared-constants/mqtt-client-event
 import { MQTT_CLIENT_EVENT_OFFLINE } from '@shared-constants/mqtt-client-events';
 
 
-function useTopicSubscriptions() {
+function useMqttClientTopicSubscriptions() {
     const [topic, setTopic] = useState();
 
     useMQTTObserver({
@@ -18,4 +18,4 @@ function useTopicSubscriptions() {
     return topic;
 }
 
-export { useTopicSubscriptions };
+export { useMqttClientTopicSubscriptions };

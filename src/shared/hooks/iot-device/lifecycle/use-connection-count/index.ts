@@ -1,8 +1,6 @@
-import { useContext } from 'preact/hooks';
+import { useState } from 'preact/hooks';
 
-import { useMQTTObserver } from '@shared-custom-hooks/mqtt-client/use-mqtt-observer';
-
-import { IoTDevicesContext } from '@shared-contexts/iot-device';
+import { useMQTTObserver } from '@shared-hooks/mqtt-client/use-mqtt-observer';
 
 import { MQTT_CLIENT_EVENT_MESSAGE } from '@shared-constants/mqtt-client-events';
 import { MQTT_CLIENT_EVENT_OFFLINE } from '@shared-constants/mqtt-client-events';
@@ -11,47 +9,40 @@ import { IOT_DEVICE_STATUS_CONNECTED } from '@shared-constants/iot-device-status
 import { IOT_DEVICE_STATUS_DISCONNECTED } from '@shared-constants/iot-device-status-codes';
 
 
-function useIotDeviceConnection() {
-    const { setIoTDevices } = useContext(IoTDevicesContext);
+function useIoTDeviceConnectionCount() {
+    const [connectedDeviceIds, setConnectedDeviceIds] = useState([]);
 
     useMQTTObserver({
         events: [MQTT_CLIENT_EVENT_MESSAGE, MQTT_CLIENT_EVENT_OFFLINE],
         statusCodes: [IOT_DEVICE_STATUS_CONNECTED, IOT_DEVICE_STATUS_DISCONNECTED],
-        observer: (event, { deviceId, statusCode, ...metadata }) => {
+        observer: (event, { deviceId, statusCode }) => {
             if (event === MQTT_CLIENT_EVENT_OFFLINE) {
-                setIoTDevices(new Map());
+                setConnectedDeviceIds([]);
 
 
                 return;
             }
 
-            setIoTDevices(prevState => {
-                const nextState = new Map(prevState);
-
+            setConnectedDeviceIds(prevState => {
                 switch (statusCode) {
-                    case IOT_DEVICE_STATUS_CONNECTED: {
-                        if (nextState.has(deviceId)) {
+                    case IOT_DEVICE_STATUS_CONNECTED:
+                        if (prevState.some(id => id === deviceId)) {
 
                             return prevState;
                         }
 
-                        nextState.set(deviceId, { deviceId, statusCode, ...metadata });
 
-
-                        return nextState;
-                    }
+                        return [...prevState, deviceId];
                     case IOT_DEVICE_STATUS_DISCONNECTED:
-                        nextState.delete(deviceId);
-
-
-                        return nextState;
+                        return prevState.filter(id => id !== deviceId);
                     default:
-
                         return prevState;
                 }
             });
         },
     });
+
+    return connectedDeviceIds;
 }
 
-export { useIotDeviceConnection };
+export { useIoTDeviceConnectionCount };

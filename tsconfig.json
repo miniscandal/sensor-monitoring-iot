@@ -38,8 +38,8 @@
             "@shared-contexts/*": [
                 "./src/shared/contexts/*"
             ],
-            "@shared-custom-hooks/*": [
-                "./src/shared/custom-hooks/*"
+            "@shared-hooks/*": [
+                "./src/shared/hooks/*"
             ],
             "@shared-types/*": [
                 "./src/shared/types/*"

@@ -3,7 +3,7 @@
  *
  */
 
-import { useConnectedIoTDeviceCount } from '@shared-custom-hooks/iot-device/device-lifecycle/use-connected-iot-device-count';
+import { useIoTDeviceConnectionCount } from '@shared-hooks/iot-device/lifecycle/use-connection-count';
 
 import { IconStat } from '@shared-components/molecules/icon-stat';
 
@@ -11,7 +11,7 @@ import './style.css';
 
 
 function IoTDeviceCountPanel() {
-    const count = useConnectedIoTDeviceCount();
+    const count = useIoTDeviceConnectionCount();
 
 
     return (

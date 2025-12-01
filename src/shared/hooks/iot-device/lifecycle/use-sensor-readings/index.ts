@@ -1,7 +1,7 @@
 import { signal } from '@preact/signals';
 import { useContext } from 'preact/hooks';
 
-import { useMQTTObserver } from '@shared-custom-hooks/mqtt-client/use-mqtt-observer';
+import { useMQTTObserver } from '@shared-hooks/mqtt-client/use-mqtt-observer';
 
 import { IoTDevicesContext } from '@shared-contexts/iot-device';
 
@@ -11,7 +11,7 @@ import { IOT_DEVICE_STATUS_SENSOR_DATA_SENT } from '@shared-constants/iot-device
 
 
 
-function useDeviceSensorReadings() {
+function useIoTDeviceSensorReadings() {
     const { setIoTDevices } = useContext(IoTDevicesContext);
 
     useMQTTObserver({
@@ -50,4 +50,4 @@ function useDeviceSensorReadings() {
     });
 }
 
-export { useDeviceSensorReadings };
+export { useIoTDeviceSensorReadings };

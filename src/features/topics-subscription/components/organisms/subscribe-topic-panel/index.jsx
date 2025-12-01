@@ -1,4 +1,4 @@
-import { useTopicSubscriptions } from '@shared-custom-hooks/mqtt-client/use-topic-subscriptions';
+import { useMqttClientTopicSubscriptions } from '@shared-hooks/mqtt-client/use-topic-subscriptions';
 
 import { IconStat } from '@shared-components/molecules/icon-stat';
 
@@ -6,7 +6,7 @@ import './style.css';
 
 
 function SubscribeTopicPanel() {
-    const topic = useTopicSubscriptions();
+    const topic = useMqttClientTopicSubscriptions();
 
     const iconStat = {
         label: 'Topic Subscribe',
