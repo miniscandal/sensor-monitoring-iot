@@ -1,20 +1,14 @@
 import { createContext } from 'preact';
 import { useState } from 'preact/hooks';
 
-import mocksIoTDevices from '@mocks/iot-device/context-iot-devices.json';
-
 
 const IoTDevicesContext = createContext({
-    iotDevices: new Map(
-        mocksIoTDevices.map(iotDevice => [iotDevice.deviceId, iotDevice]),
-    ),
+    iotDevices: new Map(),
 });
 
 
 function IoTDeviceProvider({ children }) {
-    const [iotDevices, setIoTDevices] = useState(new Map(
-        mocksIoTDevices.map(iotDevice => [iotDevice.deviceId, iotDevice]),
-    ));
+    const [iotDevices, setIoTDevices] = useState(new Map());
 
     const value = {
         iotDevices,
