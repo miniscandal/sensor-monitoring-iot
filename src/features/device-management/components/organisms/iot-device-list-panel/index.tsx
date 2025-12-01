@@ -7,10 +7,10 @@ import { useState, useContext } from 'preact/hooks';
 
 import { IoTDeviceCard } from '../iot-device-card';
 
-import { useIoTDeviceConnection } from '@shared-hooks/iot-device/onboarding/use-connection';
-import { useIoTDeviceSensorReadings } from '@shared-hooks/iot-device/lifecycle/use-sensor-readings';
+import { useIoTDeviceConnection } from '@shared-hooks/iot-devices/onboarding/use-connection';
+import { useIoTDeviceSensorReadings } from '@shared-hooks/iot-devices/lifecycle/use-sensor-readings';
 
-import { IoTDevicesContext } from '@shared-contexts/iot-device';
+import { IoTDevicesContext } from '@shared-contexts/iot-devices-provider';
 
 import './style.css';
 

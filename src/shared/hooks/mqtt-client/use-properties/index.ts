@@ -7,7 +7,7 @@ import { useState } from 'preact/hooks';
 
 import { useMQTTObserver } from '../use-mqtt-observer';
 
-import { MQTT_CLIENT_PROPERTIES } from '@core-services/mqtt-client/constants/client-mqtt-properties';
+import { MQTT_CLIENT_PROPERTIES } from '@shared-constants/mqtt-client-properties';
 
 import { MQTT_CLIENT_EVENT_CONNECT } from '@shared-constants/mqtt-client-events';
 import { MQTT_CLIENT_EVENT_OFFLINE } from '@shared-constants/mqtt-client-events';

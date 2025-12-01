@@ -4,7 +4,7 @@ import { useMQTTObserver } from '../use-mqtt-observer';
 
 import { MQTT_CLIENT_EVENT_MESSAGE } from '@shared-constants/mqtt-client-events';
 import { MQTT_CLIENT_EVENT_OFFLINE } from '@shared-constants/mqtt-client-events';
-import { MQTT_CLIENT_MESSAGE_TRACKING } from '@shared-constants/mqtt-client';
+import { MQTT_CLIENT_MESSAGE_TRACKING } from '@shared-constants/mqtt-client-permissions';
 
 
 function useMqttClientMessageTracking() {

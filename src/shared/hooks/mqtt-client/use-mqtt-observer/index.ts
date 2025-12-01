@@ -1,6 +1,6 @@
 import { useEffect } from 'preact/hooks';
 
-import { mqttClientObserverManager } from '@core-observers/mqtt-client-observer-manager';
+import { mqttClientObserverManager } from '@core-services/mqtt-client-observer-manager';
 
 
 function useMQTTObserver({ events, statusCodes, observer }) {

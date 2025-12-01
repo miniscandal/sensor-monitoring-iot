@@ -6,11 +6,11 @@
 import { render } from 'preact';
 import { useEffect } from 'preact/hooks';
 
-import { MqttClientSingleton } from '@core-services/mqtt-client';
+import { MqttClientSingleton } from '@core-services/mqtt-client-singleton';
 
-import { MqttClientStatus } from './features/mqtt-client-status/components/templates/mqtt-client-status';
+import { MqttClientStatus } from './features/mqtt-client-status/components/templates/status';
 import { TopicSubscription } from './features/topics-subscription/components/templates/topic-subscription';
-import { DeviceManagement } from './features/device-management/components/templates/device-management';
+import { DeviceManagement } from './features/device-management/components/templates/management';
 
 import { Header } from '@shared-components/organisms/header';
 

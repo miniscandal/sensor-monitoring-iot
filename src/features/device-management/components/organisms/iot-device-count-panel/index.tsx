@@ -3,7 +3,7 @@
  *
  */
 
-import { useIoTDeviceConnectionCount } from '@shared-hooks/iot-device/lifecycle/use-connection-count';
+import { useIoTDeviceConnectionCount } from '@shared-hooks/iot-devices/lifecycle/use-connection-count';
 
 import { IconStat } from '@shared-components/molecules/icon-stat';
 
