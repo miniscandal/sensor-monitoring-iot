@@ -1,5 +1,5 @@
 .iot-device-card {
-    width: 12rem;
+    width: 12.5rem;
     height: 17rem;
     display: flex;
     flex-direction: column;
@@ -29,12 +29,12 @@
     > header {
         margin-left: auto;
 
-        &.sensors {
-            color: var(--color-connected);
+        &.registered {
+            color: var(--color-registered);
         }
 
-        &.sensors-off {
-            color: var(--color-disconnected);
+        &.active {
+            color: var(--color-connected);
         }
     }
 
@@ -55,6 +55,13 @@
             > .svg-icon {
                 margin-left: var(--margin-atom);
                 color: var(--icon-color);
+            }
+        }
+
+        &.registered {
+
+            > .svg-icon {
+                color: var(--color-registered);
             }
         }
 
@@ -89,9 +96,10 @@
 
     > .iot-device-card__sensor-readings {
         display: flex;
-        justify-content: space-around;
 
         > .metric-item {
+            flex: 1;
+
             &:first-child {
                 color: var(--color-humidity);
             }

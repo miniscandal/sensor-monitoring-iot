@@ -3,32 +3,40 @@
     display: flex;
     justify-content: space-between;
 
-    &.selected {
+    &.unselected {
 
         > li {
+            color: var(--color-registered);
 
             &:hover {
-                filter: var(--filter-hover);
-                cursor: pointer;
+                cursor: no-drop;
             }
         }
     }
 
-    > li {
+    &.selected {
 
-        &.item-terminal,
-        &.item-analytics {
-            color: var(--color-sensor-control);
-        }
+        > li {
 
-        &.item-mode-active-paused {
-
-            &.active {
-                color: var(--color-paused);
+            &.item-terminal,
+            &.item-analytics {
+                color: var(--color-sensor-control);
             }
 
-            &.paused {
-                color: var(--color-connected);
+            &.item-mode-active-paused {
+
+                &.active {
+                    color: var(--color-paused);
+                }
+
+                &.paused {
+                    color: var(--color-connected);
+                }
+            }
+
+            &:hover {
+                filter: var(--filter-hover);
+                cursor: pointer;
             }
         }
     }

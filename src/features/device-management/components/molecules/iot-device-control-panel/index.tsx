@@ -10,7 +10,7 @@ function IoTDeviceControlPanel({ isActive = !true, isSelected = true }) {
 
 
     return (
-        <ul class={`iot-device-control-panel ${isSelected ? "selected" : ""}`}>
+        <ul class={`iot-device-control-panel ${isSelected ? "selected" : "unselected"}`}>
             <li class={`item-terminal`} data-action="terminal">
                 <SvgIcon name="terminal" size="small" enableHover={true} />
             </li>

@@ -7,7 +7,7 @@ import { useState, useContext } from 'preact/hooks';
 
 import { IoTDeviceCard } from '../iot-device-card';
 
-import { useDeviceRegistry } from '@shared-custom-hooks/iot-device/device-onboarding/use-device-registry';
+import { useIotDeviceConnection } from '@shared-custom-hooks/iot-device/device-onboarding/use-device-connection';
 import { useDeviceSensorReadings } from '@shared-custom-hooks/iot-device/device-lifecycle/use-device-sensor-readings';
 
 import { IoTDevicesContext } from '@shared-contexts/iot-device';
@@ -19,17 +19,23 @@ function IoTDeviceListPanel() {
     const { iotDevices } = useContext(IoTDevicesContext);
     const [selectedIoTDeviceId, setSelectedIoTDeviceId] = useState(null);
 
-    useDeviceRegistry();
+    useIotDeviceConnection();
     useDeviceSensorReadings();
 
-    const deviceElements = Array.from(iotDevices.entries()).map(([key, iotDevice]) => (
-        <IoTDeviceCard
-            key={key}
-            deviceId={key}
-            isSelected={selectedIoTDeviceId === iotDevice.deviceId}
-            readings={iotDevice.sensorReadings}
-        />
-    ));
+    const deviceElements = Array.from(iotDevices.entries()).map(([key, iotDevice]) => {
+        console.log('iot device', iotDevice);
+
+
+        return (
+            <IoTDeviceCard
+                key={key}
+                deviceId={key}
+                isSelected={selectedIoTDeviceId === iotDevice.deviceId}
+                sensorReadings={iotDevice.sensorReadings}
+                statusCode={iotDevice.statusCode}
+            />
+        );
+    });
 
     const handleClick = (event) => {
         const { target } = event;
@@ -44,14 +50,15 @@ function IoTDeviceListPanel() {
         if (closestElement.matches('[data-device-id]')) {
             setSelectedIoTDeviceId(closestElement.dataset.deviceId);
 
+
             return;
         }
 
         /*
-
+    
         At this point we know that closestElement corresponds to a <li data-action>
         therefore we look up its parent [data-device-id] to associate the action with the device.
-
+    
         */
 
         const iotDeviceElement = closestElement.closest('[data-device-id]');
@@ -59,13 +66,14 @@ function IoTDeviceListPanel() {
         if (!iotDeviceElement.matches('[data-selected="true"]')) {
             setSelectedIoTDeviceId(iotDeviceElement.dataset.deviceId);
 
+
             return;
         }
 
         const iotDeviceId = iotDeviceElement.dataset.deviceId;
 
-        console.log('id', iotDeviceId);
-        console.log('action', closestElement.dataset.action);
+
+        return iotDeviceId;
     };
 
 
