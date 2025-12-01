@@ -34,8 +34,8 @@ $location = @{
 
 # Function to generate realistic sensor readings
 function Get-RandomSensorReadings {
-    $temperature = [math]::Round((Get-Random -Minimum 15.0 -Maximum 35.0), 1)
-    $humidity = [math]::Round((Get-Random -Minimum 30.0 -Maximum 80.0), 0)
+    $humidity = [math]::Round((Get-Random -Minimum 0.0 -Maximum 100.0), 1)
+    $temperature = [math]::Round((Get-Random -Minimum -40.0 -Maximum 80.0), 1)
 
     return @{
         temperature = $temperature
@@ -59,11 +59,11 @@ $messageTemplates = @{
         }
     }
 
-    102 = {
+    103 = {
         param($deviceId)
         @{
             deviceId   = $deviceId
-            statusCode = 102
+            statusCode = 103
             location   = $location
             timestamp  = $timestamp
         }
@@ -84,7 +84,7 @@ $messageTemplates = @{
 # Validate statusCode and build message payload
 # ─────────────────────────────────────────────────────────────
 if (-not $messageTemplates.ContainsKey($statusCode)) {
-    Write-Error "(╯°□°）╯︵ ┻━┻ Unrecognized statusCode: $statusCode. Valid options are 101, 102, or 202."
+    Write-Error "(╯°□°）╯︵ ┻━┻ Unrecognized statusCode: $statusCode. Valid options are 101, 103, or 202."
     exit 1
 }
 
