@@ -1,7 +1,20 @@
 // Connection and presentation states (100–199)
-const IOT_DEVICE_STATUS_CONNECTED = 101;             // Device is connected to the network
-const IOT_DEVICE_STATUS_DISCONNECTED = 102;          // Device is disconnected from the network
-const IOT_DEVICE_STATUS_HEARTBEAT = 103;             // Periodic heartbeat signal to confirm connectivity
+const IOT_DEVICE_STATUS_CONNECTED = 101; // Device is connected to the network
+const IOT_DEVICE_STATUS_ACTIVATED = 102; // Device is active, transmitting data or ready to receive commands
+const IOT_DEVICE_STATUS_DISCONNECTED = 103; // Device is disconnected from the network
+const IOT_DEVICE_STATUS_REGISTERED = 104; // Device is registered in the system but not yet active
+const IOT_DEVICE_STATUS_HEARTBEAT = 105; // Periodic heartbeat signal to confirm connectivity
+const IOT_DEVICE_STATUS_IDLE = 106; // Device is connected but idle (no activity)
+const IOT_DEVICE_STATUS_ALERT = 107; // Device reports a warning condition
+const IOT_DEVICE_STATUS_URGENT = 108; // Device reports a critical condition
+const IOT_DEVICE_STATUS_PENDING = 109; // Device is pending setup or configuration
+const IOT_DEVICE_STATUS_ERROR = 110; // Device encountered an error or failure
+const IOT_DEVICE_STATUS_DISABLED = 111; // Device is intentionally disabled by the system/admin
+const IOT_DEVICE_STATUS_UPDATING = 112; // Device is updating firmware or configuration
+const IOT_DEVICE_STATUS_MAINTENANCE = 113; // Device is in maintenance mode (temporarily unavailable)
+const IOT_DEVICE_STATUS_UNKNOWN = 114; // Device state is unknown or not recognized
+const IOT_DEVICE_STATUS_OFF = 115; // Device is physically powered off (no energy)
+
 
 // Measurement and data transmission states (200–299)
 const IOT_DEVICE_STATUS_MEASURING = 201;             // Device is actively measuring sensor data
@@ -27,8 +40,20 @@ const IOT_DEVICE_STATUS_INVALID_CONFIGURATION = 313;     // Device configuration
 
 export {
     IOT_DEVICE_STATUS_CONNECTED,
+    IOT_DEVICE_STATUS_ACTIVATED,
     IOT_DEVICE_STATUS_DISCONNECTED,
     IOT_DEVICE_STATUS_HEARTBEAT,
+    IOT_DEVICE_STATUS_IDLE,
+    IOT_DEVICE_STATUS_ALERT,
+    IOT_DEVICE_STATUS_URGENT,
+    IOT_DEVICE_STATUS_REGISTERED,
+    IOT_DEVICE_STATUS_PENDING,
+    IOT_DEVICE_STATUS_ERROR,
+    IOT_DEVICE_STATUS_DISABLED,
+    IOT_DEVICE_STATUS_UPDATING,
+    IOT_DEVICE_STATUS_MAINTENANCE,
+    IOT_DEVICE_STATUS_UNKNOWN,
+    IOT_DEVICE_STATUS_OFF,
     IOT_DEVICE_STATUS_MEASURING,
     IOT_DEVICE_STATUS_SENSOR_DATA_SENT,
     IOT_DEVICE_STATUS_BATTERY_LOW,
