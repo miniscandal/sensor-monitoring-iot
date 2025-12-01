@@ -1,3 +1,0 @@
-const MQTT_CLIENT_MESSAGE_TRACKING = 'all_messages';
-
-export { MQTT_CLIENT_MESSAGE_TRACKING };
