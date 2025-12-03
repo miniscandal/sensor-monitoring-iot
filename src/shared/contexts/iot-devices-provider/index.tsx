@@ -3,16 +3,15 @@ import { useState } from 'preact/hooks';
 
 
 const IoTDevicesContext = createContext({
-    iotDevices: new Map(),
+    deviceStatusMap: new Map(),
 });
 
-
 function IoTDevicesProvider({ children }) {
-    const [iotDevices, setIoTDevices] = useState(new Map());
+    const [deviceStatusMap, setDeviceStatusMap] = useState(new Map());
 
     const value = {
-        iotDevices,
-        setIoTDevices,
+        deviceStatusMap,
+        setDeviceStatusMap,
     };
 
 

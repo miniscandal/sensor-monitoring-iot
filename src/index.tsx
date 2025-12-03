@@ -6,11 +6,11 @@
 import { render } from 'preact';
 import { useEffect } from 'preact/hooks';
 
-import { MqttClientSingleton } from '@core-services/mqtt-client-singleton';
+import { MqttClientConnectionSingleton } from '@core-services/mqtt-client-connection-singleton';
 
-import { MqttClientStatus } from './features/mqtt-client-status/components/templates/status';
-import { TopicSubscription } from './features/topics-subscription/components/templates/topic-subscription';
-import { DeviceManagement } from './features/device-management/components/templates/management';
+import { MqttClientStatus } from '@features/mqtt-client-status/components/templates/status';
+import { TopicSubscription } from '@features/mqtt-client-subscriptions/components/templates/topic-subscription';
+import { DeviceManagement } from '@features/iot-devices-operations/components/templates/management';
 
 import { Header } from '@shared-components/organisms/header';
 
@@ -19,7 +19,7 @@ import './style.css';
 
 export function App() {
     useEffect(() => {
-        const client = MqttClientSingleton.getInstance();
+        const client = MqttClientConnectionSingleton.getInstance();
 
 
         return () => client.end();

@@ -1,19 +1,19 @@
 import { useEffect } from 'preact/hooks';
 
-import { mqttClientObserverManager } from '@core-services/mqtt-client-observer-manager';
+import { mqttClientEventSubject } from '@core-services/mqtt-client-event-subject';
 
 
-function useMQTTObserver({ events, statusCodes, observer }) {
+function useMqttClientEventSubject({ events, statusCodes, observer }) {
     useEffect(() => {
-        mqttClientObserverManager.subscribe({
+        mqttClientEventSubject.subscribe({
             events,
             statusCodes,
             observer,
         });
 
 
-        return () => mqttClientObserverManager.unsubscribe(observer);
+        return () => mqttClientEventSubject.unsubscribe(observer);
     }, []);
 }
 
-export { useMQTTObserver };
+export { useMqttClientEventSubject };
