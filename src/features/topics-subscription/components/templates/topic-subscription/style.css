@@ -1,8 +1,0 @@
-.topic-subscription {
-    width: min(100%, 65rem);
-    margin: 0 auto;
-
-    > .subscribe-topic-panel {
-        width: min(100%, 25rem);
-    }
-}
