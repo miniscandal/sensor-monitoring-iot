@@ -1,0 +1,9 @@
+{
+    "deviceId": "01",
+    "statusCode": 202,
+    "sensorReadings": {
+        "humidity": 100,
+        "temperature": -30.4
+    },
+    "timestamp": "2025-10-18T14:32:00Z"
+}
