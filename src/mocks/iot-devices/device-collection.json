@@ -1,6 +1,6 @@
 [
     {
-        "deviceId": "01",
+        "deviceId": "a1",
         "statusCode": 101,
         "firmwareVersion": "1.3.0",
         "location": {
@@ -13,7 +13,7 @@
         "timestamp": "2025-10-30T18:00:00Z"
     },
     {
-        "deviceId": "02",
+        "deviceId": "a2",
         "statusCode": 101,
         "firmwareVersion": "1.3.0",
         "location": {
@@ -26,7 +26,7 @@
         "timestamp": "2025-10-30T18:00:00Z"
     },
     {
-        "deviceId": "03",
+        "deviceId": "a3",
         "statusCode": 101,
         "firmwareVersion": "1.3.0",
         "location": {
