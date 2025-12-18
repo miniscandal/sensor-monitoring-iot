@@ -5,115 +5,42 @@
     flex-direction: column;
     justify-content: space-between;
     border-radius: var(--border-radius-organism);
-    background-color: var(--card-bg-default);
     padding: var(--padding-molecule);
-    cursor: pointer;
 
-
-    &.selected {
-        background-color: var(--card-bg-selected);
-        transform: var(--transform-translate-y-card);
-        box-shadow: var(--shadow-selected);
-        transition: var(--transition-translate-y-card), var(--transition-background-color);
-        cursor: default;
+    &[data-selection-status="false"] {
+        background-color: var(--card-bg-default);
+        cursor: pointer;
 
         &:hover {
-            background-color: var(--card-bg-selected);
+            background-color: var(--card-bg-hover);
         }
     }
 
-    &:hover {
-        background-color: var(--card-bg-hover);
+    &[data-selection-status="true"] {
+        background-color: var(--card-bg-selected);
+        cursor: default;
+        transform: var(--transform-translate-y-card);
+        box-shadow: var(--shadow-selected);
+        transition: var(--transition-translate-y-card), var(--transition-background-color);
     }
 
     > header {
         margin-left: auto;
+    }
 
-        &.registered {
-            color: var(--color-registered);
-        }
+    /* status: logged in */
+    &[data-status-code="205"] {
 
-        &.active {
-            color: var(--color-connected);
+        > header {
+            color: var(--color-logged-in);
         }
     }
 
-    > .iot-device-card__device-id {
+    /* status: streaming sensor data */
+    &[data-status-code="252"] {
 
-        > .svg-icon {
-            margin-bottom: var(--margin-atom);
+        > header {
+            color: var(--color-streaming);
         }
-
-        > div {
-            display: flex;
-            justify-content: space-between;
-
-            > .stat-item {
-                align-self: self-end;
-            }
-
-            > .svg-icon {
-                margin-left: var(--margin-atom);
-                color: var(--icon-color);
-            }
-        }
-
-        &.registered {
-
-            > .svg-icon {
-                color: var(--color-registered);
-            }
-        }
-
-        &.active {
-
-            > .svg-icon {
-                color: var(--color-active);
-            }
-        }
-
-        &.alert {
-
-            > .svg-icon {
-                color: var(--color-alert);
-            }
-        }
-
-        &.idle {
-
-            > .svg-icon {
-                color: var(--color-idle);
-            }
-        }
-
-        &.urgent {
-
-            > .svg-icon {
-                color: var(--color-urgent);
-            }
-        }
-    }
-
-    > .iot-device-card__sensor-readings {
-        display: flex;
-
-        > .metric-item {
-            flex: 1;
-
-            &:first-child {
-                color: var(--color-humidity);
-            }
-
-            &:last-child {
-                color: var(--color-temperature);
-            }
-        }
-
-    }
-
-    > .iot-device-card__footer {
-        border-top: solid var(--border-width-medium);
-        padding-top: var(--padding-molecule);
-        border-color: #5a606d;
     }
 }

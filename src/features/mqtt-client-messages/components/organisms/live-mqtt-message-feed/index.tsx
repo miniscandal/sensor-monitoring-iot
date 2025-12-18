@@ -1,10 +1,10 @@
-import { useMqttClientMessageTracking } from '@shared-custom-hooks/mqtt-client/use-mqtt-client-message-tracking';
+import { useMqttClientMessages } from '@shared-custom-hooks/mqtt-client/use-mqtt-client-message-tracking';
 
 import './style.css';
 
 
 function LiveMqttMessageFeed() {
-    const messages = useMqttClientMessageTracking();
+    const messages = useMqttClientMessages();
 
     const data = messages.map(message => JSON.stringify(message));
 

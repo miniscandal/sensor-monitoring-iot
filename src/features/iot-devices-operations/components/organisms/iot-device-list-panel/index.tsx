@@ -12,6 +12,9 @@ import { useIoTDevicesTelemetry } from '@shared-hooks/iot-devices/lifecycle/use-
 
 import { IoTDevicesContext } from '@shared-contexts/iot-devices-provider';
 
+import { DATA_ATTR_ACTION_SELECTOR } from '@features/iot-devices-operations/constants/selectors';
+import { DATA_ATTR_DEVICE_ID_SELECTOR } from '@features/iot-devices-operations/constants/selectors';
+
 import './style.css';
 
 
@@ -22,33 +25,32 @@ function IoTDeviceListPanel() {
     useIoTDevicesStatusLifecycle();
     useIoTDevicesTelemetry();
 
-    const deviceElements = Array.from(deviceStatusMap.entries()).map(([key, iotDevice]) => {
-        console.log('iot device', iotDevice);
-
-
-        return (
-            <IoTDeviceCard
-                key={key}
-                deviceId={key}
-                isSelected={selectedIoTDeviceId === iotDevice.deviceId}
-                sensorReadings={iotDevice.sensorReadings}
-                statusCode={iotDevice.statusCode}
-            />
-        );
-    });
+    const deviceElements = Array.from(deviceStatusMap.entries()).map(([key, iotDevice]) => (
+        <IoTDeviceCard
+            key={key}
+            iotDeviceId={iotDevice.deviceId}
+            sensorReadings={iotDevice.sensorReadings}
+            selectionStatus={selectedIoTDeviceId === iotDevice.deviceId}
+            statusCode={iotDevice.statusCode}
+        />
+    ));
 
     const handleClick = (event) => {
         const { target } = event;
 
-        const closestElement = target.closest('li[data-action], [data-device-id]');
+        const closestElement = target.closest(`${DATA_ATTR_ACTION_SELECTOR}, ${DATA_ATTR_DEVICE_ID_SELECTOR}`);
 
         if (!closestElement) {
 
             return;
         }
 
-        if (closestElement.matches('[data-device-id]')) {
-            setSelectedIoTDeviceId(closestElement.dataset.deviceId);
+        if (closestElement.matches(DATA_ATTR_DEVICE_ID_SELECTOR)) {
+            if (closestElement.dataset.deviceId === selectedIoTDeviceId) {
+                setSelectedIoTDeviceId();
+            } else {
+                setSelectedIoTDeviceId(closestElement.dataset.deviceId);
+            }
 
 
             return;
@@ -61,19 +63,18 @@ function IoTDeviceListPanel() {
     
         */
 
-        const iotDeviceElement = closestElement.closest('[data-device-id]');
+        const iotDeviceElement = closestElement.closest(DATA_ATTR_DEVICE_ID_SELECTOR);
 
-        if (!iotDeviceElement.matches('[data-selected="true"]')) {
+        if (iotDeviceElement.dataset.deviceId !== selectedIoTDeviceId) {
             setSelectedIoTDeviceId(iotDeviceElement.dataset.deviceId);
 
 
             return;
         }
 
-        const iotDeviceId = iotDeviceElement.dataset.deviceId;
+        const action = closestElement.dataset.action;
 
-
-        return iotDeviceId;
+        console.log('action', action);
     };
 
 
