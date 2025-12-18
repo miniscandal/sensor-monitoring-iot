@@ -1,0 +1,90 @@
+.iot-device-control-panel {
+
+    > ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        border-top: solid var(--border-width-medium);
+        padding-top: var(--padding-molecule-medium);
+        border-color: #5a606d;
+    }
+
+    &[data-selection-status="false"] {
+
+        > ul {
+
+            > li {
+                color: var(--color-unselect);
+
+                &:hover {
+                    cursor: no-drop;
+                }
+            }
+        }
+    }
+
+    &[data-selection-status="true"] {
+
+        > ul {
+
+            > li {
+
+                color: var(--color-selected);
+
+                &:hover {
+                    filter: var(--filter-hover);
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    /* status: logged in */
+    &[data-status-code="205"] {
+
+        > ul {
+
+            > li {
+
+                &.item-analytics,
+                &.item-streaming-sensor-data {
+                    color: var(--color-logged-in);
+
+                    &:hover {
+                        filter: unset;
+                        cursor: no-drop;
+                    }
+                }
+            }
+        }
+    }
+
+    /* status: idle */
+    &[data-status-code="202"] {
+
+        > ul {
+
+            > li {
+
+                &.item-streaming-sensor-data {
+                    color: var(--color-streaming);
+                }
+            }
+        }
+    }
+
+
+    /* status: streaming sensor data */
+    &[data-status-code="252"] {
+
+        > ul {
+
+            > li {
+
+                &.item-streaming-sensor-data {
+                    color: var(--color-idle);
+                }
+            }
+        }
+    }
+}

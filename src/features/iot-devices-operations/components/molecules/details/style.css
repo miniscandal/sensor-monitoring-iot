@@ -1,0 +1,36 @@
+.iot-device-details {
+
+    > .svg-icon {
+        margin-bottom: var(--margin-atom);
+    }
+
+    > div {
+        display: flex;
+        justify-content: space-between;
+
+        > .stat-item {
+            align-self: self-end;
+        }
+
+        > .svg-icon {
+            margin-left: var(--margin-atom);
+            color: var(--icon-color);
+        }
+    }
+
+    /* status: logged in */
+    &[data-status-code="205"] {
+
+        > .svg-icon {
+            color: var(--color-logged-in);
+        }
+    }
+
+    /* status: streaming sensor data */
+    &[data-status-code="252"] {
+
+        > .svg-icon {
+            color: var(--color-streaming);
+        }
+    }
+}

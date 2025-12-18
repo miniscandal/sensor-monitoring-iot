@@ -1,0 +1,30 @@
+.iot-device-sensor-readings {
+    display: flex;
+
+    > .metric-item {
+        flex: 1;
+    }
+
+    /* status: logged in */
+    &[data-status-code="205"] {
+
+        > .metric-item {
+            color: var(--color-logged-in);
+        }
+    }
+
+    /* status: streaming sensor data */
+    &[data-status-code="252"] {
+
+        > .metric-item {
+
+            &:first-child {
+                color: var(--color-humidity);
+            }
+
+            &:last-child {
+                color: var(--color-temperature);
+            }
+        }
+    }
+}
