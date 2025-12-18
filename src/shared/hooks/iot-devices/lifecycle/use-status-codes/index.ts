@@ -1,30 +1,24 @@
 import { useContext } from 'preact/hooks';
 
-import { useMqttClientEventSubject } from '@shared-hooks/mqtt-client/use-mqtt-observer';
+import { useMqttClientEventSubjectSubscribe } from '@shared-hooks/mqtt-client/use-event-subject-subscribe';
 
 import { IoTDevicesContext } from '@shared-contexts/iot-devices-provider';
 
 import { MQTT_CLIENT_EVENT_MESSAGE } from '@shared-constants/mqtt-client-events';
 import { MQTT_CLIENT_EVENT_OFFLINE } from '@shared-constants/mqtt-client-events';
 
-import { IOT_DEVICE_STATUS_CONNECTED } from '@shared-constants/iot-device-status-codes';
-import { IOT_DEVICE_STATUS_ACTIVATED } from '@shared-constants/iot-device-status-codes';
-import { IOT_DEVICE_STATUS_INACTIVE } from '@shared-constants/iot-device-status-codes';
-import { IOT_DEVICE_STATUS_IDLE } from '@shared-constants/iot-device-status-codes';
-import { IOT_DEVICE_STATUS_DISCONNECTED } from '@shared-constants/iot-device-status-codes';
+import { IOT_DEVICE_STATUS_LOGGED_IN } from '@shared-constants/iot-device-status-codes';
+import { IOT_DEVICE_STATUS_LOGGED_OUT } from '@shared-constants/iot-device-status-codes';
 
 
 function useIoTDevicesStatusLifecycle() {
     const { setDeviceStatusMap } = useContext(IoTDevicesContext);
 
-    useMqttClientEventSubject({
+    useMqttClientEventSubjectSubscribe({
         events: [MQTT_CLIENT_EVENT_MESSAGE, MQTT_CLIENT_EVENT_OFFLINE],
         statusCodes: [
-            IOT_DEVICE_STATUS_CONNECTED,
-            IOT_DEVICE_STATUS_ACTIVATED,
-            IOT_DEVICE_STATUS_INACTIVE,
-            IOT_DEVICE_STATUS_IDLE,
-            IOT_DEVICE_STATUS_DISCONNECTED,
+            IOT_DEVICE_STATUS_LOGGED_IN,
+            IOT_DEVICE_STATUS_LOGGED_OUT,
         ],
         observer: (event, { deviceId, statusCode, ...metadata }) => {
             if (event === MQTT_CLIENT_EVENT_OFFLINE) {
@@ -38,7 +32,7 @@ function useIoTDevicesStatusLifecycle() {
                 const nextState = new Map(prevState);
 
                 switch (statusCode) {
-                    case IOT_DEVICE_STATUS_CONNECTED: {
+                    case IOT_DEVICE_STATUS_LOGGED_IN: {
                         if (nextState.has(deviceId)) {
 
                             return prevState;
@@ -49,7 +43,7 @@ function useIoTDevicesStatusLifecycle() {
 
                         return nextState;
                     }
-                    case IOT_DEVICE_STATUS_DISCONNECTED:
+                    case IOT_DEVICE_STATUS_LOGGED_OUT:
                         nextState.delete(deviceId);
 
 
