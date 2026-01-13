@@ -12,11 +12,12 @@ class MqttClientEventSubject {
         };
     }
 
-    subscribe({ events, statusCodes, observer }) {
+    subscribe({ events, statusCodes, operationCodes, observer }) {
         const observerReg = {
             id: crypto.randomUUID(),
             fn: observer,
             statusCodes: new Set(statusCodes),
+            operationCodes: new Set(operationCodes),
         };
         this.observers.add(observerReg);
 
@@ -75,6 +76,24 @@ class MqttClientEventSubject {
                 return;
             }
             observer.fn(event, message);
+        });
+    }
+
+    notifyByOperationCode(event, operationCode, data) {
+        const observerIds = this.mqttClientEvent[event];
+
+        this.observers.forEach(observer => {
+            if (!observerIds.has(observer.id)) {
+
+                return;
+            }
+
+            if (!observer.operationCodes.has(operationCode)) {
+
+                return;
+            }
+
+            observer.fn(event, data);
         });
     }
 }
