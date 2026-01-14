@@ -9,6 +9,7 @@ This file serves as a scratchpad for future improvements, experimental concepts,
 
 ✰ Humidity real values: 0 % a 100 %.
 ✰ Temperature real values:  -40 °C a 80 °C.
+✰ CBOR, Concise Bimary Object Representation
 
 
 
