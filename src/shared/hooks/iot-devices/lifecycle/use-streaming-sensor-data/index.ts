@@ -1,7 +1,7 @@
 import { signal } from '@preact/signals';
 import { useContext } from 'preact/hooks';
 
-import { useMqttClientEventSubjectSubscribe } from '@shared-hooks/mqtt-client/use-event-subject-subscribe';
+import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
 
 import { IoTDevicesContext } from '@shared-contexts/iot-devices-provider';
 
@@ -13,7 +13,7 @@ import { IOT_DEVICE_STATUS_STREAMING_SENSOR_DATA } from '@shared-constants/iot-d
 function useIoTDeviceStreamingSensorData() {
     const { setDeviceStatusMap } = useContext(IoTDevicesContext);
 
-    useMqttClientEventSubjectSubscribe({
+    useMqttClientEvents({
         events: [MQTT_CLIENT_EVENT_MESSAGE],
         statusCodes: [IOT_DEVICE_STATUS_STREAMING_SENSOR_DATA],
         observer: (event, { deviceId, statusCode, ...readings }) => {

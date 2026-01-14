@@ -3,7 +3,7 @@ import { useEffect } from 'preact/hooks';
 import { mqttClientEventSubject } from '@core-services/mqtt-client-event-subject';
 
 
-function useMqttClientEventSubjectSubscribe({ events, statusCodes, operationCodes, observer }) {
+function useMqttClientEvents({ events, statusCodes, operationCodes, observer }) {
     useEffect(() => {
         mqttClientEventSubject.subscribe({
             events,
@@ -17,4 +17,4 @@ function useMqttClientEventSubjectSubscribe({ events, statusCodes, operationCode
     }, []);
 }
 
-export { useMqttClientEventSubjectSubscribe };
+export { useMqttClientEvents };

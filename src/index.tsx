@@ -6,7 +6,7 @@
 import { render } from 'preact';
 import { useEffect } from 'preact/hooks';
 
-import { useMqttClientEventSubjectSubscribe } from '@shared-hooks/mqtt-client/use-event-subject-subscribe';
+import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
 
 import { MqttClientSingleton } from '@core-services/mqtt-client-singleton';
 
@@ -28,7 +28,7 @@ export function App() {
         return () => client.end();
     }, []);
 
-    useMqttClientEventSubjectSubscribe(SubscribePrivateTopicObserver());
+    useMqttClientEvents(SubscribePrivateTopicObserver());
 
 
     return (
