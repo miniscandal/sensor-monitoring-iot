@@ -12,10 +12,10 @@ class MqttClientEventSubject {
         };
     }
 
-    subscribe({ events, statusCodes, operationCodes, observer }) {
+    subscribe({ events, statusCodes, operationCodes, listener }) {
         const observerReg = {
             id: crypto.randomUUID(),
-            fn: observer,
+            listener: listener,
             statusCodes: new Set(statusCodes),
             operationCodes: new Set(operationCodes),
         };
@@ -59,7 +59,7 @@ class MqttClientEventSubject {
 
                 return;
             }
-            observer.fn(event, message);
+            observer.listener(event, message);
         });
     }
 
@@ -75,7 +75,7 @@ class MqttClientEventSubject {
 
                 return;
             }
-            observer.fn(event, message);
+            observer.listener(event, message);
         });
     }
 
@@ -93,7 +93,7 @@ class MqttClientEventSubject {
                 return;
             }
 
-            observer.fn(event, data);
+            observer.listener(event, data);
         });
     }
 }

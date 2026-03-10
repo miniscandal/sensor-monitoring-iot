@@ -18,7 +18,7 @@ function useMqttClientProperties() {
 
     useMqttClientEvents({
         events: [MQTT_CLIENT_EVENT_CONNECT, MQTT_CLIENT_EVENT_OFFLINE],
-        observer: (event, { mqttClientProperties }) => {
+        listener: (event, { mqttClientProperties }) => {
             setProperties((prevState) => (
                 {
                     ...prevState,

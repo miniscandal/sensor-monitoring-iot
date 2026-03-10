@@ -11,7 +11,7 @@ function useMqttClientTopicSubscriptions() {
 
     useMqttClientEvents({
         events: [MQTT_CLIENT_EVENT_SUBSCRIBE, MQTT_CLIENT_EVENT_OFFLINE],
-        observer: (event, { topic }) => setTopic(topic),
+        listener: (event, { topic }) => setTopic(topic),
     });
 
 

@@ -1,5 +1,3 @@
-# (ง •̀_•́)ง To-Do List
-
 This file tracks pending tasks, planned changes, and technical cleanups.  
 It is organized by module or topic to guide ongoing development and prioritization.
 

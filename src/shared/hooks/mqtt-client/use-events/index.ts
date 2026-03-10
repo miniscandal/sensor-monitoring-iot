@@ -3,17 +3,17 @@ import { useEffect } from 'preact/hooks';
 import { mqttClientEventSubject } from '@core-services/mqtt-client-event-subject';
 
 
-function useMqttClientEvents({ events, statusCodes, operationCodes, observer }) {
+function useMqttClientEvents({ events, statusCodes, operationCodes, listener }) {
     useEffect(() => {
-        mqttClientEventSubject.subscribe({
+        const observerId = mqttClientEventSubject.subscribe({
             events,
             statusCodes,
             operationCodes,
-            observer,
+            listener,
         });
 
 
-        return () => mqttClientEventSubject.unsubscribe(observer);
+        return () => mqttClientEventSubject.unsubscribe(observerId);
     }, []);
 }
 

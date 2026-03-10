@@ -28,7 +28,7 @@ function useIoTDeviceSessionLifecycle() {
             IOT_DEVICE_STATUS_LOGGED_IN,
             IOT_DEVICE_STATUS_LOGGED_OUT,
         ],
-        observer: (event, { deviceId, statusCode, ...metadata }) => {
+        listener: (event, { deviceId, statusCode, ...metadata }) => {
             if (event === MQTT_CLIENT_EVENT_OFFLINE) {
                 setDeviceStatusMap(new Map());
 

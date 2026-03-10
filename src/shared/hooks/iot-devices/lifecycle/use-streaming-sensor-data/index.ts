@@ -16,7 +16,7 @@ function useIoTDeviceStreamingSensorData() {
     useMqttClientEvents({
         events: [MQTT_CLIENT_EVENT_MESSAGE],
         statusCodes: [IOT_DEVICE_STATUS_STREAMING_SENSOR_DATA],
-        observer: (event, { deviceId, statusCode, ...readings }) => {
+        listener: (event, { deviceId, statusCode, ...readings }) => {
             setDeviceStatusMap(prevState => {
                 const nextState = new Map(prevState);
                 const device = nextState.get(deviceId);
