@@ -20,13 +20,13 @@ import { MQTT_CLIENT_STATUS_SUBSCRIBE_PRIVATE_TOPIC } from '@shared-constants/mq
 
 
 class MqttClientSingleton {
-    private static instance;
+    static instance;
 
-    private client;
-    private shouldSubscribeToPrivateTopic = false;
-    private envPrivateTopic = import.meta.env.VITE_MQTT_PRIVATE_TOPIC;
+    client;
+    shouldSubscribeToPrivateTopic = false;
+    envPrivateTopic = import.meta.env.VITE_MQTT_PRIVATE_TOPIC;
 
-    private constructor() {
+    constructor() {
         /*
         LWT Example
         
@@ -60,7 +60,7 @@ class MqttClientSingleton {
         return MqttClientSingleton.instance;
     }
 
-    private onConnect = () => {
+    onConnect = () => {
         mqttClientEventSubject.notify(
             MQTT_CLIENT_EVENT_CONNECT,
             {
@@ -70,7 +70,7 @@ class MqttClientSingleton {
         this.subscribe(this.envPrivateTopic);
     };
 
-    private onOffline = () => {
+    onOffline = () => {
         mqttClientEventSubject.notify(
             MQTT_CLIENT_EVENT_OFFLINE,
             {
@@ -80,30 +80,30 @@ class MqttClientSingleton {
         this.shouldSubscribeToPrivateTopic = false;
     };
 
-    private onPacketSend = (packet) => {
+    onPacketSend = (packet) => {
         console.debug('[MQTT] Packet sent:', packet.cmd, packet);
     };
 
-    private onPacketReceive = (packet) => {
+    onPacketReceive = (packet) => {
         console.debug('[MQTT] Packet received:', packet.cmd, packet);
     };
 
-    private onReconnect = () => {
+    onReconnect = () => {
         console.warn('[MQTT] Attempting to reconnect to broker...');
     };
 
-    private onClose = () => {
+    onClose = () => {
         console.error('[MQTT] Connection closed. Client is no longer connected to broker.');
     };
 
-    private onMessage = (topic, message) => {
+    onMessage = (topic, message) => {
         mqttClientEventSubject.notifyStatusCode(
             MQTT_CLIENT_EVENT_MESSAGE,
             JSON.parse(message.toString()),
         );
     };
 
-    private subscribe(topic) {
+    subscribe(topic) {
         this.client.subscribe(topic, (error) => {
             if (error) {
                 console.error(`Error subscribe to topic ${topic}:`, error);
@@ -122,7 +122,8 @@ class MqttClientSingleton {
         });
     }
 
-    protected getClientProperties() {
+
+    getClientProperties() {
         const { connected, options } = this.client;
         const { clientId, host, port, protocol } = options;
 
@@ -137,7 +138,8 @@ class MqttClientSingleton {
         };
     }
 
-    protected publishIoTDeviceTopic(operationCode) {
+
+    publishIoTDeviceTopic(operationCode) {
         this.client.publish(import.meta.env.VITE_MQTT_IOT_DEVICES_TOPIC, JSON.stringify({
             operationCode,
         }));
