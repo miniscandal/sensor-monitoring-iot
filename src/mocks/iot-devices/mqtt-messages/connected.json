@@ -1,6 +1,6 @@
 {
     "deviceId": "01",
-    "statusCode": 101,
+    "statusCode": 205,
     "firmwareVersion": "1.3.0",
     "location": {
         "lat": 20.5244,

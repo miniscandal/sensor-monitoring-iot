@@ -24,7 +24,7 @@ class MqttClientSingleton {
 
     client;
     shouldSubscribeToPrivateTopic = false;
-    envPrivateTopic = import.meta.env.VITE_MQTT_PRIVATE_TOPIC;
+    envPrivateTopic = import.meta.env.VITE_MQTT_TOPIC_MONITOR_ALL;
 
     constructor() {
         /*
@@ -33,7 +33,7 @@ class MqttClientSingleton {
         this.client = mqtt.connect(import.meta.env.VITE_MQTT_BROKER, {
             clientId: 'anime',
             will: {
-                topic: import.meta.env.VITE_MQTT_IOT_DEVICES_TOPIC,
+                topic: import.meta.env.VITE_MQTT_TOPIC_MONITOR_ALL,
                 payload: 'offline',
                 qos: 1,
                 retain: true,
@@ -140,7 +140,10 @@ class MqttClientSingleton {
 
 
     publishIoTDeviceTopic(operationCode) {
-        this.client.publish(import.meta.env.VITE_MQTT_IOT_DEVICES_TOPIC, JSON.stringify({
+        console.log('anime')
+
+        console.log(import.meta.env.VITE_MQTT_TOPIC_CONTROLLER_ALL)
+        this.client.publish(import.meta.env.VITE_MQTT_TOPIC_CONTROLLER_ALL, JSON.stringify({
             operationCode,
         }));
     }
