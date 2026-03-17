@@ -22,8 +22,10 @@ export default defineConfig([
         },
         rules: {
             semi: ['error', 'always'],
-            quotes: ['error', 'single'],
+            quotes: ['error', 'single', { avoidEscape: true }],
             'comma-dangle': ['error', 'always-multiline'],
+            'jsx-quotes': ['error', 'prefer-double'],
+            'react/self-closing-comp': 0,
         },
     },
 ]);
