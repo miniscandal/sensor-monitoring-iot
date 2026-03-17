@@ -6,9 +6,11 @@ import { SvgIcon } from '@shared-components/atoms/svg-icon';
 
 import { safeRound } from '@shared-utils/safe-round';
 
-import { IOT_DEVICE_STATUS_LOGGED_IN } from '@shared-constants/iot-device-status-codes';
-import { IOT_DEVICE_STATUS_IDLE } from '@shared-constants/iot-device-status-codes';
-import { IOT_DEVICE_STATUS_STREAMING_SENSOR_DATA } from '@shared-constants/iot-device-status-codes';
+import {
+    IOT_DEVICE_STATUS_LOGGED_IN,
+    IOT_DEVICE_STATUS_IDLE,
+    IOT_DEVICE_STATUS_STREAMING_SENSOR_DATA,
+} from '@shared-constants/iot-device-status-codes';
 
 import './style.css';
 

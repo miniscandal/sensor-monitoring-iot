@@ -1,12 +1,15 @@
 import { SvgIcon } from '@shared-components/atoms/svg-icon';
 
-import { IOT_DEVICE_STATUS_LOGGED_IN } from '@shared-constants/iot-device-status-codes';
-import { IOT_DEVICE_STATUS_IDLE } from '@shared-constants/iot-device-status-codes';
-import { IOT_DEVICE_STATUS_STREAMING_SENSOR_DATA } from '@shared-constants/iot-device-status-codes';
-
-import { DATA_ATTR_IOT_DEVICE_ACTION_TERMINAL } from '@features/iot-devices-operations/constants/iot-device-actions';
-import { DATA_ATTR_IOT_DEVICE_ACTION_STREAMING_DATA } from '@features/iot-devices-operations/constants/iot-device-actions';
-import { DATA_ATTR_IOT_DEVICE_ACTION_ANALYTICS } from '@features/iot-devices-operations/constants/iot-device-actions';
+import {
+    IOT_DEVICE_STATUS_LOGGED_IN,
+    IOT_DEVICE_STATUS_IDLE,
+    IOT_DEVICE_STATUS_STREAMING_SENSOR_DATA,
+} from '@shared-constants/iot-device-status-codes';
+import {
+    DATA_ATTR_IOT_DEVICE_ACTION_TERMINAL,
+    DATA_ATTR_IOT_DEVICE_ACTION_STREAMING_DATA,
+    DATA_ATTR_IOT_DEVICE_ACTION_ANALYTICS,
+} from '@features/iot-devices-operations/constants/iot-device-actions';
 
 import './style.css';
 

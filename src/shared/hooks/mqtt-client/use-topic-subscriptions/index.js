@@ -2,8 +2,10 @@ import { useState } from 'preact/hooks';
 
 import { useMqttClientEvents } from '../use-events';
 
-import { MQTT_CLIENT_EVENT_SUBSCRIBE } from '@shared-constants/mqtt-client-events';
-import { MQTT_CLIENT_EVENT_OFFLINE } from '@shared-constants/mqtt-client-events';
+import {
+    MQTT_CLIENT_EVENT_SUBSCRIBE,
+    MQTT_CLIENT_EVENT_OFFLINE,
+} from '@shared-constants/mqtt-client-events';
 
 
 function useMqttClientTopicSubscriptions() {

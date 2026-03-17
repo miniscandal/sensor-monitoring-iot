@@ -12,8 +12,10 @@ import { useIoTDeviceStreamingSensorData } from '@shared-hooks/iot-devices/lifec
 
 import { IoTDevicesContext } from '@shared-contexts/iot-devices-provider';
 
-import { DATA_ATTR_ACTION_SELECTOR } from '@features/iot-devices-operations/constants/selectors';
-import { DATA_ATTR_DEVICE_ID_SELECTOR } from '@features/iot-devices-operations/constants/selectors';
+import {
+    DATA_ATTR_ACTION_SELECTOR,
+    DATA_ATTR_DEVICE_ID_SELECTOR,
+} from '@features/iot-devices-operations/constants/selectors';
 
 import './style.css';
 

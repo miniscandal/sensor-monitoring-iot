@@ -15,7 +15,7 @@ class MqttClientEventSubject {
     subscribe({ events, statusCodes, operationCodes, listener }) {
         const observerReg = {
             id: crypto.randomUUID(),
-            listener: listener,
+            listener,
             statusCodes: new Set(statusCodes),
             operationCodes: new Set(operationCodes),
         };

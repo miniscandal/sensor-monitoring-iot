@@ -1,4 +1,4 @@
-import './style.css'
+import './style.css';
 
 
 function Label({ htmlFor = '', ariaLabel = '', text = 'Label' }) {

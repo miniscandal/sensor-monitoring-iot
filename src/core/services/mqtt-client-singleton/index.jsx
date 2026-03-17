@@ -7,16 +7,18 @@ import mqtt from 'mqtt';
 
 import { mqttClientEventSubject } from '@core-services/mqtt-client-event-subject';
 
-import { MQTT_CLIENT_EVENT_CONNECT } from '@shared-constants/mqtt-client-events';
-import { MQTT_CLIENT_EVENT_OFFLINE } from '@shared-constants/mqtt-client-events';
-import { MQTT_CLIENT_EVENT_SUBSCRIBE } from '@shared-constants/mqtt-client-events';
-import { MQTT_CLIENT_EVENT_MESSAGE } from '@shared-constants/mqtt-client-events';
-import { MQTT_CLIENT_EVENT_ERROR } from '@shared-constants/mqtt-client-events';
-import { MQTT_CLIENT_EVENT_PACKETSEND } from '@shared-constants/mqtt-client-events';
-import { MQTT_CLIENT_EVENT_PACKETRECEIVE } from '@shared-constants/mqtt-client-events';
-import { MQTT_CLIENT_EVENT_RECONNECT } from '@shared-constants/mqtt-client-events';
-import { MQTT_CLIENT_EVENT_CLOSE } from '@shared-constants/mqtt-client-events';
-import { MQTT_CLIENT_STATUS_SUBSCRIBE_PRIVATE_TOPIC } from '@shared-constants/mqtt-client-status-codes';
+import {
+    MQTT_CLIENT_EVENT_CONNECT,
+    MQTT_CLIENT_EVENT_OFFLINE,
+    MQTT_CLIENT_EVENT_SUBSCRIBE,
+    MQTT_CLIENT_EVENT_MESSAGE,
+    MQTT_CLIENT_EVENT_ERROR,
+    MQTT_CLIENT_EVENT_PACKETSEND,
+    MQTT_CLIENT_EVENT_PACKETRECEIVE,
+    MQTT_CLIENT_EVENT_RECONNECT,
+    MQTT_CLIENT_EVENT_CLOSE,
+    MQTT_CLIENT_STATUS_SUBSCRIBE_PRIVATE_TOPIC,
+} from '@shared-constants/mqtt-client-events';
 
 
 class MqttClientSingleton {
@@ -140,9 +142,6 @@ class MqttClientSingleton {
 
 
     publishIoTDeviceTopic(operationCode) {
-        console.log('anime')
-
-        console.log(import.meta.env.VITE_MQTT_TOPIC_CONTROLLER_ALL)
         this.client.publish(import.meta.env.VITE_MQTT_TOPIC_CONTROLLER_ALL, JSON.stringify({
             operationCode,
         }));

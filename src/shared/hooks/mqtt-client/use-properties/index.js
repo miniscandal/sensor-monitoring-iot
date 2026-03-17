@@ -9,8 +9,10 @@ import { useMqttClientEvents } from '../use-events';
 
 import { MQTT_CLIENT_PROPERTIES } from '@shared-constants/mqtt-client-properties';
 
-import { MQTT_CLIENT_EVENT_CONNECT } from '@shared-constants/mqtt-client-events';
-import { MQTT_CLIENT_EVENT_OFFLINE } from '@shared-constants/mqtt-client-events';
+import {
+    MQTT_CLIENT_EVENT_CONNECT,
+    MQTT_CLIENT_EVENT_OFFLINE,
+} from '@shared-constants/mqtt-client-events';
 
 
 function useMqttClientProperties() {

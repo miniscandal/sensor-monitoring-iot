@@ -42,7 +42,7 @@ function MqttClientPropertiesPanel() {
     ];
 
     const iconStatComponents = propertyDefinitions.map(property => (
-        <IconStat {...property} value={connected ? properties[property.name] : 'N/A'} />
+        <IconStat key={property.name} {...property} value={connected ? properties[property.name] : 'N/A'} />
     ));
 
 
