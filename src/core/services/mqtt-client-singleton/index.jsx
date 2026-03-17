@@ -17,8 +17,9 @@ import {
     MQTT_CLIENT_EVENT_PACKETRECEIVE,
     MQTT_CLIENT_EVENT_RECONNECT,
     MQTT_CLIENT_EVENT_CLOSE,
-    MQTT_CLIENT_STATUS_SUBSCRIBE_PRIVATE_TOPIC,
 } from '@shared-constants/mqtt-client-events';
+
+import { MQTT_CLIENT_STATUS_SUBSCRIBE_PRIVATE_TOPIC } from '@shared-constants/mqtt-client-status-codes';
 
 
 class MqttClientSingleton {
