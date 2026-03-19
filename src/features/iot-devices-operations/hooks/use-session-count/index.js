@@ -18,10 +18,12 @@ function useIoTDeviceSessionCount() {
     useMqttClientEvents({
         events: [MQTT_CLIENT_EVENT_MESSAGE, MQTT_CLIENT_EVENT_OFFLINE],
         statusCodes: [IOT_DEVICE_STATUS_LOGGED_IN, IOT_DEVICE_STATUS_LOGGED_OUT],
-        listener: (event, { deviceId, statusCode }) => {
+        listener: ({ data }) => {
+            const { event, message } = data;
+            const { deviceId, statusCode } = message;
+
             if (event === MQTT_CLIENT_EVENT_OFFLINE) {
                 setConnectedDeviceIds([]);
-
 
                 return;
             }
