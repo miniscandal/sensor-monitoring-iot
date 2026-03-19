@@ -8,3 +8,5 @@ este es para controlar el estado de todos los dispositivos hub, serán instrucci
 
 este es para controlar el estado de manera individual por dispositivo hub, dispositivo hub tendrá que subscribirse a un topic privado por ejemplo device-hub/controller/a013
 'device-hub/controller/${device_hub_id}'
+
+patrón Actions (también conocido como Command Pattern o Task-based API)
