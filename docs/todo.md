@@ -6,6 +6,7 @@
 ✰ Refactor the useDeviceSensorReadings hook to migrate statusCode from context-based state updates into a dedicated signal, ensuring granular reactivity and avoiding unnecessary global re-renders.
 ✰ Restrict selection when disconnected: An IoT device card cannot be selected if the device is in disconnected mode.
 
+<!--
 /** ************************************************************************ **/
 
            __-----_.                        ________
@@ -36,3 +37,4 @@
 \|/       \\/             \||//           |//                       \|/    |/
 
 /** ************************************************************************ **/
+ -->
