@@ -42,45 +42,27 @@ class MqttClientEventSubject {
         }
     }
 
-    notifyStatusCode(event, message) {
-        const observerIds = this.mqttClientEvent[event];
-
-        console.log('method', 'notifyStatusCode');
-        console.log('event', event);
-        console.log('message', message);
-
-        this.observers.forEach(observer => {
-            if (!observerIds.has(observer.id)) {
-
-                return;
-            }
-
-            if (!observer.statusCodes.has(message.statusCode) && !observer.statusCodes.has(MQTT_CLIENT_MESSAGE_TRACKING)) {
-
-                return;
-            }
-            observer.listener(event, message);
-        });
-    }
-
-    notify(event, message) {
+    notify({ data }) {
+        const { event } = data;
         const observerIds = this.mqttClientEvent[event];
 
         console.log('method', 'notify');
         console.log('event', event);
-        console.log('message', message);
+        console.log('data', data);
 
         this.observers.forEach(observer => {
             if (!observerIds.has(observer.id)) {
 
                 return;
             }
-            observer.listener(event, message);
+            observer.listener({ event, data });
         });
     }
 
-    notifyByOperationCode(event, operationCode, data) {
+    notifyByOperationCode({ data }) {
+        const { event, operationCode } = data;
         const observerIds = this.mqttClientEvent[event];
+
 
         this.observers.forEach(observer => {
             if (!observerIds.has(observer.id)) {
@@ -93,7 +75,28 @@ class MqttClientEventSubject {
                 return;
             }
 
-            observer.listener(event, data);
+            observer.listener({ event, data });
+        });
+    }
+
+    notifyStatusCode({ event, data }) {
+        const observerIds = this.mqttClientEvent[event];
+
+        console.log('method', 'notifyStatusCode');
+        console.log('event', event);
+        console.log('data', data);
+
+        this.observers.forEach(observer => {
+            if (!observerIds.has(observer.id)) {
+
+                return;
+            }
+
+            if (!observer.statusCodes.has(data.statusCode) && !observer.statusCodes.has(MQTT_CLIENT_MESSAGE_TRACKING)) {
+
+                return;
+            }
+            observer.listener({ event, data });
         });
     }
 }
