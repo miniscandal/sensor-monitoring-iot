@@ -79,7 +79,8 @@ class MqttClientEventSubject {
         });
     }
 
-    notifyStatusCode({ event, data }) {
+    notifyByStatusCode({ data }) {
+        const { event, message } = data;
         const observerIds = this.mqttClientEvent[event];
 
         console.log('method', 'notifyStatusCode');
@@ -92,7 +93,7 @@ class MqttClientEventSubject {
                 return;
             }
 
-            if (!observer.statusCodes.has(data.statusCode) && !observer.statusCodes.has(MQTT_CLIENT_MESSAGE_TRACKING)) {
+            if (!observer.statusCodes.has(message.statusCode) && !observer.statusCodes.has(MQTT_CLIENT_MESSAGE_TRACKING)) {
 
                 return;
             }
