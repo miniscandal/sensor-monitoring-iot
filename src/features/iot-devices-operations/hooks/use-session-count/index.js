@@ -1,48 +1,25 @@
-import { useState } from 'preact/hooks';
+import { useState, useMemo } from 'preact/hooks';
 import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
 
-import {
-    MQTT_CLIENT_EVENT_MESSAGE,
-    MQTT_CLIENT_EVENT_OFFLINE,
-} from '@shared-constants/mqtt-client-events';
-
-import {
-    IOT_DEVICE_STATUS_LOGGED_IN,
-    IOT_DEVICE_STATUS_LOGGED_OUT,
-} from '@shared-constants/iot-device-status-codes';
+import { OnDeviceHubMessageReceivedObserver } from '@features/iot-devices-operations/observers/device-hub-message-received';
 
 
 function useIoTDeviceSessionCount() {
     const [connectedDeviceIds, setConnectedDeviceIds] = useState([]);
 
-    useMqttClientEvents({
-        events: [MQTT_CLIENT_EVENT_MESSAGE, MQTT_CLIENT_EVENT_OFFLINE],
-        statusCodes: [IOT_DEVICE_STATUS_LOGGED_IN, IOT_DEVICE_STATUS_LOGGED_OUT],
-        listener: ({ data }) => {
-            const { event, message } = data;
-            const { deviceId, statusCode } = message;
-
-            if (event === MQTT_CLIENT_EVENT_OFFLINE) {
-                setConnectedDeviceIds([]);
-
-                return;
-            }
-
-            setConnectedDeviceIds(prevState => {
-                switch (statusCode) {
-                    case IOT_DEVICE_STATUS_LOGGED_IN:
-
-                        return prevState.includes(deviceId) ? prevState : [...prevState, deviceId];
-                    case IOT_DEVICE_STATUS_LOGGED_OUT:
-
-                        return prevState.filter(id => id !== deviceId);
-                    default:
-
-                        return prevState;
-                }
-            });
+    const actions = useMemo(() => ({
+        onDeviceLogin: (id) => {
+            setConnectedDeviceIds(prevState => prevState.includes(id) ? prevState : [...prevState, id]);
         },
-    });
+        onDeviceLogout: (id) => {
+            setConnectedDeviceIds(prevState => prevState.filter(deviceId => deviceId !== id));
+        },
+        onConnectionLost: () => {
+            setConnectedDeviceIds([]);
+        },
+    }), []);
+
+    useMqttClientEvents(OnDeviceHubMessageReceivedObserver({ actions }));
 
 
     return connectedDeviceIds.length;
