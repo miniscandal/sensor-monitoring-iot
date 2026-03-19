@@ -3,7 +3,7 @@
  * 
  */
 
-import { useMqttClientProperties } from '@shared-hooks/mqtt-client/use-properties';
+import { useMqttClientProperties } from '@features/mqtt-client-status/hooks/use-properties';
 
 import { IconStat } from '@shared-components/molecules/icon-stat';
 

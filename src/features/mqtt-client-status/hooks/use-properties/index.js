@@ -5,7 +5,7 @@
 
 import { useState } from 'preact/hooks';
 
-import { useMqttClientEvents } from '../use-events';
+import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
 
 import { MQTT_CLIENT_PROPERTIES } from '@shared-constants/mqtt-client-properties';
 
@@ -20,7 +20,9 @@ function useMqttClientProperties() {
 
     useMqttClientEvents({
         events: [MQTT_CLIENT_EVENT_CONNECT, MQTT_CLIENT_EVENT_OFFLINE],
-        listener: (event, { mqttClientProperties }) => {
+        listener: ({ data }) => {
+            const { mqttClientProperties } = data;
+
             setProperties((prevState) => (
                 {
                     ...prevState,
