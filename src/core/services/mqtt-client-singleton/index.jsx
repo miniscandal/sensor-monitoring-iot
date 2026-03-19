@@ -69,10 +69,13 @@ class MqttClientSingleton {
     };
 
     onMessage = (topic, message) => {
-        mqttClientEventSubject.notifyStatusCode(
-            MQTT_CLIENT_EVENT_MESSAGE,
-            JSON.parse(message.toString()),
-        );
+        mqttClientEventSubject.notifyByStatusCode({
+            data: {
+                event: MQTT_CLIENT_EVENT_MESSAGE,
+                topic,
+                message: JSON.parse(message.toString()),
+            },
+        });
     };
 
     subscribe(topic) {
