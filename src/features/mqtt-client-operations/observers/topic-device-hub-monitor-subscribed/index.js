@@ -4,17 +4,20 @@ import { MQTT_CLIENT_EVENT_SUBSCRIBE } from '@shared-constants/mqtt-client-event
 import { MQTT_CLIENT_STATUS_SUBSCRIBE_PRIVATE_TOPIC } from '@shared-constants/mqtt-client-status-codes';
 
 
-function SubscribePrivateTopicObserver() {
+function OnTopicDeviceHubMonitorSubscribedObserver() {
 
     return {
         events: [MQTT_CLIENT_EVENT_SUBSCRIBE],
         operationCodes: [MQTT_CLIENT_STATUS_SUBSCRIBE_PRIVATE_TOPIC],
-        listener: (event, { mqttClient }) => {
-            console.log(mqttClient);
-
-            mqttClient.publishIoTDeviceTopic(IOT_DEVICE_OPERATION_CONNECT);
+        listener: ({ data: { actions: { publish } } }) => {
+            publish({
+                topic: import.meta.env.VITE_MQTT_TOPIC_CONTROLLER_ALL,
+                data: {
+                    operationCode: IOT_DEVICE_OPERATION_CONNECT,
+                },
+            });
         },
     };
 }
 
-export { SubscribePrivateTopicObserver };
+export { OnTopicDeviceHubMonitorSubscribedObserver };
