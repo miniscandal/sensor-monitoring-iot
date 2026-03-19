@@ -12,8 +12,9 @@ import { MqttClientSingleton } from '@core-services/mqtt-client-singleton';
 
 import { MqttClientStatus } from '@features/mqtt-client-status/components/templates/status';
 import { TopicSubscription } from '@features/mqtt-client-subscriptions/components/templates/topic-subscription';
-import { SubscribePrivateTopicObserver } from '@features/mqtt-client-operations/observers/subscribe-private-topic';
+import { OnTopicDeviceHubMonitorSubscribedObserver } from '@features/mqtt-client-operations/observers/topic-device-hub-monitor-subscribed';
 import { DeviceManagement } from '@features/iot-devices-operations/components/templates/management';
+import { OnMqttClientConnectedObserver } from '@features/mqtt-client-operations/observers/connected';
 
 import { Header } from '@shared-components/organisms/header';
 
@@ -28,7 +29,8 @@ export function App() {
         return () => client.end();
     }, []);
 
-    useMqttClientEvents(SubscribePrivateTopicObserver());
+    useMqttClientEvents(OnMqttClientConnectedObserver());
+    useMqttClientEvents(OnTopicDeviceHubMonitorSubscribedObserver());
 
 
     return (
@@ -37,7 +39,7 @@ export function App() {
             <main>
                 <MqttClientStatus />
                 <TopicSubscription />
-                <DeviceManagement />
+                {/* <DeviceManagement /> */}
             </main>
         </>
     );
