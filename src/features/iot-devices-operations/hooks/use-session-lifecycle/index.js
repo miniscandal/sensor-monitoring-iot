@@ -21,16 +21,26 @@ function useDeviceHubPresence() {
     const actions = useMemo(() => ({
         onLogin: (deviceData) => {
             setDeviceStatusMap(prevState => {
-                if (prevState.has(deviceData.deviceId)) return prevState;
+                if (prevState.has(deviceData.deviceId)) {
+
+                    return prevState;
+                };
+
                 const nextState = new Map(prevState);
+
                 nextState.set(deviceData.deviceId, deviceData);
+
+
                 return nextState;
             });
         },
         onLogout: (deviceId) => {
             setDeviceStatusMap(prevState => {
                 const nextState = new Map(prevState);
+
                 nextState.delete(deviceId);
+
+
                 return nextState;
             });
         },
