@@ -21,10 +21,12 @@ import { MQTT_CLIENT_STATUS_SUBSCRIBE_PRIVATE_TOPIC } from '@shared-constants/mq
 class MqttClientSingleton {
     static instance;
 
+    mqttBrokerHost = import.meta.env.VITE_MQTT_BROKER_HOST;
+    mqttBrokerPort = import.meta.env.VITE_MQTT_BROKER_PORT;
     client;
 
     constructor() {
-        this.client = mqtt.connect(import.meta.env.VITE_MQTT_BROKER);
+        this.client = mqtt.connect(`${this.mqttBrokerHost}/${this.mqttBrokerPort}`);
         this.client.on(MQTT_CLIENT_EVENT_CONNECT, this.onConnect);
         this.client.on(MQTT_CLIENT_EVENT_OFFLINE, this.onOffline);
         this.client.on(MQTT_CLIENT_EVENT_MESSAGE, this.onMessage);

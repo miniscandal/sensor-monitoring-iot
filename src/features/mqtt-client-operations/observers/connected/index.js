@@ -8,7 +8,9 @@ function OnMqttClientConnectedObserver() {
         listener: ({ data }) => {
             const { actions: { subscribe } } = data;
 
-            subscribe(import.meta.env.VITE_MQTT_TOPIC_MONITOR_ALL);
+            subscribe(import.meta.env.VITE_TOPIC_HUB_DATA);
+            subscribe(import.meta.env.VITE_TOPIC_HUB_STATUS);
+            subscribe(import.meta.env.VITE_TOPIC_HUB_METADATA);
         },
     };
 }

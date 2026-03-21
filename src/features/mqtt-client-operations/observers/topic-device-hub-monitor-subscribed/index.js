@@ -11,7 +11,7 @@ function OnTopicDeviceHubMonitorSubscribedObserver() {
         operationCodes: [MQTT_CLIENT_STATUS_SUBSCRIBE_PRIVATE_TOPIC],
         listener: ({ data: { actions: { publish } } }) => {
             publish({
-                topic: import.meta.env.VITE_MQTT_TOPIC_CONTROLLER_ALL,
+                topic: import.meta.env.VITE_TOPIC_HUB_OPERATION_ALL,
                 data: {
                     operationCode: IOT_DEVICE_OPERATION_CONNECT,
                 },
