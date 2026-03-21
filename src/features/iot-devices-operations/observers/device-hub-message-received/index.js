@@ -15,11 +15,13 @@ function OnDeviceHubMessageReceivedObserver({ actions }) {
         events: [MQTT_CLIENT_EVENT_MESSAGE, MQTT_CLIENT_EVENT_OFFLINE],
         statusCodes: [IOT_DEVICE_STATUS_LOGGED_IN, IOT_DEVICE_STATUS_LOGGED_OUT],
         listener: ({ data }) => {
-            const { event, message: { deviceId, statusCode } } = data;
+            const { event, message } = data;
 
             if (event === MQTT_CLIENT_EVENT_OFFLINE) {
                 return actions.onConnectionLost();
             }
+
+            const { deviceId, statusCode } = message;
 
             if (statusCode === IOT_DEVICE_STATUS_LOGGED_IN) {
                 return actions.onDeviceLogin(deviceId);
