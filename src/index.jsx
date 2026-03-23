@@ -8,7 +8,7 @@ import { useEffect } from 'preact/hooks';
 
 import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
 
-import { MqttClientSingleton } from '@core-services/mqtt-client-singleton';
+import { MqttClientSingleton } from '@core-mqtt/client-singleton';
 
 import { MqttClientStatus } from '@features/mqtt-client-status/components/templates/status';
 import { TopicSubscription } from '@features/mqtt-client-subscriptions/components/templates/topic-subscription';
@@ -39,7 +39,7 @@ export function App() {
             <main>
                 <MqttClientStatus />
                 <TopicSubscription />
-                {/* <DeviceManagement /> */}
+                <DeviceManagement />
             </main>
         </>
     );
