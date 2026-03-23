@@ -6,11 +6,11 @@ import './style.css';
 
 
 function SubscribeTopicPanel() {
-    const topic = useMqttClientTopicSubscriptions();
+    const topics = useMqttClientTopicSubscriptions();
 
     const iconStat = {
         label: 'Topic Subscribe',
-        value: topic,
+        value: topics.join('\n'),
         svgIconName: 'topicSubscribe',
     };
 
