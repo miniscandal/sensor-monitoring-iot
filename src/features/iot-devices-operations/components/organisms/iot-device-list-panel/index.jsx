@@ -7,7 +7,7 @@ import { useState, useContext } from 'preact/hooks';
 
 import { IoTDeviceCard } from '../iot-device-card';
 
-import { useIoTDeviceSessionLifecycle } from '@shared-hooks/iot-devices/lifecycle/use-session-lifecycle';
+import { useDeviceHubPresence } from '@features/iot-devices-operations/hooks/use-session-lifecycle';
 import { useIoTDeviceStreamingSensorData } from '@shared-hooks/iot-devices/lifecycle/use-streaming-sensor-data';
 
 import { IoTDevicesContext } from '@shared-contexts/iot-devices-provider';
@@ -24,7 +24,7 @@ function IoTDeviceListPanel() {
     const { deviceStatusMap } = useContext(IoTDevicesContext);
     const [selectedIoTDeviceId, setSelectedIoTDeviceId] = useState(null);
 
-    useIoTDeviceSessionLifecycle();
+    useDeviceHubPresence();
     useIoTDeviceStreamingSensorData();
 
     const deviceElements = Array.from(deviceStatusMap.entries()).map(([key, iotDevice]) => (

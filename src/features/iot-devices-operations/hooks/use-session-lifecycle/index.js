@@ -6,35 +6,60 @@
  *
  */
 
-import { useMemo, useContext } from 'preact/hooks';
+import { useContext } from 'preact/hooks';
 
 import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
 
 import { IoTDevicesContext } from '@shared-contexts/iot-devices-provider';
 
-import { OnDeviceHubPresenceObserver } from '@features/iot-devices-operations/observers/device-hub-presence';
+import {
+    MQTT_CLIENT_EVENT_OFFLINE,
+} from '@shared-constants/mqtt-client-events';
+
+import {
+    IOT_DEVICE_STATUS_LOGGED_IN,
+    IOT_DEVICE_STATUS_LOGGED_OUT,
+} from '@shared-constants/iot-device-status-codes';
+
 
 
 function useDeviceHubPresence() {
     const { setDeviceStatusMap } = useContext(IoTDevicesContext);
 
-    const actions = useMemo(() => ({
-        onLogin: (deviceData) => {
+    useMqttClientEvents({
+        entity: 'mqttEvents',
+        value: MQTT_CLIENT_EVENT_OFFLINE,
+        listener: () => setDeviceStatusMap(new Map()),
+    });
+
+    useMqttClientEvents({
+        entity: 'statusCodes',
+        value: IOT_DEVICE_STATUS_LOGGED_IN,
+        listener: ({ data }) => {
+            const { deviceId, message } = data;
+
             setDeviceStatusMap(prevState => {
-                if (prevState.has(deviceData.deviceId)) {
+                if (prevState.has(deviceId)) {
 
                     return prevState;
                 };
 
                 const nextState = new Map(prevState);
 
-                nextState.set(deviceData.deviceId, deviceData);
+                nextState.set(deviceId, { ...message, deviceId });
 
 
                 return nextState;
             });
         },
-        onLogout: (deviceId) => {
+    });
+
+    useMqttClientEvents({
+        entity: 'statusCodes',
+        value: IOT_DEVICE_STATUS_LOGGED_OUT,
+        listener: ({ data }) => {
+            const { deviceId } = data;
+
             setDeviceStatusMap(prevState => {
                 const nextState = new Map(prevState);
 
@@ -44,12 +69,7 @@ function useDeviceHubPresence() {
                 return nextState;
             });
         },
-        onConnectionLost: () => {
-            setDeviceStatusMap(new Map());
-        },
-    }), [setDeviceStatusMap]);
-
-    useMqttClientEvents(OnDeviceHubPresenceObserver({ actions }));
+    });
 }
 
 export { useDeviceHubPresence };
