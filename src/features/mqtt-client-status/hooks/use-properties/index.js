@@ -19,14 +19,30 @@ function useMqttClientProperties() {
     const [properties, setProperties] = useState(MQTT_CLIENT_PROPERTIES);
 
     useMqttClientEvents({
-        events: [MQTT_CLIENT_EVENT_CONNECT, MQTT_CLIENT_EVENT_OFFLINE],
-        listener: ({ data }) => {
-            const { mqttClientProperties } = data;
+        entity: 'mqttEvents',
+        value: MQTT_CLIENT_EVENT_CONNECT,
+        listener: ({ actions }) => {
+            const { getClientProperties } = actions;
 
             setProperties((prevState) => (
                 {
                     ...prevState,
-                    ...mqttClientProperties,
+                    ...getClientProperties(),
+                }
+            ));
+        },
+    });
+
+    useMqttClientEvents({
+        entity: 'mqttEvents',
+        value: MQTT_CLIENT_EVENT_OFFLINE,
+        listener: ({ actions }) => {
+            const { getClientProperties } = actions;
+
+            setProperties((prevState) => (
+                {
+                    ...prevState,
+                    ...getClientProperties(),
                 }
             ));
         },
