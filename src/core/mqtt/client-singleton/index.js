@@ -5,7 +5,7 @@
 
 import mqtt from 'mqtt';
 
-import { mqttClientEventSubject } from '@core-services/mqtt-client-event-subject';
+import { mqttClientEventSubject } from '@core-mqtt/client-event-subject';
 
 import {
     MQTT_CLIENT_EVENT_CONNECT,
@@ -15,15 +15,12 @@ import {
     MQTT_CLIENT_EVENT_ERROR,
 } from '@shared-constants/mqtt-client-events';
 
-import { MQTT_CLIENT_STATUS_SUBSCRIBE_PRIVATE_TOPIC } from '@shared-constants/mqtt-client-status-codes';
-
 
 class MqttClientSingleton {
     static instance;
 
     mqttBrokerHost = import.meta.env.VITE_MQTT_BROKER_HOST;
     mqttBrokerPort = import.meta.env.VITE_MQTT_BROKER_PORT;
-    client;
 
     constructor() {
         this.client = mqtt.connect(`${this.mqttBrokerHost}/${this.mqttBrokerPort}`);
@@ -41,71 +38,69 @@ class MqttClientSingleton {
         return MqttClientSingleton.instance;
     }
 
-    onConnect = () => {
+    onConnect() {
         mqttClientEventSubject.notify({
-            state: 'CONNECTED',
-            data: {
-                event: MQTT_CLIENT_EVENT_CONNECT,
-                mqttClientProperties: this.getClientProperties(),
-                actions: {
-                    subscribe: (topic) => this.subscribe(topic),
-                },
-            },
-            meta: {
-                timestamp: Date.now(),
+            entity: 'mqttEvents',
+            value: MQTT_CLIENT_EVENT_CONNECT,
+            actions: {
+                ...MqttClientSingleton.getInstance(),
             },
         });
     };
 
-    onOffline = () => {
+    onOffline() {
         mqttClientEventSubject.notify({
-            state: 'OFFLINE',
-            data: {
-                event: MQTT_CLIENT_EVENT_OFFLINE,
-                mqttClientProperties: this.getClientProperties(),
-            },
-            meta: {
-                timestamp: Date.now(),
+            entity: 'mqttEvents',
+            value: MQTT_CLIENT_EVENT_OFFLINE,
+            actions: {
+                ...MqttClientSingleton.getInstance(),
             },
         });
     };
 
-    onMessage = (topic, message) => {
-        mqttClientEventSubject.notifyByStatusCode({
+    onMessage(topic, message) {
+        const parseMessage = JSON.parse(message.toString());
+
+        mqttClientEventSubject.notify({
+            entity: 'statusCodes',
+            value: parseMessage.statusCode,
             data: {
-                event: MQTT_CLIENT_EVENT_MESSAGE,
                 topic,
-                message: JSON.parse(message.toString()),
+                deviceId: topic.split('/').at(-2),
+                message: parseMessage,
             },
         });
     };
 
-    subscribe(topic) {
-        this.client.subscribe(topic, (error) => {
-            if (error) {
-                console.error(`Error subscribe to topic ${topic}:`, error);
-
-                return;
-            }
-
-            mqttClientEventSubject.notifyByOperationCode({
-                state: 'SUBSCRIBE',
-                data: {
-                    event: MQTT_CLIENT_EVENT_SUBSCRIBE,
-                    operationCode: MQTT_CLIENT_STATUS_SUBSCRIBE_PRIVATE_TOPIC,
-                    topic,
-                    actions: {
-                        publish: ({ topic, data }) => this.publish({ topic, data }),
-                    },
+    subscribe = (topic) => {
+        this.client.subscribe(topic, () => {
+            mqttClientEventSubject.notify({
+                entity: 'mqttEvents',
+                value: MQTT_CLIENT_EVENT_SUBSCRIBE,
+                actions: {
+                    ...MqttClientSingleton.getInstance(),
                 },
-                meta: {
-                    timestamp: Date.now(),
+                data: {
+                    topic,
                 },
             });
         });
-    }
 
-    getClientProperties() {
+        this.client.subscribe(topic, () => {
+            mqttClientEventSubject.notify({
+                entity: 'mqttEvents',
+                value: topic,
+                actions: {
+                    ...MqttClientSingleton.getInstance(),
+                },
+                data: {
+                    topic,
+                },
+            });
+        });
+    };
+
+    getClientProperties = () => {
         const { connected, options } = this.client;
         const { clientId, host, port, protocol } = options;
 
@@ -118,15 +113,15 @@ class MqttClientSingleton {
             clientId,
             connected,
         };
-    }
+    };
 
-    publish({ topic, data }) {
+    publish = ({ topic, data }) => {
         this.client.publish(topic, JSON.stringify(data));
-    }
+    };
 
-    end() {
+    end = () => {
         this.client.end();
-    }
+    };
 }
 
 export { MqttClientSingleton };
