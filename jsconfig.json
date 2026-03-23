@@ -13,8 +13,8 @@
             "react-dom": [
                 "./node_modules/preact/compat/"
             ],
-            "@core-services/*": [
-                "./src/core/services/*"
+            "@core-mqtt/*": [
+                "src/core/mqtt/*"
             ],
             "@features/*": [
                 "./src/features/*"
