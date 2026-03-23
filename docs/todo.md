@@ -6,7 +6,14 @@
 ✰ Refactor the useDeviceSensorReadings hook to migrate statusCode from context-based state updates into a dedicated signal, ensuring granular reactivity and avoiding unnecessary global re-renders.
 ✰ Restrict selection when disconnected: An IoT device card cannot be selected if the device is in disconnected mode.
 ✰ Implement Guard Clauses across all MQTT observers to prevent errors from null or undefined messages (e.g., if (!message) return;).
-
+✰ Remove mqtt-client-permissions file with constants
+✰ Rename OnTopicDeviceHubMonitorSubscribedObserver function, improve semantic
+✰ Change   this.entities = {
+            'mqttEvents': new Map(),
+            'statusCodes': new Map(),
+            'operationCodes': new Map(),
+            'topics': new Map(),
+        }; to onMessage,onConnect, etc
 <!--
 /** ************************************************************************ **/
 

@@ -31,3 +31,11 @@ this.client = mqtt.connect(import.meta.env.VITE_MQTT_BROKER, {
     },
 });
 ```
+
+## MQTT Client CLI
+
+mosquitto_pub.exe -h localhost -p 1883 -t "acme/ind/planta-norte/linea-1/hub/a001/data" -m '{"statusCode": 205}'
+mosquitto_pub.exe -h localhost -p 1883 -t "acme/ind/planta-norte/linea-1/hub/a001/data" -m '{"statusCode": 206}'
+
+mosquitto_pub.exe -h localhost -p 1883 -t "acme/ind/planta-norte/linea-1/hub/a001/data" -m '{"statusCode": 205}'
+mosquitto_pub.exe -h localhost -p 1883 -t "acme/ind/planta-norte/linea-1/hub/a001/data" -m '{"statusCode": 252, "sensorReadings": {"temperature": 2, "humidity": 21}}'
