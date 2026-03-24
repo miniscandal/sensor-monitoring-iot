@@ -1,20 +1,36 @@
 /*
-Result Example
+RegisterObserver - Documentation
+
+This module allows you to register and manage observers associated with different entities.
+Each entity can have multiple IDs, and each ID can have multiple observers.
+
+Example of a possible `entities` object as the result of an instance of RegisterObserver
+after registering some observers:
 
 entities = {
     mqttEvents: {
-        onConnect: [id,id,id],
-        onOffline: [id,id,id],
+        onConnect: ['observerId1', 'observerId2', 'observerId3'],
+        onOffline: ['observerId4', 'observerId5'],
     },
     statusCodes: {
-        102: [id,id,id],
-        103: [id,id,id],
+        102: ['observerId6', 'observerId7'],
+        103: ['observerId8'],
     },
     operationCodes: {
-        202: [id,id,id],
-        203: [id,id,id],
+        202: ['observerId9', 'observerId10'],
+        203: ['observerId11'],
+    },
+    topics: {
+        'topic1': ['observerId12', 'observerId13'],
+        'topic2': ['observerId14'],
     },
 };
+
+Notes:
+- Each key in `entities` corresponds to one of the valid entities defined in `OBSERVER_ENTITY_*`.
+- Each ID within an entity can have an array of `observerId`s representing the registered observers.
+- This setup allows selective notification of observers associated with a specific event, status code, operation code, or topic.
+- The data above is a **possible runtime state** of an instance of RegisterObserver, not hardcoded.
 */
 
 import {
