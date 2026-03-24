@@ -1,4 +1,4 @@
-import { useMqttClientMessages } from '@shared-custom-hooks/mqtt-client/use-mqtt-client-message-tracking';
+import { useMqttClientMessages } from "@features/mqtt-client-messages/hooks/use-messages";
 
 import './style.css';
 

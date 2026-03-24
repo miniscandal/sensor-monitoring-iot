@@ -1,4 +1,4 @@
-import { useMqttClientTopicSubscriptions } from '@shared-hooks/mqtt-client/use-topic-subscriptions';
+import { useMqttClientTopicSubscriptions } from '@features/mqtt-client-subscriptions/hooks/use-topic-subscriptions';
 
 import { IconStat } from '@shared-components/molecules/icon-stat';
 
