@@ -4,7 +4,7 @@ import { IOT_DEVICE_OPERATION_CONNECT } from '@features/iot-devices-operations/c
 function OnTopicDeviceHubMonitorSubscribedObserver() {
 
     return {
-        entity: 'mqttEvents',
+        entity: 'topics',
         id: import.meta.env.VITE_TOPIC_HUB_STATUS,
         listener: ({ actions }) => {
             const { publish } = actions;

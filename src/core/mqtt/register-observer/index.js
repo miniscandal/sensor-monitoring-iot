@@ -1,4 +1,6 @@
 /*
+Result Example
+
 entities = {
     mqttEvents: {
         onConnect: [id,id,id],

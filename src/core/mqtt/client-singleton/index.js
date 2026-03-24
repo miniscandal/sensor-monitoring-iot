@@ -84,7 +84,6 @@ class MqttClientSingleton {
         this.client.subscribe(topic, () => {
             const actions = {
                 ...MqttClientSingleton.getInstance(),
-
             };
             const data = {
                 topic,
@@ -92,7 +91,7 @@ class MqttClientSingleton {
 
 
             this.#notifyEntity('mqttEvents', MQTT_CLIENT_EVENT_SUBSCRIBE, actions, data);
-            this.#notifyEntity('mqttEvents', topic, actions, data);
+            this.#notifyEntity('topics', topic, actions, data);
         });
     };
 
