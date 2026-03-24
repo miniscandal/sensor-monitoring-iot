@@ -34,8 +34,14 @@ this.client = mqtt.connect(import.meta.env.VITE_MQTT_BROKER, {
 
 ## MQTT Client CLI
 
+```PowerShell
+# Simulate sequential status code updates
 mosquitto_pub.exe -h localhost -p 1883 -t "acme/ind/planta-norte/linea-1/hub/a001/data" -m '{"statusCode": 205}'
 mosquitto_pub.exe -h localhost -p 1883 -t "acme/ind/planta-norte/linea-1/hub/a001/data" -m '{"statusCode": 206}'
+```
 
+```PowerShell
+# Publish complex payload including sensor telemetry
 mosquitto_pub.exe -h localhost -p 1883 -t "acme/ind/planta-norte/linea-1/hub/a001/data" -m '{"statusCode": 205}'
-mosquitto_pub.exe -h localhost -p 1883 -t "acme/ind/planta-norte/linea-1/hub/a001/data" -m '{"statusCode": 252, "sensorReadings": {"temperature": 2, "humidity": 21}}'
+mosquitto_pub.exe -h localhost -p 1883 -t "acme/ind/planta-norte/linea-1/hub/a001/data" -m '{"statusCode": 252, "sensorReadings": {"humidity": 25, "temperature": 22}}'
+```
