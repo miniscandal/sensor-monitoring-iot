@@ -6,6 +6,8 @@ export default defineConfig({
     resolve: {
         alias: {
             '@core-mqtt': '/src/core/mqtt',
+            '@core-constants': '/src/core/constants',
+
             '@features': '/src/features',
             '@assets': '/src/assets',
             '@mocks': '/src/mocks',
