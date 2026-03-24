@@ -70,6 +70,16 @@ class MqttClientSingleton {
                 message: parseMessage,
             },
         });
+
+        mqttClientEventSubject.notify({
+            entity: 'mqttEvents',
+            id: MQTT_CLIENT_EVENT_MESSAGE,
+            data: {
+                topic,
+                deviceId: topic.split('/').at(-2),
+                message: parseMessage,
+            },
+        });
     };
 
     subscribe = (topic) => {
