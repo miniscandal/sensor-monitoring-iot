@@ -11,6 +11,7 @@
             'operationCodes': new Map(),
             'topics': new Map(),
         }; to onMessage,onConnect, etc
+✰ Refactor actions in MqttClientSingleton
 <!--
 /** ************************************************************************ **/
 
