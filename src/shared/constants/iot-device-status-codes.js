@@ -114,7 +114,6 @@ const IOT_DEVICE_STATUS_READY_TO_ACTIVATE = 504;
 /** The device has been permanently retired from the system and its credentials revoked. */
 const IOT_DEVICE_STATUS_DECOMMISSIONED = 505;
 
-
 // ====================================================================
 // Export
 // ====================================================================

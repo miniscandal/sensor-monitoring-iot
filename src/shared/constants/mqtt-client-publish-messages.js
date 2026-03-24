@@ -3,7 +3,6 @@ const MSG_PUBLISH_SUBSCRIBE = {
     message: {},
 };
 
-
 export {
     MSG_PUBLISH_SUBSCRIBE,
 };
