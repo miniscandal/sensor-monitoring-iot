@@ -24,9 +24,9 @@ class MqttClientSingleton {
 
     constructor() {
         this.client = mqtt.connect(`${this.mqttBrokerHost}/${this.mqttBrokerPort}`);
-        this.client.on(MQTT_CLIENT_EVENT_CONNECT, this.onConnect);
-        this.client.on(MQTT_CLIENT_EVENT_OFFLINE, this.onOffline);
-        this.client.on(MQTT_CLIENT_EVENT_MESSAGE, this.onMessage);
+        this.client.on(MQTT_CLIENT_EVENT_CONNECT, this.onConnect.bind(this));
+        this.client.on(MQTT_CLIENT_EVENT_OFFLINE, this.onOffline.bind(this));
+        this.client.on(MQTT_CLIENT_EVENT_MESSAGE, this.onMessage.bind(this));
         this.client.on(MQTT_CLIENT_EVENT_ERROR, (err) => console.error('MQTT error:', err));
     }
 
@@ -38,75 +38,61 @@ class MqttClientSingleton {
         return MqttClientSingleton.instance;
     }
 
-    onConnect() {
+    #notifyEntity(entity, id, actions, data) {
+
         mqttClientEventSubject.notify({
-            entity: 'mqttEvents',
-            id: MQTT_CLIENT_EVENT_CONNECT,
-            actions: {
-                ...MqttClientSingleton.getInstance(),
-            },
+            entity,
+            id,
+            actions,
+            data,
         });
+    }
+
+    onConnect() {
+        const actions = {
+            ...MqttClientSingleton.getInstance(),
+        };
+
+
+        this.#notifyEntity('mqttEvents', MQTT_CLIENT_EVENT_CONNECT, actions);
     };
 
     onOffline() {
-        mqttClientEventSubject.notify({
-            entity: 'mqttEvents',
-            id: MQTT_CLIENT_EVENT_OFFLINE,
-            actions: {
-                ...MqttClientSingleton.getInstance(),
-            },
-        });
+        const actions = {
+            ...MqttClientSingleton.getInstance(),
+        };
+
+
+        this.#notifyEntity('mqttEvents', MQTT_CLIENT_EVENT_OFFLINE, actions);
     };
 
     onMessage(topic, message) {
         const parseMessage = JSON.parse(message.toString());
+        const data = {
+            topic,
+            deviceId: topic.split('/').at(-2),
+            message: parseMessage,
+        };
 
-        mqttClientEventSubject.notify({
-            entity: 'statusCodes',
-            id: parseMessage.statusCode,
-            data: {
-                topic,
-                deviceId: topic.split('/').at(-2),
-                message: parseMessage,
-            },
-        });
 
-        mqttClientEventSubject.notify({
-            entity: 'mqttEvents',
-            id: MQTT_CLIENT_EVENT_MESSAGE,
-            data: {
-                topic,
-                deviceId: topic.split('/').at(-2),
-                message: parseMessage,
-            },
-        });
+        this.#notifyEntity('statusCodes', parseMessage.statusCode, null, data);
+
+        this.#notifyEntity('mqttEvents', MQTT_CLIENT_EVENT_MESSAGE, null, data);
     };
 
     subscribe = (topic) => {
         this.client.subscribe(topic, () => {
-            mqttClientEventSubject.notify({
-                entity: 'mqttEvents',
-                id: MQTT_CLIENT_EVENT_SUBSCRIBE,
-                actions: {
-                    ...MqttClientSingleton.getInstance(),
-                },
-                data: {
-                    topic,
-                },
-            });
-        });
+            const actions = {
+                ...MqttClientSingleton.getInstance(),
 
-        this.client.subscribe(topic, () => {
-            mqttClientEventSubject.notify({
-                entity: 'mqttEvents',
-                id: topic,
-                actions: {
-                    ...MqttClientSingleton.getInstance(),
-                },
-                data: {
-                    topic,
-                },
-            });
+            };
+            const data = {
+                topic,
+            };
+
+
+            this.#notifyEntity('mqttEvents', MQTT_CLIENT_EVENT_SUBSCRIBE, actions, data);
+            this.#notifyEntity('mqttEvents', topic, actions, data);
         });
     };
 
