@@ -17,8 +17,21 @@ entities = {
 };
 */
 
+import {
+    OBSERVER_ENTITY_MQTT_EVENTS,
+    OBSERVER_ENTITY_STATUS_CODES,
+    OBSERVER_ENTITY_OPERATION_CODES,
+    OBSERVER_ENTITY_TOPICS,
+} from '@core-constants/observer-entities';
+
+
 class RegisterObserver {
-    static VALID_ENTITIES = ['mqttEvents', 'statusCodes', 'operationCodes', 'topics'];
+    static VALID_ENTITIES = [
+        OBSERVER_ENTITY_MQTT_EVENTS,
+        OBSERVER_ENTITY_STATUS_CODES,
+        OBSERVER_ENTITY_OPERATION_CODES,
+        OBSERVER_ENTITY_TOPICS,
+    ];
 
     constructor() {
         this.entities = {

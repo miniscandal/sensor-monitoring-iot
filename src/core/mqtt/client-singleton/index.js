@@ -15,6 +15,12 @@ import {
     MQTT_CLIENT_EVENT_ERROR,
 } from '@shared-constants/mqtt-client-events';
 
+import {
+    OBSERVER_ENTITY_MQTT_EVENTS,
+    OBSERVER_ENTITY_STATUS_CODES,
+    OBSERVER_ENTITY_TOPICS,
+} from '@core-constants/observer-entities';
+
 
 class MqttClientSingleton {
     static instance;
@@ -50,14 +56,14 @@ class MqttClientSingleton {
     }
 
     onConnect() {
-        this.#notify('mqttEvents', MQTT_CLIENT_EVENT_CONNECT, {
+        this.#notify(OBSERVER_ENTITY_MQTT_EVENTS, MQTT_CLIENT_EVENT_CONNECT, {
             getClientProperties: this.getClientProperties.bind(this),
             subscribe: this.subscribe.bind(this),
         });
     };
 
     onOffline() {
-        this.#notify('mqttEvents', MQTT_CLIENT_EVENT_OFFLINE, {
+        this.#notify(OBSERVER_ENTITY_MQTT_EVENTS, MQTT_CLIENT_EVENT_OFFLINE, {
             getClientProperties: this.getClientProperties.bind(this),
         });
     };
@@ -71,8 +77,8 @@ class MqttClientSingleton {
         };
 
 
-        this.#notify('statusCodes', parseMessage.statusCode, null, data);
-        this.#notify('mqttEvents', MQTT_CLIENT_EVENT_MESSAGE, null, data);
+        this.#notify(OBSERVER_ENTITY_STATUS_CODES, parseMessage.statusCode, null, data);
+        this.#notify(OBSERVER_ENTITY_MQTT_EVENTS, MQTT_CLIENT_EVENT_MESSAGE, null, data);
     };
 
     subscribe(topic) {
@@ -80,10 +86,10 @@ class MqttClientSingleton {
             const data = { topic };
 
 
-            this.#notify('mqttEvents', MQTT_CLIENT_EVENT_SUBSCRIBE, {
+            this.#notify(OBSERVER_ENTITY_MQTT_EVENTS, MQTT_CLIENT_EVENT_SUBSCRIBE, {
                 subscribe: this.subscribe.bind(this),
             }, data);
-            this.#notify('topics', topic, { publish: this.publish.bind(this) }, data);
+            this.#notify(OBSERVER_ENTITY_TOPICS, topic, { publish: this.publish.bind(this) }, data);
         });
     };
 
