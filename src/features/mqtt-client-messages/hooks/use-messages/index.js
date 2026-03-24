@@ -15,9 +15,7 @@ function useMqttClientMessages() {
     useMqttClientEvents({
         entity: 'mqttEvents',
         id: MQTT_CLIENT_EVENT_OFFLINE,
-        listener: () => {
-            setMessages([]);
-        },
+        listener: () => setMessages([]),
     });
 
     useMqttClientEvents({
