@@ -20,6 +20,8 @@ import { Header } from '@shared-components/organisms/header';
 
 import './style.css';
 
+import { LiveDataFeed } from '@features/mqtt-client-messages/components/templates/live-data-feed';
+
 
 export function App() {
     useEffect(() => {
@@ -40,6 +42,7 @@ export function App() {
                 <MqttClientStatus />
                 <TopicSubscription />
                 <DeviceManagement />
+                <LiveDataFeed />
             </main>
         </>
     );
