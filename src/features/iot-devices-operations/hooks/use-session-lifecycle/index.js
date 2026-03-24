@@ -28,13 +28,13 @@ function useDeviceHubPresence() {
 
     useMqttClientEvents({
         entity: 'mqttEvents',
-        value: MQTT_CLIENT_EVENT_OFFLINE,
+        id: MQTT_CLIENT_EVENT_OFFLINE,
         listener: () => setDeviceStatusMap(new Map()),
     });
 
     useMqttClientEvents({
         entity: 'statusCodes',
-        value: IOT_DEVICE_STATUS_LOGGED_IN,
+        id: IOT_DEVICE_STATUS_LOGGED_IN,
         listener: ({ data }) => {
             const { deviceId, message } = data;
 
@@ -56,7 +56,7 @@ function useDeviceHubPresence() {
 
     useMqttClientEvents({
         entity: 'statusCodes',
-        value: IOT_DEVICE_STATUS_LOGGED_OUT,
+        id: IOT_DEVICE_STATUS_LOGGED_OUT,
         listener: ({ data }) => {
             const { deviceId } = data;
 

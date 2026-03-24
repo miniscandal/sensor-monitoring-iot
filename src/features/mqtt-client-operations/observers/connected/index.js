@@ -5,7 +5,7 @@ function OnMqttClientConnectedObserver() {
 
     return {
         entity: 'mqttEvents',
-        value: MQTT_CLIENT_EVENT_CONNECT,
+        id: MQTT_CLIENT_EVENT_CONNECT,
         listener: ({ actions }) => {
             const { subscribe } = actions;
 

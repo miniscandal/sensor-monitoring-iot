@@ -7,7 +7,7 @@ class MqttClientEventSubject {
         this.registerObserver = registerObserver;
     }
 
-    subscribe({ entity, value, listener }) {
+    subscribe({ entity, id, listener }) {
         const observerId = crypto.randomUUID();
         const observerReg = {
             id: observerId,
@@ -17,7 +17,7 @@ class MqttClientEventSubject {
 
         this.registerObserver.register({
             entity,
-            value,
+            id,
             observerId,
         });
 
@@ -33,10 +33,10 @@ class MqttClientEventSubject {
         }
     }
 
-    notify({ entity, value, actions, data }) {
-        console.log({ entity, value, actions, data });
+    notify({ entity, id, actions, data }) {
+        console.log({ entity, id, actions, data });
 
-        const observerIds = this.registerObserver.getObserverId({ entity, value }) || [];
+        const observerIds = this.registerObserver.getObserverId({ entity, id }) || [];
 
 
         this.observers.forEach(observer => {

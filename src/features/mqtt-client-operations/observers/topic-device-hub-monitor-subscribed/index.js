@@ -5,7 +5,7 @@ function OnTopicDeviceHubMonitorSubscribedObserver() {
 
     return {
         entity: 'mqttEvents',
-        value: import.meta.env.VITE_TOPIC_HUB_STATUS,
+        id: import.meta.env.VITE_TOPIC_HUB_STATUS,
         listener: ({ actions }) => {
             const { publish } = actions;
 

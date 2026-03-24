@@ -13,13 +13,13 @@ function useMqttClientTopicSubscriptions() {
 
     useMqttClientEvents({
         entity: 'mqttEvents',
-        value: MQTT_CLIENT_EVENT_SUBSCRIBE,
+        id: MQTT_CLIENT_EVENT_SUBSCRIBE,
         listener: ({ data: { topic } }) => setTopics((prevState) => [...prevState, topic]),
     });
 
     useMqttClientEvents({
         entity: 'mqttEvents',
-        value: MQTT_CLIENT_EVENT_OFFLINE,
+        id: MQTT_CLIENT_EVENT_OFFLINE,
         listener: () => setTopics([]),
     });
 

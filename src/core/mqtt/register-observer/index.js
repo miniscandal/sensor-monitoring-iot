@@ -27,18 +27,18 @@ class RegisterObserver {
         };
     }
 
-    register({ entity, value, observerId }) {
+    register({ entity, id, observerId }) {
         const targetMap = this.entities[entity];
 
-        if (!targetMap.has(value)) {
-            targetMap.set(value, []);
+        if (!targetMap.has(id)) {
+            targetMap.set(id, []);
         }
 
-        targetMap.get(value).push(observerId);
+        targetMap.get(id).push(observerId);
     }
 
-    getObserverId({ entity, value }) {
-        return this.entities[entity].get(value);
+    getObserverId({ entity, id }) {
+        return this.entities[entity].get(id);
     }
 }
 

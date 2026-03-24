@@ -41,7 +41,7 @@ class MqttClientSingleton {
     onConnect() {
         mqttClientEventSubject.notify({
             entity: 'mqttEvents',
-            value: MQTT_CLIENT_EVENT_CONNECT,
+            id: MQTT_CLIENT_EVENT_CONNECT,
             actions: {
                 ...MqttClientSingleton.getInstance(),
             },
@@ -51,7 +51,7 @@ class MqttClientSingleton {
     onOffline() {
         mqttClientEventSubject.notify({
             entity: 'mqttEvents',
-            value: MQTT_CLIENT_EVENT_OFFLINE,
+            id: MQTT_CLIENT_EVENT_OFFLINE,
             actions: {
                 ...MqttClientSingleton.getInstance(),
             },
@@ -63,7 +63,7 @@ class MqttClientSingleton {
 
         mqttClientEventSubject.notify({
             entity: 'statusCodes',
-            value: parseMessage.statusCode,
+            id: parseMessage.statusCode,
             data: {
                 topic,
                 deviceId: topic.split('/').at(-2),
@@ -76,7 +76,7 @@ class MqttClientSingleton {
         this.client.subscribe(topic, () => {
             mqttClientEventSubject.notify({
                 entity: 'mqttEvents',
-                value: MQTT_CLIENT_EVENT_SUBSCRIBE,
+                id: MQTT_CLIENT_EVENT_SUBSCRIBE,
                 actions: {
                     ...MqttClientSingleton.getInstance(),
                 },
@@ -89,7 +89,7 @@ class MqttClientSingleton {
         this.client.subscribe(topic, () => {
             mqttClientEventSubject.notify({
                 entity: 'mqttEvents',
-                value: topic,
+                id: topic,
                 actions: {
                     ...MqttClientSingleton.getInstance(),
                 },

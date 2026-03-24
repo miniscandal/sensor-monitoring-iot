@@ -18,13 +18,13 @@ function useIoTDeviceSessionCount() {
 
     useMqttClientEvents({
         entity: 'mqttEvents',
-        value: MQTT_CLIENT_EVENT_OFFLINE,
+        id: MQTT_CLIENT_EVENT_OFFLINE,
         listener: () => setConnectedDeviceIds([]),
     });
 
     useMqttClientEvents({
         entity: 'statusCodes',
-        value: IOT_DEVICE_STATUS_LOGGED_IN,
+        id: IOT_DEVICE_STATUS_LOGGED_IN,
         listener: ({ data: { deviceId } }) => {
             setConnectedDeviceIds(prevState => prevState.includes(deviceId)
                 ? prevState
@@ -34,7 +34,7 @@ function useIoTDeviceSessionCount() {
 
     useMqttClientEvents({
         entity: 'statusCodes',
-        value: IOT_DEVICE_STATUS_LOGGED_OUT,
+        id: IOT_DEVICE_STATUS_LOGGED_OUT,
         listener: ({ data: { deviceId } }) => {
             setConnectedDeviceIds(prevState => prevState.filter(id => id !== deviceId));
         },
