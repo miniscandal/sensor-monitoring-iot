@@ -1,6 +1,9 @@
 .subscribe-topic-panel {
+    display: flex;
+
 
     > .icon-stat {
+        flex: 1;
 
         > .svg-icon {
             color: var(--color-mqtt-client);

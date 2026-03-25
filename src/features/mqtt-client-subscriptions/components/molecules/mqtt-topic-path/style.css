@@ -1,0 +1,24 @@
+.mqtt-topic-path {
+    width: fit-content;
+    background-color: #67aaa7;
+    border-radius: 0.5rem;
+    overflow: hidden;
+
+    > span {
+        &:nth-child(1) {
+            background-color: #85abb4;
+        }
+
+        &:nth-child(2) {
+            background-color: #83c5a4;
+        }
+
+        &:nth-child(3) {
+            background-color: #ceb1ce;
+        }
+
+        &:last-child {
+            background-color: #8bd68b;
+        }
+    }
+}

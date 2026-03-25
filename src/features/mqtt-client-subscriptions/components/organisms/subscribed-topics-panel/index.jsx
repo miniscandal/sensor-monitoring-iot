@@ -5,12 +5,12 @@ import { IconStat } from '@shared-components/molecules/icon-stat';
 import './style.css';
 
 
-function SubscribeTopicPanel() {
+function SubscribedTopicsPanel() {
     const topics = useMqttClientTopicSubscriptions();
 
     const iconStat = {
-        label: 'Topic Subscribe',
-        value: topics.join('\n'),
+        label: 'Subscribed topics',
+        value: `${topics.length} subscriptions`,
         svgIconName: 'topicSubscribe',
     };
 
@@ -22,4 +22,4 @@ function SubscribeTopicPanel() {
     );
 }
 
-export { SubscribeTopicPanel };
+export { SubscribedTopicsPanel };
