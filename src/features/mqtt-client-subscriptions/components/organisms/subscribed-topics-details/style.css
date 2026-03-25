@@ -1,6 +1,5 @@
 .subscribed-topics-details {
-    background-color: var(--pill-bg-highlight);
-    padding: 0 0 0 var(--padding-molecule);
+    background-color: var(--details-bg-highlight);
     border-radius: var(--border-radius-molecule);
 
     &::details-content {
@@ -8,27 +7,33 @@
         block-size: 0;
         overflow: hidden;
         transition-property: block-size, content-visibility;
-        transition-duration: 0.5s;
+        transition-duration: var(--transition-duration);
         transition-behavior: allow-discrete;
     }
 
     &[open]::details-content {
         block-size: auto;
         block-size: calc-size(auto, size);
-        padding-bottom: var(--padding-molecule);
     }
 
     > summary {
-        padding: var(--padding-molecule) 0;
+        color: var(--text-color);
+        padding: var(--padding-molecule);
+        border-radius: var(--border-radius-molecule);
 
         &:hover {
             cursor: pointer;
+        }
+
+        &:focus {
+            outline: var(--outline-size-focus) var(--outline-style-focus) var(--outline-color-focus);
         }
     }
 
     > ul {
         display: flex;
         flex-direction: column;
-        gap: 0.75rem;
+        gap: var(--gap-molecule);
+        padding: var(--padding-molecule) 0 var(--padding-molecule) var(--padding-molecule);
     }
 }

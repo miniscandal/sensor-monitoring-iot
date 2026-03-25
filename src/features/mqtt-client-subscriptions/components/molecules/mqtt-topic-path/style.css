@@ -1,24 +1,42 @@
 .mqtt-topic-path {
+    color: var(--text-color);
+    --mqtt-span-1-bg: #85abb4;
+    --mqtt-span-2-bg: #83c5a4;
+    --mqtt-span-3-bg: #ceb1ce;
+    --mqtt-span-n4-bg: #67aaa7;
+    --mqtt-span-last-bg: #8bd68b;
+
     width: fit-content;
-    background-color: #67aaa7;
-    border-radius: 0.5rem;
+    border-radius: var(--border-radius-molecule);
     overflow: hidden;
 
     > span {
         &:nth-child(1) {
-            background-color: #85abb4;
+            background-color: var(--mqtt-span-1-bg);
         }
 
         &:nth-child(2) {
-            background-color: #83c5a4;
+            background-color: var(--mqtt-span-2-bg);
         }
 
         &:nth-child(3) {
-            background-color: #ceb1ce;
+            background-color: var(--mqtt-span-3-bg);
+        }
+
+        &:nth-child(n+4) {
+            background-color: var(--mqtt-span-n4-bg);
         }
 
         &:last-child {
-            background-color: #8bd68b;
+            background-color: var(--mqtt-span-last-bg);
         }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        --mqtt-span-1-bg: #4a5a63;
+        --mqtt-span-2-bg: #3f6b5a;
+        --mqtt-span-3-bg: #6a556a;
+        --mqtt-span-n4-bg: #233535;
+        --mqtt-span-last-bg: #4f7d4f;
     }
 }

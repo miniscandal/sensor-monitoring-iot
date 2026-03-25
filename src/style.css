@@ -8,7 +8,6 @@
     color-scheme: light dark;
 
     /* Unused
-    --padding-atom: 0.25rem;
     --margin-molecule: 1rem;
 
     --border-radius-atom: 0.25rem;
@@ -32,11 +31,17 @@
 
     --padding-viewport: 2vw;
 
+    --atom-padding-small: 0.25rem;
+
+    --padding-atom: 0.5rem;
+
     --padding-molecule: 1rem;
 
     --padding-organism: 2rem;
 
     --padding-molecule-medium: 0.5rem;
+
+    --gap-molecule: 1rem;
 
     --gap-organism: 2rem;
 
@@ -51,6 +56,7 @@
 
     --transition-translate-y-card: transform 0.4s ease;
     --transition-background-color: background-color 0.4s ease;
+    --transition-duration: 0.5s;
 
     --filter-hover: opacity(0.6);
 
@@ -64,7 +70,8 @@
     --color-selected: #515151;
     --color-unselect: #616161;
 
-
+    --outline-size-focus: 2px;
+    --outline-style-focus: dashed;
 
 
     /* Dynamic color scheme */
@@ -77,12 +84,15 @@
     --card-bg-selected: #cdcdcd;
 
     --pill-bg-highlight: #d0d4cc;
+    --details-bg-highlight: #bfc9b6;
 
     --icon-color: #2f3b47;
 
     --color-sensor-control: #006377;
     --color-iot: #00819b;
     --color-mqtt-client: #186456;
+
+    --outline-color-focus: #354855;
 }
 
 *,
@@ -119,11 +129,14 @@ main {
         --card-bg-selected: #323232;
 
         --pill-bg-highlight: #3d3941;
+        --details-bg-highlight: #454347;
 
         --icon-color: #e0e0e0;
 
         --color-sensor-control: #4dd0e1;
         --color-iot: #06dacf;
         --color-mqtt-client: #4acab3;
+
+        --outline-color-focus: #a3b4c2;
     }
 }
