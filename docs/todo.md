@@ -4,6 +4,7 @@
 ✰ Restrict selection when disconnected: An IoT device card cannot be selected if the device is in disconnected mode.
 ✰ Implement Guard Clauses across all MQTT observers to prevent errors from null or undefined messages (e.g., if (!message) return;).
 ✰ Rename OnTopicDeviceHubMonitorSubscribedObserver function, improve semantic
+✰ Rename semantic css variables
 <!--
 /** ************************************************************************ **/
 
