@@ -27,7 +27,7 @@ function IoTDeviceListPanel() {
     useDeviceHubPresence();
     useIoTDeviceStreamingSensorData();
 
-    const deviceElements = Array.from(deviceStatusMap.entries()).map(([key, iotDevice]) => (
+    const iotDeviceCardComponents = Array.from(deviceStatusMap.entries()).map(([key, iotDevice]) => (
         <IoTDeviceCard
             key={key}
             iotDeviceId={iotDevice.deviceId}
@@ -82,7 +82,7 @@ function IoTDeviceListPanel() {
 
     return (
         <ul class="iot-device-list-panel" onClick={handleClick}>
-            {deviceElements}
+            {iotDeviceCardComponents}
         </ul>
     );
 }
