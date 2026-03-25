@@ -7,7 +7,7 @@ function MqttTopicPath({ topic }) {
     const parts = topic.split('/');
     const itemsComponents = parts.map((item, index) => (
         <MqttTopicBreadcrumb
-            key={`${topic}-${item}`}
+            key={`${item}-${index}`}
             text={item}
             isLast={index === parts.length - 1}
         />

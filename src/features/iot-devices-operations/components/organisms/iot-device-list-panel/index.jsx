@@ -29,7 +29,7 @@ function IoTDeviceListPanel() {
 
     const iotDeviceCardComponents = Array.from(deviceStatusMap.entries()).map(([key, iotDevice]) => (
         <IoTDeviceCard
-            key={key}
+            key={`${iotDevice.deviceId}-${key}`}
             iotDeviceId={iotDevice.deviceId}
             sensorReadings={iotDevice.sensorReadings}
             selectionStatus={selectedIoTDeviceId === iotDevice.deviceId}
