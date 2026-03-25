@@ -51,10 +51,10 @@ class RegisterObserver {
 
     constructor() {
         this.entities = {
-            'mqttEvents': new Map(),
-            'statusCodes': new Map(),
-            'operationCodes': new Map(),
-            'topics': new Map(),
+            OBSERVER_ENTITY_MQTT_EVENTS: new Map(),
+            OBSERVER_ENTITY_STATUS_CODES: new Map(),
+            OBSERVER_ENTITY_OPERATION_CODES: new Map(),
+            OBSERVER_ENTITY_TOPICS: new Map(),
         };
     }
 

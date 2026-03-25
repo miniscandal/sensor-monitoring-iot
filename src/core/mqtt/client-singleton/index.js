@@ -8,18 +8,18 @@ import mqtt from 'mqtt';
 import { mqttClientEventSubject } from '@core-mqtt/client-event-subject';
 
 import {
+    OBSERVER_ENTITY_MQTT_EVENTS,
+    OBSERVER_ENTITY_STATUS_CODES,
+    OBSERVER_ENTITY_TOPICS,
+} from '@core-constants/observer-entities';
+
+import {
     MQTT_CLIENT_EVENT_CONNECT,
     MQTT_CLIENT_EVENT_OFFLINE,
     MQTT_CLIENT_EVENT_SUBSCRIBE,
     MQTT_CLIENT_EVENT_MESSAGE,
     MQTT_CLIENT_EVENT_ERROR,
 } from '@shared-constants/mqtt-client-events';
-
-import {
-    OBSERVER_ENTITY_MQTT_EVENTS,
-    OBSERVER_ENTITY_STATUS_CODES,
-    OBSERVER_ENTITY_TOPICS,
-} from '@core-constants/observer-entities';
 
 
 class MqttClientSingleton {

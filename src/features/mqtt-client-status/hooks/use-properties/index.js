@@ -7,6 +7,8 @@ import { useState } from 'preact/hooks';
 
 import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
 
+import { OBSERVER_ENTITY_MQTT_EVENTS } from '@core-constants/observer-entities';
+
 import { MQTT_CLIENT_PROPERTIES } from '@shared-constants/mqtt-client-properties';
 
 import {
@@ -19,7 +21,7 @@ function useMqttClientProperties() {
     const [properties, setProperties] = useState(MQTT_CLIENT_PROPERTIES);
 
     useMqttClientEvents({
-        entity: 'mqttEvents',
+        entity: OBSERVER_ENTITY_MQTT_EVENTS,
         id: MQTT_CLIENT_EVENT_CONNECT,
         listener: ({ actions }) => {
             const { getClientProperties } = actions;
@@ -34,7 +36,7 @@ function useMqttClientProperties() {
     });
 
     useMqttClientEvents({
-        entity: 'mqttEvents',
+        entity: OBSERVER_ENTITY_MQTT_EVENTS,
         id: MQTT_CLIENT_EVENT_OFFLINE,
         listener: ({ actions }) => {
             const { getClientProperties } = actions;

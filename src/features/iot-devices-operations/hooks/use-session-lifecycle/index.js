@@ -13,6 +13,11 @@ import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
 import { IoTDevicesContext } from '@shared-contexts/iot-devices-provider';
 
 import {
+    OBSERVER_ENTITY_MQTT_EVENTS,
+    OBSERVER_ENTITY_STATUS_CODES,
+} from '@core-constants/observer-entities';
+
+import {
     MQTT_CLIENT_EVENT_OFFLINE,
 } from '@shared-constants/mqtt-client-events';
 
@@ -22,18 +27,17 @@ import {
 } from '@shared-constants/iot-device-status-codes';
 
 
-
 function useDeviceHubPresence() {
     const { setDeviceStatusMap } = useContext(IoTDevicesContext);
 
     useMqttClientEvents({
-        entity: 'mqttEvents',
+        entity: OBSERVER_ENTITY_MQTT_EVENTS,
         id: MQTT_CLIENT_EVENT_OFFLINE,
         listener: () => setDeviceStatusMap(new Map()),
     });
 
     useMqttClientEvents({
-        entity: 'statusCodes',
+        entity: OBSERVER_ENTITY_STATUS_CODES,
         id: IOT_DEVICE_STATUS_LOGGED_IN,
         listener: ({ data }) => {
             const { deviceId, message } = data;
@@ -55,7 +59,7 @@ function useDeviceHubPresence() {
     });
 
     useMqttClientEvents({
-        entity: 'statusCodes',
+        entity: OBSERVER_ENTITY_STATUS_CODES,
         id: IOT_DEVICE_STATUS_LOGGED_OUT,
         listener: ({ data }) => {
             const { deviceId } = data;

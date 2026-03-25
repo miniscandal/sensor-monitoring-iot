@@ -5,6 +5,8 @@ import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
 
 import { IoTDevicesContext } from '@shared-contexts/iot-devices-provider';
 
+import { OBSERVER_ENTITY_STATUS_CODES } from '@core-constants/observer-entities';
+
 import { IOT_DEVICE_STATUS_STREAMING_SENSOR_DATA } from '@shared-constants/iot-device-status-codes';
 
 
@@ -13,7 +15,7 @@ function useIoTDeviceStreamingSensorData() {
 
 
     useMqttClientEvents({
-        entity: 'statusCodes',
+        entity: OBSERVER_ENTITY_STATUS_CODES,
         id: IOT_DEVICE_STATUS_STREAMING_SENSOR_DATA,
         listener: ({ data }) => {
             const { deviceId, message } = data;

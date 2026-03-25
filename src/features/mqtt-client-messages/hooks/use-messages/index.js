@@ -2,6 +2,8 @@ import { useState } from 'preact/hooks';
 
 import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
 
+import { OBSERVER_ENTITY_MQTT_EVENTS } from '@core-constants/observer-entities';
+
 import {
     MQTT_CLIENT_EVENT_MESSAGE,
     MQTT_CLIENT_EVENT_OFFLINE,
@@ -13,13 +15,13 @@ function useMqttClientMessages() {
 
 
     useMqttClientEvents({
-        entity: 'mqttEvents',
+        entity: OBSERVER_ENTITY_MQTT_EVENTS,
         id: MQTT_CLIENT_EVENT_OFFLINE,
         listener: () => setMessages([]),
     });
 
     useMqttClientEvents({
-        entity: 'mqttEvents',
+        entity: OBSERVER_ENTITY_MQTT_EVENTS,
         id: MQTT_CLIENT_EVENT_MESSAGE,
         listener: ({ data: { message } }) => {
             setMessages((prevState) => (

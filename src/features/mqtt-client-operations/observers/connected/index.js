@@ -1,10 +1,12 @@
+import { OBSERVER_ENTITY_MQTT_EVENTS } from '@core-constants/observer-entities';
+
 import { MQTT_CLIENT_EVENT_CONNECT } from '@shared-constants/mqtt-client-events';
 
 
 function OnMqttClientConnectedObserver() {
 
     return {
-        entity: 'mqttEvents',
+        entity: OBSERVER_ENTITY_MQTT_EVENTS,
         id: MQTT_CLIENT_EVENT_CONNECT,
         listener: ({ actions }) => {
             const { subscribe } = actions;
