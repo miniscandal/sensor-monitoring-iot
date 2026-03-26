@@ -14,13 +14,13 @@ import { MqttClientStatus } from '@features/mqtt-client-status/components/templa
 import { TopicSubscription } from '@features/mqtt-client-subscriptions/components/templates/topic-subscription';
 import { OnTopicDeviceHubMonitorSubscribedObserver } from '@features/mqtt-client-operations/observers/topic-device-hub-monitor-subscribed';
 import { DeviceManagement } from '@features/iot-devices-operations/components/templates/management';
-import { OnMqttClientConnectedObserver } from '@features/mqtt-client-operations/observers/connected';
+import { OnMqttClientConnectedObserver } from '@features/mqtt-client-subscriptions/observers/connected';
+import { LiveDataFeed } from '@features/mqtt-client-messages/components/templates/live-data-feed';
 
 import { Header } from '@shared-components/organisms/header';
 
 import './style.css';
 
-import { LiveDataFeed } from '@features/mqtt-client-messages/components/templates/live-data-feed';
 
 
 export function App() {
