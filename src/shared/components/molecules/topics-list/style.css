@@ -1,0 +1,6 @@
+.topics-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-molecule);
+    padding: var(--padding-molecule);
+}

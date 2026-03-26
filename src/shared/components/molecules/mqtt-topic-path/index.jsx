@@ -1,5 +1,5 @@
-import { MqttTopicBreadcrumb } from '../../atoms/mqtt-topic-breadcrumb';
-import { MqttTopicBreadcrumbSeparator } from '../../atoms/mqtt-topic-breadcrumb-separator';
+import { MqttTopicBreadcrumb } from '@shared-components/atoms/mqtt-topic-breadcrumb';
+import { MqttTopicBreadcrumbSeparator } from '@shared-components/atoms/mqtt-topic-breadcrumb-separator';
 
 import './style.css';
 
