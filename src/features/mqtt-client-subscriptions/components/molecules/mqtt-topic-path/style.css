@@ -1,12 +1,12 @@
 .mqtt-topic-path {
-    color: var(--text-color);
-    --mqtt-span-1-bg: #85abb4;
-    --mqtt-span-2-bg: #83c5a4;
-    --mqtt-span-3-bg: #ceb1ce;
-    --mqtt-span-n4-bg: #67aaa7;
-    --mqtt-span-last-bg: #8bd68b;
+    --mqtt-span-1-bg: #4da6ff;
+    --mqtt-span-2-bg: #5cd65c;
+    --mqtt-span-3-bg: #b366ff;
+    --mqtt-span-n4-bg: #33cccc;
+    --mqtt-span-last-bg: #66cc66;
 
     width: fit-content;
+    color: var(--text-color);
     border-radius: var(--border-radius-molecule);
     overflow: hidden;
 
@@ -15,28 +15,34 @@
             background-color: var(--mqtt-span-1-bg);
         }
 
-        &:nth-child(2) {
+        &:nth-child(3) {
             background-color: var(--mqtt-span-2-bg);
         }
 
-        &:nth-child(3) {
+        &:nth-child(5) {
             background-color: var(--mqtt-span-3-bg);
         }
 
-        &:nth-child(n+4) {
-            background-color: var(--mqtt-span-n4-bg);
+        &:nth-child(n+7) {
+            &:not(.mqtt-topic-breadcrumb-separator) {
+                background-color: var(--mqtt-span-n4-bg);
+            }
+
+            &:last-child {
+                background-color: var(--mqtt-span-last-bg);
+            }
         }
 
-        &:last-child {
-            background-color: var(--mqtt-span-last-bg);
+        &:nth-child(even) {
+            background-color: #999999;
         }
     }
 
     @media (prefers-color-scheme: dark) {
-        --mqtt-span-1-bg: #4a5a63;
-        --mqtt-span-2-bg: #3f6b5a;
-        --mqtt-span-3-bg: #6a556a;
-        --mqtt-span-n4-bg: #233535;
-        --mqtt-span-last-bg: #4f7d4f;
+        --mqtt-span-1-bg: #336699;
+        --mqtt-span-2-bg: #339933;
+        --mqtt-span-3-bg: #663399;
+        --mqtt-span-n4-bg: #226666;
+        --mqtt-span-last-bg: #267326;
     }
 }

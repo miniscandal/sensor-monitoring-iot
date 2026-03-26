@@ -1,0 +1,4 @@
+.mqtt-topic-breadcrumb-separator {
+    display: inline-block;
+    padding: var(--atom-padding-small) var(--padding-atom);
+}

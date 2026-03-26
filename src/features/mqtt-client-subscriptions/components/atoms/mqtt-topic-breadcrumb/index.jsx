@@ -1,11 +1,11 @@
 import './style.css';
 
 
-function MqttTopicBreadcrumb({ text, isLast }) {
+function MqttTopicBreadcrumb({ text }) {
 
     return (
         <span class="mqtt-topic-breadcrumb">
-            {`${text} \u000A`}{isLast || '/'}
+            {text}
         </span>
     );
 }
