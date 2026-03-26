@@ -1,4 +1,4 @@
-import { useMqttClientMessages } from "@features/mqtt-client-messages/hooks/use-messages";
+import { useMqttClientMessages } from '@features/mqtt-client-messages/hooks/use-messages';
 
 import './style.css';
 
