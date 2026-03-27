@@ -12,7 +12,7 @@ function SubscribedTopicsDetails() {
 
     return (
         <div class="subscribed-topics-details">
-            <Details summary="Details subscribed topics">
+            <Details summary="Subscription Details">
                 <TopicsList topics={topics} emptyMessage="No subscribed topics" />
             </Details>
         </div>

@@ -1,0 +1,11 @@
+.topic-publishes {
+    width: min(100%, 65rem);
+    margin: 0 auto;
+    display: flex;
+    gap: var(--gap-organism);
+    flex-direction: column;
+
+    > .icon-stat {
+        width: min(100%, 25rem);
+    }
+}

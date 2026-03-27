@@ -9,8 +9,8 @@ function SubscribedTopicsPanel() {
     const topics = useMqttClientTopicSubscriptions();
 
     const iconStat = {
-        label: 'Subscribed topics',
-        value: `${topics.length} subscriptions`,
+        label: 'Subscription Topics',
+        value: `Active (${topics.length})`,
         svgIconName: 'topicSubscribe',
     };
 
