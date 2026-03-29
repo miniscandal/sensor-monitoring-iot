@@ -23,7 +23,6 @@ import { Header } from '@shared-components/organisms/header';
 import './style.css';
 
 
-
 export function App() {
     useEffect(() => {
         const client = MqttClientSingleton.getInstance();
@@ -46,6 +45,7 @@ export function App() {
                 <DeviceManagement />
                 <LiveDataFeed />
             </main>
+            <footer></footer>
         </>
     );
 }
