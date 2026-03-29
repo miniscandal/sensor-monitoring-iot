@@ -5,13 +5,17 @@
 
         > .table__element {
 
-            colgroup {
+            .table-colgroup {
                 .table__column--timestamp {
                     width: 20%;
                 }
 
-                .table__column--log-summary {
-                    width: 70%;
+                .table__column--status-code {
+                    width: 15%;
+                }
+
+                .table__column--message-summary {
+                    width: 65%;
                 }
             }
 

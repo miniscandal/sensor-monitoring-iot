@@ -1,6 +1,7 @@
 // import { useMqttClientMessages } from '@features/mqtt-client-messages/hooks/use-messages';
 
 import { Table } from '../../molecules/table';
+import { TableColgroup } from '../../molecules/table-colgroup';
 
 import messages from '.././../../mocks/messages-device-hub.json';
 
@@ -21,6 +22,7 @@ function LiveMqttMessageFeed() {
     const rows = [...messages, ...messages, ...messages].map((message, index) => {
         const { metadata: { timestamp } } = message;
 
+
         return {
             key: `${timestamp}-${index}`,
             cells: [
@@ -31,15 +33,29 @@ function LiveMqttMessageFeed() {
         };
     });
 
+    const columns = [
+        {
+            span: 1,
+            class: 'table__column--timestamp',
+
+        },
+        {
+            span: 1,
+            class: 'table__column--status-code',
+
+        },
+        {
+            span: 1,
+            class: 'table__column--message-summary',
+
+        },
+    ];
+
 
     return (
         <section class="live-mqtt-message-feed">
             <Table headers={headers} rows={rows}>
-                <colgroup>
-                    <col class="table__column--timestamp" />
-                    <col />
-                    <col class="table__column--log-summary" />
-                </colgroup>
+                <TableColgroup columns={columns} />
             </Table>
         </section>
     );
