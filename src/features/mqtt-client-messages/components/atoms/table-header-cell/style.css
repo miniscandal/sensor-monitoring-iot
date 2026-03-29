@@ -1,0 +1,13 @@
+.table-header-cell {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    padding: var(--padding-atom);
+    border-right: 1px solid var(--table-border);
+    background-color: var(--table-header-bg, #bebebe);
+
+
+    @media (prefers-color-scheme: dark) {
+        --table-header-bg: #333333;
+    }
+}

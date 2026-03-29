@@ -1,0 +1,9 @@
+.table-cell {
+    padding: var(--padding-atom);
+    border: 1px solid var(--table-border);
+    border-left: none;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
