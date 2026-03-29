@@ -1,21 +1,28 @@
-.data_tracking {
-	height: 200px;
-	border: var(--border);
-	padding: var(--padding);
-	border-radius: var(--border-radius);
-	background-color: var(--background-color-prefers-scheme-element);
-}
+.live-mqtt-message-feed {
 
-.data_tracking__div {
-	height: 100%;
-	overflow-y: scroll;
-	overflow-x: scroll;
-}
+    > .table {
 
-.data_tracking__div > .paragraph {
-	padding: 0.5rem 0;
-}
 
-.data_tracking__scroll {
-	height: 2rem;
+        > .table__element {
+
+            colgroup {
+                .table__column--timestamp {
+                    width: 20%;
+                }
+
+                .table__column--log-summary {
+                    width: 70%;
+                }
+            }
+
+            > .table-header {
+
+                .table-header-cell {
+                    &:last-child {
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
 }
