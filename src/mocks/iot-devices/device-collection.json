@@ -1,41 +1,105 @@
 [
     {
-        "deviceId": "a1",
-        "statusCode": 101,
-        "firmwareVersion": "1.3.0",
-        "location": {
-            "lat": 20.5244,
-            "lng": -99.8956,
-            "zone": "assembly",
-            "line": "3",
-            "station": "welding robot"
+        "metadata": {
+            "device_id": "a001",
+            "timestamp": "2026-03-30T08:12:45Z",
+            "firmware_version": "1.3.0",
+            "location": {
+                "lat": 20.5244,
+                "lng": -99.8956,
+                "zone": "assembly",
+                "line": "1",
+                "station": "welding robot"
+            }
         },
-        "timestamp": "2025-10-30T18:00:00Z"
+        "connection": {
+            "state": "online",
+            "reason": "boot"
+        }
     },
     {
-        "deviceId": "a2",
-        "statusCode": 101,
-        "firmwareVersion": "1.3.0",
-        "location": {
-            "lat": 20.5244,
-            "lng": -99.8956,
-            "zone": "assembly",
-            "line": "3",
-            "station": "welding robot"
+        "metadata": {
+            "device_id": "a002",
+            "timestamp": "2026-03-30T08:15:02Z",
+            "firmware_version": "1.3.0",
+            "location": {
+                "lat": 20.5251,
+                "lng": -99.8961,
+                "zone": "assembly",
+                "line": "1",
+                "station": "conveyor belt"
+            }
         },
-        "timestamp": "2025-10-30T18:00:00Z"
+        "connection": {
+            "state": "online",
+            "reason": "restart"
+        }
     },
     {
-        "deviceId": "a3",
-        "statusCode": 101,
-        "firmwareVersion": "1.3.0",
-        "location": {
-            "lat": 20.5244,
-            "lng": -99.8956,
-            "zone": "assembly",
-            "line": "3",
-            "station": "welding robot"
+        "metadata": {
+            "device_id": "b001",
+            "timestamp": "2026-03-30T07:58:33Z",
+            "firmware_version": "1.2.5",
+            "location": {
+                "lat": 20.5238,
+                "lng": -99.8970,
+                "zone": "packaging",
+                "line": "2",
+                "station": "label printer"
+            }
         },
-        "timestamp": "2025-10-30T18:00:00Z"
+        "connection": {
+            "state": "degraded",
+            "reason": "maintenance"
+        }
+    },
+    {
+        "metadata": {
+            "device_id": "b002",
+            "timestamp": "2026-03-30T06:44:11Z",
+            "firmware_version": "1.2.5",
+            "location": {
+                "lat": 20.5230,
+                "lng": -99.8975,
+                "zone": "packaging",
+                "line": "2",
+                "station": "shrink wrap"
+            }
+        },
+        "alerts": [
+            "overheating",
+            "low_battery"
+        ]
+    },
+    {
+        "metadata": {
+            "device_id": "c001",
+            "timestamp": "2026-03-30T08:20:00Z",
+            "firmware_version": "1.4.1",
+            "location": {
+                "lat": 20.5260,
+                "lng": -99.8948,
+                "zone": "quality-control",
+                "line": "3",
+                "station": "inspection camera"
+            }
+        },
+        "connection": {
+            "state": "online",
+            "reason": "boot"
+        }
+    },
+    {
+        "metadata": {
+            "device_id": "d550",
+            "timestamp": "2026-03-30T08:20:00Z"
+        },
+        "data": {
+            "status_code": 205,
+            "sensor_readings": {
+                "humidity": 25,
+                "temperature": 22
+            }
+        }
     }
 ]
