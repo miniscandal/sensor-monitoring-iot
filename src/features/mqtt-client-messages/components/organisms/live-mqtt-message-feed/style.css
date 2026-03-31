@@ -2,28 +2,46 @@
 
     > .table {
 
-
         > .table__element {
 
             .table-colgroup {
+
                 .table__column--timestamp {
                     width: 20%;
                 }
 
-                .table__column--status-code {
-                    width: 15%;
+                .table__column--device-id {
+                    width: 10%;
+                }
+
+                .table__column--status {
+                    width: 10%;
                 }
 
                 .table__column--message-summary {
-                    width: 65%;
+                    width: 60%;
                 }
             }
 
             > .table-header {
 
                 .table-header-cell {
+
                     &:last-child {
                         text-align: left;
+                    }
+                }
+            }
+
+            > .table-body {
+
+                > .table-row {
+
+                    > .table-cell {
+
+                        &:last-child {
+                            text-align: left;
+                        }
                     }
                 }
             }

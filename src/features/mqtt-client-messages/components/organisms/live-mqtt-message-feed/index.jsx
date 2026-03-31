@@ -3,59 +3,27 @@
 import { Table } from '../../molecules/table';
 import { TableColgroup } from '../../molecules/table-colgroup';
 
-import messages from '.././../../mocks/messages-device-hub.json';
+import { flatStringify } from '@features/mqtt-client-messages/utils/flat-stringify';
+import { parseMessage } from '@features/mqtt-client-messages/utils/parse-message';
+import { extractStatus } from '@features/mqtt-client-messages/utils/extract-status';
+
+import { HEADERS, COLUMNS } from '@features/mqtt-client-messages/constants/feed-table';
+
+import messages from '@mocks/iot-devices/device-collection.json';
 
 import './style.css';
 
 
-
 function LiveMqttMessageFeed() {
-    // const messages = useMqttClientMessages();
-    // const data = messages.map(message => JSON.stringify(message));
-
-    const headers = [
-        'timestamp',
-        'status_code',
-        'message_summary',
-    ];
-
-    const rows = [...messages, ...messages, ...messages].map((message, index) => {
-        const { metadata: { timestamp } } = message;
-
-
-        return {
-            key: `${timestamp}-${index}`,
-            cells: [
-                timestamp,
-                message.data.statusCode,
-                message.data.logSummary,
-            ],
-        };
-    });
-
-    const columns = [
-        {
-            span: 1,
-            class: 'table__column--timestamp',
-
-        },
-        {
-            span: 1,
-            class: 'table__column--status-code',
-
-        },
-        {
-            span: 1,
-            class: 'table__column--message-summary',
-
-        },
-    ];
+    const rows = [...messages, ...messages, ...messages].map((
+        (message, index) => parseMessage(message, index, { extractStatus, flatStringify })
+    ));
 
 
     return (
         <section class="live-mqtt-message-feed">
-            <Table headers={headers} rows={rows}>
-                <TableColgroup columns={columns} />
+            <Table headers={HEADERS} rows={rows}>
+                <TableColgroup columns={COLUMNS} />
             </Table>
         </section>
     );
