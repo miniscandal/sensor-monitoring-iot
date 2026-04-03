@@ -1,0 +1,12 @@
+.json-renderer {
+    font-family: monospace;
+    white-space: pre;
+
+    /* tokens de color — edita solo aquí */
+    --json-key: #d14;
+    --json-string: #1a7;
+    --json-number: #268;
+    --json-boolean: #b36;
+    --json-null: #999;
+    --json-punctuation: #555;
+}
