@@ -1,6 +1,6 @@
 import { OBSERVER_ENTITY_TOPICS } from '@core-constants/observer-entities';
 
-import { IOT_DEVICE_OPERATION_CONNECT } from '@features/iot-devices-operations/constants/operations-code';
+import { IOT_DEVICE_OPERATION_CONNECT } from '@shared-constants/operations-code';
 
 
 function OnTopicDeviceHubMonitorSubscribedObserver() {
