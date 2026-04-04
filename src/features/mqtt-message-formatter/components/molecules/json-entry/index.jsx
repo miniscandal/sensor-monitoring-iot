@@ -1,7 +1,12 @@
-import { INDENT } from '@features/mqtt-message-formatter/constants/formatter';
 import { JsonKey } from '../../atoms/json-key';
 import { JsonPunctuation } from '../../atoms/json-punctuation';
+
 import { JsonValue } from '../json-value';
+
+import { INDENT } from '@features/mqtt-message-formatter/constants/formatter';
+
+import './style.css';
+
 
 function JsonEntry({ name, value, level, isLast }) {
     const pad = ' '.repeat((level + 1) * INDENT);
