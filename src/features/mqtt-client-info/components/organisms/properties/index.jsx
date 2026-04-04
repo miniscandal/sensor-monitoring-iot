@@ -3,14 +3,14 @@
  * 
  */
 
-import { useMqttClientProperties } from '@features/mqtt-client-status/hooks/use-properties';
+import { useMqttClientProperties } from '@features/mqtt-client-info/hooks/use-properties';
 
 import { IconStat } from '@shared-components/molecules/icon-stat';
 
 import './style.css';
 
 
-function MqttClientPropertiesPanel() {
+function PropertiesOrganism() {
     const { connected, ...properties } = useMqttClientProperties();
 
     const propertyDefinitions = [
@@ -53,4 +53,4 @@ function MqttClientPropertiesPanel() {
     );
 }
 
-export { MqttClientPropertiesPanel };
+export { PropertiesOrganism };
