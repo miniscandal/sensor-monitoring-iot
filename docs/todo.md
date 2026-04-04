@@ -10,6 +10,7 @@
 ✰ Remove unnecessary intermediate constants
 ✰ Optimize CSS variable value patterns by using a base unit for padding, margin, gap, etc.
 ✰ Improve… (last item to be completed)
+✰ Use EnvironmentalNodesProvider provider in pages component
 <!--
 /** ************************************************************************ **/
 

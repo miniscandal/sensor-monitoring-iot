@@ -16,7 +16,7 @@ import { MqttClientPublishesPage } from '@features/mqtt-client-publishes/compone
 import { OnTopicDeviceHubMonitorSubscribedObserver } from '@features/mqtt-client-operations/observers/topic-device-hub-monitor-subscribed';
 import { EnvironmentalNodesPage } from '@features/environmental-nodes/components/pages/environmental-nodes';
 import { OnMqttClientConnectedObserver } from '@features/mqtt-client-subscriptions/observers/connected';
-import { LiveDataFeed } from '@features/mqtt-client-messages/components/templates/live-data-feed';
+import { EnvironmentalNodeMessagesPage } from '@features/environmental-node-messages/components/page/environmental-node-messages';
 import { JsonRenderer } from '@features/mqtt-message-formatter/components/templates/json-renderer';
 
 import { Header } from '@shared-components/organisms/header';
@@ -44,7 +44,7 @@ export function App() {
                 <MqttClientSubscriptionsPage />
                 <MqttClientPublishesPage />
                 <EnvironmentalNodesPage />
-                <LiveDataFeed />
+                <EnvironmentalNodeMessagesPage />
                 <JsonRenderer />
             </main>
         </>
