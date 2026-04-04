@@ -4,12 +4,12 @@ import { SubscribedTopicsDetails } from '../../organisms/subscribed-topics-detai
 import './style.css';
 
 
-function SubscribedTopics() {
+function SubscribedTopics({ topics }) {
 
     return (
         <article class="subscribed-topics">
-            <SubscribedTopicsCount />
-            <SubscribedTopicsDetails />
+            <SubscribedTopicsCount topicsLength={topics.length} />
+            <SubscribedTopicsDetails topics={topics} />
         </article>
     );
 }

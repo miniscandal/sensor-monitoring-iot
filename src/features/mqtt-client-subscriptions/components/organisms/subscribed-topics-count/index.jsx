@@ -1,16 +1,12 @@
-import { useMqttClientTopicSubscriptions } from '@features/mqtt-client-subscriptions/hooks/use-topic-subscriptions';
-
 import { IconStat } from '@shared-components/molecules/icon-stat';
 
 import './style.css';
 
 
-function SubscribedTopicsCount() {
-    const topics = useMqttClientTopicSubscriptions();
-
+function SubscribedTopicsCount({ topicsLength }) {
     const iconStat = {
         label: 'Subscription Topics',
-        value: `Active (${topics.length})`,
+        value: `Active (${topicsLength})`,
         svgIconName: 'topicSubscribe',
     };
 

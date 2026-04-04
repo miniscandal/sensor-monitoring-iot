@@ -1,14 +1,10 @@
-import { useMqttClientTopicSubscriptions } from '@features/mqtt-client-subscriptions/hooks/use-topic-subscriptions';
-
 import { Details } from '@shared-components/organisms/details';
 import { TopicsList } from '@shared-components/molecules/topics-list';
 
 import './style.css';
 
 
-function SubscribedTopicsDetails() {
-    const topics = useMqttClientTopicSubscriptions();
-
+function SubscribedTopicsDetails({ topics }) {
 
     return (
         <div class="subscribed-topics-details">
