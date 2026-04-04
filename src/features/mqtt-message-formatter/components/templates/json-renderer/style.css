@@ -1,12 +1,25 @@
 .json-renderer {
-    font-family: monospace;
-    white-space: pre;
+    --json-key: #268bd2;
+    --json-string: #2aa198;
+    --json-number: #d33682;
+    --json-boolean: #859900;
+    --json-null: #93a1a1;
+    --json-punctuation: #586e75;
+    --json-text: #657b83;
 
-    /* tokens de color — edita solo aquí */
-    --json-key: #d14;
-    --json-string: #1a7;
-    --json-number: #268;
-    --json-boolean: #b36;
-    --json-null: #999;
-    --json-punctuation: #555;
+    width: min(100%, 65rem);
+    margin: 0 auto;
+    background: #fdf6e3;
+
+    @media (prefers-color-scheme: dark) {
+        --json-key: #e06c75;
+        --json-string: #98c379;
+        --json-number: #61afef;
+        --json-boolean: #c678dd;
+        --json-null: #5c6370;
+        --json-punctuation: #abb2bf;
+        --json-text: #dcdfe4;
+
+        background: #002b36;
+    }
 }
