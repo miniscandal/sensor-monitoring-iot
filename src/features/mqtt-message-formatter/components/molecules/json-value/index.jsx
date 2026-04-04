@@ -1,20 +1,13 @@
-import { JsonString } from '../../atoms/json-string';
-import { JsonNumber } from '../../atoms/json-number';
-import { JsonObject } from '../../organisms/json-object';
-import { JsonArray } from '../../organisms/json-array';
-import { JsonBoolean } from '../../atoms/json-boolean';
-import { JsonNull } from '../../atoms/json-null';
+import { TYPE_CHECKS } from './variants';
+
+import './style.css';
 
 
 function JsonValue({ value, level = 0 }) {
-    if (value === null) return <JsonNull />;
-    if (Array.isArray(value)) return <JsonArray items={value} level={level} />;
-    if (typeof value === 'object') return <JsonObject entries={Object.entries(value)} level={level} />;
-    if (typeof value === 'string') return <JsonString value={value} />;
-    if (typeof value === 'number') return <JsonNumber value={value} />;
-    if (typeof value === 'boolean') return <JsonBoolean value={value} />;
+    const handler = TYPE_CHECKS.find(({ match }) => match(value));
 
-    return null;
+
+    return handler?.render(value, level) ?? null;
 };
 
 export { JsonValue };
