@@ -1,7 +1,7 @@
-import { JsonPunctuation } from '../../atoms/json-punctuation';
-import { JsonEntry } from '../../molecules/json-entry';
+import { JsonPunctuation } from '@shared-components/atoms/json-punctuation';
+import { JsonEntry } from '@shared-components/molecules/json-entry';
 
-import { INDENT } from '@features/mqtt-message-formatter/constants/formatter';
+import { INDENT } from '@shared-constants/formatter';
 
 import './style.css';
 

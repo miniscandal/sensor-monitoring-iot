@@ -1,9 +1,9 @@
-import { JsonNull } from '../../atoms/json-null';
-import { JsonBoolean } from '../../atoms/json-boolean';
-import { JsonString } from '../../atoms/json-string';
-import { JsonNumber } from '../../atoms/json-number';
-import { JsonArray } from '../../organisms/json-array';
-import { JsonObject } from '../../organisms/json-object';
+import { JsonNull } from '@shared-components/atoms/json-null';
+import { JsonBoolean } from '@shared-components/atoms/json-boolean';
+import { JsonString } from '@shared-components/atoms/json-string';
+import { JsonNumber } from '@shared-components/atoms/json-number';
+import { JsonArray } from '@shared-components/organisms/json-array';
+import { JsonObject } from '@shared-components/organisms/json-object';
 
 
 const TYPE_CHECKS = [
