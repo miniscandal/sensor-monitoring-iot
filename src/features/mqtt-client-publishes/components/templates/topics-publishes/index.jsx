@@ -1,5 +1,5 @@
 import { TopicsPublishCount } from '../../organisms/topics-publish-count';
-import { TopicsPublishDetails } from '../../organisms/topics-publish-details';
+import { TopicsPublishExplorer } from '../../organisms/topics-publish-explorer';
 
 import './style.css';
 
@@ -9,7 +9,7 @@ function TopicsPublishes({ count, topics }) {
     return (
         <article class="topics-publishes">
             <TopicsPublishCount count={count} />
-            <TopicsPublishDetails topics={topics} />
+            <TopicsPublishExplorer topics={topics} />
         </article>
     );
 }

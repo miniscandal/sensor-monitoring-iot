@@ -1,5 +1,5 @@
 import { SubscribedTopicsCount } from '../../organisms/subscribed-topics-count';
-import { SubscribedTopicsDetails } from '../../organisms/subscribed-topics-details';
+import { SubscribedTopicsExplorer } from '../../organisms/subscribed-topics-explorer';
 
 import './style.css';
 
@@ -9,7 +9,7 @@ function SubscribedTopics({ topics }) {
     return (
         <article class="subscribed-topics">
             <SubscribedTopicsCount topicsLength={topics.length} />
-            <SubscribedTopicsDetails topics={topics} />
+            <SubscribedTopicsExplorer topics={topics} />
         </article>
     );
 }

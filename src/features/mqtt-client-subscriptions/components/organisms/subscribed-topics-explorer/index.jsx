@@ -4,10 +4,10 @@ import { TopicsList } from '@shared-components/molecules/topics-list';
 import './style.css';
 
 
-function SubscribedTopicsDetails({ topics }) {
+function SubscribedTopicsExplorer({ topics }) {
 
     return (
-        <div class="subscribed-topics-details">
+        <div class="subscribed-topics-explorer">
             <Details summary="Subscription Details">
                 <TopicsList topics={topics} emptyMessage="No subscribed topics" />
             </Details>
@@ -15,4 +15,4 @@ function SubscribedTopicsDetails({ topics }) {
     );
 }
 
-export { SubscribedTopicsDetails };
+export { SubscribedTopicsExplorer };
