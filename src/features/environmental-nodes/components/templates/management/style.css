@@ -1,8 +1,8 @@
-.device-management {
+.nodes-management {
     width: min(100%, 80rem);
     margin: 0 auto;
 
-    > .iot-device-count-panel {
+    > .connected-nodes-count {
         width: min(100%, 15rem);
         margin: auto;
         padding-bottom: var(--padding-organism);

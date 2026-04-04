@@ -9,7 +9,7 @@ import {
     DATA_ATTR_IOT_DEVICE_ACTION_TERMINAL,
     DATA_ATTR_IOT_DEVICE_ACTION_STREAMING_DATA,
     DATA_ATTR_IOT_DEVICE_ACTION_ANALYTICS,
-} from '@features/iot-devices-operations/constants/iot-device-actions';
+} from '@features/environmental-nodes/constants/iot-device-actions';
 
 import './style.css';
 

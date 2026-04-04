@@ -10,7 +10,7 @@ import { useContext } from 'preact/hooks';
 
 import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
 
-import { IoTDevicesContext } from '@shared-contexts/iot-devices-provider';
+import { EnvironmentalNodesContext } from '@shared-contexts/environmental-nodes-provider';
 
 import {
     OBSERVER_ENTITY_MQTT_EVENTS,
@@ -28,7 +28,7 @@ import {
 
 
 function useDeviceHubPresence() {
-    const { setDeviceStatusMap } = useContext(IoTDevicesContext);
+    const { setDeviceStatusMap } = useContext(EnvironmentalNodesContext);
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_MQTT_EVENTS,

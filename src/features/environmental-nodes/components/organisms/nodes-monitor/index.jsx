@@ -7,21 +7,21 @@ import { useState, useContext } from 'preact/hooks';
 
 import { IoTDeviceCard } from '../iot-device-card';
 
-import { useDeviceHubPresence } from '@features/iot-devices-operations/hooks/use-session-lifecycle';
+import { useDeviceHubPresence } from '@features/environmental-nodes/hooks/use-session-lifecycle';
 import { useIoTDeviceStreamingSensorData } from '@shared-hooks/iot-devices/lifecycle/use-streaming-sensor-data';
 
-import { IoTDevicesContext } from '@shared-contexts/iot-devices-provider';
+import { EnvironmentalNodesContext } from '@shared-contexts/environmental-nodes-provider';
 
 import {
     DATA_ATTR_ACTION_SELECTOR,
     DATA_ATTR_DEVICE_ID_SELECTOR,
-} from '@features/iot-devices-operations/constants/selectors';
+} from '@features/environmental-nodes/constants/selectors';
 
 import './style.css';
 
 
-function IoTDeviceListPanel() {
-    const { deviceStatusMap } = useContext(IoTDevicesContext);
+function NodesMonitor() {
+    const { deviceStatusMap } = useContext(EnvironmentalNodesContext);
     const [selectedIoTDeviceId, setSelectedIoTDeviceId] = useState(null);
 
     useDeviceHubPresence();
@@ -81,10 +81,10 @@ function IoTDeviceListPanel() {
 
 
     return (
-        <ul class="iot-device-list-panel" onClick={handleClick}>
+        <ul class="nodes-monitor" onClick={handleClick}>
             {iotDeviceCardComponents}
         </ul>
     );
 }
 
-export { IoTDeviceListPanel };
+export { NodesMonitor };
