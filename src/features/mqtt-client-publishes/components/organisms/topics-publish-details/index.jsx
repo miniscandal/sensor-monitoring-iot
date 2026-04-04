@@ -1,7 +1,7 @@
 import { Details } from '@shared-components/organisms/details';
 import { TopicsList } from '@shared-components/molecules/topics-list';
 
-import { TOPICS_PUBLISHES } from '@features/mqtt-client-publishes/constants/Topics-publishes';
+import { TOPICS_PUBLISHES } from '@features/mqtt-client-publishes/constants/topics-publishes';
 
 import './style.css';
 

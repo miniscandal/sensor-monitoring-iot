@@ -1,6 +1,6 @@
 import { IconStat } from '@shared-components/molecules/icon-stat';
 
-import { TOPICS_PUBLISHES_COUNT } from '@features/mqtt-client-publishes/constants/Topics-publishes';
+import { TOPICS_PUBLISHES_COUNT } from '@features/mqtt-client-publishes/constants/topics-publishes';
 
 import './style.css';
 
