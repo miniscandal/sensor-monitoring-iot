@@ -1,11 +1,4 @@
 {
-    "anime": [
-        1,
-        2,
-        {
-            "anime": "nerdy"
-        }
-    ],
     "metadata": {
         "device_id": "a001",
         "timestamp": "2026-03-30T08:12:45Z",
