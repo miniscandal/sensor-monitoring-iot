@@ -1,13 +1,15 @@
 import { JsonValue } from '../../molecules/json-value';
 
+import raw from '@mocks/iot-devices/mqtt-messages/plain-text/connection.txt?raw';
+
 import './style.css';
 
 
-function JsonRenderer({ data }) {
+function JsonRenderer() {
 
     return (
         <pre className="json-renderer">
-            <JsonValue value={data} />
+            <JsonValue value={JSON.parse(raw)} />
         </pre>
     );
 }
