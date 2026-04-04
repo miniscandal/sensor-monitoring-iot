@@ -1,17 +1,24 @@
 import { MessagesTable } from '../../organisms/messages-table';
+
 import { JsonRenderer } from '@shared-components/organisms/json-renderer';
 
-import raw from '@mocks/iot-devices/mqtt-messages/plain-text/connection.txt?raw';
+import { flatStringify } from '@features/environmental-node-messages/utils/flat-stringify';
+import { parseMessage } from '@features/environmental-node-messages/utils/parse-message';
+import { extractStatus } from '@features/environmental-node-messages/utils/extract-status';
 
 import './style.css';
 
 
-function NodeMessagesMonitor() {
+function NodeMessagesMonitor({ messages }) {
+    const rows = messages.map((
+        (message, index) => parseMessage(message, index, { extractStatus, flatStringify })
+    ));
+
 
     return (
         <article class="node-messages-monitor">
-            <MessagesTable />
-            <JsonRenderer data={JSON.parse(raw)} />
+            <MessagesTable rows={rows} />
+            <JsonRenderer json={messages[0]} />
         </article>
     );
 }
