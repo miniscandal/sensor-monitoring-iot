@@ -5,7 +5,7 @@ import { IconStat } from '@shared-components/molecules/icon-stat';
 import './style.css';
 
 
-function TopicPublishes() {
+function TopicsPublishes() {
     const topics = [
         import.meta.env.VITE_TOPIC_HUB_OPERATION,
         import.meta.env.VITE_TOPIC_HUB_OPERATION_ALL,
@@ -18,11 +18,11 @@ function TopicPublishes() {
 
 
     return (
-        <article class="topic-publishes">
+        <article class="topics-publishes">
             <IconStat {...iconStat} />
             <PublishTopicsList topics={topics} />
         </article>
     );
 }
 
-export { TopicPublishes };
+export { TopicsPublishes };

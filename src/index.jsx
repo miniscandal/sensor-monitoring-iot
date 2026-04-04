@@ -10,13 +10,14 @@ import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
 
 import { MqttClientSingleton } from '@core-mqtt/client-singleton';
 
-import { MqttClientStatus } from '@features/mqtt-client-status/components/templates/status';
-import { TopicSubscription } from '@features/mqtt-client-subscriptions/components/templates/topic-subscription';
-import { TopicPublishes } from '@features/mqtt-client-publishes/components/templates/topic-publishes';
+import { MqttClientPage } from '@features/mqtt-client/components/pages/mqtt-client';
+import { MqttClientSubscriptionsPage } from '@features/mqtt-client-subscriptions/components/pages/mqtt-client-subscriptions';
+import { MqttClientPublishesPage } from '@features/mqtt-client-publishes/components/pages/mqtt-client-publishes';
 import { OnTopicDeviceHubMonitorSubscribedObserver } from '@features/mqtt-client-operations/observers/topic-device-hub-monitor-subscribed';
 import { DeviceManagement } from '@features/iot-devices-operations/components/templates/management';
 import { OnMqttClientConnectedObserver } from '@features/mqtt-client-subscriptions/observers/connected';
 import { LiveDataFeed } from '@features/mqtt-client-messages/components/templates/live-data-feed';
+import { JsonRenderer } from '@features/mqtt-message-formatter/components/templates/json-renderer';
 
 import { Header } from '@shared-components/organisms/header';
 
@@ -39,13 +40,13 @@ export function App() {
         <>
             <Header />
             <main>
-                <MqttClientStatus />
-                <TopicSubscription />
-                <TopicPublishes />
+                <MqttClientPage />
+                <MqttClientSubscriptionsPage />
+                <MqttClientPublishesPage />
                 <DeviceManagement />
                 <LiveDataFeed />
+                <JsonRenderer />
             </main>
-            <footer></footer>
         </>
     );
 }

@@ -5,7 +5,7 @@ import { IconStat } from '@shared-components/molecules/icon-stat';
 import './style.css';
 
 
-function SubscribedTopicsPanel() {
+function SubscribedTopicsCount() {
     const topics = useMqttClientTopicSubscriptions();
 
     const iconStat = {
@@ -16,10 +16,10 @@ function SubscribedTopicsPanel() {
 
 
     return (
-        <section class="subscribe-topic-panel">
+        <section class="subscribed-topics-count">
             <IconStat {...iconStat} />
         </section>
     );
 }
 
-export { SubscribedTopicsPanel };
+export { SubscribedTopicsCount };
