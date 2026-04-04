@@ -4,12 +4,12 @@ import { TopicsPublishDetails } from '../../organisms/topics-publish-details';
 import './style.css';
 
 
-function TopicsPublishes() {
+function TopicsPublishes({ count, topics }) {
 
     return (
         <article class="topics-publishes">
-            <TopicsPublishCount />
-            <TopicsPublishDetails />
+            <TopicsPublishCount count={count} />
+            <TopicsPublishDetails topics={topics} />
         </article>
     );
 }
