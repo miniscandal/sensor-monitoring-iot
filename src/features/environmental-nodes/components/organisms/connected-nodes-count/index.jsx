@@ -3,20 +3,16 @@
  *
  */
 
-import { useIoTDeviceSessionCount } from '@features/environmental-nodes/hooks/use-session-count';
-
 import { IconStat } from '@shared-components/molecules/icon-stat';
 
 import './style.css';
 
 
-function ConnectedNodesCount() {
-    const sessionCount = useIoTDeviceSessionCount();
-
+function ConnectedNodesCount({ count }) {
 
     return (
         <section class="connected-nodes-count">
-            <IconStat label="Devices:" value={sessionCount} svgIconName="iotDevice" />
+            <IconStat label="Devices:" value={count} svgIconName="iotDevice" />
         </section>
     );
 }
