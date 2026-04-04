@@ -2,11 +2,12 @@ import { createContext } from 'preact';
 import { useState } from 'preact/hooks';
 
 
-const IoTDevicesContext = createContext({
+const EnvironmentalNodesContext = createContext({
     deviceStatusMap: new Map(),
 });
 
-function IoTDevicesProvider({ children }) {
+
+function EnvironmentalNodesProvider({ children }) {
     const [deviceStatusMap, setDeviceStatusMap] = useState(new Map());
 
     const value = {
@@ -16,10 +17,10 @@ function IoTDevicesProvider({ children }) {
 
 
     return (
-        <IoTDevicesContext.Provider value={value}>
+        <EnvironmentalNodesContext.Provider value={value}>
             {children}
-        </IoTDevicesContext.Provider>
+        </EnvironmentalNodesContext.Provider>
     );
 }
 
-export { IoTDevicesContext, IoTDevicesProvider };
+export { EnvironmentalNodesContext, EnvironmentalNodesProvider };
