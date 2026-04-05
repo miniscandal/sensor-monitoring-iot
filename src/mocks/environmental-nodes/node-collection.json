@@ -1,7 +1,7 @@
 [
     {
         "metadata": {
-            "device_id": "a001",
+            "node_id": "a001",
             "timestamp": "2026-03-30T08:12:45Z",
             "firmware_version": "1.3.0",
             "location": {
@@ -19,7 +19,7 @@
     },
     {
         "metadata": {
-            "device_id": "a002",
+            "node_id": "a002",
             "timestamp": "2026-03-30T08:15:02Z",
             "firmware_version": "1.3.0",
             "location": {
@@ -37,7 +37,7 @@
     },
     {
         "metadata": {
-            "device_id": "b001",
+            "node_id": "b001",
             "timestamp": "2026-03-30T07:58:33Z",
             "firmware_version": "1.2.5",
             "location": {
@@ -55,7 +55,7 @@
     },
     {
         "metadata": {
-            "device_id": "b002",
+            "node_id": "b002",
             "timestamp": "2026-03-30T06:44:11Z",
             "firmware_version": "1.2.5",
             "location": {
@@ -73,7 +73,7 @@
     },
     {
         "metadata": {
-            "device_id": "c001",
+            "node_id": "c001",
             "timestamp": "2026-03-30T08:20:00Z",
             "firmware_version": "1.4.1",
             "location": {
@@ -91,7 +91,7 @@
     },
     {
         "metadata": {
-            "device_id": "d550",
+            "node_id": "d550",
             "timestamp": "2026-03-30T08:20:00Z"
         },
         "data": {
