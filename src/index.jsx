@@ -13,7 +13,7 @@ import { MqttClientSingleton } from '@core-mqtt/client-singleton';
 import { MqttClientPage } from '@features/mqtt-client/components/pages/mqtt-client';
 import { MqttClientSubscriptionsPage } from '@features/mqtt-client-subscriptions/components/pages/mqtt-client-subscriptions';
 import { MqttClientPublishesPage } from '@features/mqtt-client-publishes/components/pages/mqtt-client-publishes';
-import { OnTopicDeviceHubMonitorSubscribedObserver } from '@features/mqtt-client-operations/observers/topic-device-hub-monitor-subscribed';
+import { SubscribedEnvironmentalNodeStatusTopicObserver } from '@features/mqtt-client-operations/observers/topics/environmental-node-status';
 import { EnvironmentalNodesPage } from '@features/environmental-nodes/components/pages/environmental-nodes';
 import { OnMqttClientConnectedObserver } from '@features/mqtt-client-subscriptions/observers/connected';
 import { EnvironmentalNodeMessagesPage } from '@features/environmental-node-messages/components/page/environmental-node-messages';
@@ -32,7 +32,7 @@ export function App() {
     }, []);
 
     useMqttClientEvents(OnMqttClientConnectedObserver());
-    useMqttClientEvents(OnTopicDeviceHubMonitorSubscribedObserver());
+    useMqttClientEvents(SubscribedEnvironmentalNodeStatusTopicObserver());
 
 
     return (

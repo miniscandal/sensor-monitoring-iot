@@ -4,9 +4,11 @@ Desarrollo de una plataforma web para el monitoreo en tiempo real de publicacion
 utilizando el protocolo MQTT, las cuales representan el estado actual y los parámetros  
 de diversos dispositivos de detección.
 
-<img src="./docs/pictures/web-capture.png" width="540">
+<!-- markdownlint-disable-next-line MD033 -->
+ <img src="./docs/pictures/web-capture.png" width="540" alt="capture">
 
 ## Recomendación importante
+
 ≧◠‿◠≦
 
 La transmisión de información, sin importar el medio empleado, debe asegurar  
@@ -17,8 +19,8 @@ Es importante destacar que este proyecto ha sido creado únicamente con
 fines de prueba y experimentación. Por lo tanto, se recomienda no utilizarlo en  
 un entorno de producción sin realizar las adecuaciones de seguridad necesarias.
 
-
 ## Configuración de desarrollo
+
 ≧◠‿◠≦
 
 ### Requisitos previos
@@ -27,25 +29,25 @@ un entorno de producción sin realizar las adecuaciones de seguridad necesarias.
 * Tener instalado [Node.js](https://nodejs.org/en) en tu sistema que incluye [NPM](https://www.npmjs.com/)
 * Tener instalado [Mosquitto](https://https://mosquitto.org//) en tu sistema
 * Configurar un Broker para administrar los procesos MQTT
-   * Crea un archivo de configuración mosquitto.conf en un directorio de tu  
-   elección con estos parametros.
+<!-- * Crea un archivo de configuración mosquitto.conf en un directorio de tu elección con estas reglas. -->
 
-      ```ini
-      listener 1883
-      protocol  mqtt
+```ini
+listener 1883
+protocol  mqtt
 
-      listener 8080
-      protocol websockets
+listener 8080
+protocol websockets
 
-      allow_anonymous true
-      ```
+allow_anonymous true
+```
 
-   * Desde la terminal navega al directorio de instalación de mosquitto y luego  
+* Desde la terminal navega al directorio de instalación de mosquitto y luego  
    ejecuta el comando del broker usando la ruta del archivo mosquitto.conf
 
-      ```bash
-      ./mosquitto.exe -c <ruta_al_archivo_de_configuracion> -v
-      ```
+```bash
+    ./mosquitto.exe -c <ruta_al_archivo_conf> -v
+```
+
 * Este proyecto se integra con este otro proyecto complementario.
 [device-sensor-emulator](https://github.com/miniscandal/device-sensor-emulator)
 
@@ -53,29 +55,26 @@ un entorno de producción sin realizar las adecuaciones de seguridad necesarias.
 
 #### Clonar repositorio
 
-```
+```bash
 git clone https://github.com/miniscandal/sensor-monitoring-iot.git
 cd .\sensor-monitoring-iot\
 ```
 
-
 #### Instalar módulos requeridos
 
-```
+```bash
 npm install
 ```
 
 #### Iniciar servidor
 
+```bash
+    npm run dev
 ```
-npm run dev
-```
 
+## Documentación
 
-
-## Documentación 
  ≧◠‿◠≦
-
 
 ### Tecnologías utilizadas
 
@@ -90,15 +89,12 @@ npm run dev
 ![IoT](https://img.shields.io/badge/IoT-%230ba5be.svg?style=for-the-badge)
 ![Mosquitto](https://img.shields.io/badge/Mosquitto-%233C5280.svg?style=for-the-badge)
 
-
 ### Referencias
 
 * [Preact](https://preactjs.com/)
 * [Vite](https://vitejs.dev/)
-* [Mosquitto](https://mosquitto.org/) 
+* [Mosquitto](https://mosquitto.org/)
 * [MQTT.js](https://github.com/mqttjs/MQTT.js/)
-
-
 
 ## Reflexiones y aprendizajes
 
@@ -111,16 +107,15 @@ especialización en IoT.
 
 En el proceso de desarrollo de esta aplicación web, mejoré mis habilidades y utilicé  
 el diseño atómico para generar componentes reutilizables, lo que resultó en un  
-proyecto más mantenible y escalable. Realicé mejoras significativas en la  
+proyecto más robusto y escalable. Realicé mejoras significativas en la  
 estructura, lógica y funcionalidades, lo que simplificó la navegación y comprensión  
 del código.
 
+## Créditos
 
-## Creditos
 ≧◠‿◠≦
 
-
-#### Recursos de código abierto
+### Recursos de código abierto
 
 * [Mosquitto](https://mosquitto.org/)  
   Broker de mensajes que implementa el protocolo MQTT.
@@ -129,7 +124,6 @@ del código.
 
 Agradecimiento a los autores de estas bibliotecas por su trabajo y contribución  
 para la comunidad de software libre.
-
 
 ## Licencia
 
