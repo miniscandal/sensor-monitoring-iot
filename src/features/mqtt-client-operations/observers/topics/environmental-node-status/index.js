@@ -1,9 +1,14 @@
+/**
+ * Observer triggered when subscribing to the environmental node status topic.
+ * Publishes a connect operation to all environmental hub nodes.
+ */
+
 import { OBSERVER_ENTITY_TOPICS } from '@core-constants/observer-entities';
 
-import { IOT_DEVICE_OPERATION_CONNECT } from '@shared-constants/operations-code';
+import { NODE_OPERATION_CONNECT } from '@shared-constants/operations-code';
 
 
-function OnTopicDeviceHubMonitorSubscribedObserver() {
+function SubscribedEnvironmentalNodeStatusTopicObserver() {
 
     return {
         entity: OBSERVER_ENTITY_TOPICS,
@@ -14,11 +19,11 @@ function OnTopicDeviceHubMonitorSubscribedObserver() {
             publish({
                 topic: import.meta.env.VITE_TOPIC_HUB_OPERATION_ALL,
                 data: {
-                    code: IOT_DEVICE_OPERATION_CONNECT,
+                    code: NODE_OPERATION_CONNECT,
                 },
             });
         },
     };
 }
 
-export { OnTopicDeviceHubMonitorSubscribedObserver };
+export { SubscribedEnvironmentalNodeStatusTopicObserver };
