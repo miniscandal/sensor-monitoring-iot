@@ -1,18 +1,22 @@
 import { createContext } from 'preact';
 import { useState } from 'preact/hooks';
 
+import nodeMocks from '@mocks/environmental-nodes/node-collection.json';
+import { deepCamel } from '@shared-utils/deep-camel';
+
+
+const mocks = nodeMocks.map(deepCamel).map(node => [node.metadata.nodeId, node]);
 
 const EnvironmentalNodesContext = createContext({
-    deviceStatusMap: new Map(),
+    nodes: new Map(),
 });
 
 
 function EnvironmentalNodesProvider({ children }) {
-    const [deviceStatusMap, setDeviceStatusMap] = useState(new Map());
-
+    const [nodes, setNodes] = useState(new Map(mocks));
     const value = {
-        deviceStatusMap,
-        setDeviceStatusMap,
+        nodes,
+        setNodes,
     };
 
 

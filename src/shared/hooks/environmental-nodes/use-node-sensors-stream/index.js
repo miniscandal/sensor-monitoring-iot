@@ -7,16 +7,16 @@ import { EnvironmentalNodesContext } from '@shared-contexts/environmental-nodes-
 
 import { OBSERVER_ENTITY_STATUS_CODES } from '@core-constants/observer-entities';
 
-import { IOT_DEVICE_STATUS_STREAMING_SENSOR_DATA } from '@shared-constants/iot-device-status-codes';
+import { NODE_STATUS_STREAMING_SENSOR_DATA } from '@shared-constants/node-status-codes';
 
 
-function useIoTDeviceStreamingSensorData() {
+function useNodeSensorsStream() {
     const { setDeviceStatusMap } = useContext(EnvironmentalNodesContext);
 
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_STATUS_CODES,
-        id: IOT_DEVICE_STATUS_STREAMING_SENSOR_DATA,
+        id: NODE_STATUS_STREAMING_SENSOR_DATA,
         listener: ({ data }) => {
             const { deviceId, message } = data;
             const { statusCode, ...readings } = message;
@@ -54,4 +54,4 @@ function useIoTDeviceStreamingSensorData() {
     });
 }
 
-export { useIoTDeviceStreamingSensorData };
+export { useNodeSensorsStream };
