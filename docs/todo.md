@@ -1,10 +1,11 @@
 # TODO
 
 ✰ Implement Guard Clauses across all MQTT observers to prevent errors from null or undefined messages (e.g., if (!message) return;).
-✰ Rename the OnTopicDeviceHubMonitorSubscribedObserver function to enhance semantic clarity
 ✰ Rename and redefine semantic CSS class and variables for better readability and improve BEM methodology
 ✰ Optimize CSS variable value patterns by using a base unit for padding, margin, gap, etc.
 ✰ Remove unnecessary intermediate constants
+✰ Rename environment variables
+✰ Use constant for environment variables
 
 <!--
 /** ************************************************************************ **/

@@ -27,7 +27,7 @@ Esta fase ocurre típicamente una sola vez en la vida útil del dispositivo. El 
 
 | Orden | Código | Constante | Interacción con el Dashboard |
 | :---: | :--- | :--- | :--- |
-| **1.** | (Nuevo) | **`IOT_DEVICE_STATUS_INIT`** | El dispositivo se enciende por primera vez. Envía su ID al servidor. |
+| **1.** | (Nuevo) | **`NODE_STATUS_INIT`** | El dispositivo se enciende por primera vez. Envía su ID al servidor. |
 | **2.** | 501 | **`NEWLY_REGISTERED`** | El servidor ha reconocido y creado el registro del dispositivo en la base de datos (DB). |
 | **3.** | 502 | **`CONFIGURING`** | El dashboard (o servicio de provisión) le envía la configuración inicial (claves, endpoints). |
 | **4.** | 503 | **`AUTHENTICATED_PERM`** | El dispositivo verifica y almacena las credenciales permanentes (claves/certificados). |

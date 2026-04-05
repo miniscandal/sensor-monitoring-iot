@@ -4,20 +4,20 @@ Each topic publishes an independent payload with its own frequency and purpose. 
 
 ## Metadata
 
-Present in every message. Contains device identity and context.
+Present in every message. Contains node identity and context.
 
 | Field               | Type   | Description                             |
 |---------------------|--------|-----------------------------------------|
-| `device_id`         | string | Unique device identifier                |
+| `node_id`           | string | Unique node identifier                  |
 | `timestamp`         | string | ISO 8601 with timezone                  |
-| `firmware_version`  | string | Semantic version of the device firmware |
+| `firmware_version`  | string | Semantic version of the node firmware   |
 | `location.lat`      | number | Latitude                                |
 | `location.lng`      | number | Longitude                               |
 | `location.zone`     | string | Zone within the facility                |
 | `location.line`     | string | Production line                         |
 | `location.station`  | string | Station within the line                 |
 
-> `firmware_version` and `location` are only required in `/connection`. Other topics include only `device_id` and `timestamp`.
+> `firmware_version` and `location` are only required in `/connection`. Other topics include only `node_id` and `timestamp`.
 
 ---
 
@@ -25,12 +25,12 @@ Present in every message. Contains device identity and context.
 
 ### `/connection`
 
-Published when the device connects or disconnects. Describes the connection state of the device itself.
+Published when the node connects or disconnects. Describes the connection state of the node itself.
 
 ```json
 {
     "metadata": {
-        "device_id": "a001",
+        "node_id": "a001",
         "timestamp": "2026-03-29T21:51:01Z",
         "firmware_version": "1.3.0",
         "location": {
@@ -54,7 +54,7 @@ Published when the device connects or disconnects. Describes the connection stat
 | `offline`           | `shutdown` `connection_lost` `power_off`              |
 | `degraded`          | `maintenance` `low_battery` `high_temp` `weak_signal` |
 
-> `state: offline` with `reason: connection_lost` is published automatically by the broker via LWT if the device disconnects unexpectedly.
+> `state: offline` with `reason: connection_lost` is published automatically by the broker via LWT if the node disconnects unexpectedly.
 
 ---
 
@@ -65,7 +65,7 @@ Published on every sensor reading.
 ```json
 {
     "metadata": {
-        "device_id": "a001",
+        "node_id": "a001",
         "timestamp": "2026-03-29T21:51:01Z"
     },
     "data": {
@@ -80,7 +80,7 @@ Published on every sensor reading.
 
 | Field                              | Type   | Description                                                    |
 |------------------------------------|--------|----------------------------------------------------------------|
-| `data.status_code`                 | number | Result code of the operation — not the device connection state |
+| `data.status_code`                 | number | Result code of the operation — not the node connection state   |
 | `data.sensor_readings.humidity`    | number | Relative humidity (%)                                          |
 | `data.sensor_readings.temperature` | number | Temperature (°C)                                               |
 
@@ -88,12 +88,12 @@ Published on every sensor reading.
 
 ### `/diagnostics`
 
-Published periodically, at a lower frequency than `/data`. Describes the health of the device hardware.
+Published periodically, at a lower frequency than `/data`. Describes the health of the node hardware.
 
 ```json
 {
     "metadata": {
-        "device_id": "a001",
+        "node_id": "a001",
         "timestamp": "2026-03-29T21:51:01Z"
     },
     "diagnostics": {
@@ -119,7 +119,7 @@ Published only when an alert condition changes. Do not publish if the state has 
 ```json
 {
     "metadata": {
-        "device_id": "a001",
+        "node_id": "a001",
         "timestamp": "2026-03-29T21:51:01Z"
     },
     "alerts": ["overheating", "low_battery"]
@@ -128,7 +128,7 @@ Published only when an alert condition changes. Do not publish if the state has 
 
 | Value         | Description                                       |
 |---------------|---------------------------------------------------|
-| `overheating` | Device temperature exceeded safe threshold        |
+| `overheating` | Node temperature exceeded safe threshold          |
 | `low_battery` | Battery level below minimum operational threshold |
 
 > Alert details such as severity, thresholds, and descriptions are resolved from the database by alert type.
@@ -138,23 +138,23 @@ Published only when an alert condition changes. Do not publish if the state has 
 ## Topic structure
 
 ```powershell
-{org}/{site}/{area}/{line}/{device}/{id}/{type}
+{org}/{site}/{area}/{line}/{node}/{id}/{type}
 
-acme/ind/planta-norte/linea-1/hub/a001/connection
-acme/ind/planta-norte/linea-1/hub/a001/data
-acme/ind/planta-norte/linea-1/hub/a001/diagnostics
-acme/ind/planta-norte/linea-1/hub/a001/alerts
+acme/ind/planta-norte/linea-1/node/a001/connection
+acme/ind/planta-norte/linea-1/node/a001/data
+acme/ind/planta-norte/linea-1/node/a001/diagnostics
+acme/ind/planta-norte/linea-1/node/a001/alerts
 ```
 
 ## Useful wildcard subscriptions
 
 ```powershell
-# Everything from one device
-acme/ind/planta-norte/linea-1/hub/a001/#
+# Everything from one node
+acme/ind/planta-norte/linea-1/node/a001/#
 
-# Alerts from all devices on a line
-acme/ind/planta-norte/linea-1/hub/+/alerts
+# Alerts from all nodes on a line
+acme/ind/planta-norte/linea-1/node/+/alerts
 
-# Data from all devices across all lines
-acme/ind/planta-norte/+/hub/+/data
+# Data from all nodes across all lines
+acme/ind/planta-norte/+/node/+/data
 ```
