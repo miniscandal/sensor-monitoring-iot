@@ -7,7 +7,6 @@ import './style.css';
 
 function MqttClientPublishesPage() {
 
-
     return (
         <TopicsPublishes count={PUBLISHES_TOPICS.length} topics={PUBLISHES_TOPICS} />
     );
