@@ -10,7 +10,7 @@ import {
 } from '@shared-constants/mqtt-client-events';
 
 
-function useMqttClientTopicSubscriptions() {
+function useSubscribedTopics() {
     const [topics, setTopics] = useState([]);
 
     useMqttClientEvents({
@@ -29,4 +29,4 @@ function useMqttClientTopicSubscriptions() {
     return topics;
 }
 
-export { useMqttClientTopicSubscriptions };
+export { useSubscribedTopics };
