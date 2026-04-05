@@ -1,13 +1,13 @@
 function parseMessage(message, index, { extractStatus, flatStringify }) {
     const { metadata, ...restMessage } = message;
-    const { timestamp, device_id: deviceId, ...restMetadata } = metadata;
+    const { timestamp, node: nodeId, ...restMetadata } = metadata;
 
 
     return {
         key: `${timestamp}-${index}`,
         cells: [
             timestamp,
-            deviceId,
+            nodeId,
             extractStatus(message),
             flatStringify({
                 ...(Object.keys(restMetadata).length ? { metadata: restMetadata } : {}),

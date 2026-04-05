@@ -1,6 +1,6 @@
 import { NodeMessagesMonitor } from '../../templates/node-messages-monitor';
 
-import messageCollection from '@mocks/iot-devices/device-collection.json';
+import messageCollection from '@mocks/environmental-nodes/node-collection.json';
 
 import './style.css';
 
