@@ -1,4 +1,4 @@
-import { useMqttClientTopicSubscriptions } from '@features/mqtt-client-subscriptions/hooks/use-topic-subscriptions';
+import { useSubscribedTopics } from '@features/mqtt-client-subscriptions/hooks/use-subscribed-topics';
 
 import { SubscribedTopics } from '../../templates/subscribed-topics';
 
@@ -6,7 +6,7 @@ import './style.css';
 
 
 function MqttClientSubscriptionsPage() {
-    const topics = useMqttClientTopicSubscriptions();
+    const topics = useSubscribedTopics();
 
 
     return (
