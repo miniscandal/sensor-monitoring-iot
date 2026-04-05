@@ -22,12 +22,12 @@ import {
 } from '@shared-constants/mqtt-client-events';
 
 import {
-    IOT_DEVICE_STATUS_LOGGED_IN,
-    IOT_DEVICE_STATUS_LOGGED_OUT,
-} from '@shared-constants/iot-device-status-codes';
+    NODE_STATUS_LOGGED_IN,
+    NODE_STATUS_LOGGED_OUT,
+} from '@shared-constants/node-status-codes';
 
 
-function useDeviceHubPresence() {
+function useNodePresence() {
     const { setDeviceStatusMap } = useContext(EnvironmentalNodesContext);
 
     useMqttClientEvents({
@@ -38,7 +38,7 @@ function useDeviceHubPresence() {
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_STATUS_CODES,
-        id: IOT_DEVICE_STATUS_LOGGED_IN,
+        id: NODE_STATUS_LOGGED_IN,
         listener: ({ data }) => {
             const { deviceId, message } = data;
 
@@ -60,7 +60,7 @@ function useDeviceHubPresence() {
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_STATUS_CODES,
-        id: IOT_DEVICE_STATUS_LOGGED_OUT,
+        id: NODE_STATUS_LOGGED_OUT,
         listener: ({ data }) => {
             const { deviceId } = data;
 
@@ -76,4 +76,4 @@ function useDeviceHubPresence() {
     });
 }
 
-export { useDeviceHubPresence };
+export { useNodePresence };

@@ -12,7 +12,7 @@ function ConnectedNodesCount({ count }) {
 
     return (
         <section class="connected-nodes-count">
-            <IconStat label="Devices:" value={count} svgIconName="iotDevice" />
+            <IconStat label="Nodes:" value={count} svgIconName="node" />
         </section>
     );
 }

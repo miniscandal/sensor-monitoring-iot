@@ -5,72 +5,76 @@
 
 import { useState, useContext } from 'preact/hooks';
 
-import { IoTDeviceCard } from '../iot-device-card';
+import { NodeCard } from '../node-card';
 
-import { useDeviceHubPresence } from '@features/environmental-nodes/hooks/use-session-lifecycle';
-import { useIoTDeviceStreamingSensorData } from '@shared-hooks/iot-devices/lifecycle/use-streaming-sensor-data';
+import { useNodePresence } from '@features/environmental-nodes/hooks/use-node-presence';
+import { useNodeSensorsStream } from '@shared-hooks/environmental-nodes/use-node-sensors-stream';
 
 import { EnvironmentalNodesContext } from '@shared-contexts/environmental-nodes-provider';
 
 import {
     DATA_ATTR_ACTION_SELECTOR,
-    DATA_ATTR_DEVICE_ID_SELECTOR,
+    DATA_ATTR_NODE_ID_SELECTOR,
 } from '@features/environmental-nodes/constants/selectors';
 
 import './style.css';
 
 
 function NodesMonitor() {
-    const { deviceStatusMap } = useContext(EnvironmentalNodesContext);
-    const [selectedIoTDeviceId, setSelectedIoTDeviceId] = useState(null);
+    const { nodes } = useContext(EnvironmentalNodesContext);
+    const [selectedNode, setSelectedNode] = useState(null);
 
-    useDeviceHubPresence();
-    useIoTDeviceStreamingSensorData();
+    useNodePresence();
+    useNodeSensorsStream();
 
-    const iotDeviceCardComponents = Array.from(deviceStatusMap.entries()).map(([key, iotDevice]) => (
-        <IoTDeviceCard
-            key={`${iotDevice.metadata.deviceId}-${key}`}
-            iotDeviceId={iotDevice.metadata.deviceId}
-            sensorReadings={iotDevice.metadata.sensorReadings}
-            selectionStatus={selectedIoTDeviceId === iotDevice.metadata.deviceId}
-            statusCode={iotDevice.statusCode}
-        />
-    ));
+    const nodeCards = Array.from(nodes.entries()).map(([key, node]) => {
+        const { metadata, data } = node;
+
+        return (
+            <NodeCard
+                key={`${metadata.nodeId}-${key}`}
+                nodeId={metadata.nodeId}
+                sensorReadings={metadata.sensorReadings}
+                selectionStatus={selectedNode === metadata.nodeId}
+                statusCode={data?.statusCode}
+            />
+        );
+    });
 
     const handleClick = (event) => {
-        const selectors = `${DATA_ATTR_ACTION_SELECTOR}, ${DATA_ATTR_DEVICE_ID_SELECTOR}`;
-        const closestElement = event.target.closest(selectors);
+        const selectors = `${DATA_ATTR_ACTION_SELECTOR}, ${DATA_ATTR_NODE_ID_SELECTOR}`;
+        const targetElement = event.target.closest(selectors);
 
-        if (!closestElement) {
+        if (!targetElement) {
 
             return;
         }
 
-        if (closestElement.matches(DATA_ATTR_DEVICE_ID_SELECTOR)) {
-            const isSameDevice = closestElement.dataset.deviceId === selectedIoTDeviceId;
+        if (targetElement.matches(DATA_ATTR_NODE_ID_SELECTOR)) {
+            const isSameNode = targetElement.dataset.nodeId === selectedNode;
 
-            setSelectedIoTDeviceId(isSameDevice ? null : closestElement.dataset.deviceId)
+            setSelectedNode(isSameNode ? null : targetElement.dataset.nodeId);
 
             return;
         }
 
         /*
     
-        At this point we know that closestElement corresponds to a <li data-action>
-        therefore we look up its parent [data-device-id] to associate the action with the device.
+        At this point we know that targetElement corresponds to a <li data-action>
+        therefore we look up its parent [data-node-id] to associate the action with the node.
     
         */
 
-        const iotDeviceElement = closestElement.closest(DATA_ATTR_DEVICE_ID_SELECTOR);
+        const nodeElement = targetElement.closest(DATA_ATTR_NODE_ID_SELECTOR);
 
-        if (iotDeviceElement.dataset.deviceId !== selectedIoTDeviceId) {
-            setSelectedIoTDeviceId(iotDeviceElement.dataset.deviceId);
+        if (nodeElement.dataset.nodeId !== selectedNode) {
+            setSelectedNode(nodeElement.dataset.nodeId);
 
 
             return;
         }
 
-        const action = closestElement.dataset.action;
+        const action = targetElement.dataset.action;
 
         console.log('action', action);
     };
@@ -78,7 +82,7 @@ function NodesMonitor() {
 
     return (
         <ul class="nodes-monitor" onClick={handleClick}>
-            {iotDeviceCardComponents}
+            {nodeCards}
         </ul>
     );
 }
