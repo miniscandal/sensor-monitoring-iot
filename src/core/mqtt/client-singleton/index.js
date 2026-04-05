@@ -72,7 +72,7 @@ class MqttClientSingleton {
         const parseMessage = JSON.parse(message.toString());
         const data = {
             topic,
-            deviceId: topic.split('/').at(-2),
+            nodeId: topic.split('/').at(-2),
             message: parseMessage,
         };
 
