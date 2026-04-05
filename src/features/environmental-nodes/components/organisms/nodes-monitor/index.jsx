@@ -29,18 +29,17 @@ function NodesMonitor() {
 
     const iotDeviceCardComponents = Array.from(deviceStatusMap.entries()).map(([key, iotDevice]) => (
         <IoTDeviceCard
-            key={`${iotDevice.deviceId}-${key}`}
-            iotDeviceId={iotDevice.deviceId}
-            sensorReadings={iotDevice.sensorReadings}
-            selectionStatus={selectedIoTDeviceId === iotDevice.deviceId}
+            key={`${iotDevice.metadata.deviceId}-${key}`}
+            iotDeviceId={iotDevice.metadata.deviceId}
+            sensorReadings={iotDevice.metadata.sensorReadings}
+            selectionStatus={selectedIoTDeviceId === iotDevice.metadata.deviceId}
             statusCode={iotDevice.statusCode}
         />
     ));
 
     const handleClick = (event) => {
-        const { target } = event;
-
-        const closestElement = target.closest(`${DATA_ATTR_ACTION_SELECTOR}, ${DATA_ATTR_DEVICE_ID_SELECTOR}`);
+        const selectors = `${DATA_ATTR_ACTION_SELECTOR}, ${DATA_ATTR_DEVICE_ID_SELECTOR}`;
+        const closestElement = event.target.closest(selectors);
 
         if (!closestElement) {
 
@@ -48,12 +47,9 @@ function NodesMonitor() {
         }
 
         if (closestElement.matches(DATA_ATTR_DEVICE_ID_SELECTOR)) {
-            if (closestElement.dataset.deviceId === selectedIoTDeviceId) {
-                setSelectedIoTDeviceId();
-            } else {
-                setSelectedIoTDeviceId(closestElement.dataset.deviceId);
-            }
+            const isSameDevice = closestElement.dataset.deviceId === selectedIoTDeviceId;
 
+            setSelectedIoTDeviceId(isSameDevice ? null : closestElement.dataset.deviceId)
 
             return;
         }
