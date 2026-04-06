@@ -1,5 +1,5 @@
 import { JsonPunctuation } from '@shared-components/atoms/json-punctuation';
-import { JsonValue } from '../json-value';
+import { JsonToken } from '../json-token';
 
 import { INDENT } from '@shared-constants/formatter';
 
@@ -13,7 +13,7 @@ function JsonArrayItem({ value, level, isLast }) {
     return (
         <span>
             {pad}
-            <JsonValue value={value} level={level + 1} />
+            <JsonToken token={value} level={level + 1} />
             {!isLast && <JsonPunctuation>,</JsonPunctuation>}
             {'\n'}
         </span>

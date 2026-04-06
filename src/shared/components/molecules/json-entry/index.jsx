@@ -1,7 +1,7 @@
 import { JsonKey } from '../../atoms/json-key';
 import { JsonPunctuation } from '../../atoms/json-punctuation';
 
-import { JsonValue } from '../json-value';
+import { JsonToken } from '../json-token';
 
 import { INDENT } from '@shared-constants/formatter';
 
@@ -17,7 +17,7 @@ function JsonEntry({ name, value, level, isLast }) {
             {pad}
             <JsonKey name={name} />
             <JsonPunctuation>{': '}</JsonPunctuation>
-            <JsonValue value={value} level={level + 1} />
+            <JsonToken token={value} level={level + 1} />
             {!isLast && <JsonPunctuation>,</JsonPunctuation>}
             {'\n'}
         </span>

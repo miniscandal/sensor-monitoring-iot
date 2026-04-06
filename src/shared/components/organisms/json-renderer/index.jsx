@@ -1,4 +1,4 @@
-import { JsonValue } from '@shared-components/molecules/json-value';
+import { JsonToken } from '@shared-components/molecules/json-token';
 
 import './style.css';
 
@@ -7,7 +7,7 @@ function JsonRenderer({ json }) {
 
     return (
         <pre className="json-renderer">
-            <JsonValue value={json} />
+            <JsonToken token={json} />
         </pre>
     );
 }
