@@ -11,40 +11,40 @@ import { NODE_STATUS_STREAMING_SENSOR_DATA } from '@shared-constants/node-status
 
 
 function useNodeSensorsStream() {
-    const { setDeviceStatusMap } = useContext(EnvironmentalNodesContext);
+    const { setNodes } = useContext(EnvironmentalNodesContext);
 
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_STATUS_CODES,
         id: NODE_STATUS_STREAMING_SENSOR_DATA,
         listener: ({ data }) => {
-            const { deviceId, message } = data;
+            const { nodeId, message } = data;
             const { statusCode, ...readings } = message;
 
 
-            setDeviceStatusMap(prevState => {
+            setNodes(prevState => {
                 const nextState = new Map(prevState);
-                const device = nextState.get(deviceId);
+                const node = nextState.get(nodeId);
 
-                if (!device) {
+                if (!node) {
 
                     return prevState;
                 }
 
                 const { temperature, humidity } = readings.sensorReadings;
 
-                if (device.sensorReadings) {
-                    device.sensorReadings.temperature.value = readings.sensorReadings.temperature;
-                    device.sensorReadings.humidity.value = readings.sensorReadings.humidity;
+                if (node.sensorReadings) {
+                    node.sensorReadings.temperature.value = readings.sensorReadings.temperature;
+                    node.sensorReadings.humidity.value = readings.sensorReadings.humidity;
 
-                    nextState.set(deviceId, { ...device, statusCode });
+                    nextState.set(nodeId, { ...node, statusCode });
                 } else {
                     const sensorReadings = {
                         temperature: signal(temperature),
                         humidity: signal(humidity),
                     };
 
-                    nextState.set(deviceId, { ...device, statusCode, sensorReadings });
+                    nextState.set(nodeId, { ...node, statusCode, sensorReadings });
                 }
 
 
