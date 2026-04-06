@@ -1,6 +1,6 @@
 import { useMqttClientProperties } from '@features/mqtt-client/hooks/use-properties';
 
-import { Information } from '../../templates/information';
+import { ClientDetails } from '../../templates/client-details';
 
 import './style.css';
 
@@ -10,7 +10,7 @@ function MqttClientPage() {
 
 
     return (
-        <Information connected={connected} properties={properties} />
+        <ClientDetails connected={connected} properties={properties} />
     );
 }
 

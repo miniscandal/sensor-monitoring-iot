@@ -3,13 +3,13 @@ import { Properties } from '../../organisms/properties';
 import './style.css';
 
 
-function Information({ connected, properties }) {
+function ClientDetails({ connected, properties }) {
 
     return (
-        <article class="information">
+        <article class="client-details">
             <Properties connected={connected} properties={properties} />
         </article>
     );
 }
 
-export { Information };
+export { ClientDetails };
