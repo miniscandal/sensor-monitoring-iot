@@ -1,4 +1,4 @@
-.iot-device-sensor-readings {
+.sensor-readings-panel {
     display: flex;
 
     > .metric-item {

@@ -1,6 +1,6 @@
 import { EnvironmentalNodesProvider } from '@shared-contexts/environmental-nodes-provider';
 
-import { useIoTDeviceSessionCount } from '@features/environmental-nodes/hooks/use-session-count';
+import { useConnectedNodesCount } from '@features/environmental-nodes/hooks/use-connected-nodes-count';
 
 import { NodesManagement } from '../../templates/management';
 
@@ -8,7 +8,7 @@ import './style.css';
 
 
 function EnvironmentalNodesPage() {
-    const count = useIoTDeviceSessionCount();
+    const count = useConnectedNodesCount();
 
 
     return (

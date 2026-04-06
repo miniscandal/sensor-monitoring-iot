@@ -1,6 +1,6 @@
-import { IoTDeviceControlPanel } from '../../molecules/control-panel';
-import { IoTDeviceDetails } from '../../molecules/details';
-import { IoTDeviceSensorReadings } from '../../molecules/sensor-readings';
+import { ActionsToolbar } from '../../molecules/actions-toolbar';
+import { IdentityInfoPanel } from '../../molecules/identity-info-panel';
+import { SensorReadingsPanel } from '../../molecules/sensor-readings-panel';
 
 import { SvgIcon } from '@shared-components/atoms/svg-icon';
 
@@ -49,13 +49,13 @@ function NodeCard({ nodeId = 'N/A', sensorReadings = {}, selectionStatus = false
             <header>
                 <SvgIcon name={dataTransmissionIcon} size="tiny" />
             </header>
-            <IoTDeviceDetails
-                iotDeviceId={nodeId} iotDeviceStatusCode={statusCode} svgIconName={svgIconName}
+            <IdentityInfoPanel
+                nodeId={nodeId} nodeStatusCode={statusCode} svgIconName={svgIconName}
             />
-            <IoTDeviceSensorReadings
-                humidityValue={humidity} temperatureValue={temperature} iotDeviceStatusCode={statusCode}
+            <SensorReadingsPanel
+                humidityValue={humidity} temperatureValue={temperature} nodeStatusCode={statusCode}
             />
-            <IoTDeviceControlPanel iotDeviceStatusCode={statusCode} selectionStatus={selectionStatus} />
+            <ActionsToolbar nodeStatusCode={statusCode} selectionStatus={selectionStatus} />
         </li>
     );
 }

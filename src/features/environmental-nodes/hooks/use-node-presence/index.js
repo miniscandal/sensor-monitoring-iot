@@ -28,29 +28,29 @@ import {
 
 
 function useNodePresence() {
-    const { setDeviceStatusMap } = useContext(EnvironmentalNodesContext);
+    const { setNode } = useContext(EnvironmentalNodesContext);
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_MQTT_EVENTS,
         id: MQTT_CLIENT_EVENT_OFFLINE,
-        listener: () => setDeviceStatusMap(new Map()),
+        listener: () => setNode(new Map()),
     });
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_STATUS_CODES,
         id: NODE_STATUS_LOGGED_IN,
         listener: ({ data }) => {
-            const { deviceId, message } = data;
+            const { nodeId, message } = data;
 
-            setDeviceStatusMap(prevState => {
-                if (prevState.has(deviceId)) {
+            setNode(prevState => {
+                if (prevState.has(nodeId)) {
 
                     return prevState;
                 };
 
                 const nextState = new Map(prevState);
 
-                nextState.set(deviceId, { ...message, deviceId });
+                nextState.set(nodeId, { ...message, nodeId });
 
 
                 return nextState;
@@ -62,12 +62,12 @@ function useNodePresence() {
         entity: OBSERVER_ENTITY_STATUS_CODES,
         id: NODE_STATUS_LOGGED_OUT,
         listener: ({ data }) => {
-            const { deviceId } = data;
+            const { nodeId } = data;
 
-            setDeviceStatusMap(prevState => {
+            setNode(prevState => {
                 const nextState = new Map(prevState);
 
-                nextState.delete(deviceId);
+                nextState.delete(nodeId);
 
 
                 return nextState;

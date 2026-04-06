@@ -14,18 +14,18 @@ import {
 import './style.css';
 
 
-function IoTDeviceControlPanel({ iotDeviceStatusCode, selectionStatus }) {
+function ActionsToolbar({ nodeStatusCode, selectionStatus }) {
     const svgIconName = {
         [NODE_STATUS_LOGGED_IN]: 'stopCircle',
         [NODE_STATUS_IDLE]: 'playCircle',
         [NODE_STATUS_STREAMING_SENSOR_DATA]: 'stopCircle',
-    }[iotDeviceStatusCode];
+    }[nodeStatusCode];
 
 
     return (
         <footer
-            class="iot-device-control-panel"
-            data-status-code={iotDeviceStatusCode}
+            class="actions-toolbar"
+            data-status-code={nodeStatusCode}
             data-selection-status={selectionStatus}
         >
             <ul>
@@ -43,4 +43,4 @@ function IoTDeviceControlPanel({ iotDeviceStatusCode, selectionStatus }) {
     );
 }
 
-export { IoTDeviceControlPanel };
+export { ActionsToolbar };

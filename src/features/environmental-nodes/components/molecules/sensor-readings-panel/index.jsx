@@ -3,10 +3,10 @@ import { MetricItem } from '../metric-item';
 import './style.css';
 
 
-function IoTDeviceSensorReadings({ humidityValue, temperatureValue, iotDeviceStatusCode }) {
+function SensorReadingsPanel({ humidityValue, temperatureValue, nodeStatusCode }) {
 
     return (
-        <section class="iot-device-sensor-readings" data-status-code={iotDeviceStatusCode}>
+        <section class="sensor-readings-panel" data-status-code={nodeStatusCode}>
             <MetricItem
                 svgIconName="humidity"
                 value={humidityValue}
@@ -21,4 +21,4 @@ function IoTDeviceSensorReadings({ humidityValue, temperatureValue, iotDeviceSta
     );
 }
 
-export { IoTDeviceSensorReadings };
+export { SensorReadingsPanel };

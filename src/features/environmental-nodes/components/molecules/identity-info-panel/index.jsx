@@ -4,17 +4,17 @@ import { SvgIcon } from '@shared-components/atoms/svg-icon';
 import './style.css';
 
 
-function IoTDeviceDetails({ iotDeviceId, iotDeviceStatusCode, svgIconName }) {
+function IdentityInfoPanel({ nodeId, nodeStatusCode, svgIconName }) {
 
     return (
-        <section class="iot-device-details" data-status-code={iotDeviceStatusCode}>
+        <section class="identity-info-panel" data-status-code={nodeStatusCode}>
             <SvgIcon name={svgIconName} size="regular" />
             <div>
-                <StatItem label="Device ID:" value={`\u00A0 ${iotDeviceId}`} />
+                <StatItem label="Node ID:" value={`\u00A0 ${nodeId}`} />
                 <SvgIcon name="qrCode" size="tiny" />
             </div>
         </section>
     );
 }
 
-export { IoTDeviceDetails };
+export { IdentityInfoPanel };

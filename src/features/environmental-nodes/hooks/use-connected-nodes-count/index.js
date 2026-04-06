@@ -17,36 +17,36 @@ import {
 } from '@shared-constants/node-status-codes';
 
 
-function useIoTDeviceSessionCount() {
-    const [connectedDeviceIds, setConnectedDeviceIds] = useState([]);
+function useConnectedNodesCount() {
+    const [connectedNodeIds, setConnectedNodeIds] = useState([]);
 
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_MQTT_EVENTS,
         id: MQTT_CLIENT_EVENT_OFFLINE,
-        listener: () => setConnectedDeviceIds([]),
+        listener: () => setConnectedNodeIds([]),
     });
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_STATUS_CODES,
         id: NODE_STATUS_LOGGED_IN,
-        listener: ({ data: { deviceId } }) => {
-            setConnectedDeviceIds(prevState => prevState.includes(deviceId)
+        listener: ({ data: { nodeId } }) => {
+            setConnectedNodeIds(prevState => prevState.includes(nodeId)
                 ? prevState
-                : [...prevState, deviceId]);
+                : [...prevState, nodeId]);
         },
     });
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_STATUS_CODES,
         id: NODE_STATUS_LOGGED_OUT,
-        listener: ({ data: { deviceId } }) => {
-            setConnectedDeviceIds(prevState => prevState.filter(id => id !== deviceId));
+        listener: ({ data: { nodeId } }) => {
+            setConnectedNodeIds(prevState => prevState.filter(id => id !== nodeId));
         },
     });
 
 
-    return connectedDeviceIds.length;
+    return connectedNodeIds.length;
 }
 
-export { useIoTDeviceSessionCount };
+export { useConnectedNodesCount };
