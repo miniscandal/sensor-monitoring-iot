@@ -1,6 +1,6 @@
 function parseMessage(message, index, { extractStatus, flatStringify }) {
     const { metadata, ...restMessage } = message;
-    const { timestamp, node: nodeId, ...restMetadata } = metadata;
+    const { timestamp, nodeId, ...restMetadata } = metadata;
 
 
     return {
