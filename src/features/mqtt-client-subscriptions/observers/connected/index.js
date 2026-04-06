@@ -11,9 +11,9 @@ function OnMqttClientConnectedObserver() {
         listener: ({ actions }) => {
             const { subscribe } = actions;
 
-            subscribe(import.meta.env.VITE_TOPIC_HUB_DATA);
-            subscribe(import.meta.env.VITE_TOPIC_HUB_STATUS);
-            subscribe(import.meta.env.VITE_TOPIC_HUB_METADATA);
+            subscribe(import.meta.env.VITE_TOPIC_NODE_DATA);
+            subscribe(import.meta.env.VITE_TOPIC_NODE_STATUS);
+            subscribe(import.meta.env.VITE_TOPIC_NODE_METADATA);
         },
     };
 }
