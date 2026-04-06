@@ -5,13 +5,13 @@
 Crear usuarios con contraseñas cifradas:
 
 ```bash
-mosquitto_passwd -c /etc/mosquitto/passwd hub01
+mosquitto_passwd -c /etc/mosquitto/passwd node01
 mosquitto_passwd /etc/mosquitto/passwd panel01
 mosquitto_passwd /etc/mosquitto/passwd panelMain
 
 
 # --- Environmental Node ---
-user hub01
+user node01
 topic write acme/ind/planta-norte/linea-1/node/00a1/data
 topic write acme/ind/planta-norte/linea-1/node/00a1/status
 topic write acme/ind/planta-norte/linea-1/node/00a1/metadata

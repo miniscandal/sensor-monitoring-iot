@@ -4,8 +4,8 @@
 El topic describe el **destino**, no el origen.
 
 ### Ejemplos correctos
-- `acme/ind/planta-norte/linea-1/hub/00a1/data`
-- `acme/ind/planta-norte/linea-1/hub/00a1/operation`
+- `acme/ind/planta-norte/linea-1/node/00a1/data`
+- `acme/ind/planta-norte/linea-1/node/00a1/operation`
 
 ### Ejemplo incorrecto
 - `acme/ind/planta-centra/control-panel-00a1/operation-code`  
@@ -14,7 +14,7 @@ El topic describe el **destino**, no el origen.
 ---
 
 ## Roles y dominios
-- `hub/` → dispositivos
+- `node/` → dispositivos
 - `control-panel/` → paneles
 
 Esto asegura jerarquía semántica y extensible.
@@ -34,13 +34,13 @@ Formato:
 `empresa/entorno/planta/linea/rol/id/tipo`
 
 Ejemplo completo:
-- `acme/ind/planta-norte/linea-1/hub/00a1/data`
-- `acme/ind/planta-norte/linea-1/hub/00a1/status`
-- `acme/ind/planta-norte/linea-1/hub/00a1/operation`
+- `acme/ind/planta-norte/linea-1/node/00a1/data`
+- `acme/ind/planta-norte/linea-1/node/00a1/status`
+- `acme/ind/planta-norte/linea-1/node/00a1/operation`
 - `acme/ind/planta-centra/control-panel/00a1/operation`
 
 ---
 
 ## ACLs alineadas con roles
-- Solo los hubs pueden publicar en `hub/*/data`
-- Solo los paneles pueden publicar en `hub/*/operation`
+- Solo los nodes pueden publicar en `node/*/data`
+- Solo los paneles pueden publicar en `node/*/operation`
