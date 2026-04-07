@@ -1,6 +1,14 @@
-const PUBLISHES_TOPICS = [
-    import.meta.env.VITE_TOPIC_NODE_OPERATION,
-    import.meta.env.VITE_TOPIC_NODE_OPERATION_ALL,
-];
+const MQTT_TOPIC_NODE_OPERATION = (plant, line, nodeId) => (
+    import.meta.env.VITE_TOPIC_NODE_OPERATION
+        .replace('{plant}', plant)
+        .replace('{line}', line)
+        .replace('{id}', nodeId)
+);
 
-export { PUBLISHES_TOPICS };
+const MQTT_TOPIC_NODE_OPERATION_ALL = import.meta.env.VITE_TOPIC_NODE_OPERATION_ALL;
+
+
+export {
+    MQTT_TOPIC_NODE_OPERATION,
+    MQTT_TOPIC_NODE_OPERATION_ALL,
+};
