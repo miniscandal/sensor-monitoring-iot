@@ -23,13 +23,13 @@ function useConnectedNodesCount() {
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_MQTT_EVENTS,
-        id: MQTT_CLIENT_EVENT_OFFLINE,
+        instanceId: MQTT_CLIENT_EVENT_OFFLINE,
         listener: () => setConnectedNodeIds([]),
     });
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_STATUS_CODES,
-        id: NODE_STATUS_LOGGED_IN,
+        instanceId: NODE_STATUS_LOGGED_IN,
         listener: ({ data: { nodeId } }) => {
             setConnectedNodeIds(prevState => prevState.includes(nodeId)
                 ? prevState
@@ -39,7 +39,7 @@ function useConnectedNodesCount() {
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_STATUS_CODES,
-        id: NODE_STATUS_LOGGED_OUT,
+        instanceId: NODE_STATUS_LOGGED_OUT,
         listener: ({ data: { nodeId } }) => {
             setConnectedNodeIds(prevState => prevState.filter(id => id !== nodeId));
         },

@@ -22,7 +22,7 @@ function useMqttClientProperties() {
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_MQTT_EVENTS,
-        id: MQTT_CLIENT_EVENT_CONNECT,
+        instanceId: MQTT_CLIENT_EVENT_CONNECT,
         listener: ({ actions }) => {
             const { getClientProperties } = actions;
 
@@ -37,7 +37,7 @@ function useMqttClientProperties() {
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_MQTT_EVENTS,
-        id: MQTT_CLIENT_EVENT_OFFLINE,
+        instanceId: MQTT_CLIENT_EVENT_OFFLINE,
         listener: ({ actions }) => {
             const { getClientProperties } = actions;
 

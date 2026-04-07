@@ -16,7 +16,7 @@ function useNodeSensorsStream() {
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_STATUS_CODES,
-        id: NODE_STATUS_STREAMING_SENSOR_DATA,
+        instanceId: NODE_STATUS_STREAMING_SENSOR_DATA,
         listener: ({ data }) => {
             const { nodeId, message } = data;
             const { statusCode, ...readings } = message;

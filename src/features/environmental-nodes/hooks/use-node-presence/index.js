@@ -32,13 +32,13 @@ function useNodePresence() {
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_MQTT_EVENTS,
-        id: MQTT_CLIENT_EVENT_OFFLINE,
+        instanceId: MQTT_CLIENT_EVENT_OFFLINE,
         listener: () => setNode(new Map()),
     });
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_STATUS_CODES,
-        id: NODE_STATUS_LOGGED_IN,
+        instanceId: NODE_STATUS_LOGGED_IN,
         listener: ({ data }) => {
             const { nodeId, message } = data;
 
@@ -60,7 +60,7 @@ function useNodePresence() {
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_STATUS_CODES,
-        id: NODE_STATUS_LOGGED_OUT,
+        instanceId: NODE_STATUS_LOGGED_OUT,
         listener: ({ data }) => {
             const { nodeId } = data;
 

@@ -15,7 +15,7 @@ function SubscribedEnvironmentalNodeStatusTopicObserver() {
 
     return {
         entity: OBSERVER_ENTITY_TOPICS,
-        id: MQTT_TOPIC_NODE_DATA,
+        instanceId: MQTT_TOPIC_NODE_DATA,
         listener: ({ actions }) => {
             actions.publish({
                 topic: MQTT_TOPIC_NODE_OPERATION_ALL,

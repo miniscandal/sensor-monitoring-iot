@@ -16,13 +16,13 @@ function useMqttClientMessages() {
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_MQTT_EVENTS,
-        id: MQTT_CLIENT_EVENT_OFFLINE,
+        instanceId: MQTT_CLIENT_EVENT_OFFLINE,
         listener: () => setMessages([]),
     });
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_MQTT_EVENTS,
-        id: MQTT_CLIENT_EVENT_MESSAGE,
+        instanceId: MQTT_CLIENT_EVENT_MESSAGE,
         listener: ({ data: { message } }) => {
             setMessages((prevState) => (
                 [
