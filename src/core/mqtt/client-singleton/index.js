@@ -9,7 +9,7 @@ import { mqttClientEventSubject } from '@core-mqtt/client-event-subject';
 
 import {
     OBSERVER_ENTITY_MQTT_EVENTS,
-    OBSERVER_ENTITY_STATUS_CODES,
+    // OBSERVER_ENTITY_STATUS_CODES,
     OBSERVER_ENTITY_TOPICS,
 } from '@core-constants/observer-entities';
 
@@ -21,13 +21,16 @@ import {
     MQTT_CLIENT_EVENT_ERROR,
 } from '@shared-constants/mqtt-client-events';
 
+import { MQTT_BROKER_HOST, MQTT_BROKER_PORT } from '@shared-constants/mqtt-client-config';
+
+import { MqttClientPublishesService } from '@core-services/mqtt-client/publishes';
+
 
 class MqttClientSingleton {
     static instance;
 
-    mqttBrokerHost = import.meta.env.VITE_MQTT_BROKER_HOST;
-    mqttBrokerPort = import.meta.env.VITE_MQTT_BROKER_PORT;
-
+    mqttBrokerHost = MQTT_BROKER_HOST;
+    mqttBrokerPort = MQTT_BROKER_PORT;
 
     constructor() {
         this.client = mqtt.connect(`${this.mqttBrokerHost}/${this.mqttBrokerPort}`);
@@ -70,25 +73,36 @@ class MqttClientSingleton {
 
     onMessage(topic, message) {
         const parseMessage = JSON.parse(message.toString());
-        const data = {
-            topic,
-            nodeId: topic.split('/').at(-2),
-            message: parseMessage,
-        };
 
-
-        this.#notify(OBSERVER_ENTITY_STATUS_CODES, parseMessage.statusCode, null, data);
-        this.#notify(OBSERVER_ENTITY_MQTT_EVENTS, MQTT_CLIENT_EVENT_MESSAGE, null, data);
+        MqttClientPublishesService.notify(topic, parseMessage, mqttClientEventSubject);
     };
+
+    // onMessage(topic, message) {
+    //     const parseMessage = JSON.parse(message.toString());
+    //     const data = {
+    //         topic,
+    //         nodeId: topic.split('/').at(-2),
+    //         message: parseMessage,
+    //     };
+
+
+    //     this.#notify(OBSERVER_ENTITY_STATUS_CODES, parseMessage.statusCode, null, data);
+    //     this.#notify(OBSERVER_ENTITY_MQTT_EVENTS, MQTT_CLIENT_EVENT_MESSAGE, null, data);
+    // };
 
     subscribe(topic) {
         this.client.subscribe(topic, () => {
             const data = { topic };
 
 
-            this.#notify(OBSERVER_ENTITY_MQTT_EVENTS, MQTT_CLIENT_EVENT_SUBSCRIBE, {
-                subscribe: this.subscribe.bind(this),
-            }, data);
+            this.#notify(
+                OBSERVER_ENTITY_MQTT_EVENTS,
+                MQTT_CLIENT_EVENT_SUBSCRIBE,
+                {
+                    subscribe: this.subscribe.bind(this),
+                },
+                data,
+            );
             this.#notify(OBSERVER_ENTITY_TOPICS, topic, { publish: this.publish.bind(this) }, data);
         });
     };
