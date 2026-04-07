@@ -13,11 +13,14 @@
             "react-dom": [
                 "./node_modules/preact/compat/"
             ],
+            "@core-constants/*": [
+                "src/core/constants/*"
+            ],
             "@core-mqtt/*": [
                 "src/core/mqtt/*"
             ],
-            "@core-constants/*": [
-                "src/core/constants/*"
+            "@core-services/*": [
+                "src/core/services/*"
             ],
             "@features/*": [
                 "./src/features/*"

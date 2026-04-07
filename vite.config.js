@@ -5,8 +5,9 @@ export default defineConfig({
     plugins: [preact()],
     resolve: {
         alias: {
-            '@core-mqtt': '/src/core/mqtt',
             '@core-constants': '/src/core/constants',
+            '@core-mqtt': '/src/core/mqtt',
+            '@core-services': '/src/core/services',
 
             '@features': '/src/features',
             '@assets': '/src/assets',
