@@ -1,10 +1,8 @@
 /*
-RegisterObserver - Documentation
-
 This module allows you to register and manage observers associated with different entities.
 Each entity can have multiple IDs, and each ID can have multiple observers.
 
-Example of a possible `entities` object as the result of an instance of RegisterObserver
+Example of a possible `entities` object as the result of an instance of ObserverRegistry
 after registering some observers:
 
 entities = {
@@ -30,7 +28,7 @@ Notes:
 - Each key in `entities` corresponds to one of the valid entities defined in `OBSERVER_ENTITY_*`.
 - Each ID within an entity can have an array of `observerId`s representing the registered observers.
 - This setup allows selective notification of observers associated with a specific event, status code, operation code, or topic.
-- The data above is a **possible runtime state** of an instance of RegisterObserver, not hardcoded.
+- The data above is a **possible runtime state** of an instance of ObserverRegistry, not hardcoded.
 */
 
 import {
@@ -41,7 +39,7 @@ import {
 } from '@core-constants/observer-entities';
 
 
-class RegisterObserver {
+class ObserverRegistry {
     static VALID_ENTITIES = [
         OBSERVER_ENTITY_MQTT_EVENTS,
         OBSERVER_ENTITY_STATUS_CODES,
@@ -73,4 +71,4 @@ class RegisterObserver {
     }
 }
 
-export { RegisterObserver };
+export { ObserverRegistry };
