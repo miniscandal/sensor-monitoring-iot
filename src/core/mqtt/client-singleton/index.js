@@ -48,26 +48,24 @@ class MqttClientSingleton {
         return MqttClientSingleton.instance;
     }
 
-    #notify(entity, instanceId, actions, data) {
-
-        mqttClientEventSubject.notify({
-            entity,
-            instanceId,
-            actions,
-            data,
-        });
-    }
-
     onConnect() {
-        this.#notify(OBSERVER_ENTITY_MQTT_EVENTS, MQTT_CLIENT_EVENT_CONNECT, {
-            getClientProperties: this.getClientProperties.bind(this),
-            subscribe: this.subscribe.bind(this),
+        mqttClientEventSubject.notify({
+            entity: OBSERVER_ENTITY_MQTT_EVENTS,
+            instanceId: MQTT_CLIENT_EVENT_CONNECT,
+            actions: {
+                getClientProperties: this.getClientProperties.bind(this),
+                subscribe: this.subscribe.bind(this),
+            },
         });
     };
 
     onOffline() {
-        this.#notify(OBSERVER_ENTITY_MQTT_EVENTS, MQTT_CLIENT_EVENT_OFFLINE, {
-            getClientProperties: this.getClientProperties.bind(this),
+        mqttClientEventSubject.notify({
+            entity: OBSERVER_ENTITY_MQTT_EVENTS,
+            instanceId: MQTT_CLIENT_EVENT_OFFLINE,
+            actions: {
+                getClientProperties: this.getClientProperties.bind(this),
+            },
         });
     };
 
@@ -93,17 +91,24 @@ class MqttClientSingleton {
     subscribe(topic) {
         this.client.subscribe(topic, () => {
             const data = { topic };
+            mqttClientEventSubject.notify({
+                entity: OBSERVER_ENTITY_MQTT_EVENTS,
+                instanceId: MQTT_CLIENT_EVENT_SUBSCRIBE,
+                actions: {
+                    publish: this.publish.bind(this),
 
+                },
+                data,
+            });
 
-            this.#notify(
-                OBSERVER_ENTITY_MQTT_EVENTS,
-                MQTT_CLIENT_EVENT_SUBSCRIBE,
-                {
+            mqttClientEventSubject.notify({
+                entity: OBSERVER_ENTITY_TOPICS,
+                instanceId: topic,
+                actions: {
                     subscribe: this.subscribe.bind(this),
                 },
                 data,
-            );
-            this.#notify(OBSERVER_ENTITY_TOPICS, topic, { publish: this.publish.bind(this) }, data);
+            });
         });
     };
 
@@ -113,7 +118,7 @@ class MqttClientSingleton {
 
 
         return {
-            clientMqtt: connected ? 'Connected' : undefined,
+            clientMqtt: connected ? 'Connected' : null,
             host,
             port,
             protocol,
