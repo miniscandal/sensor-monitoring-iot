@@ -2,6 +2,13 @@ import { OBSERVER_ENTITY_MQTT_EVENTS } from '@core-constants/observer-entities';
 
 import { MQTT_CLIENT_EVENT_CONNECT } from '@shared-constants/mqtt-client-events';
 
+import {
+    MQTT_TOPIC_NODE_DATA,
+    MQTT_TOPIC_NODE_STATUS,
+    MQTT_TOPIC_NODE_METADATA,
+
+} from '@shared-constants/mqtt-client-topics';
+
 
 function OnMqttClientConnectedObserver() {
 
@@ -11,9 +18,9 @@ function OnMqttClientConnectedObserver() {
         listener: ({ actions }) => {
             const { subscribe } = actions;
 
-            subscribe(import.meta.env.VITE_TOPIC_NODE_DATA);
-            subscribe(import.meta.env.VITE_TOPIC_NODE_STATUS);
-            subscribe(import.meta.env.VITE_TOPIC_NODE_METADATA);
+            subscribe(MQTT_TOPIC_NODE_DATA);
+            subscribe(MQTT_TOPIC_NODE_STATUS);
+            subscribe(MQTT_TOPIC_NODE_METADATA);
         },
     };
 }
