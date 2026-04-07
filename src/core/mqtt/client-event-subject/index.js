@@ -1,4 +1,4 @@
-import { RegisterObserver } from '@core-mqtt/register-observer';
+import { ObserverRegistry } from '@core-mqtt/observer-registry';
 
 
 class MqttClientEventSubject {
@@ -39,6 +39,10 @@ class MqttClientEventSubject {
         const observerIds = this.registerObserver.getObserverId({ entity, id }) || [];
 
 
+        console.log('ids', observerIds);
+
+
+
         this.observers.forEach(observer => {
             if (!observerIds.includes(observer.id)) {
 
@@ -49,6 +53,6 @@ class MqttClientEventSubject {
     }
 }
 
-const mqttClientEventSubject = new MqttClientEventSubject(new RegisterObserver());
+const mqttClientEventSubject = new MqttClientEventSubject(new ObserverRegistry());
 
 export { mqttClientEventSubject };
