@@ -13,6 +13,7 @@ class MqttClientEventSubject {
             id: observerId,
             listener,
         };
+
         this.observers.add(observerReg);
 
         this.ObserverRegistry.register({
@@ -21,6 +22,7 @@ class MqttClientEventSubject {
             observerId,
         });
 
+
         return observerId;
     }
 
@@ -28,6 +30,7 @@ class MqttClientEventSubject {
         for (const observer of this.observers) {
             if (observer.id === observerId) {
                 this.observers.delete(observer);
+
                 break;
             }
         }
@@ -38,9 +41,7 @@ class MqttClientEventSubject {
 
         const observerIds = this.ObserverRegistry.getObserverIds({ entity, instanceId }) || [];
 
-
         console.log('ids', observerIds);
-
 
         this.observers.forEach(observer => {
             if (!observerIds.includes(observer.id)) {
