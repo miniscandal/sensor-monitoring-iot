@@ -9,7 +9,7 @@ import { mqttClientEventSubject } from '@core-mqtt/client-event-subject';
 
 import {
     OBSERVER_ENTITY_MQTT_EVENTS,
-    // OBSERVER_ENTITY_STATUS_CODES,
+    OBSERVER_ENTITY_STATUS_CODES,
     OBSERVER_ENTITY_TOPICS,
 } from '@core-constants/observer-entities';
 
@@ -22,8 +22,6 @@ import {
 } from '@shared-constants/mqtt-client-events';
 
 import { MQTT_BROKER_HOST, MQTT_BROKER_PORT } from '@shared-constants/mqtt-client-config';
-
-import { MqttClientPublishesService } from '@core-services/mqtt-client/publishes';
 
 
 class MqttClientSingleton {
@@ -56,6 +54,7 @@ class MqttClientSingleton {
                 getClientProperties: this.getClientProperties.bind(this),
                 subscribe: this.subscribe.bind(this),
             },
+            data: null,
         });
     };
 
@@ -66,37 +65,43 @@ class MqttClientSingleton {
             actions: {
                 getClientProperties: this.getClientProperties.bind(this),
             },
+            data: null,
         });
     };
 
     onMessage(topic, message) {
         const parseMessage = JSON.parse(message.toString());
 
-        MqttClientPublishesService.notify(topic, parseMessage, mqttClientEventSubject);
+        mqttClientEventSubject.notify({
+            entity: OBSERVER_ENTITY_MQTT_EVENTS,
+            instanceId: MQTT_CLIENT_EVENT_MESSAGE,
+            actions: null,
+            data: {
+                message,
+                topic,
+            },
+        });
+
+        mqttClientEventSubject.notify({
+            entity: OBSERVER_ENTITY_STATUS_CODES,
+            instanceId: parseMessage?.data?.statusCode,
+            actions: null,
+            data: {
+                message,
+                topic,
+            },
+        });
     };
-
-    // onMessage(topic, message) {
-    //     const parseMessage = JSON.parse(message.toString());
-    //     const data = {
-    //         topic,
-    //         nodeId: topic.split('/').at(-2),
-    //         message: parseMessage,
-    //     };
-
-
-    //     this.#notify(OBSERVER_ENTITY_STATUS_CODES, parseMessage.statusCode, null, data);
-    //     this.#notify(OBSERVER_ENTITY_MQTT_EVENTS, MQTT_CLIENT_EVENT_MESSAGE, null, data);
-    // };
 
     subscribe(topic) {
         this.client.subscribe(topic, () => {
             const data = { topic };
+
             mqttClientEventSubject.notify({
                 entity: OBSERVER_ENTITY_MQTT_EVENTS,
                 instanceId: MQTT_CLIENT_EVENT_SUBSCRIBE,
                 actions: {
-                    publish: this.publish.bind(this),
-
+                    subscribe: this.subscribe.bind(this),
                 },
                 data,
             });
@@ -105,7 +110,7 @@ class MqttClientSingleton {
                 entity: OBSERVER_ENTITY_TOPICS,
                 instanceId: topic,
                 actions: {
-                    subscribe: this.subscribe.bind(this),
+                    publish: this.publish.bind(this),
                 },
                 data,
             });
