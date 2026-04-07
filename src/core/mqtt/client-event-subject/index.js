@@ -2,12 +2,12 @@ import { ObserverRegistry } from '@core-mqtt/observer-registry';
 
 
 class MqttClientEventSubject {
-    constructor(registerObserver) {
+    constructor(ObserverRegistry) {
         this.observers = new Set();
-        this.registerObserver = registerObserver;
+        this.ObserverRegistry = ObserverRegistry;
     }
 
-    subscribe({ entity, id, listener }) {
+    subscribe({ entity, instanceId, listener }) {
         const observerId = crypto.randomUUID();
         const observerReg = {
             id: observerId,
@@ -15,32 +15,31 @@ class MqttClientEventSubject {
         };
         this.observers.add(observerReg);
 
-        this.registerObserver.register({
+        this.ObserverRegistry.register({
             entity,
-            id,
+            instanceId,
             observerId,
         });
 
         return observerId;
     }
 
-    unsubscribe(id) {
+    unsubscribe(observerId) {
         for (const observer of this.observers) {
-            if (observer.id === id) {
+            if (observer.id === observerId) {
                 this.observers.delete(observer);
                 break;
             }
         }
     }
 
-    notify({ entity, id, actions, data }) {
-        console.log({ entity, id, actions, data });
+    notify({ entity, instanceId, actions, data }) {
+        console.log({ entity, instanceId, actions, data });
 
-        const observerIds = this.registerObserver.getObserverId({ entity, id }) || [];
+        const observerIds = this.ObserverRegistry.getObserverIds({ entity, instanceId }) || [];
 
 
         console.log('ids', observerIds);
-
 
 
         this.observers.forEach(observer => {

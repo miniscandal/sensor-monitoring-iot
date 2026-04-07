@@ -1,6 +1,12 @@
 /*
 This module allows you to register and manage observers associated with different entities.
-Each entity can have multiple IDs, and each ID can have multiple observers.
+Each entity can have multiple instances, and each instance can have multiple observers.
+
+Terminology:
+- `entity`     → The container that groups related instances (e.g., mqttEvents, statusCodes).
+                 Conceptually equivalent to a table in a database model.
+- `instanceId` → A unique item that lives inside an entity (e.g., onConnect, 102, 'topic1').
+                 Conceptually equivalent to a row/instance in a database model.
 
 Example of a possible `entities` object as the result of an instance of ObserverRegistry
 after registering some observers:
@@ -26,10 +32,11 @@ entities = {
 
 Notes:
 - Each key in `entities` corresponds to one of the valid entities defined in `OBSERVER_ENTITY_*`.
-- Each ID within an entity can have an array of `observerId`s representing the registered observers.
+- Each instanceId within an entity can have an array of `observerId`s representing the registered observers.
 - This setup allows selective notification of observers associated with a specific event, status code, operation code, or topic.
 - The data above is a **possible runtime state** of an instance of ObserverRegistry, not hardcoded.
 */
+
 
 import {
     OBSERVER_ENTITY_MQTT_EVENTS,
@@ -56,18 +63,18 @@ class ObserverRegistry {
         };
     }
 
-    register({ entity, id, observerId }) {
+    register({ entity, instanceId, observerId }) {
         const targetMap = this.entities[entity];
 
-        if (!targetMap.has(id)) {
-            targetMap.set(id, []);
+        if (!targetMap.has(instanceId)) {
+            targetMap.set(instanceId, []);
         }
 
-        targetMap.get(id).push(observerId);
+        targetMap.get(instanceId).push(observerId);
     }
 
-    getObserverId({ entity, id }) {
-        return this.entities[entity].get(id);
+    getObserverIds({ entity, instanceId }) {
+        return this.entities[entity].get(instanceId);
     }
 }
 
