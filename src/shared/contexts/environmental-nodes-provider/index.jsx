@@ -1,11 +1,9 @@
 import { createContext } from 'preact';
 import { useState } from 'preact/hooks';
+import { useConnectedNodesCount } from '@features/environmental-nodes/hooks/use-connected-nodes-count';
 
-import nodeMocks from '@mocks/environmental-nodes/node-collection.json';
-import { deepCamel } from '@shared-utils/deep-camel';
+import { environmentalNodesProviderFactory } from '@infrastructure/environmental-nodes/factories/nodes';
 
-
-const mocks = nodeMocks.map(deepCamel).map(node => [node.metadata.nodeId, node]);
 
 const EnvironmentalNodesContext = createContext({
     nodes: new Map(),
@@ -13,10 +11,13 @@ const EnvironmentalNodesContext = createContext({
 
 
 function EnvironmentalNodesProvider({ children }) {
-    const [nodes, setNodes] = useState(new Map(mocks));
+    const provider = environmentalNodesProviderFactory();
+    const count = useConnectedNodesCount();
+    const [nodes, setNodes] = useState(new Map(provider.nodes));
     const value = {
         nodes,
         setNodes,
+        count,
     };
 
 
