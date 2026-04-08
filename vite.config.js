@@ -6,9 +6,11 @@ export default defineConfig({
     resolve: {
         alias: {
             '@core-constants': '/src/core/constants',
+            '@core-interfaces': '/src/core/interfaces',
             '@core-mqtt': '/src/core/mqtt',
             '@core-services': '/src/core/services',
-
+            '@domain': '/src/domain',
+            '@infrastructure': '/src/infrastructure',
             '@features': '/src/features',
             '@assets': '/src/assets',
             '@mocks': '/src/mocks',

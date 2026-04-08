@@ -5,7 +5,6 @@
         "moduleResolution": "bundler",
         "jsx": "react-jsx",
         "jsxImportSource": "preact",
-        "baseUrl": "./",
         "paths": {
             "react": [
                 "./node_modules/preact/compat/"
@@ -14,13 +13,22 @@
                 "./node_modules/preact/compat/"
             ],
             "@core-constants/*": [
-                "src/core/constants/*"
+                "./src/core/constants/*"
+            ],
+            "@core-interfaces/*": [
+                "./src/core/interfaces/*"
             ],
             "@core-mqtt/*": [
-                "src/core/mqtt/*"
+                "./src/core/mqtt/*"
             ],
             "@core-services/*": [
-                "src/core/services/*"
+                "./src/core/services/*"
+            ],
+            "@domain/*": [
+                "./src/domain/*"
+            ],
+            "@infrastructure/*": [
+                "./src/infrastructure/*"
             ],
             "@features/*": [
                 "./src/features/*"
