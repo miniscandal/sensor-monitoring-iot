@@ -4,11 +4,11 @@ import { NodesMonitor } from '../../organisms/nodes-monitor';
 import './style.css';
 
 
-function NodesManagement({ count }) {
+function NodesManagement() {
 
     return (
         <article class="nodes-management">
-            <ConnectedNodesCount count={count} />
+            <ConnectedNodesCount />
             <NodesMonitor />
         </article>
     );

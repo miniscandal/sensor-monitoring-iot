@@ -3,12 +3,17 @@
  *
  */
 
+import { useContext } from 'preact/hooks';
+
+import { EnvironmentalNodesContext } from '@shared-contexts/environmental-nodes-provider';
+
 import { IconStat } from '@shared-components/molecules/icon-stat';
 
 import './style.css';
 
 
-function ConnectedNodesCount({ count }) {
+function ConnectedNodesCount() {
+    const { count } = useContext(EnvironmentalNodesContext);
 
     return (
         <section class="connected-nodes-count">
