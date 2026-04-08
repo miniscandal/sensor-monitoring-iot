@@ -28,12 +28,12 @@ import {
 
 
 function useNodePresence() {
-    const { setNode } = useContext(EnvironmentalNodesContext);
+    const { setNodes } = useContext(EnvironmentalNodesContext);
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_MQTT_EVENTS,
         instanceId: MQTT_CLIENT_EVENT_OFFLINE,
-        listener: () => setNode(new Map()),
+        listener: () => setNodes(new Map()),
     });
 
     useMqttClientEvents({
