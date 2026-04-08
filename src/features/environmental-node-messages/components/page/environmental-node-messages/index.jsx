@@ -1,6 +1,6 @@
 import { NodeMessagesMonitor } from '../../templates/node-messages-monitor';
 
-import messageCollection from '@mocks/environmental-nodes/node-collection.json';
+import nodes from '@mocks/environmental-nodes/data/node-collection.json';
 
 import { deepCamel } from '@shared-utils/deep-camel';
 
@@ -8,7 +8,7 @@ import './style.css';
 
 
 function EnvironmentalNodeMessages() {
-    const rawMessages = [...messageCollection, ...messageCollection, ...messageCollection];
+    const rawMessages = [...nodes, ...nodes, ...nodes];
 
     const messages = rawMessages.map(deepCamel);
 
