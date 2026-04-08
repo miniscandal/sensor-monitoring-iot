@@ -5,7 +5,7 @@
 
 import mqtt from 'mqtt';
 
-import { mqttClientEventSubject } from '@core-mqtt/client-event-subject';
+import { mqttClientEventSubject } from '@infrastructure/mqtt/subjects/mqtt-client-subject';
 
 import {
     OBSERVER_ENTITY_MQTT_EVENTS,

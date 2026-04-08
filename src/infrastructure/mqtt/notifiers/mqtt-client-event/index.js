@@ -2,7 +2,7 @@ import {
     OBSERVER_ENTITY_MQTT_EVENTS,
     OBSERVER_ENTITY_STATUS_CODES,
     OBSERVER_ENTITY_TOPICS,
-} from '@core-constants/observer-entities';
+} from '@shared-constants/observer-entities';
 
 import {
     MQTT_CLIENT_EVENT_CONNECT,
@@ -13,7 +13,7 @@ import {
 } from '@shared-constants/mqtt-client-events';
 
 
-export class MqttClientService {
+class MqttClientEventNotifier {
     constructor(clientAdapter, eventSubject) {
         this.client = clientAdapter;
         this.eventSubject = eventSubject;
@@ -93,3 +93,5 @@ export class MqttClientService {
         this.client.end();
     }
 }
+
+export { MqttClientEventNotifier };

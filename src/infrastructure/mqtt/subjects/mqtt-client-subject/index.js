@@ -1,4 +1,4 @@
-import { ObserverRegistry } from '@core-mqtt/observer-registry';
+import { ObserverRegistry } from '@infrastructure/mqtt/subjects/observer-registry';
 
 
 class MqttClientEventSubject {

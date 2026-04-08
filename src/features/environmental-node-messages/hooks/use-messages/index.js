@@ -2,7 +2,7 @@ import { useState } from 'preact/hooks';
 
 import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
 
-import { OBSERVER_ENTITY_MQTT_EVENTS } from '@core-constants/observer-entities';
+import { OBSERVER_ENTITY_MQTT_EVENTS } from '@shared-constants/observer-entities';
 
 import {
     MQTT_CLIENT_EVENT_MESSAGE,

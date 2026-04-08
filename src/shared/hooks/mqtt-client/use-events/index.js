@@ -1,6 +1,6 @@
 import { useEffect } from 'preact/hooks';
 
-import { mqttClientEventSubject } from '@core-mqtt/client-event-subject';
+import { mqttClientEventSubject } from '@infrastructure/mqtt/subjects/mqtt-client-subject';
 
 
 function useMqttClientEvents({ entity, instanceId, listener }) {

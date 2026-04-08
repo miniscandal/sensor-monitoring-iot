@@ -15,7 +15,7 @@ import { EnvironmentalNodesContext } from '@shared-contexts/environmental-nodes-
 import {
     OBSERVER_ENTITY_MQTT_EVENTS,
     OBSERVER_ENTITY_STATUS_CODES,
-} from '@core-constants/observer-entities';
+} from '@shared-constants/observer-entities';
 
 import {
     MQTT_CLIENT_EVENT_OFFLINE,

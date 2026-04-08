@@ -1,4 +1,4 @@
-import { OBSERVER_ENTITY_MQTT_EVENTS } from '@core-constants/observer-entities';
+import { OBSERVER_ENTITY_MQTT_EVENTS } from '@shared-constants/observer-entities';
 
 import { MQTT_CLIENT_EVENT_CONNECT } from '@shared-constants/mqtt-client-events';
 

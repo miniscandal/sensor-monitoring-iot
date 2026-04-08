@@ -4,7 +4,7 @@
  * each node to respond with its identification payload to this system.
  */
 
-import { OBSERVER_ENTITY_TOPICS } from '@core-constants/observer-entities';
+import { OBSERVER_ENTITY_TOPICS } from '@shared-constants/observer-entities';
 
 import { MQTT_TOPIC_NODE_DATA } from '@shared-constants/mqtt-client-topics';
 import { MQTT_TOPIC_NODE_OPERATION_ALL } from '@features/mqtt-client-publishes/constants/topics-publishes';

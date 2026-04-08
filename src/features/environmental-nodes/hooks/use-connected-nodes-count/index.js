@@ -5,7 +5,7 @@ import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
 import {
     OBSERVER_ENTITY_MQTT_EVENTS,
     OBSERVER_ENTITY_STATUS_CODES,
-} from '@core-constants/observer-entities';
+} from '@shared-constants/observer-entities';
 
 import {
     MQTT_CLIENT_EVENT_OFFLINE,

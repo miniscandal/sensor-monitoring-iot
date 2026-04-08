@@ -5,7 +5,7 @@ import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
 
 import { EnvironmentalNodesContext } from '@shared-contexts/environmental-nodes-provider';
 
-import { OBSERVER_ENTITY_STATUS_CODES } from '@core-constants/observer-entities';
+import { OBSERVER_ENTITY_STATUS_CODES } from '@shared-constants/observer-entities';
 
 import { NODE_STATUS_STREAMING_SENSOR_DATA } from '@shared-constants/node-status-codes';
 

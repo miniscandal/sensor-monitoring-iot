@@ -36,14 +36,12 @@ Notes:
 - This setup allows selective notification of observers associated with a specific event, status code, operation code, or topic.
 - The data above is a **possible runtime state** of an instance of ObserverRegistry, not hardcoded.
 */
-
-
 import {
     OBSERVER_ENTITY_MQTT_EVENTS,
     OBSERVER_ENTITY_STATUS_CODES,
     OBSERVER_ENTITY_OPERATION_CODES,
     OBSERVER_ENTITY_TOPICS,
-} from '@core-constants/observer-entities';
+} from '@shared-constants/observer-entities';
 
 
 class ObserverRegistry {
