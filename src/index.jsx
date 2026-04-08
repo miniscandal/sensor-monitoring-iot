@@ -6,7 +6,7 @@
 import { render } from 'preact';
 import { useEffect } from 'preact/hooks';
 
-import { mqttClientProvider } from '@infrastructure/mqtt/providers/mqtt-client';
+import { mqttClientProvider } from '@infrastructure/mqtt-client/providers/client';
 
 import { MqttClientProperties } from '@features/mqtt-client/components/pages/mqtt-client-properties';
 import { MqttClientSubscriptionTopics } from '@features/mqtt-client-subscription-topics/components/pages/subscription-topics';
@@ -22,6 +22,8 @@ import './style.css';
 export function App() {
     useEffect(() => {
         const mqttService = mqttClientProvider();
+
+
         return () => mqttService.end();
     }, []);
 
