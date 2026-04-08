@@ -5,7 +5,7 @@ import { ClientDetails } from '../../templates/client-details';
 import './style.css';
 
 
-function MqttClientPage() {
+function MqttClientProperties() {
     const { connected, ...properties } = useMqttClientProperties();
 
 
@@ -14,4 +14,4 @@ function MqttClientPage() {
     );
 }
 
-export { MqttClientPage };
+export { MqttClientProperties };

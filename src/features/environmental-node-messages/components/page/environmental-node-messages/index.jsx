@@ -7,7 +7,7 @@ import { deepCamel } from '@shared-utils/deep-camel';
 import './style.css';
 
 
-function EnvironmentalNodeMessagesPage() {
+function EnvironmentalNodeMessages() {
     const rawMessages = [...messageCollection, ...messageCollection, ...messageCollection];
 
     const messages = rawMessages.map(deepCamel);
@@ -18,4 +18,4 @@ function EnvironmentalNodeMessagesPage() {
     );
 }
 
-export { EnvironmentalNodeMessagesPage };
+export { EnvironmentalNodeMessages };

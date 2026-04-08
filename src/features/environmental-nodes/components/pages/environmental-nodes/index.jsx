@@ -7,7 +7,7 @@ import { NodesManagement } from '../../templates/management';
 import './style.css';
 
 
-function EnvironmentalNodesPage() {
+function EnvironmentalNodes() {
     const count = useConnectedNodesCount();
 
 
@@ -19,4 +19,4 @@ function EnvironmentalNodesPage() {
     );
 }
 
-export { EnvironmentalNodesPage };
+export { EnvironmentalNodes };
