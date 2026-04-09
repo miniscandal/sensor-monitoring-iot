@@ -12,12 +12,15 @@ const EnvironmentalNodesContext = createContext({
 
 function EnvironmentalNodesProvider({ children }) {
     const provider = environmentalNodesProviderFactory();
-    const count = useConnectedNodesCount();
-    const [nodes, setNodes] = useState(new Map(provider.nodes));
+    const { nodes: initialNodes, nodeIds } = provider;
+
+    const [nodes, setNodes] = useState(new Map(initialNodes));
+    const connectedNodesCount = useConnectedNodesCount({ nodeIds });
+
     const value = {
         nodes,
         setNodes,
-        count,
+        connectedNodesCount,
     };
 
 

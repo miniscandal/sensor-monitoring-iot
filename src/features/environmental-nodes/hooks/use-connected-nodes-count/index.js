@@ -17,8 +17,8 @@ import {
 } from '@shared-constants/node-status-codes';
 
 
-function useConnectedNodesCount() {
-    const [connectedNodeIds, setConnectedNodeIds] = useState([]);
+function useConnectedNodesCount({ nodeIds }) {
+    const [connectedNodeIds, setConnectedNodeIds] = useState(nodeIds);
 
 
     useMqttClientEvents({

@@ -1,5 +1,6 @@
 const environmentalNodesProvider = {
     nodes: [],
+    nodeIds: [],
 };
 
 
