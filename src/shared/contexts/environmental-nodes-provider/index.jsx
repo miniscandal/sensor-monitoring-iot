@@ -15,12 +15,12 @@ function EnvironmentalNodesProvider({ children }) {
     const { nodes: initialNodes, nodeIds } = provider;
 
     const [nodes, setNodes] = useState(new Map(initialNodes));
-    const connectedNodesCount = useConnectedNodesCount({ nodeIds });
+    const connectedCount = useConnectedNodesCount({ nodeIds });
 
     const value = {
         nodes,
         setNodes,
-        connectedNodesCount,
+        connectedCount,
     };
 
 
