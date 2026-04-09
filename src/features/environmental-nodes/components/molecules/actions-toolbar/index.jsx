@@ -1,9 +1,9 @@
 import { SvgIcon } from '@shared-components/atoms/svg-icon';
 
 import {
-    NODE_STATUS_LOGGED_IN,
-    NODE_STATUS_IDLE,
-    NODE_STATUS_STREAMING_SENSOR_DATA,
+    OP_RESULT_LOGGED_IN,
+    NODE_STATE_IDLE,
+    OP_RESULT_STREAMING_SENSOR_DATA,
 } from '@shared-constants/node-status-codes';
 import {
     DATA_ATTR_NODE_ACTION_TERMINAL,
@@ -16,9 +16,9 @@ import './style.css';
 
 function ActionsToolbar({ nodeStatusCode, selectionStatus }) {
     const svgIconName = {
-        [NODE_STATUS_LOGGED_IN]: 'stopCircle',
-        [NODE_STATUS_IDLE]: 'playCircle',
-        [NODE_STATUS_STREAMING_SENSOR_DATA]: 'stopCircle',
+        [OP_RESULT_LOGGED_IN]: 'stopCircle',
+        [NODE_STATE_IDLE]: 'playCircle',
+        [OP_RESULT_STREAMING_SENSOR_DATA]: 'stopCircle',
     }[nodeStatusCode];
 
 

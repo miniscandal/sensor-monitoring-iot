@@ -7,9 +7,9 @@ import { SvgIcon } from '@shared-components/atoms/svg-icon';
 import { safeRound } from '@shared-utils/safe-round';
 
 import {
-    NODE_STATUS_LOGGED_IN,
-    NODE_STATUS_IDLE,
-    NODE_STATUS_STREAMING_SENSOR_DATA,
+    OP_RESULT_LOGGED_OUT,
+    NODE_STATE_IDLE,
+    OP_RESULT_STREAMING_SENSOR_DATA,
 } from '@shared-constants/node-status-codes';
 
 import './style.css';
@@ -20,7 +20,7 @@ function NodeCard({ nodeId = 'N/A', sensorReadings = {}, selectionStatus = false
     const temperature = safeRound(sensorReadings.temperature?.value);
 
     /*
-        NODE_STATUS_IDLE: 
+        NODE_STATE_IDLE: 
         The node has completed its full initialization process. Concurrently, 
         the Web IoT control panel has successfully retrieved and loaded all 
         necessary data from the database. The node is now in an 'Idle' state, 
@@ -28,15 +28,15 @@ function NodeCard({ nodeId = 'N/A', sensorReadings = {}, selectionStatus = false
     */
 
     const dataTransmissionIcon = {
-        [NODE_STATUS_LOGGED_IN]: 'sensorsOff',
-        [NODE_STATUS_IDLE]: 'sensorsOff',
-        [NODE_STATUS_STREAMING_SENSOR_DATA]: 'sensors',
+        [OP_RESULT_LOGGED_OUT]: 'sensorsOff',
+        [NODE_STATE_IDLE]: 'sensorsOff',
+        [OP_RESULT_STREAMING_SENSOR_DATA]: 'sensors',
     }[statusCode];
 
     const svgIconName = {
-        [NODE_STATUS_LOGGED_IN]: 'motionSensorActive',
-        [NODE_STATUS_IDLE]: 'motionSensorIdle',
-        [NODE_STATUS_STREAMING_SENSOR_DATA]: 'motionSensorActive',
+        [OP_RESULT_LOGGED_OUT]: 'motionSensorActive',
+        [NODE_STATE_IDLE]: 'motionSensorIdle',
+        [OP_RESULT_STREAMING_SENSOR_DATA]: 'motionSensorActive',
     }[statusCode];
 
 
