@@ -12,8 +12,8 @@ import {
 } from '@shared-constants/mqtt-client-events';
 
 import {
-    NODE_STATUS_LOGGED_IN,
-    NODE_STATUS_LOGGED_OUT,
+    OP_RESULT_LOGGED_IN,
+    OP_RESULT_LOGGED_OUT,
 } from '@shared-constants/node-status-codes';
 
 
@@ -29,7 +29,7 @@ function useConnectedNodesCount({ nodeIds }) {
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_STATUS_CODES,
-        instanceId: NODE_STATUS_LOGGED_IN,
+        instanceId: OP_RESULT_LOGGED_IN,
         listener: ({ data: { nodeId } }) => {
             setConnectedNodeIds(prevState => prevState.includes(nodeId)
                 ? prevState
@@ -39,7 +39,7 @@ function useConnectedNodesCount({ nodeIds }) {
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_STATUS_CODES,
-        instanceId: NODE_STATUS_LOGGED_OUT,
+        instanceId: OP_RESULT_LOGGED_OUT,
         listener: ({ data: { nodeId } }) => {
             setConnectedNodeIds(prevState => prevState.filter(id => id !== nodeId));
         },

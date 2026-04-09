@@ -22,8 +22,8 @@ import {
 } from '@shared-constants/mqtt-client-events';
 
 import {
-    NODE_STATUS_LOGGED_IN,
-    NODE_STATUS_LOGGED_OUT,
+    OP_RESULT_LOGGED_IN,
+    OP_RESULT_LOGGED_OUT,
 } from '@shared-constants/node-status-codes';
 
 
@@ -38,11 +38,11 @@ function useNodePresence() {
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_STATUS_CODES,
-        instanceId: NODE_STATUS_LOGGED_IN,
+        instanceId: OP_RESULT_LOGGED_IN,
         listener: ({ data }) => {
             const { nodeId, message } = data;
 
-            setNode(prevState => {
+            setNodes(prevState => {
                 if (prevState.has(nodeId)) {
 
                     return prevState;
@@ -60,11 +60,11 @@ function useNodePresence() {
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_STATUS_CODES,
-        instanceId: NODE_STATUS_LOGGED_OUT,
+        instanceId: OP_RESULT_LOGGED_OUT,
         listener: ({ data }) => {
             const { nodeId } = data;
 
-            setNode(prevState => {
+            setNodes(prevState => {
                 const nextState = new Map(prevState);
 
                 nextState.delete(nodeId);
