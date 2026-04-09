@@ -3,5 +3,4 @@ const environmentalNodesProvider = {
     nodeIds: [],
 };
 
-
 export { environmentalNodesProvider };
