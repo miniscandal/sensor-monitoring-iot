@@ -9,7 +9,6 @@ import './style.css';
 
 function EnvironmentalNodeMessages() {
     const rawMessages = [...nodes, ...nodes, ...nodes];
-
     const messages = rawMessages.map(deepCamel);
 
 

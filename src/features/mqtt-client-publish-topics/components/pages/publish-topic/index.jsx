@@ -20,6 +20,7 @@ function MqttClientPublishTopics() {
 
     useMqttClientEvents(SubscribedEnvironmentalNodeStatusTopicObserver());
 
+
     return (
         <TopicsPublishes count={topics.length} topics={topics} />
     );

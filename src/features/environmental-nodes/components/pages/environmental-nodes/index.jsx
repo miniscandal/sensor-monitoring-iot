@@ -7,7 +7,6 @@ import './style.css';
 
 function EnvironmentalNodes() {
 
-
     return (
         <EnvironmentalNodesProvider>
             <NodesManagement />
