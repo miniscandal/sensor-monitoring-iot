@@ -4,7 +4,7 @@ import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
 
 import {
     OBSERVER_ENTITY_MQTT_EVENTS,
-    OBSERVER_ENTITY_STATUS_CODES,
+    OBSERVER_ENTITY_NODE_STATE,
 } from '@shared-constants/observer-entities';
 
 import {
@@ -18,35 +18,51 @@ import {
 
 
 function useConnectedNodesCount({ nodeIds }) {
-    const [connectedNodeIds, setConnectedNodeIds] = useState(nodeIds);
+    const [connectedNodeIds, setConnectedNodeIds] = useState(new Set(nodeIds));
 
 
     useMqttClientEvents({
         entity: OBSERVER_ENTITY_MQTT_EVENTS,
         instanceId: MQTT_CLIENT_EVENT_OFFLINE,
-        listener: () => setConnectedNodeIds([]),
+        listener: () => setConnectedNodeIds(new Set()),
     });
 
     useMqttClientEvents({
-        entity: OBSERVER_ENTITY_STATUS_CODES,
+        entity: OBSERVER_ENTITY_NODE_STATE,
         instanceId: OP_RESULT_LOGGED_IN,
-        listener: ({ data: { nodeId } }) => {
-            setConnectedNodeIds(prevState => prevState.includes(nodeId)
-                ? prevState
-                : [...prevState, nodeId]);
+        listener: ({ data: { topic } }) => {
+            const nodeId = topic.split('/').at(-2);
+
+            setConnectedNodeIds(prevState => {
+                const newState = new Set(prevState);
+
+                newState.add(nodeId);
+
+
+                return newState;
+            });
         },
     });
 
     useMqttClientEvents({
-        entity: OBSERVER_ENTITY_STATUS_CODES,
+        entity: OBSERVER_ENTITY_NODE_STATE,
         instanceId: OP_RESULT_LOGGED_OUT,
-        listener: ({ data: { nodeId } }) => {
-            setConnectedNodeIds(prevState => prevState.filter(id => id !== nodeId));
+        listener: ({ data: { topic } }) => {
+            const nodeId = topic.split('/').at(-2);
+
+            setConnectedNodeIds(prevState => {
+                const newState = new Set(prevState);
+
+                newState.delete(nodeId);
+
+
+                return newState;
+            });
         },
     });
 
 
-    return connectedNodeIds.length;
+    return connectedNodeIds.size;
 }
 
 export { useConnectedNodesCount };
