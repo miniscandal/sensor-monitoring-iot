@@ -9,7 +9,7 @@ import { mqttClientEventSubject } from '@infrastructure/mqtt-client/subjects/mqt
 
 import {
     OBSERVER_ENTITY_MQTT_EVENTS,
-    OBSERVER_ENTITY_STATUS_CODES,
+    OBSERVER_ENTITY_NODE_STATE,
     OBSERVER_ENTITY_TOPICS,
 } from '@core-constants/observer-entities';
 
@@ -83,7 +83,7 @@ class MqttClientSingleton {
         });
 
         mqttClientEventSubject.notify({
-            entity: OBSERVER_ENTITY_STATUS_CODES,
+            entity: OBSERVER_ENTITY_NODE_STATE,
             instanceId: parseMessage?.data?.statusCode,
             actions: null,
             data: {

@@ -14,7 +14,7 @@ import { EnvironmentalNodesContext } from '@shared-contexts/environmental-nodes-
 
 import {
     OBSERVER_ENTITY_MQTT_EVENTS,
-    OBSERVER_ENTITY_STATUS_CODES,
+    OBSERVER_ENTITY_NODE_STATE,
 } from '@shared-constants/observer-entities';
 
 import {
@@ -37,7 +37,7 @@ function useNodePresence() {
     });
 
     useMqttClientEvents({
-        entity: OBSERVER_ENTITY_STATUS_CODES,
+        entity: OBSERVER_ENTITY_NODE_STATE,
         instanceId: OP_RESULT_LOGGED_IN,
         listener: ({ data }) => {
             const { nodeId, message } = data;
@@ -59,7 +59,7 @@ function useNodePresence() {
     });
 
     useMqttClientEvents({
-        entity: OBSERVER_ENTITY_STATUS_CODES,
+        entity: OBSERVER_ENTITY_NODE_STATE,
         instanceId: OP_RESULT_LOGGED_OUT,
         listener: ({ data }) => {
             const { nodeId } = data;

@@ -5,7 +5,7 @@ import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
 
 import { EnvironmentalNodesContext } from '@shared-contexts/environmental-nodes-provider';
 
-import { OBSERVER_ENTITY_STATUS_CODES } from '@shared-constants/observer-entities';
+import { OBSERVER_ENTITY_NODE_STATE } from '@shared-constants/observer-entities';
 
 import { OP_RESULT_STREAMING_SENSOR_DATA } from '@shared-constants/node-status-codes';
 
@@ -15,7 +15,7 @@ function useNodeSensorsStream() {
 
 
     useMqttClientEvents({
-        entity: OBSERVER_ENTITY_STATUS_CODES,
+        entity: OBSERVER_ENTITY_NODE_STATE,
         instanceId: OP_RESULT_STREAMING_SENSOR_DATA,
         listener: ({ data }) => {
             const { nodeId, message } = data;
