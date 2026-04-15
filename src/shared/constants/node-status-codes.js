@@ -30,20 +30,24 @@
 // Reflects the node's physical capacity to access the network.
 // ====================================================================
 
+
+/** The node is attempting to establish a logical session with the system. */
+export const NODE_STATE_LOGIN_ATTEMPT = 101;
+
 /** The node has established a network connection (Wi-Fi, cellular, etc.). */
-export const NODE_STATE_CONNECTED = 101;
+export const NODE_STATE_CONNECTED = 102;
 
 /** The node has lost its network connection. */
-export const NODE_STATE_DISCONNECTED = 102;
+export const NODE_STATE_DISCONNECTED = 103;
 
 /** Periodic signal confirming connectivity and availability (heartbeat). */
-export const NODE_STATE_HEARTBEAT = 103;
+export const NODE_STATE_HEARTBEAT = 104;
 
 /** The connectivity state could not be determined or is not recognized. */
-export const NODE_STATE_UNKNOWN = 104;
+export const NODE_STATE_UNKNOWN = 105;
 
 /** The node is physically powered off or without a power source. */
-export const NODE_STATE_OFF = 105;
+export const NODE_STATE_OFF = 106;
 
 
 // ====================================================================
