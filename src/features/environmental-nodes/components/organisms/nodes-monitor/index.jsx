@@ -7,9 +7,6 @@ import { useState, useContext } from 'preact/hooks';
 
 import { NodeCard } from '../node-card';
 
-import { useNodePresence } from '@features/environmental-nodes/hooks/use-node-presence';
-import { useNodeSensorsStream } from '@shared-hooks/environmental-nodes/use-node-sensors-stream';
-
 import { EnvironmentalNodesContext } from '@shared-contexts/environmental-nodes-provider';
 
 import {
@@ -24,19 +21,17 @@ function NodesMonitor() {
     const { nodes } = useContext(EnvironmentalNodesContext);
     const [selectedNode, setSelectedNode] = useState(null);
 
-    useNodePresence();
-    useNodeSensorsStream();
-
     const nodeCards = Array.from(nodes.entries()).map(([key, node]) => {
-        const { metadata, data } = node;
+        const { nodeState, metadata, data } = node;
+
 
         return (
             <NodeCard
                 key={`${metadata.nodeId}-${key}`}
                 nodeId={metadata.nodeId}
-                sensorReadings={metadata.sensorReadings}
+                sensorReadings={data?.sensorReadings}
                 selectionStatus={selectedNode === metadata.nodeId}
-                statusCode={data?.statusCode}
+                statusCode={nodeState}
             />
         );
     });
