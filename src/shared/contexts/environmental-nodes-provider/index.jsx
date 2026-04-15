@@ -1,9 +1,22 @@
 import { createContext } from 'preact';
 import { useState } from 'preact/hooks';
+import { signal } from '@preact/signals';
+
 import { useConnectedNodesCount } from '@features/environmental-nodes/hooks/use-connected-nodes-count';
 
 import { environmentalNodesProviderFactory } from '@infrastructure/environmental-nodes/factories/nodes';
+import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
 
+import { NodeLoggedInObserver } from '@features/environmental-nodes/observers/node-presence/logged-in';
+import { NodeLoggedOutObserver } from '@features/environmental-nodes/observers/node-presence/logged-out';
+import { NodeStreamingSensorsObserver } from '@features/environmental-nodes/observers/streaming-sensors';
+import { NodeMonitorOfflineObserver } from '@features/environmental-nodes/observers/node-monitor/offline';
+
+
+const offlineObserver = NodeMonitorOfflineObserver();
+const loggedInObserver = NodeLoggedInObserver();
+const loggedOutObserver = NodeLoggedOutObserver();
+const streamingSensorsObserver = NodeStreamingSensorsObserver();
 
 const EnvironmentalNodesContext = createContext({
     nodes: new Map(),
@@ -22,6 +35,36 @@ function EnvironmentalNodesProvider({ children }) {
         setNodes,
         connectedCount,
     };
+
+    useMqttClientEvents({
+        entity: offlineObserver.entity,
+        instanceId: offlineObserver.instanceId,
+        listener: () => setNodes(offlineObserver.listener()),
+    });
+
+    useMqttClientEvents({
+        entity: loggedInObserver.entity,
+        instanceId: loggedInObserver.instanceId,
+        listener: ({ data }) => (
+            setNodes(prevState => loggedInObserver.listener({ data, nodes: prevState }))
+        ),
+    });
+
+    useMqttClientEvents({
+        entity: loggedOutObserver.entity,
+        instanceId: loggedOutObserver.instanceId,
+        listener: ({ data }) => (
+            setNodes(prevState => loggedOutObserver.listener({ data, nodes: prevState }))
+        ),
+    });
+
+    useMqttClientEvents({
+        entity: streamingSensorsObserver.entity,
+        instanceId: streamingSensorsObserver.instanceId,
+        listener: ({ data }) => (
+            setNodes(prevState => streamingSensorsObserver.listener({ data, nodes: prevState, signal }))
+        ),
+    });
 
 
     return (
