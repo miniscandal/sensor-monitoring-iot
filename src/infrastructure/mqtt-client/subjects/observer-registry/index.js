@@ -20,7 +20,7 @@ entities = {
         102: ['observerId6', 'observerId7'],
         103: ['observerId8'],
     },
-    operationCodes: {
+    operationResult: {
         202: ['observerId9', 'observerId10'],
         203: ['observerId11'],
     },
@@ -39,7 +39,7 @@ Notes:
 import {
     OBSERVER_ENTITY_MQTT_EVENTS,
     OBSERVER_ENTITY_NODE_STATE,
-    OBSERVER_ENTITY_OPERATION_CODES,
+    OBSERVER_ENTITY_OPERATION_RESULT,
     OBSERVER_ENTITY_TOPICS,
 } from '@shared-constants/observer-entities';
 
@@ -48,7 +48,7 @@ class ObserverRegistry {
     static VALID_ENTITIES = [
         OBSERVER_ENTITY_MQTT_EVENTS,
         OBSERVER_ENTITY_NODE_STATE,
-        OBSERVER_ENTITY_OPERATION_CODES,
+        OBSERVER_ENTITY_OPERATION_RESULT,
         OBSERVER_ENTITY_TOPICS,
     ];
 
@@ -56,7 +56,7 @@ class ObserverRegistry {
         this.entities = {
             [OBSERVER_ENTITY_MQTT_EVENTS]: new Map(),
             [OBSERVER_ENTITY_NODE_STATE]: new Map(),
-            [OBSERVER_ENTITY_OPERATION_CODES]: new Map(),
+            [OBSERVER_ENTITY_OPERATION_RESULT]: new Map(),
             [OBSERVER_ENTITY_TOPICS]: new Map(),
         };
     }
