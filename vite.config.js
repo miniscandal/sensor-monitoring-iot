@@ -11,7 +11,7 @@ export default defineConfig({
             '@core-services': '/src/core/services',
             '@domain': '/src/domain',
             '@infrastructure': '/src/infrastructure',
-            '@features': '/src/features',
+            '@modules': '/src/modules',
             '@assets': '/src/assets',
             '@mocks': '/src/mocks',
             '@shared-components': '/src/shared/components',

@@ -30,8 +30,8 @@
             "@infrastructure/*": [
                 "./src/infrastructure/*"
             ],
-            "@features/*": [
-                "./src/features/*"
+            "@modules/*": [
+                "./src/modules/*"
             ],
             "@assets/*": [
                 "./src/assets/*"
