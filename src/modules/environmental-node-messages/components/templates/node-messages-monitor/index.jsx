@@ -2,9 +2,9 @@ import { MessagesTable } from '../../organisms/messages-table';
 
 import { JsonRenderer } from '@shared-components/organisms/json-renderer';
 
-import { flatStringify } from '@features/environmental-node-messages/utils/flat-stringify';
-import { parseMessage } from '@features/environmental-node-messages/utils/parse-message';
-import { extractStatus } from '@features/environmental-node-messages/utils/extract-status';
+import { flatStringify } from '@modules/environmental-node-messages/utils/flat-stringify';
+import { parseMessage } from '@modules/environmental-node-messages/utils/parse-message';
+import { extractStatus } from '@modules/environmental-node-messages/utils/extract-status';
 
 import './style.css';
 

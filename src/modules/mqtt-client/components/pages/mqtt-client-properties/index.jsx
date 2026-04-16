@@ -1,4 +1,4 @@
-import { useMqttClientProperties } from '@features/mqtt-client/hooks/use-properties';
+import { useMqttClientProperties } from '@modules/mqtt-client/hooks/use-properties';
 
 import { ClientDetails } from '../../templates/client-details';
 

@@ -12,7 +12,7 @@ import { EnvironmentalNodesContext } from '@shared-contexts/environmental-nodes-
 import {
     DATA_ATTR_ACTION_SELECTOR,
     DATA_ATTR_NODE_ID_SELECTOR,
-} from '@features/environmental-nodes/constants/selectors';
+} from '@modules/environmental-nodes/constants/selectors';
 
 import './style.css';
 

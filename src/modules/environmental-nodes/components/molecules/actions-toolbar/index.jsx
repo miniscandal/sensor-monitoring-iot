@@ -9,7 +9,7 @@ import {
     DATA_ATTR_NODE_ACTION_TERMINAL,
     DATA_ATTR_NODE_ACTION_STREAMING_DATA,
     DATA_ATTR_NODE_ACTION_ANALYTICS,
-} from '@features/environmental-nodes/constants/node-actions';
+} from '@modules/environmental-nodes/constants/node-actions';
 
 import './style.css';
 

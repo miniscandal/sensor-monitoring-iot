@@ -1,9 +1,9 @@
-// import { useMqttClientMessages } from '@features/mqtt-client-messages/hooks/use-messages';
+// import { useMqttClientMessages } from '@modules/mqtt-client-messages/hooks/use-messages';
 
 import { Table } from '../../molecules/table';
 import { TableColgroup } from '../../molecules/table-colgroup';
 
-import { HEADERS, COLUMNS } from '@features/environmental-node-messages/constants/feed-table';
+import { HEADERS, COLUMNS } from '@modules/environmental-node-messages/constants/feed-table';
 
 import './style.css';
 
