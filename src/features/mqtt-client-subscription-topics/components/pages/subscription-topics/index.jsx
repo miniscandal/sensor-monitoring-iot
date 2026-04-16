@@ -1,6 +1,6 @@
 import { useSubscribedTopics } from '@features/mqtt-client-subscription-topics/hooks/use-subscribed-topics';
 
-import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
+import { useSubscribeObserverMqttClient } from '@shared-hooks/mqtt-client/use-subscribe-observer';
 
 import { OnMqttClientConnectedObserver } from '@features/mqtt-client-subscription-topics/observers/connected';
 
@@ -12,7 +12,7 @@ import './style.css';
 function MqttClientSubscriptionTopics() {
     const topics = useSubscribedTopics();
 
-    useMqttClientEvents(OnMqttClientConnectedObserver());
+    useSubscribeObserverMqttClient(OnMqttClientConnectedObserver());
 
 
     return (

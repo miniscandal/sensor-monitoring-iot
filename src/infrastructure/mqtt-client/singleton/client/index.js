@@ -5,7 +5,7 @@
 
 import mqtt from 'mqtt';
 
-import { mqttClientEventSubject } from '@infrastructure/mqtt-client/subjects/mqtt-client-subject';
+import { mqttClientSubject } from '@infrastructure/mqtt-client/subjects/mqtt-client-subject';
 
 import {
     OBSERVER_ENTITY_MQTT_EVENTS,
@@ -47,7 +47,7 @@ class MqttClientSingleton {
     }
 
     onConnect() {
-        mqttClientEventSubject.notify({
+        mqttClientSubject.notifyObservers({
             entity: OBSERVER_ENTITY_MQTT_EVENTS,
             instanceId: MQTT_CLIENT_EVENT_CONNECT,
             actions: {
@@ -59,7 +59,7 @@ class MqttClientSingleton {
     };
 
     onOffline() {
-        mqttClientEventSubject.notify({
+        mqttClientSubject.notifyObservers({
             entity: OBSERVER_ENTITY_MQTT_EVENTS,
             instanceId: MQTT_CLIENT_EVENT_OFFLINE,
             actions: {
@@ -72,7 +72,7 @@ class MqttClientSingleton {
     onMessage(topic, message) {
         const parseMessage = JSON.parse(message.toString());
 
-        mqttClientEventSubject.notify({
+        mqttClientSubject.notifyObservers({
             entity: OBSERVER_ENTITY_MQTT_EVENTS,
             instanceId: MQTT_CLIENT_EVENT_MESSAGE,
             actions: null,
@@ -82,7 +82,7 @@ class MqttClientSingleton {
             },
         });
 
-        mqttClientEventSubject.notify({
+        mqttClientSubject.notifyObservers({
             entity: OBSERVER_ENTITY_NODE_STATE,
             instanceId: parseMessage?.data?.statusCode,
             actions: null,
@@ -97,7 +97,7 @@ class MqttClientSingleton {
         this.client.subscribe(topic, () => {
             const data = { topic };
 
-            mqttClientEventSubject.notify({
+            mqttClientSubject.notifyObservers({
                 entity: OBSERVER_ENTITY_MQTT_EVENTS,
                 instanceId: MQTT_CLIENT_EVENT_SUBSCRIBE,
                 actions: {
@@ -106,7 +106,7 @@ class MqttClientSingleton {
                 data,
             });
 
-            mqttClientEventSubject.notify({
+            mqttClientSubject.notifyObservers({
                 entity: OBSERVER_ENTITY_TOPICS,
                 instanceId: topic,
                 actions: {

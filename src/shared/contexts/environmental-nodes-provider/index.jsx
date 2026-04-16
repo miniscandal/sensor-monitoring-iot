@@ -5,7 +5,7 @@ import { signal } from '@preact/signals';
 import { useConnectedNodesCount } from '@features/environmental-nodes/hooks/use-connected-nodes-count';
 
 import { environmentalNodesProviderFactory } from '@infrastructure/environmental-nodes/factories/nodes';
-import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
+import { useSubscribeObserverMqttClient } from '@shared-hooks/mqtt-client/use-subscribe-observer';
 
 import { NodeLoggedInObserver } from '@features/environmental-nodes/observers/node-presence/logged-in';
 import { NodeLoggedOutObserver } from '@features/environmental-nodes/observers/node-presence/logged-out';
@@ -36,13 +36,13 @@ function EnvironmentalNodesProvider({ children }) {
         connectedCount,
     };
 
-    useMqttClientEvents({
+    useSubscribeObserverMqttClient({
         entity: offlineObserver.entity,
         instanceId: offlineObserver.instanceId,
         listener: () => setNodes(offlineObserver.listener()),
     });
 
-    useMqttClientEvents({
+    useSubscribeObserverMqttClient({
         entity: loggedInObserver.entity,
         instanceId: loggedInObserver.instanceId,
         listener: ({ data }) => (
@@ -50,7 +50,7 @@ function EnvironmentalNodesProvider({ children }) {
         ),
     });
 
-    useMqttClientEvents({
+    useSubscribeObserverMqttClient({
         entity: loggedOutObserver.entity,
         instanceId: loggedOutObserver.instanceId,
         listener: ({ data }) => (
@@ -58,7 +58,7 @@ function EnvironmentalNodesProvider({ children }) {
         ),
     });
 
-    useMqttClientEvents({
+    useSubscribeObserverMqttClient({
         entity: streamingSensorsObserver.entity,
         instanceId: streamingSensorsObserver.instanceId,
         listener: ({ data }) => (

@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks';
 
-import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
+import { useSubscribeObserverMqttClient } from '@shared-hooks/mqtt-client/use-subscribe-observer';
 
 import { OBSERVER_ENTITY_MQTT_EVENTS } from '@shared-constants/observer-entities';
 
@@ -13,13 +13,13 @@ import {
 function useSubscribedTopics() {
     const [topics, setTopics] = useState([]);
 
-    useMqttClientEvents({
+    useSubscribeObserverMqttClient({
         entity: OBSERVER_ENTITY_MQTT_EVENTS,
         instanceId: MQTT_CLIENT_EVENT_SUBSCRIBE,
         listener: ({ data: { topic } }) => setTopics((prevState) => [...prevState, topic]),
     });
 
-    useMqttClientEvents({
+    useSubscribeObserverMqttClient({
         entity: OBSERVER_ENTITY_MQTT_EVENTS,
         instanceId: MQTT_CLIENT_EVENT_OFFLINE,
         listener: () => setTopics([]),

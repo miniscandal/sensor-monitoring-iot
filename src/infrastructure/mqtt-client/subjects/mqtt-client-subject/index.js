@@ -1,10 +1,10 @@
 import { ObserverRegistry } from '@infrastructure/mqtt-client/subjects/observer-registry';
 
 
-class MqttClientEventSubject {
+class MqttClientSubject {
     constructor(ObserverRegistry) {
         this.observers = new Set();
-        this.ObserverRegistry = ObserverRegistry;
+        this.observerRegistry = ObserverRegistry;
     }
 
     subscribe({ entity, instanceId, listener }) {
@@ -16,7 +16,7 @@ class MqttClientEventSubject {
 
         this.observers.add(observerReg);
 
-        this.ObserverRegistry.register({
+        this.observerRegistry.register({
             entity,
             instanceId,
             observerId,
@@ -36,10 +36,10 @@ class MqttClientEventSubject {
         }
     }
 
-    notify({ entity, instanceId, actions, data }) {
+    notifyObservers({ entity, instanceId, actions, data }) {
         console.log({ entity, instanceId, actions, data });
 
-        const observerIds = this.ObserverRegistry.getObserverIds({ entity, instanceId }) || [];
+        const observerIds = this.observerRegistry.getObserverIds({ entity, instanceId }) || [];
 
         console.log('ids', observerIds);
 
@@ -53,6 +53,6 @@ class MqttClientEventSubject {
     }
 }
 
-const mqttClientEventSubject = new MqttClientEventSubject(new ObserverRegistry());
+const mqttClientSubject = new MqttClientSubject(new ObserverRegistry());
 
-export { mqttClientEventSubject };
+export { mqttClientSubject };

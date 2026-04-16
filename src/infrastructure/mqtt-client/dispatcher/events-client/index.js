@@ -16,10 +16,10 @@ import {
 } from '@shared-constants/mqtt-client-events';
 
 
-class MqttClientEventNotifier {
-    constructor(clientAdapter, eventSubject) {
+class MqttClientEventDispatcher {
+    constructor(clientAdapter, mqttClientSubject) {
         this.client = clientAdapter;
-        this.eventSubject = eventSubject;
+        this.mqttClientSubject = mqttClientSubject;
 
         this.client.on(MQTT_CLIENT_EVENT_CONNECT, this.onConnect.bind(this));
         this.client.on(MQTT_CLIENT_EVENT_OFFLINE, this.onOffline.bind(this));
@@ -28,7 +28,7 @@ class MqttClientEventNotifier {
     }
 
     onConnect() {
-        this.eventSubject.notify({
+        this.mqttClientSubject.notifyObservers({
             entity: OBSERVER_ENTITY_MQTT_EVENTS,
             instanceId: MQTT_CLIENT_EVENT_CONNECT,
             actions: {
@@ -40,7 +40,7 @@ class MqttClientEventNotifier {
     }
 
     onOffline() {
-        this.eventSubject.notify({
+        this.mqttClientSubject.notifyObservers({
             entity: OBSERVER_ENTITY_MQTT_EVENTS,
             instanceId: MQTT_CLIENT_EVENT_OFFLINE,
             actions: {
@@ -53,21 +53,21 @@ class MqttClientEventNotifier {
     onMessage(topic, message) {
         const parsed = deepCamel(JSON.parse(message.toString()));
 
-        this.eventSubject.notify({
+        this.mqttClientSubject.notifyObservers({
             entity: OBSERVER_ENTITY_MQTT_EVENTS,
             instanceId: MQTT_CLIENT_EVENT_MESSAGE,
             actions: null,
             data: { topic, message },
         });
 
-        this.eventSubject.notify({
+        this.mqttClientSubject.notifyObservers({
             entity: OBSERVER_ENTITY_NODE_STATE,
             instanceId: parsed?.nodeState,
             actions: null,
             data: { topic, message: parsed },
         });
 
-        this.eventSubject.notify({
+        this.mqttClientSubject.notifyObservers({
             entity: OBSERVER_ENTITY_OPERATION_RESULT,
             instanceId: parsed?.operationResult,
             actions: null,
@@ -79,14 +79,14 @@ class MqttClientEventNotifier {
         this.client.subscribe(topic, () => {
             const data = { topic };
 
-            this.eventSubject.notify({
+            this.mqttClientSubject.notifyObservers({
                 entity: OBSERVER_ENTITY_MQTT_EVENTS,
                 instanceId: MQTT_CLIENT_EVENT_SUBSCRIBE,
                 actions: { subscribe: this.subscribe.bind(this) },
                 data,
             });
 
-            this.eventSubject.notify({
+            this.mqttClientSubject.notifyObservers({
                 entity: OBSERVER_ENTITY_TOPICS,
                 instanceId: topic,
                 actions: { publish: this.publish.bind(this) },
@@ -104,4 +104,4 @@ class MqttClientEventNotifier {
     }
 }
 
-export { MqttClientEventNotifier };
+export { MqttClientEventDispatcher };

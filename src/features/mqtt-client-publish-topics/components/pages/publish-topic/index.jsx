@@ -1,4 +1,4 @@
-import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
+import { useSubscribeObserverMqttClient } from '@shared-hooks/mqtt-client/use-subscribe-observer';
 
 import { SubscribedEnvironmentalNodeStatusTopicObserver } from '@features/mqtt-client-operations/observers/topics/environmental-node-data';
 
@@ -18,7 +18,7 @@ function MqttClientPublishTopics() {
         MQTT_TOPIC_NODE_OPERATION_ALL,
     ];
 
-    useMqttClientEvents(SubscribedEnvironmentalNodeStatusTopicObserver());
+    useSubscribeObserverMqttClient(SubscribedEnvironmentalNodeStatusTopicObserver());
 
 
     return (

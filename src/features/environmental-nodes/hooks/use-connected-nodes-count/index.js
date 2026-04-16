@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks';
 
-import { useMqttClientEvents } from '@shared-hooks/mqtt-client/use-events';
+import { useSubscribeObserverMqttClient } from '@shared-hooks/mqtt-client/use-subscribe-observer';
 
 import {
     OBSERVER_ENTITY_MQTT_EVENTS,
@@ -21,13 +21,13 @@ function useConnectedNodesCount({ nodeIds }) {
     const [connectedNodeIds, setConnectedNodeIds] = useState(new Set(nodeIds));
 
 
-    useMqttClientEvents({
+    useSubscribeObserverMqttClient({
         entity: OBSERVER_ENTITY_MQTT_EVENTS,
         instanceId: MQTT_CLIENT_EVENT_OFFLINE,
         listener: () => setConnectedNodeIds(new Set()),
     });
 
-    useMqttClientEvents({
+    useSubscribeObserverMqttClient({
         entity: OBSERVER_ENTITY_NODE_STATE,
         instanceId: OP_RESULT_LOGGED_IN,
         listener: ({ data: { topic } }) => {
@@ -44,7 +44,7 @@ function useConnectedNodesCount({ nodeIds }) {
         },
     });
 
-    useMqttClientEvents({
+    useSubscribeObserverMqttClient({
         entity: OBSERVER_ENTITY_NODE_STATE,
         instanceId: OP_RESULT_LOGGED_OUT,
         listener: ({ data: { topic } }) => {
