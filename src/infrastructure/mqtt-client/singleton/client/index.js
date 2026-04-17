@@ -21,7 +21,7 @@ import {
     MQTT_CLIENT_EVENT_ERROR,
 } from '@shared-constants/mqtt-client-events';
 
-import { MQTT_BROKER_HOST, MQTT_BROKER_PORT } from '@shared-constants/mqtt-client-config';
+import { MQTT_BROKER_HOST, MQTT_BROKER_PORT } from '@infrastructure/mqtt-client/config/client-config';
 
 
 class MqttClientSingleton {
