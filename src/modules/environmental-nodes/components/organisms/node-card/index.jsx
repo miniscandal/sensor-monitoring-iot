@@ -7,10 +7,11 @@ import { SvgIcon } from '@shared-components/atoms/svg-icon';
 import { safeRound } from '@shared-utils/safe-round';
 
 import {
-    OP_RESULT_LOGGED_OUT,
-    NODE_STATE_IDLE,
-    OP_RESULT_STREAMING_SENSOR_DATA,
-} from '@infrastructure/environmental-nodes/constants/node-state-codes';
+    NODE_OP_RESULT_LOGGED_OUT,
+    NODE_OP_RESULT_STREAMING_SENSOR_DATA,
+} from '@infrastructure/environmental-nodes/constants/node-operation-result-codes';
+
+import { NODE_STATE_IDLE } from '@infrastructure/environmental-nodes/constants/node-state-codes';
 
 import './style.css';
 
@@ -28,15 +29,15 @@ function NodeCard({ nodeId = 'N/A', sensorReadings = {}, selectionStatus = false
     */
 
     const dataTransmissionIcon = {
-        [OP_RESULT_LOGGED_OUT]: 'sensorsOff',
+        [NODE_OP_RESULT_LOGGED_OUT]: 'sensorsOff',
+        [NODE_OP_RESULT_STREAMING_SENSOR_DATA]: 'sensors',
         [NODE_STATE_IDLE]: 'sensorsOff',
-        [OP_RESULT_STREAMING_SENSOR_DATA]: 'sensors',
     }[statusCode];
 
     const svgIconName = {
-        [OP_RESULT_LOGGED_OUT]: 'motionSensorActive',
+        [NODE_OP_RESULT_LOGGED_OUT]: 'motionSensorActive',
+        [NODE_OP_RESULT_STREAMING_SENSOR_DATA]: 'motionSensorActive',
         [NODE_STATE_IDLE]: 'motionSensorIdle',
-        [OP_RESULT_STREAMING_SENSOR_DATA]: 'motionSensorActive',
     }[statusCode];
 
 

@@ -1,12 +1,12 @@
 import { OBSERVER_ENTITY_OPERATION_RESULT } from '@shared-constants/observer-entities';
-import { OP_RESULT_LOGGED_OUT } from '@infrastructure/environmental-nodes/constants/node-state-codes';
+import { NODE_OP_RESULT_LOGGED_OUT } from '@infrastructure/environmental-nodes/constants/node-operation-result-codes';
 
 
 function NodeLoggedOutObserver() {
 
     return {
         entity: OBSERVER_ENTITY_OPERATION_RESULT,
-        instanceId: OP_RESULT_LOGGED_OUT,
+        instanceId: NODE_OP_RESULT_LOGGED_OUT,
         listener: ({ data, nodes }) => {
             const newState = new Map(nodes);
 
@@ -23,14 +23,14 @@ export { NodeLoggedOutObserver };
 
 /*
 import { OBSERVER_ENTITY_NODE_STATE } from '@shared-constants/observer-entities';
-import { OP_RESULT_LOGGED_OUT } from '@shared-constants/node-status-codes';
+import { NODE_OP_RESULT_LOGGED_OUT } from '@shared-constants/node-state-codes';
 
 
 function NodeLoggedOutObserver(setNodes) {
 
     return {
         entity: OBSERVER_ENTITY_NODE_STATE,
-        instanceId: OP_RESULT_LOGGED_OUT,
+        instanceId: NODE_OP_RESULT_LOGGED_OUT,
         listener: ({ data }) => {
             const { metadata: { nodeId } } = data.message;
 

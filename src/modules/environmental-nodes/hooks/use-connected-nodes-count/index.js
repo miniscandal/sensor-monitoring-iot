@@ -12,9 +12,9 @@ import {
 } from '@infrastructure/mqtt-client/constants/client-events';
 
 import {
-    OP_RESULT_LOGGED_IN,
-    OP_RESULT_LOGGED_OUT,
-} from '@infrastructure/environmental-nodes/constants/node-state-codes';
+    NODE_OP_RESULT_LOGGED_IN,
+    NODE_OP_RESULT_LOGGED_OUT,
+} from '@infrastructure/environmental-nodes/constants/node-operation-result-codes';
 
 
 function useConnectedNodesCount({ nodeIds }) {
@@ -29,7 +29,7 @@ function useConnectedNodesCount({ nodeIds }) {
 
     useSubscribeObserverMqttClient({
         entity: OBSERVER_ENTITY_NODE_STATE,
-        instanceId: OP_RESULT_LOGGED_IN,
+        instanceId: NODE_OP_RESULT_LOGGED_IN,
         listener: ({ data: { topic } }) => {
             const nodeId = topic.split('/').at(-2);
 
@@ -46,7 +46,7 @@ function useConnectedNodesCount({ nodeIds }) {
 
     useSubscribeObserverMqttClient({
         entity: OBSERVER_ENTITY_NODE_STATE,
-        instanceId: OP_RESULT_LOGGED_OUT,
+        instanceId: NODE_OP_RESULT_LOGGED_OUT,
         listener: ({ data: { topic } }) => {
             const nodeId = topic.split('/').at(-2);
 
