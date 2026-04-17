@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks';
 
-import { useSubscribeObserverMqttClient } from '@shared-hooks/mqtt-client/use-subscribe-observer';
+import { useSubscribeObserverMqttClient } from '@infrastructure/mqtt-client/hooks/use-subscribe-observer';
 
 import {
     OBSERVER_ENTITY_MQTT_EVENTS,

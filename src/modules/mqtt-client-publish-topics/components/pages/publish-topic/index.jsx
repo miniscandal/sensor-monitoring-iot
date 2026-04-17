@@ -1,4 +1,4 @@
-import { useSubscribeObserverMqttClient } from '@shared-hooks/mqtt-client/use-subscribe-observer';
+import { useSubscribeObserverMqttClient } from '@infrastructure/mqtt-client/hooks/use-subscribe-observer';
 
 import { SubscribedEnvironmentalNodeStatusTopicObserver } from '@modules/mqtt-client-operations/observers/topics/environmental-node-data';
 

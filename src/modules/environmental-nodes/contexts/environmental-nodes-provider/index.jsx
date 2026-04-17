@@ -5,7 +5,7 @@ import { signal } from '@preact/signals';
 import { useConnectedNodesCount } from '@modules/environmental-nodes/hooks/use-connected-nodes-count';
 
 import { environmentalNodesProviderFactory } from '@infrastructure/environmental-nodes/factories/nodes';
-import { useSubscribeObserverMqttClient } from '@shared-hooks/mqtt-client/use-subscribe-observer';
+import { useSubscribeObserverMqttClient } from '@infrastructure/mqtt-client/hooks/use-subscribe-observer';
 
 import { NodeLoggedInObserver } from '@modules/environmental-nodes/observers/node-presence/logged-in';
 import { NodeLoggedOutObserver } from '@modules/environmental-nodes/observers/node-presence/logged-out';

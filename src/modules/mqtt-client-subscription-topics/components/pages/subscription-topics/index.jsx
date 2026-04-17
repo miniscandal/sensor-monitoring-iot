@@ -1,6 +1,6 @@
 import { useSubscribedTopics } from '@modules/mqtt-client-subscription-topics/hooks/use-subscribed-topics';
 
-import { useSubscribeObserverMqttClient } from '@shared-hooks/mqtt-client/use-subscribe-observer';
+import { useSubscribeObserverMqttClient } from '@infrastructure/mqtt-client/hooks/use-subscribe-observer';
 
 import { OnMqttClientConnectedObserver } from '@modules/mqtt-client-subscription-topics/observers/connected';
 

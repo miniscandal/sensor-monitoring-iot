@@ -12,8 +12,7 @@ function useSubscribeObserverMqttClient({ entity, instanceId, listener }) {
 
     useEffect(() => {
         const observerId = mqttClientSubject.subscribe({
-            entity,
-            instanceId,
+            entity, instanceId,
             listener: (...args) => stableListener.current(...args),
         });
 
