@@ -9,12 +9,12 @@ import { useSubscribeObserverMqttClient } from '@infrastructure/mqtt-client/hook
 
 import { OBSERVER_ENTITY_MQTT_EVENTS } from '@shared-constants/observer-entities';
 
-import { MQTT_CLIENT_PROPERTIES } from '@shared-constants/mqtt-client-properties';
+import { MQTT_CLIENT_PROPERTIES } from '@infrastructure/mqtt-client/constants/client-properties';
 
 import {
     MQTT_CLIENT_EVENT_CONNECT,
     MQTT_CLIENT_EVENT_OFFLINE,
-} from '@shared-constants/mqtt-client-events';
+} from '@infrastructure/mqtt-client/constants/client-events';
 
 
 function useMqttClientProperties() {

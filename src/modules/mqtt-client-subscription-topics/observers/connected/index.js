@@ -1,6 +1,6 @@
 import { OBSERVER_ENTITY_MQTT_EVENTS } from '@shared-constants/observer-entities';
 
-import { MQTT_CLIENT_EVENT_CONNECT } from '@shared-constants/mqtt-client-events';
+import { MQTT_CLIENT_EVENT_CONNECT } from '@infrastructure/mqtt-client/constants/client-events';
 
 import {
     MQTT_TOPIC_NODE_OPERATION_RESULT,

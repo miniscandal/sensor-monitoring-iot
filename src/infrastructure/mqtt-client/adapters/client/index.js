@@ -3,7 +3,7 @@ import mqtt from 'mqtt';
 import {
     MQTT_BROKER_HOST,
     MQTT_BROKER_PORT,
-} from '@infrastructure/mqtt-client/config/client-config';
+} from '@infrastructure/mqtt-client/constants/client-config';
 
 
 class MqttClientAdapter {

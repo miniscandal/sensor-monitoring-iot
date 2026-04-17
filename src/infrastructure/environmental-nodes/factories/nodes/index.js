@@ -1,4 +1,4 @@
-import { USE_ENVIRONMENTAL_NODE_MOCK } from '@infrastructure/mqtt-client/config/client-config';
+import { USE_ENVIRONMENTAL_NODE_MOCK } from '@infrastructure/mqtt-client/constants/client-config';
 
 import { environmentalNodesMockProvider } from '@mocks/environmental-nodes/providers/nodes';
 import { environmentalNodesProvider } from '@infrastructure/environmental-nodes/providers/nodes';

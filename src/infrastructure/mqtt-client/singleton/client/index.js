@@ -19,9 +19,9 @@ import {
     MQTT_CLIENT_EVENT_SUBSCRIBE,
     MQTT_CLIENT_EVENT_MESSAGE,
     MQTT_CLIENT_EVENT_ERROR,
-} from '@shared-constants/mqtt-client-events';
+} from '@infrastructure/mqtt-client/constants/client-events';
 
-import { MQTT_BROKER_HOST, MQTT_BROKER_PORT } from '@infrastructure/mqtt-client/config/client-config';
+import { MQTT_BROKER_HOST, MQTT_BROKER_PORT } from '@infrastructure/mqtt-client/constants/client-config';
 
 
 class MqttClientSingleton {
