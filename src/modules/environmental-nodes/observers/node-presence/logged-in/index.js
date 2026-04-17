@@ -1,5 +1,5 @@
 import { OBSERVER_ENTITY_OPERATION_RESULT } from '@shared-constants/observer-entities';
-import { OP_RESULT_LOGGED_IN } from '@shared-constants/node-status-codes';
+import { OP_RESULT_LOGGED_IN } from '@infrastructure/environmental-nodes/constants/node-state-codes';
 
 
 function NodeLoggedInObserver() {

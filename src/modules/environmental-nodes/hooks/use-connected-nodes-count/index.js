@@ -14,7 +14,7 @@ import {
 import {
     OP_RESULT_LOGGED_IN,
     OP_RESULT_LOGGED_OUT,
-} from '@shared-constants/node-status-codes';
+} from '@infrastructure/environmental-nodes/constants/node-state-codes';
 
 
 function useConnectedNodesCount({ nodeIds }) {

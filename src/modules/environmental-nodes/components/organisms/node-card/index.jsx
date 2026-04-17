@@ -10,7 +10,7 @@ import {
     OP_RESULT_LOGGED_OUT,
     NODE_STATE_IDLE,
     OP_RESULT_STREAMING_SENSOR_DATA,
-} from '@shared-constants/node-status-codes';
+} from '@infrastructure/environmental-nodes/constants/node-state-codes';
 
 import './style.css';
 

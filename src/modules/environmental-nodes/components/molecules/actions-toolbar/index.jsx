@@ -4,7 +4,7 @@ import {
     OP_RESULT_LOGGED_IN,
     NODE_STATE_IDLE,
     OP_RESULT_STREAMING_SENSOR_DATA,
-} from '@shared-constants/node-status-codes';
+} from '@infrastructure/environmental-nodes/constants/node-state-codes';
 import {
     DATA_ATTR_NODE_ACTION_TERMINAL,
     DATA_ATTR_NODE_ACTION_STREAMING_DATA,

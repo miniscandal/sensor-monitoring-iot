@@ -1,0 +1,49 @@
+/* ====================================================================
+   NODE STATE CODES
+   Reflects the node's connectivity, operational state, and lifecycle.
+   ==================================================================== */
+
+/* Connectivity and Availability (100–199) */
+const NODE_STATE_LOGIN_ATTEMPT = 101;
+const NODE_STATE_CONNECTED = 102;
+const NODE_STATE_DISCONNECTED = 103;
+const NODE_STATE_HEARTBEAT = 104;
+const NODE_STATE_UNKNOWN = 105;
+const NODE_STATE_OFF = 106;
+
+/* Operational State (200–213) */
+const NODE_STATE_ACTIVATED = 201;
+const NODE_STATE_IDLE = 202;
+const NODE_STATE_INACTIVE = 203;
+const NODE_STATE_PENDING = 210;
+const NODE_STATE_DISABLED = 211;
+const NODE_STATE_UPDATING = 212;
+const NODE_STATE_MAINTENANCE = 213;
+
+/* Provisioning and Lifecycle (500–599) */
+const NODE_STATE_NEWLY_REGISTERED = 501;
+const NODE_STATE_CONFIGURING = 502;
+const NODE_STATE_AUTHENTICATED_PERM = 503;
+const NODE_STATE_READY_TO_ACTIVATE = 504;
+const NODE_STATE_DECOMMISSIONED = 505;
+
+export {
+    NODE_STATE_LOGIN_ATTEMPT,
+    NODE_STATE_CONNECTED,
+    NODE_STATE_DISCONNECTED,
+    NODE_STATE_HEARTBEAT,
+    NODE_STATE_UNKNOWN,
+    NODE_STATE_OFF,
+    NODE_STATE_ACTIVATED,
+    NODE_STATE_IDLE,
+    NODE_STATE_INACTIVE,
+    NODE_STATE_PENDING,
+    NODE_STATE_DISABLED,
+    NODE_STATE_UPDATING,
+    NODE_STATE_MAINTENANCE,
+    NODE_STATE_NEWLY_REGISTERED,
+    NODE_STATE_CONFIGURING,
+    NODE_STATE_AUTHENTICATED_PERM,
+    NODE_STATE_READY_TO_ACTIVATE,
+    NODE_STATE_DECOMMISSIONED,
+};
