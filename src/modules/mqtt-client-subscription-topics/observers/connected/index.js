@@ -8,7 +8,7 @@ import {
     MQTT_TOPIC_NODE_STATUS,
     MQTT_TOPIC_NODE_METADATA,
 
-} from '@shared-constants/mqtt-client-topics';
+} from '@infrastructure/mqtt-client/constants/client-topics';
 
 
 function OnMqttClientConnectedObserver() {
