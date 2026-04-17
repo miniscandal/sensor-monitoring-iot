@@ -1,5 +1,0 @@
-const NODE_OPERATION_CONNECT = 101;
-
-export {
-    NODE_OPERATION_CONNECT,
-};
