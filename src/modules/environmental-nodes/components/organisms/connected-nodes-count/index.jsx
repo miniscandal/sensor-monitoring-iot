@@ -5,7 +5,7 @@
 
 import { useContext } from 'preact/hooks';
 
-import { EnvironmentalNodesContext } from '@shared-contexts/environmental-nodes-provider';
+import { EnvironmentalNodesContext } from '@modules/environmental-nodes/contexts/environmental-nodes-provider';
 
 import { IconStat } from '@shared-components/molecules/icon-stat';
 

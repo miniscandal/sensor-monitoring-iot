@@ -3,7 +3,7 @@
 import { Table } from '../../molecules/table';
 import { TableColgroup } from '../../molecules/table-colgroup';
 
-import { HEADERS, COLUMNS } from '@modules/environmental-node-messages/constants/feed-table';
+import { HEADERS, COLUMNS } from '@modules/environmental-nodes-messages/constants/feed-table';
 
 import './style.css';
 

@@ -1,4 +1,4 @@
-import { EnvironmentalNodesProvider } from '@shared-contexts/environmental-nodes-provider';
+import { EnvironmentalNodesProvider } from '@modules/environmental-nodes/contexts/environmental-nodes-provider';
 
 import { NodesManagement } from '../../templates/management';
 

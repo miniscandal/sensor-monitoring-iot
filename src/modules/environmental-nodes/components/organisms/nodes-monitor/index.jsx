@@ -7,7 +7,7 @@ import { useState, useContext } from 'preact/hooks';
 
 import { NodeCard } from '../node-card';
 
-import { EnvironmentalNodesContext } from '@shared-contexts/environmental-nodes-provider';
+import { EnvironmentalNodesContext } from '@modules/environmental-nodes/contexts/environmental-nodes-provider';
 
 import {
     DATA_ATTR_ACTION_SELECTOR,
