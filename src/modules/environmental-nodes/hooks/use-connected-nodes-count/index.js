@@ -2,63 +2,39 @@ import { useState } from 'preact/hooks';
 
 import { useSubscribeObserverMqttClient } from '@infrastructure/mqtt-client/hooks/use-subscribe-observer';
 
-import {
-    OBSERVER_ENTITY_MQTT_EVENTS,
-    OBSERVER_ENTITY_NODE_STATE,
-} from '@shared-constants/observer-entities';
+import { NodeOfflineCountObserver } from '@modules/environmental-nodes/observers/node-presence-count/offline';
+import { NodeLoggedInCountObserver } from '@modules/environmental-nodes/observers/node-presence-count/logged-in';
+import { NodeLoggedOutCountObserver } from '@modules/environmental-nodes/observers/node-presence-count/logged-out';
 
-import {
-    MQTT_CLIENT_EVENT_OFFLINE,
-} from '@infrastructure/mqtt-client/constants/client-events';
 
-import {
-    NODE_OP_RESULT_LOGGED_IN,
-    NODE_OP_RESULT_LOGGED_OUT,
-} from '@infrastructure/environmental-nodes/constants/node-operation-result-codes';
+const offlineCountObserver = NodeOfflineCountObserver();
+const loggedInCountObserver = NodeLoggedInCountObserver();
+const loggedOutCountObserver = NodeLoggedOutCountObserver();
 
 
 function useConnectedNodesCount({ nodeIds }) {
     const [connectedNodeIds, setConnectedNodeIds] = useState(new Set(nodeIds));
 
-
     useSubscribeObserverMqttClient({
-        entity: OBSERVER_ENTITY_MQTT_EVENTS,
-        instanceId: MQTT_CLIENT_EVENT_OFFLINE,
-        listener: () => setConnectedNodeIds(new Set()),
+        entity: offlineCountObserver.entity,
+        instanceId: offlineCountObserver.instanceId,
+        listener: () => setConnectedNodeIds(offlineCountObserver.listener()),
     });
 
     useSubscribeObserverMqttClient({
-        entity: OBSERVER_ENTITY_NODE_STATE,
-        instanceId: NODE_OP_RESULT_LOGGED_IN,
-        listener: ({ data: { topic } }) => {
-            const nodeId = topic.split('/').at(-2);
-
-            setConnectedNodeIds(prevState => {
-                const newState = new Set(prevState);
-
-                newState.add(nodeId);
-
-
-                return newState;
-            });
-        },
+        entity: loggedInCountObserver.entity,
+        instanceId: loggedInCountObserver.instanceId,
+        listener: ({ data }) => (
+            setConnectedNodeIds(loggedInCountObserver.listener({ data, nodeIds: connectedNodeIds }))
+        ),
     });
 
     useSubscribeObserverMqttClient({
-        entity: OBSERVER_ENTITY_NODE_STATE,
-        instanceId: NODE_OP_RESULT_LOGGED_OUT,
-        listener: ({ data: { topic } }) => {
-            const nodeId = topic.split('/').at(-2);
-
-            setConnectedNodeIds(prevState => {
-                const newState = new Set(prevState);
-
-                newState.delete(nodeId);
-
-
-                return newState;
-            });
-        },
+        entity: loggedOutCountObserver.entity,
+        instanceId: loggedOutCountObserver.instanceId,
+        listener: ({ data }) => (
+            setConnectedNodeIds(loggedOutCountObserver.listener({ data, nodeIds: connectedNodeIds }))
+        ),
     });
 
 
