@@ -13,12 +13,12 @@ import './style.css';
 
 
 function ConnectedNodesCount() {
-    const { connectedCount } = useContext(EnvironmentalNodesContext);
+    const { nodesCount } = useContext(EnvironmentalNodesContext);
 
 
     return (
         <section class="connected-nodes-count">
-            <IconStat label="Nodes:" value={connectedCount} svgIconName="node" />
+            <IconStat label="Nodes:" value={nodesCount} svgIconName="node" />
         </section>
     );
 }

@@ -12,7 +12,7 @@ const loggedInCountObserver = NodeLoggedInCountObserver();
 const loggedOutCountObserver = NodeLoggedOutCountObserver();
 
 
-function useConnectedNodesCount({ nodeIds }) {
+function useNodePresenceCount({ nodeIds }) {
     const [connectedNodeIds, setConnectedNodeIds] = useState(new Set(nodeIds));
 
     useSubscribeObserverMqttClient({
@@ -41,4 +41,4 @@ function useConnectedNodesCount({ nodeIds }) {
     return connectedNodeIds.size;
 }
 
-export { useConnectedNodesCount };
+export { useNodePresenceCount };

@@ -1,6 +1,6 @@
 import { createContext } from 'preact';
 
-import { useConnectedNodesCount } from '@modules/environmental-nodes/hooks/use-connected-nodes-count';
+import { useNodePresenceCount } from '@modules/environmental-nodes/hooks/use-node-presence-count';
 
 import { environmentalNodesProviderFactory } from '@infrastructure/environmental-nodes/factories/nodes';
 import { useNodePresence } from '@modules/environmental-nodes/hooks/use-node-presence';
@@ -17,7 +17,7 @@ function EnvironmentalNodesProvider({ children }) {
 
     const value = {
         nodes: useNodePresence({ nodes }),
-        connectedCount: useConnectedNodesCount({ nodeIds }),
+        nodesCount: useNodePresenceCount({ nodeIds }),
     };
 
 
