@@ -15,7 +15,7 @@ const loggedOutObserver = NodeLoggedOutObserver();
 const streamingSensorsObserver = NodeStreamingSensorsObserver();
 
 
-function useNodePresence({ nodes: initialNodes }) {
+function useNodesPresence({ nodes: initialNodes }) {
     const [nodes, setNodes] = useState(new Map(initialNodes));
 
     useSubscribeObserverMqttClient({
@@ -52,4 +52,4 @@ function useNodePresence({ nodes: initialNodes }) {
     return nodes;
 }
 
-export { useNodePresence };
+export { useNodesPresence };
