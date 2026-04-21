@@ -12,15 +12,15 @@ import { IconStat } from '@shared-components/molecules/icon-stat';
 import './style.css';
 
 
-function ConnectedNodesCount() {
+function NodesPresenceCount() {
     const { nodesCount } = useContext(EnvironmentalNodesContext);
 
 
     return (
-        <section class="connected-nodes-count">
+        <section class="nodes-presence-count">
             <IconStat label="Nodes:" value={nodesCount} svgIconName="node" />
         </section>
     );
 }
 
-export { ConnectedNodesCount };
+export { NodesPresenceCount };
