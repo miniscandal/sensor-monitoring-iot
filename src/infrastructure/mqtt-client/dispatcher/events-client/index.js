@@ -2,7 +2,7 @@ import { deepCamel } from '@shared-utils/deep-camel';
 
 import {
     OBSERVER_ENTITY_MQTT_EVENTS,
-    OBSERVER_ENTITY_NODE_STATE,
+    OBSERVER_ENTITY_NODE_STATE_CODE,
     OBSERVER_ENTITY_OPERATION_RESULT,
     OBSERVER_ENTITY_TOPICS,
 } from '@shared-constants/observer-entities';
@@ -61,8 +61,8 @@ class MqttClientEventDispatcher {
         });
 
         this.mqttClientSubject.notifyObservers({
-            entity: OBSERVER_ENTITY_NODE_STATE,
-            instanceId: parsed?.nodeState,
+            entity: OBSERVER_ENTITY_NODE_STATE_CODE,
+            instanceId: parsed?.nodeStateCode,
             actions: null,
             data: { topic, message: parsed },
         });

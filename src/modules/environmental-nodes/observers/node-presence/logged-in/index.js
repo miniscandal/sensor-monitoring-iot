@@ -1,12 +1,12 @@
-import { OBSERVER_ENTITY_OPERATION_RESULT } from '@shared-constants/observer-entities';
-import { NODE_OP_RESULT_LOGGED_IN } from '@infrastructure/environmental-nodes/constants/node-operation-result-codes';
+import { OBSERVER_ENTITY_NODE_STATE_CODE } from '@shared-constants/observer-entities';
+import { NODE_STATE_LOGGED_IN } from '@infrastructure/environmental-nodes/constants/node-state-codes';
 
 
 function NodeLoggedInObserver() {
 
     return {
-        entity: OBSERVER_ENTITY_OPERATION_RESULT,
-        instanceId: NODE_OP_RESULT_LOGGED_IN,
+        entity: OBSERVER_ENTITY_NODE_STATE_CODE,
+        instanceId: NODE_STATE_LOGGED_IN,
         listener: ({ data, nodes }) => {
             const { message } = data;
             const { metadata: { nodeId } } = message;
@@ -24,15 +24,15 @@ export { NodeLoggedInObserver };
 
 
 /*
-import { OBSERVER_ENTITY_NODE_STATE } from '@shared-constants/observer-entities';
-import { NODE_OP_RESULT_LOGGED_IN } from '@shared-constants/node-state-codes';
+import { OBSERVER_ENTITY_NODE_STATE_CODE } from '@shared-constants/observer-entities';
+import { NODE_STATE_LOGGED_IN } from '@shared-constants/node-state-codes';
 
 
 function NodeLoggedInObserver(setNodes) {
 
     return {
-        entity: OBSERVER_ENTITY_NODE_STATE,
-        instanceId: NODE_OP_RESULT_LOGGED_IN,
+        entity: OBSERVER_ENTITY_NODE_STATE_CODE,
+        instanceId: NODE_STATE_LOGGED_IN,
         listener: ({ data }) => {
             const { message } = data;
             const { metadata: { nodeId } } = message;

@@ -38,7 +38,7 @@ Notes:
 */
 import {
     OBSERVER_ENTITY_MQTT_EVENTS,
-    OBSERVER_ENTITY_NODE_STATE,
+    OBSERVER_ENTITY_NODE_STATE_CODE,
     OBSERVER_ENTITY_OPERATION_RESULT,
     OBSERVER_ENTITY_TOPICS,
 } from '@shared-constants/observer-entities';
@@ -47,7 +47,7 @@ import {
 class ObserverRegistry {
     static VALID_ENTITIES = [
         OBSERVER_ENTITY_MQTT_EVENTS,
-        OBSERVER_ENTITY_NODE_STATE,
+        OBSERVER_ENTITY_NODE_STATE_CODE,
         OBSERVER_ENTITY_OPERATION_RESULT,
         OBSERVER_ENTITY_TOPICS,
     ];
@@ -55,7 +55,7 @@ class ObserverRegistry {
     constructor() {
         this.entities = {
             [OBSERVER_ENTITY_MQTT_EVENTS]: new Map(),
-            [OBSERVER_ENTITY_NODE_STATE]: new Map(),
+            [OBSERVER_ENTITY_NODE_STATE_CODE]: new Map(),
             [OBSERVER_ENTITY_OPERATION_RESULT]: new Map(),
             [OBSERVER_ENTITY_TOPICS]: new Map(),
         };

@@ -1,12 +1,12 @@
-import { OBSERVER_ENTITY_OPERATION_RESULT } from '@shared-constants/observer-entities';
-import { NODE_OP_RESULT_STREAMING_SENSOR_DATA } from '@infrastructure/environmental-nodes/constants/node-operation-result-codes';
+import { OBSERVER_ENTITY_NODE_STATE_CODE } from '@shared-constants/observer-entities';
+import { NODE_STATE_STREAMING_SENSORS } from '@infrastructure/environmental-nodes/constants/node-state-codes';
 
 
 function NodeStreamingSensorsObserver() {
 
     return {
-        entity: OBSERVER_ENTITY_OPERATION_RESULT,
-        instanceId: NODE_OP_RESULT_STREAMING_SENSOR_DATA,
+        entity: OBSERVER_ENTITY_NODE_STATE_CODE,
+        instanceId: NODE_STATE_STREAMING_SENSORS,
         listener: ({ data, nodes, signal }) => {
             const { message } = data;
             const { metadata, data: nodeData } = message;
@@ -55,14 +55,14 @@ export { NodeStreamingSensorsObserver };
 
 /*
 import { signal } from '@preact/signals';
-import { OBSERVER_ENTITY_NODE_STATE } from '@shared-constants/observer-entities';
+import { OBSERVER_ENTITY_NODE_STATE_CODE } from '@shared-constants/observer-entities';
 import { OP_RESULT_STREAMING_SENSOR_DATA } from '@shared-constants/node-state-codes';
 
 
 function NodeStreamingSensorsObserver() {
 
     return {
-        entity: OBSERVER_ENTITY_NODE_STATE,
+        entity: OBSERVER_ENTITY_NODE_STATE_CODE,
         instanceId: OP_RESULT_STREAMING_SENSOR_DATA,
 
         listener: ({ data }) => {
