@@ -1,5 +1,7 @@
 import { SvgIcon } from '@shared-components/atoms/svg-icon';
 
+import { classNames } from '@shared-utils/class-names';
+
 import {
     NODE_STATE_LOGGED_IN,
     NODE_STATE_IDLE,
@@ -15,19 +17,19 @@ import {
 import './style.css';
 
 
-function ActionsToolbar({ nodeStatusCode, selectionStatus }) {
+function ActionsToolbar({ nodeStateCode, isSelected }) {
     const svgIconName = {
         [NODE_STATE_LOGGED_IN]: 'stopCircle',
         [NODE_STATE_STREAMING_SENSORS]: 'stopCircle',
         [NODE_STATE_IDLE]: 'playCircle',
-    }[nodeStatusCode];
+    }[nodeStateCode];
 
 
     return (
         <footer
-            class="actions-toolbar"
-            data-status-code={nodeStatusCode}
-            data-selection-status={selectionStatus}
+            class={classNames('actions-toolbar', isSelected && 'selected')}
+            data-node-state-code={nodeStateCode}
+            data-is-selected={isSelected}
         >
             <ul>
                 <li class="item-terminal" data-action={DATA_ATTR_NODE_ACTION_TERMINAL}>

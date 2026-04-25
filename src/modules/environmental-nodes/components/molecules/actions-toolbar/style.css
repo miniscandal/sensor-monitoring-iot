@@ -9,26 +9,23 @@
         border-color: #5a606d;
     }
 
-    &[data-selection-status="false"] {
+    /* not selected (default) */
+    > ul {
 
-        > ul {
+        > li {
+            color: var(--color-unselect);
 
-            > li {
-                color: var(--color-unselect);
-
-                &:hover {
-                    cursor: no-drop;
-                }
+            &:hover {
+                cursor: no-drop;
             }
         }
     }
 
-    &[data-selection-status="true"] {
+    &.selected {
 
         > ul {
 
             > li {
-
                 color: var(--color-selected);
 
                 &:hover {
@@ -39,8 +36,8 @@
         }
     }
 
-    /* status: logged in */
-    &[data-status-code="205"] {
+    /* node state code 201 (logged in) */
+    &[data-node-state-code="201"] {
 
         > ul {
 
@@ -59,8 +56,8 @@
         }
     }
 
-    /* status: idle */
-    &[data-status-code="202"] {
+    /* node state code 301 (idle) */
+    &[data-node-state-code="301"] {
 
         > ul {
 
@@ -74,8 +71,8 @@
     }
 
 
-    /* status: streaming sensor data */
-    &[data-status-code="252"] {
+    /* node state code 307 (streaming sensors) */
+    &[data-node-state-code="307"] {
 
         > ul {
 

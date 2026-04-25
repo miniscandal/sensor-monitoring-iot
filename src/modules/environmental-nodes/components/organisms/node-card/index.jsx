@@ -5,9 +5,10 @@ import { SensorReadingsPanel } from '../../molecules/sensor-readings-panel';
 import { SvgIcon } from '@shared-components/atoms/svg-icon';
 
 import { safeRound } from '@shared-utils/safe-round';
+import { classNames } from '@shared-utils/class-names';
 
 import {
-    NODE_STATE_LOGGED_OUT,
+    NODE_STATE_LOGGED_IN,
     NODE_STATE_IDLE,
     NODE_STATE_STREAMING_SENSORS,
 } from '@infrastructure/environmental-nodes/constants/node-state-codes';
@@ -15,47 +16,67 @@ import {
 import './style.css';
 
 
-function NodeCard({ nodeId = 'N/A', sensorReadings = {}, selectionStatus = false, statusCode = 205 }) {
-    const humidity = safeRound(sensorReadings.humidity?.value);
-    const temperature = safeRound(sensorReadings.temperature?.value);
+function NodeCard({
+    isSelected = false,
+    nodeStateCode = 201,
+    // operationResult = null,
+    metadata: {
+        nodeId = 'a001',
+        // timestamp = "2026-03-29T21:51:01Z",
+        // firmwareVersion = "1.3.0",
+        // location: {
+        //     lat = 20.5244,
+        //     lng = -99.8956,
+        //     zone = 'assembly',
+        //     line = '3',
+        //     station = 'welding robot',
+        // } = {},
+    } = {},
+    // connection: { state = 'online', reason = 'boot' } = {},
+    data: {
+        sensorReadings: {
+            humidity: { value: humidityValue = null } = {},
+            temperature: { value: temperatureValue = null } = {},
+        } = {},
+    } = {},
+}) {
+    const sensorHumidity = safeRound(humidityValue);
+    const sensorTemperature = safeRound(temperatureValue);
 
-    /*
-        NODE_STATE_IDLE: 
-        The node has completed its full initialization process. Concurrently, 
-        the Web IoT control panel has successfully retrieved and loaded all 
-        necessary data from the database. The node is now in an 'Idle' state, 
-        ready for action or command reception.
-    */
-
-    const dataTransmissionIcon = {
-        [NODE_STATE_LOGGED_OUT]: 'sensorsOff',
-        [NODE_STATE_STREAMING_SENSORS]: 'sensors',
+    const svgIconProps = {
+        [NODE_STATE_LOGGED_IN]: 'wirelessSignal',
+        [NODE_STATE_STREAMING_SENSORS]: 'wirelessSignal',
         [NODE_STATE_IDLE]: 'sensorsOff',
-    }[statusCode];
+    }[nodeStateCode];
 
     const svgIconName = {
-        [NODE_STATE_LOGGED_OUT]: 'motionSensorActive',
+        [NODE_STATE_LOGGED_IN]: 'motionSensorActive',
         [NODE_STATE_STREAMING_SENSORS]: 'motionSensorActive',
         [NODE_STATE_IDLE]: 'motionSensorIdle',
-    }[statusCode];
+    }[nodeStateCode];
 
 
     return (
-        <li class="node-card"
+        <li
+            class={classNames('node-card', isSelected && 'selected')}
             data-node-id={nodeId}
-            data-selection-status={selectionStatus}
-            data-status-code={statusCode}
+            data-is-selected={isSelected}
+            data-node-state-code={nodeStateCode}
         >
             <header>
-                <SvgIcon name={dataTransmissionIcon} size="tiny" />
+                <SvgIcon name={svgIconProps} size="tiny" />
             </header>
             <IdentityInfoPanel
-                nodeId={nodeId} nodeStatusCode={statusCode} svgIconName={svgIconName}
+                nodeId={nodeId}
+                nodeStateCode={nodeStateCode}
+                svgIconName={svgIconName}
             />
             <SensorReadingsPanel
-                humidityValue={humidity} temperatureValue={temperature} nodeStatusCode={statusCode}
+                humidityValue={sensorHumidity}
+                temperatureValue={sensorTemperature}
+                nodeStateCode={nodeStateCode}
             />
-            <ActionsToolbar nodeStatusCode={statusCode} selectionStatus={selectionStatus} />
+            <ActionsToolbar nodeStateCode={nodeStateCode} isSelected={isSelected} />
         </li>
     );
 }

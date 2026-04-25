@@ -7,16 +7,15 @@
     border-radius: var(--border-radius-organism);
     padding: var(--padding-molecule);
 
-    &[data-selection-status="false"] {
-        background-color: var(--card-bg-default);
-        cursor: pointer;
+    /* not selected (default) */
+    background-color: var(--card-bg-default);
+    cursor: pointer;
 
-        &:hover {
-            background-color: var(--card-bg-hover);
-        }
+    &:hover {
+        background-color: var(--card-bg-hover);
     }
 
-    &[data-selection-status="true"] {
+    &.selected {
         background-color: var(--card-bg-selected);
         cursor: default;
         transform: var(--transform-translate-y-card);
@@ -28,16 +27,24 @@
         margin-left: auto;
     }
 
-    /* status: logged in */
-    &[data-status-code="205"] {
+    /* node state code 201 (logged in) */
+    &[data-node-state-code="201"] {
 
         > header {
             color: var(--color-logged-in);
         }
     }
 
-    /* status: streaming sensor data */
-    &[data-status-code="252"] {
+    /* node state code 301 (idle) */
+    &[data-node-state-code="301"] {
+
+        > header {
+            color: var(--color-logged-in);
+        }
+    }
+
+    /* node state code 307 (streaming sensors) */
+    &[data-node-state-code="307"] {
 
         > header {
             color: var(--color-streaming);

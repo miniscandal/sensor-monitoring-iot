@@ -4,10 +4,10 @@ import { SvgIcon } from '@shared-components/atoms/svg-icon';
 import './style.css';
 
 
-function IdentityInfoPanel({ nodeId, nodeStatusCode, svgIconName }) {
+function IdentityInfoPanel({ nodeId, nodeStateCode, svgIconName }) {
 
     return (
-        <section class="identity-info-panel" data-status-code={nodeStatusCode}>
+        <section class="identity-info-panel" data-node-state-code={nodeStateCode}>
             <SvgIcon name={svgIconName} size="regular" />
             <div>
                 <StatItem label="Node ID:" value={`\u00A0 ${nodeId}`} />

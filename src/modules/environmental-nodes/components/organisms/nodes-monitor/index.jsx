@@ -1,6 +1,9 @@
 /**
- * Module responsibility
+ * NodesMonitor Component
  *
+ * Displays a list of environmental nodes and handles user interactions:
+ * - Node selection (toggle on/off)
+ * - Action toolbar handling (associate actions with the correct node)
  */
 
 import { useState, useContext } from 'preact/hooks';
@@ -8,6 +11,9 @@ import { useState, useContext } from 'preact/hooks';
 import { NodeCard } from '../node-card';
 
 import { EnvironmentalNodesContext } from '@modules/environmental-nodes/contexts/environmental-nodes-provider';
+
+import { handleNodeSelection } from './handle-node-selection';
+import { handleNodeActionSelection } from './handle-node-action-selection';
 
 import {
     DATA_ATTR_ACTION_SELECTOR,
@@ -19,19 +25,19 @@ import './style.css';
 
 function NodesMonitor() {
     const { nodes } = useContext(EnvironmentalNodesContext);
-    const [selectedNode, setSelectedNode] = useState(null);
+    const [selectedNodeId, setSelectedNodeId] = useState(null);
 
     const nodeCards = Array.from(nodes.entries()).map(([key, node]) => {
-        const { nodeState, metadata, data } = node;
+        const { nodeStateCode, metadata, data } = node;
 
 
         return (
             <NodeCard
                 key={`${metadata.nodeId}-${key}`}
-                nodeId={metadata.nodeId}
-                sensorReadings={data?.sensorReadings}
-                selectionStatus={selectedNode === metadata.nodeId}
-                statusCode={nodeState}
+                isSelected={selectedNodeId === metadata.nodeId}
+                nodeStateCode={nodeStateCode}
+                metadata={metadata}
+                data={data}
             />
         );
     });
@@ -45,33 +51,11 @@ function NodesMonitor() {
             return;
         }
 
-        if (targetElement.matches(DATA_ATTR_NODE_ID_SELECTOR)) {
-            const isSameNode = targetElement.dataset.nodeId === selectedNode;
-
-            setSelectedNode(isSameNode ? null : targetElement.dataset.nodeId);
-
-            return;
+        if (targetElement.matches(DATA_ATTR_ACTION_SELECTOR)) {
+            handleNodeActionSelection(targetElement, selectedNodeId, setSelectedNodeId);
+        } else {
+            handleNodeSelection(targetElement, selectedNodeId, setSelectedNodeId);
         }
-
-        /*
-    
-        At this point we know that targetElement corresponds to a <li data-action>
-        therefore we look up its parent [data-node-id] to associate the action with the node.
-    
-        */
-
-        const nodeElement = targetElement.closest(DATA_ATTR_NODE_ID_SELECTOR);
-
-        if (nodeElement.dataset.nodeId !== selectedNode) {
-            setSelectedNode(nodeElement.dataset.nodeId);
-
-
-            return;
-        }
-
-        const action = targetElement.dataset.action;
-
-        console.log('action', action);
     };
 
 

@@ -3,10 +3,10 @@ import { MetricItem } from '../metric-item';
 import './style.css';
 
 
-function SensorReadingsPanel({ humidityValue, temperatureValue, nodeStatusCode }) {
+function SensorReadingsPanel({ humidityValue, temperatureValue, nodeStateCode }) {
 
     return (
-        <section class="sensor-readings-panel" data-status-code={nodeStatusCode}>
+        <section class="sensor-readings-panel" data-node-state-code={nodeStateCode}>
             <MetricItem
                 svgIconName="humidity"
                 value={humidityValue}
@@ -15,7 +15,7 @@ function SensorReadingsPanel({ humidityValue, temperatureValue, nodeStatusCode }
             <MetricItem
                 svgIconName="temperature"
                 value={temperatureValue}
-                unit={humidityValue != null ? '°C' : ''}
+                unit={temperatureValue != null ? '°C' : ''}
             />
         </section>
     );
