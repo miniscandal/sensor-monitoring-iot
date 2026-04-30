@@ -3,7 +3,7 @@
  *
  * Displays a list of environmental nodes and handles user interactions:
  * - Node selection (toggle on/off)
- * - Action toolbar handling (associate actions with the correct node)
+ * - Control toolbar handling (associate controls with the correct node)
  */
 
 import { useState, useContext } from 'preact/hooks';
@@ -13,10 +13,10 @@ import { NodeCard } from '../node-card';
 import { EnvironmentalNodesContext } from '@modules/environmental-nodes/contexts/environmental-nodes-provider';
 
 import { handleNodeSelection } from './handle-node-selection';
-import { handleNodeActionSelection } from './handle-node-action-selection';
+import { handleNodeControlsSelection } from './handle-node-controls-selection';
 
 import {
-    DATA_ATTR_ACTION_SELECTOR,
+    DATA_ATTR_NODE_CONTROL_SELECTOR,
     DATA_ATTR_NODE_ID_SELECTOR,
 } from '@modules/environmental-nodes/constants/selectors';
 
@@ -27,7 +27,7 @@ function NodesMonitor() {
     const { nodes } = useContext(EnvironmentalNodesContext);
     const [selectedNodeId, setSelectedNodeId] = useState(null);
 
-    const nodeCards = Array.from(nodes.entries()).map(([key, node]) => {
+    const nodeCards = Array.from(nodes).map(([key, node]) => {
         const { nodeStateCode, metadata, data } = node;
 
 
@@ -43,7 +43,7 @@ function NodesMonitor() {
     });
 
     const handleClick = (event) => {
-        const selectors = `${DATA_ATTR_ACTION_SELECTOR}, ${DATA_ATTR_NODE_ID_SELECTOR}`;
+        const selectors = `${DATA_ATTR_NODE_CONTROL_SELECTOR}, ${DATA_ATTR_NODE_ID_SELECTOR}`;
         const targetElement = event.target.closest(selectors);
 
         if (!targetElement) {
@@ -51,8 +51,8 @@ function NodesMonitor() {
             return;
         }
 
-        if (targetElement.matches(DATA_ATTR_ACTION_SELECTOR)) {
-            handleNodeActionSelection(targetElement, selectedNodeId, setSelectedNodeId);
+        if (targetElement.matches(DATA_ATTR_NODE_CONTROL_SELECTOR)) {
+            handleNodeControlsSelection(targetElement, selectedNodeId, setSelectedNodeId);
         } else {
             handleNodeSelection(targetElement, selectedNodeId, setSelectedNodeId);
         }

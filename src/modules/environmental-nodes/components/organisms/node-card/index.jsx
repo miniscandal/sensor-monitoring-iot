@@ -1,4 +1,4 @@
-import { ActionsToolbar } from '../../molecules/actions-toolbar';
+import { ControlsToolbar } from '../../molecules/controls-toolbar';
 import { IdentityInfoPanel } from '../../molecules/identity-info-panel';
 import { SensorReadingsPanel } from '../../molecules/sensor-readings-panel';
 
@@ -76,7 +76,7 @@ function NodeCard({
                 temperatureValue={sensorTemperature}
                 nodeStateCode={nodeStateCode}
             />
-            <ActionsToolbar nodeStateCode={nodeStateCode} isSelected={isSelected} />
+            <ControlsToolbar nodeStateCode={nodeStateCode} isSelected={isSelected} />
         </li>
     );
 }
