@@ -49,7 +49,7 @@ Archivos específicos (`formatter.js`, `safe-round`, `extract-status`) o subcarp
 
 - **Hooks**: siempre prefijados con `use` → `use-connected-nodes-count`, `use-properties`.  
 - **Observers**: sufijo descriptivo → `node-monitor`, `node-presence/logged-in`.  
-- **Constants**: nombres claros y semánticos → `mqtt-client-operation-codes.js`, `node-actions.js`.
+- **Constants**: nombres claros y semánticos → `mqtt-client-operation-codes.js`, `node-controls.js`.
 
 ---
 

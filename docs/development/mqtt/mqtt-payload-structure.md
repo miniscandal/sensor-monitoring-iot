@@ -4,7 +4,7 @@ Every payload includes two top-level status fields that describe independent
 dimensions of the message:
 
 | Field        | Answers                                           | Ranges                          |
-|--------------|---------------------------------------------------|---------------------------------|
+| ------------ | ------------------------------------------------- | ------------------------------- |
 | `node_state` | What is the node right now? (persistent state)    | `100–199`, `200–213`, `500–599` |
 | `op_result`  | What happened with this operation? (event result) | `204–260`, `300–399`, `400–499` |
 
@@ -19,26 +19,26 @@ outcome independently, without coupling routing logic to topic-specific body sch
 
 Present in every message, at the root level.
 
-| Field        | Type         | Description                                                  |
-|--------------|--------------|--------------------------------------------------------------|
-| `node_state` | number       | Current persistent state of the node                         |
-| `op_result`  | number\|null | Outcome of the operation that triggered this message         |
-| `metadata`   | object       | Node identity and context — see [Metadata](#metadata) below  |
+| Field        | Type         | Description                                                 |
+| ------------ | ------------ | ----------------------------------------------------------- |
+| `node_state` | number       | Current persistent state of the node                        |
+| `op_result`  | number\|null | Outcome of the operation that triggered this message        |
+| `metadata`   | object       | Node identity and context — see [Metadata](#metadata) below |
 
 ---
 
 ## Metadata
 
-| Field               | Type   | Description                             |
-|---------------------|--------|-----------------------------------------|
-| `node_id`           | string | Unique node identifier                  |
-| `timestamp`         | string | ISO 8601 with timezone                  |
-| `firmware_version`  | string | Semantic version of the node firmware   |
-| `location.lat`      | number | Latitude                                |
-| `location.lng`      | number | Longitude                               |
-| `location.zone`     | string | Zone within the facility                |
-| `location.line`     | string | Production line                         |
-| `location.station`  | string | Station within the line                 |
+| Field              | Type   | Description                           |
+| ------------------ | ------ | ------------------------------------- |
+| `node_id`          | string | Unique node identifier                |
+| `timestamp`        | string | ISO 8601 with timezone                |
+| `firmware_version` | string | Semantic version of the node firmware |
+| `location.lat`     | number | Latitude                              |
+| `location.lng`     | number | Longitude                             |
+| `location.zone`    | string | Zone within the facility              |
+| `location.line`    | string | Production line                       |
+| `location.station` | string | Station within the line               |
 
 > `firmware_version` and `location` are only required in `/connection`.
 > All other topics include only `node_id` and `timestamp`.
@@ -79,11 +79,11 @@ of the node itself. There is no operation outcome to report, so `op_result` is `
 
 #### node_state values for /connection
 
-| `node_state`                    | `connection.state` | `connection.reason`                                    |
-|---------------------------------|--------------------|--------------------------------------------------------|
-| `NODE_STATE_CONNECTED (101)`    | `online`           | `boot` `restart` `recovery`                            |
-| `NODE_STATE_DISCONNECTED (102)` | `offline`          | `shutdown` `connection_lost` `power_off`               |
-| `NODE_STATE_HEARTBEAT (103)`    | `degraded`         | `maintenance` `low_battery` `high_temp` `weak_signal`  |
+| `node_state`                    | `connection.state` | `connection.reason`                                   |
+| ------------------------------- | ------------------ | ----------------------------------------------------- |
+| `NODE_STATE_CONNECTED (102)`    | `online`           | `boot` `restart` `recovery`                           |
+| `NODE_STATE_DISCONNECTED (103)` | `offline`          | `shutdown` `connection_lost` `power_off`              |
+| `NODE_STATE_HEARTBEAT (104)`    | `degraded`         | `maintenance` `low_battery` `high_temp` `weak_signal` |
 
 > `state: offline` with `reason: connection_lost` is published automatically by the
 > broker via LWT if the node disconnects unexpectedly.
@@ -131,34 +131,34 @@ Published on every sensor reading. Reports the outcome of the acquisition cycle.
 #### node_state values for /data
 
 | `node_state`                 | Meaning                                    |
-|------------------------------|--------------------------------------------|
+| ---------------------------- | ------------------------------------------ |
 | `NODE_STATE_ACTIVATED (201)` | Node fully operational                     |
 | `NODE_STATE_IDLE (202)`      | Operational, not currently in a work cycle |
 | `NODE_STATE_UPDATING (212)`  | Applying a firmware/config update          |
 
 #### op_result values for /data
 
-| `op_result`                                | Meaning                                           |
-|--------------------------------------------|---------------------------------------------------|
-| `OP_RESULT_SENSOR_MEASURING (250)`         | Acquisition in progress (intermediate state)      |
-| `OP_RESULT_SENSOR_DATA_SENT_OK (251)`      | Reading acquired and transmitted successfully     |
-| `OP_RESULT_STREAMING_SENSOR_DATA (252)`    | Continuous streaming cycle active                 |
-| `OP_RESULT_SENSOR_FAILURE (403)`           | One or more sensors failed                        |
-| `OP_RESULT_MEASUREMENT_ERROR (404)`        | Acquisition or processing failed                  |
-| `OP_RESULT_SENSOR_TIMEOUT (405)`           | Sensor did not respond within the time limit      |
-| `OP_RESULT_SENSOR_OUT_OF_RANGE (406)`      | Reading outside the valid physical range          |
-| `OP_RESULT_SENSOR_DATA_CORRUPTED (407)`    | Sensor data is corrupted or illegible             |
-| `OP_RESULT_SENSOR_DATA_TX_FAILED (409)`    | Transmission failure                              |
+| `op_result`                                  | Meaning                                       |
+| -------------------------------------------- | --------------------------------------------- |
+| `NODE_OP_RESULT_SENSOR_MEASURING (250)`      | Acquisition in progress (intermediate state)  |
+| `NODE_OP_RESULT_SENSOR_DATA_SENT_OK (251)`   | Reading acquired and transmitted successfully |
+| `NODE_STATE_STREAMING_SENSORS (252)`         | Continuous streaming cycle active             |
+| `NODE_OP_RESULT_SENSOR_FAILURE (403)`        | One or more sensors failed                    |
+| `NODE_OP_RESULT_MEASUREMENT_ERROR (404)`     | Acquisition or processing failed              |
+| `NODE_OP_RESULT_SENSOR_TIMEOUT (405)`        | Sensor did not respond within the time limit  |
+| `NODE_OP_RESULT_SENSOR_OUT_OF_RANGE (406)`   | Reading outside the valid physical range      |
+| `NODE_OP_RESULT_SENSOR_DATA_CORRUPTED (407)` | Sensor data is corrupted or illegible         |
+| `NODE_OP_RESULT_SENSOR_DATA_TX_FAILED (409)` | Transmission failure                          |
 
 > When `op_result` is in the `400–499` range, `data.sensor_readings` may be absent
 > or contain partial values. Always check `op_result` before using sensor values.
 
 #### data fields
 
-| Field                              | Type   | Description               |
-|------------------------------------|--------|---------------------------|
-| `data.sensor_readings.humidity`    | number | Relative humidity (%)     |
-| `data.sensor_readings.temperature` | number | Temperature (°C)          |
+| Field                              | Type   | Description           |
+| ---------------------------------- | ------ | --------------------- |
+| `data.sensor_readings.humidity`    | number | Relative humidity (%) |
+| `data.sensor_readings.temperature` | number | Temperature (°C)      |
 
 ---
 
@@ -199,16 +199,16 @@ health of the node.
 
 #### op_result values for /diagnostics
 
-| `op_result`                             | Meaning                                |
-|-----------------------------------------|----------------------------------------|
-| `null`                                  | No warning condition present           |
-| `OP_RESULT_BATTERY_LOW (302)`           | Battery below the warning threshold    |
-| `OP_RESULT_MAINTENANCE_REQUIRED (303)`  | Manual inspection required             |
+| `op_result`                                 | Meaning                             |
+| ------------------------------------------- | ----------------------------------- |
+| `null`                                      | No warning condition present        |
+| `NODE_OP_RESULT_BATTERY_LOW (302)`          | Battery below the warning threshold |
+| `NODE_OP_RESULT_MAINTENANCE_REQUIRED (303)` | Manual inspection required          |
 
 #### diagnostics fields
 
 | Field                         | Type   | Description                                 |
-|-------------------------------|--------|---------------------------------------------|
+| ----------------------------- | ------ | ------------------------------------------- |
 | `diagnostics.battery_level`   | number | Battery charge (%)                          |
 | `diagnostics.signal_strength` | number | RSSI in dBm — more negative = weaker signal |
 | `diagnostics.memory_usage`    | number | Memory usage (%)                            |
@@ -237,15 +237,15 @@ not changed. Only include the alerts that changed — not the full alert state.
 
 #### op_result values for /alerts
 
-| `op_result`                            | Meaning                                          |
-|----------------------------------------|--------------------------------------------------|
-| `OP_RESULT_ALERT (301)`                | General non-critical alert                       |
-| `OP_RESULT_BATTERY_LOW (302)`          | Battery below the minimum operational threshold  |
-| `OP_RESULT_MAINTENANCE_REQUIRED (303)` | Manual inspection required                       |
-| `OP_RESULT_ERROR (401)`                | Unclassified operational failure                 |
-| `OP_RESULT_URGENT (402)`               | Critical condition requiring immediate action    |
-| `OP_RESULT_POWER_FAILURE (411)`        | Power interruption or unexpected reboot          |
-| `OP_RESULT_MEMORY_OVERFLOW (412)`      | Internal memory overflow or exhaustion           |
+| `op_result`                                 | Meaning                                         |
+| ------------------------------------------- | ----------------------------------------------- |
+| `NODE_OP_RESULT_ALERT (301)`                | General non-critical alert                      |
+| `NODE_OP_RESULT_BATTERY_LOW (302)`          | Battery below the minimum operational threshold |
+| `NODE_OP_RESULT_MAINTENANCE_REQUIRED (303)` | Manual inspection required                      |
+| `NODE_OP_RESULT_ERROR (401)`                | Unclassified operational failure                |
+| `NODE_OP_RESULT_URGENT (402)`               | Critical condition requiring immediate action   |
+| `NODE_OP_RESULT_POWER_FAILURE (411)`        | Power interruption or unexpected reboot         |
+| `NODE_OP_RESULT_MEMORY_OVERFLOW (412)`      | Internal memory overflow or exhaustion          |
 
 > When multiple alerts change simultaneously, set `op_result` to the
 > highest-severity code among them.
@@ -253,7 +253,7 @@ not changed. Only include the alerts that changed — not the full alert state.
 #### alert values
 
 | Value         | Description                                       |
-|---------------|---------------------------------------------------|
+| ------------- | ------------------------------------------------- |
 | `overheating` | Node temperature exceeded safe threshold          |
 | `low_battery` | Battery level below minimum operational threshold |
 
