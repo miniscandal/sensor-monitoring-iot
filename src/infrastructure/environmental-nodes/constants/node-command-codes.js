@@ -1,6 +1,6 @@
 /* ====================================================================
    NODE COMMAND CODES
-   Instructions sent to nodes to trigger actions.
+   Instructions sent to nodes to trigger operations.
    ==================================================================== */
 
 const NODE_CMD_START_STREAMING = 701;
