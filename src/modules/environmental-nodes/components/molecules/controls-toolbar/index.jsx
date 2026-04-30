@@ -9,15 +9,15 @@ import {
 } from '@infrastructure/environmental-nodes/constants/node-state-codes';
 
 import {
-    DATA_ATTR_NODE_ACTION_TERMINAL,
-    DATA_ATTR_NODE_ACTION_STREAMING_DATA,
-    DATA_ATTR_NODE_ACTION_ANALYTICS,
-} from '@modules/environmental-nodes/constants/node-actions';
+    DATA_ATTR_NODE_CONTROL_TERMINAL,
+    DATA_ATTR_NODE_CONTROL_STREAMING_DATA,
+    DATA_ATTR_NODE_CONTROL_ANALYTICS,
+} from '@modules/environmental-nodes/constants/node-controls';
 
 import './style.css';
 
 
-function ActionsToolbar({ nodeStateCode, isSelected }) {
+function ControlsToolbar({ nodeStateCode, isSelected }) {
     const svgIconName = {
         [NODE_STATE_LOGGED_IN]: 'stopCircle',
         [NODE_STATE_STREAMING_SENSORS]: 'stopCircle',
@@ -27,18 +27,18 @@ function ActionsToolbar({ nodeStateCode, isSelected }) {
 
     return (
         <footer
-            class={classNames('actions-toolbar', isSelected && 'selected')}
+            class={classNames('controls-toolbar', isSelected && 'selected')}
             data-node-state-code={nodeStateCode}
             data-is-selected={isSelected}
         >
             <ul>
-                <li class="item-terminal" data-action={DATA_ATTR_NODE_ACTION_TERMINAL}>
+                <li class="item-terminal" data-control={DATA_ATTR_NODE_CONTROL_TERMINAL}>
                     <SvgIcon name="terminal" size="small" enableHover={true} />
                 </li>
-                <li class="item-streaming-sensor-data" data-action={DATA_ATTR_NODE_ACTION_STREAMING_DATA}>
+                <li class="item-streaming-sensor-data" data-control={DATA_ATTR_NODE_CONTROL_STREAMING_DATA}>
                     <SvgIcon name={svgIconName} size="small" enableHover={true} />
                 </li>
-                <li class="item-analytics" data-action={DATA_ATTR_NODE_ACTION_ANALYTICS}>
+                <li class="item-analytics" data-control={DATA_ATTR_NODE_CONTROL_ANALYTICS}>
                     <SvgIcon name="analytics" size="small" enableHover={true} />
                 </li>
             </ul>
@@ -46,4 +46,4 @@ function ActionsToolbar({ nodeStateCode, isSelected }) {
     );
 }
 
-export { ActionsToolbar };
+export { ControlsToolbar };
