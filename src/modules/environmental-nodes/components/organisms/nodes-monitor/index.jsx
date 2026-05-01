@@ -8,17 +8,13 @@
 
 import { useState, useContext } from 'preact/hooks';
 
-import { NodeCard } from '../node-card';
+import { useClickOutside } from '@modules/environmental-nodes/hooks/use-click-outside';
 
 import { EnvironmentalNodesContext } from '@modules/environmental-nodes/contexts/environmental-nodes-provider';
 
-import { handleNodeSelection } from './handle-node-selection';
-import { handleNodeControlsSelection } from './handle-node-controls-selection';
+import { NodeCard } from '../node-card';
 
-import {
-    DATA_ATTR_NODE_CONTROL_SELECTOR,
-    DATA_ATTR_NODE_ID_SELECTOR,
-} from '@modules/environmental-nodes/constants/selectors';
+import { handleNodesMonitorInteraction } from './handlers/nodes-monitor-interaction';
 
 import './style.css';
 
@@ -26,41 +22,28 @@ import './style.css';
 function NodesMonitor() {
     const { nodes } = useContext(EnvironmentalNodesContext);
     const [selectedNodeId, setSelectedNodeId] = useState(null);
+    const ref = useClickOutside(() => setSelectedNodeId(null));
+
+    const handleClick = (event) => handleNodesMonitorInteraction(event, setSelectedNodeId);
 
     const nodeCards = Array.from(nodes).map(([key, node]) => {
-        const { nodeStateCode, metadata, data } = node;
+        const { metadata } = node;
 
 
         return (
             <NodeCard
                 key={`${metadata.nodeId}-${key}`}
                 isSelected={selectedNodeId === metadata.nodeId}
-                nodeStateCode={nodeStateCode}
+                nodeStateCode={node.nodeStateCode}
                 metadata={metadata}
-                data={data}
+                data={node.data}
             />
         );
     });
 
-    const handleClick = (event) => {
-        const selectors = `${DATA_ATTR_NODE_CONTROL_SELECTOR}, ${DATA_ATTR_NODE_ID_SELECTOR}`;
-        const targetElement = event.target.closest(selectors);
-
-        if (!targetElement) {
-
-            return;
-        }
-
-        if (targetElement.matches(DATA_ATTR_NODE_CONTROL_SELECTOR)) {
-            handleNodeControlsSelection(targetElement, selectedNodeId, setSelectedNodeId);
-        } else {
-            handleNodeSelection(targetElement, selectedNodeId, setSelectedNodeId);
-        }
-    };
-
 
     return (
-        <ul class="nodes-monitor" onClick={handleClick}>
+        <ul ref={ref} class="nodes-monitor" onClick={handleClick}>
             {nodeCards}
         </ul>
     );
