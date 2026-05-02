@@ -1,3 +1,7 @@
+import { useContext } from 'preact/hooks';
+
+import { EnvironmentalNodeContext } from '@modules/environmental-nodes/contexts/environmental-node-provider';
+
 import { SvgIcon } from '@shared-components/atoms/svg-icon';
 
 import { classNames } from '@shared-utils/class-names';
@@ -17,7 +21,9 @@ import {
 import './style.css';
 
 
-function ControlsToolbar({ nodeStateCode, isSelected }) {
+function ControlsToolbar() {
+    const { nodeStateCode, isSelected } = useContext(EnvironmentalNodeContext);
+
     const svgIconName = {
         [NODE_STATE_LOGGED_IN]: 'stopCircle',
         [NODE_STATE_STREAMING_SENSORS]: 'stopCircle',

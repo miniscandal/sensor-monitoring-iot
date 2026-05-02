@@ -8,6 +8,7 @@ import { useNodesPresence } from '@modules/environmental-nodes/hooks/use-nodes-p
 
 const EnvironmentalNodesContext = createContext({
     nodes: new Map(),
+    nodesCount: 0,
 });
 
 

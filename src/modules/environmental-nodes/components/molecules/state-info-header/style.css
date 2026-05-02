@@ -1,4 +1,4 @@
-.state-information-header {
+.state-info-header {
     display: flex;
     align-items: center;
     gap: var(--gap-molecule);

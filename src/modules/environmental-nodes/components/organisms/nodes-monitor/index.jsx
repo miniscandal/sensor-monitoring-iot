@@ -10,6 +10,8 @@ import { useState, useContext } from 'preact/hooks';
 
 import { useClickOutside } from '@modules/environmental-nodes/hooks/use-click-outside';
 
+import { EnvironmentalNodeProvider } from '@modules/environmental-nodes/contexts/environmental-node-provider';
+
 import { EnvironmentalNodesContext } from '@modules/environmental-nodes/contexts/environmental-nodes-provider';
 
 import { NodeCard } from '../node-card';
@@ -21,6 +23,7 @@ import './style.css';
 
 function NodesMonitor() {
     const { nodes } = useContext(EnvironmentalNodesContext);
+
     const [selectedNodeId, setSelectedNodeId] = useState(null);
     const ref = useClickOutside(() => setSelectedNodeId(null));
 
@@ -31,13 +34,15 @@ function NodesMonitor() {
 
 
         return (
-            <NodeCard
+            <EnvironmentalNodeProvider
                 key={`${metadata.nodeId}-${key}`}
                 isSelected={selectedNodeId === metadata.nodeId}
                 nodeStateCode={node.nodeStateCode}
                 metadata={metadata}
                 data={node.data}
-            />
+            >
+                <NodeCard />
+            </EnvironmentalNodeProvider>
         );
     });
 

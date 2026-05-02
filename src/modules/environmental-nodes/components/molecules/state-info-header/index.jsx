@@ -1,3 +1,7 @@
+import { useContext } from 'preact/hooks';
+
+import { EnvironmentalNodeContext } from '@modules/environmental-nodes/contexts/environmental-node-provider';
+
 import { SvgIcon } from '@shared-components/atoms/svg-icon';
 
 import {
@@ -9,7 +13,9 @@ import {
 import './style.css';
 
 
-function StateInformationHeader({ nodeStateCode }) {
+function StateInfoHeader() {
+    const { nodeStateCode } = useContext(EnvironmentalNodeContext);
+
     const svgIconProps = {
         [NODE_STATE_LOGGED_IN]: 'wirelessSignal',
         [NODE_STATE_STREAMING_SENSORS]: 'wirelessSignal',
@@ -17,11 +23,11 @@ function StateInformationHeader({ nodeStateCode }) {
     }[nodeStateCode];
 
     return (
-        <header class="state-information-header">
+        <header class="state-info-header">
             <SvgIcon name="ecg" size="tiny" />
             <SvgIcon name={svgIconProps} size="tiny" />
         </header>
     );
 }
 
-export { StateInformationHeader };
+export { StateInfoHeader };

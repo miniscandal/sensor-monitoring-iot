@@ -1,9 +1,22 @@
+import { useContext } from 'preact/hooks';
+
+import { EnvironmentalNodeContext } from '@modules/environmental-nodes/contexts/environmental-node-provider';
+
 import { MetricItem } from '../metric-item';
+
+import { safeRound } from '@shared-utils/safe-round';
 
 import './style.css';
 
 
-function SensorReadingsPanel({ humidityValue, temperatureValue, nodeStateCode }) {
+function SensorReadingsPanel() {
+    const { nodeStateCode, data } = useContext(EnvironmentalNodeContext);
+    const { sensorReadings } = data;
+    const { humidity, temperature } = sensorReadings;
+
+    const humidityValue = safeRound(humidity.value);
+    const temperatureValue = safeRound(temperature.value);
+
 
     return (
         <section class="sensor-readings-panel" data-node-state-code={nodeStateCode}>
