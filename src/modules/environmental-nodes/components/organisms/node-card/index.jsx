@@ -1,8 +1,7 @@
 import { ControlsToolbar } from '../../molecules/controls-toolbar';
 import { IdentityInfoPanel } from '../../molecules/identity-info-panel';
 import { SensorReadingsPanel } from '../../molecules/sensor-readings-panel';
-
-import { SvgIcon } from '@shared-components/atoms/svg-icon';
+import { StateInformationHeader } from '../../molecules/state-info-header';
 
 import { safeRound } from '@shared-utils/safe-round';
 import { classNames } from '@shared-utils/class-names';
@@ -43,12 +42,6 @@ function NodeCard({
     const sensorHumidity = safeRound(humidityValue);
     const sensorTemperature = safeRound(temperatureValue);
 
-    const svgIconProps = {
-        [NODE_STATE_LOGGED_IN]: 'wirelessSignal',
-        [NODE_STATE_STREAMING_SENSORS]: 'wirelessSignal',
-        [NODE_STATE_IDLE]: 'sensorsOff',
-    }[nodeStateCode];
-
     const svgIconName = {
         [NODE_STATE_LOGGED_IN]: 'motionSensorActive',
         [NODE_STATE_STREAMING_SENSORS]: 'motionSensorActive',
@@ -63,9 +56,7 @@ function NodeCard({
             data-is-selected={isSelected}
             data-node-state-code={nodeStateCode}
         >
-            <header>
-                <SvgIcon name={svgIconProps} size="tiny" />
-            </header>
+            <StateInformationHeader nodeStateCode={nodeStateCode} />
             <IdentityInfoPanel
                 nodeId={nodeId}
                 nodeStateCode={nodeStateCode}

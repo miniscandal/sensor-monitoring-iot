@@ -39,7 +39,7 @@
     &[data-node-state-code="301"] {
 
         > header {
-            color: var(--color-logged-in);
+            color: var(--color-streaming);
         }
     }
 
