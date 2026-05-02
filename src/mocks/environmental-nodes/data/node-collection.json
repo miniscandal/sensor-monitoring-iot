@@ -142,8 +142,12 @@
         },
         "data": {
             "sensor_readings": {
-                "humidity": 25,
-                "temperature": 12
+                "humidity": {
+                    "value": 25
+                },
+                "temperature": {
+                    "value": 12
+                }
             }
         }
     },
