@@ -15,7 +15,8 @@ import './style.css';
 
 
 function IdentityInfoPanel() {
-    const { nodeId, nodeStateCode } = useContext(EnvironmentalNodeContext);
+    const { metadata, nodeStateCode } = useContext(EnvironmentalNodeContext);
+    const { nodeId } = metadata;
 
     const svgIconName = {
         [NODE_STATE_LOGGED_IN]: 'motionSensorActive',
@@ -28,7 +29,7 @@ function IdentityInfoPanel() {
         <section class="identity-info-panel" data-node-state-code={nodeStateCode}>
             <SvgIcon name={svgIconName} size="regular" />
             <div>
-                <StatItem label="Node ID:" value={`\u00A0 ${nodeId}`} />
+                <StatItem label="Node ID:" value={`\u00A0${nodeId}`} />
                 <SvgIcon name="qrCode" size="tiny" />
             </div>
         </section>
