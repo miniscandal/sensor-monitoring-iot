@@ -12,18 +12,9 @@ function NodeStreamingSensorsObserver() {
             const { metadata, data: nodeData } = message;
             const { nodeId } = metadata;
             const { sensorReadings } = nodeData;
-
-            const newState = new Map(nodes);
-
-            const node = newState.get(nodeId);
-
             const { temperature, humidity } = sensorReadings;
 
-            if (!node) {
-
-                return nodes;
-            }
-
+            const node = nodes.get(nodeId);
 
             if (node?.sensorReadings) {
                 node.sensorReadings.temperature.value = temperature;
@@ -32,6 +23,8 @@ function NodeStreamingSensorsObserver() {
 
                 return nodes;
             }
+
+            const newState = new Map(nodes);
 
             newState.set(nodeId, {
                 ...node,
@@ -103,5 +96,57 @@ function NodeStreamingSensorsObserver() {
 }
 
 export { NodeStreamingSensorsObserver };
+
+*/
+
+
+/*
+function NodeStreamingSensorsObserver() {
+
+    return {
+        entity: OBSERVER_ENTITY_NODE_STATE_CODE,
+        instanceId: NODE_STATE_STREAMING_SENSORS,
+        listener: ({ data, nodes, signal }) => {
+            const { message } = data;
+            const { metadata, data: nodeData } = message;
+            const { nodeId } = metadata;
+            const { sensorReadings } = nodeData;
+            const { temperature, humidity } = sensorReadings;
+
+            const newState = new Map(nodes);
+
+            const node = newState.get(nodeId);
+
+
+            if (!node) {
+
+                return nodes;
+            }
+
+
+            if (node?.sensorReadings) {
+                node.sensorReadings.temperature.value = temperature;
+                node.sensorReadings.humidity.value = humidity;
+
+
+                return nodes;
+            }
+
+            newState.set(nodeId, {
+                ...node,
+                data: {
+                    ...nodeData,
+                    sensorReadings: {
+                        temperature: signal(temperature),
+                        humidity: signal(humidity),
+                    },
+                },
+            });
+
+
+            return newState;
+        },
+    };
+}
 
 */
