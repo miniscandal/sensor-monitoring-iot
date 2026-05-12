@@ -13,8 +13,8 @@ import './style.css';
 
 
 function NodeCard() {
-    const { isSelected, nodeStateCode, metadata } = useContext(EnvironmentalNodeContext);
-    const { nodeId } = metadata;
+    const { isSelected, nodeProperties } = useContext(EnvironmentalNodeContext);
+    const { nodeStateCode, metadata: { nodeId } } = nodeProperties;
 
 
     return (

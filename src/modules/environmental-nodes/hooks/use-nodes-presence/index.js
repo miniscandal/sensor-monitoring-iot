@@ -1,5 +1,4 @@
 import { useState } from 'preact/hooks';
-import { signal } from '@preact/signals';
 
 import { useSubscribeObserverMqttClient } from '@infrastructure/mqtt-client/hooks/use-subscribe-observer';
 
@@ -44,7 +43,7 @@ function useNodesPresence({ nodes: initialNodes }) {
         entity: streamingSensorsObserver.entity,
         instanceId: streamingSensorsObserver.instanceId,
         listener: ({ data }) => (
-            setNodes(prevState => streamingSensorsObserver.listener({ data, nodes: prevState, signal }))
+            setNodes(prevState => streamingSensorsObserver.listener({ data, nodes: prevState }))
         ),
     });
 

@@ -1,3 +1,34 @@
+/*
+{
+    "node_state_code": 201,
+    "operation_result": null,
+    "metadata": {
+        "node_id": "a001",
+        "timestamp": "2026-03-29T21:51:01Z",
+        "firmware_version": "1.3.0",
+        "location": {
+            "lat": 20.5244,
+            "lng": -99.8956,
+            "zone": "assembly",
+            "line": "3",
+            "station": "welding robot"
+        }
+    },
+    "data": {
+        "sensor_readings": {
+            "humidity": 32,
+            "temperature": 43
+        }
+    },
+    "connection": {
+        "state": "online",
+        "reason": "boot"
+    }
+}
+*/
+
+import { signal } from '@preact/signals';
+
 import { OBSERVER_ENTITY_NODE_STATE_CODE } from '@shared-constants/observer-entities';
 import { NODE_STATE_LOGGED_IN } from '@infrastructure/environmental-nodes/constants/node-state-codes';
 
@@ -9,53 +40,25 @@ function NodeLoggedInObserver() {
         instanceId: NODE_STATE_LOGGED_IN,
         listener: ({ data, nodes }) => {
             const { message } = data;
-            const { metadata: { nodeId } } = message;
-            const newtState = new Map(nodes);
+            const { nodeStateCode, metadata } = message;
+            const { nodeId } = metadata;
+            const node = {
+                ...message,
+                nodeStateCode: signal(nodeStateCode),
+                data: {
+                    sensorReadings: {
+                        humidity: signal(null),
+                        temperature: signal(null),
+                    },
+                },
+            };
 
 
             return nodes.has(nodeId)
-                ? newtState
-                : newtState.set(nodeId, { ...message, nodeId });
+                ? nodes
+                : new Map(nodes).set(nodeId, node);
         },
     };
 }
 
 export { NodeLoggedInObserver };
-
-
-/*
-import { OBSERVER_ENTITY_NODE_STATE_CODE } from '@shared-constants/observer-entities';
-import { NODE_STATE_LOGGED_IN } from '@shared-constants/node-state-codes';
-
-
-function NodeLoggedInObserver(setNodes) {
-
-    return {
-        entity: OBSERVER_ENTITY_NODE_STATE_CODE,
-        instanceId: NODE_STATE_LOGGED_IN,
-        listener: ({ data }) => {
-            const { message } = data;
-            const { metadata: { nodeId } } = message;
-
-
-
-            setNodes(prevState => {
-                if (prevState.has(nodeId)) {
-
-                    return prevState;
-                };
-
-                const nextState = new Map(prevState);
-
-                nextState.set(nodeId, { ...message, nodeId });
-
-
-                return nextState;
-            });
-        },
-    };
-}
-
-export { NodeLoggedInObserver };
-
-*/

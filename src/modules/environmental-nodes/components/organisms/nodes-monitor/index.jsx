@@ -23,23 +23,20 @@ import './style.css';
 
 function NodesMonitor() {
     const { nodes } = useContext(EnvironmentalNodesContext);
-
     const [selectedNodeId, setSelectedNodeId] = useState(null);
     const ref = useClickOutside(() => setSelectedNodeId(null));
 
     const handleClick = (event) => handleNodesMonitorInteraction(event, setSelectedNodeId);
 
     const nodeCards = Array.from(nodes).map(([key, node]) => {
-        const { metadata } = node;
+        const { metadata: { nodeId } } = node;
 
 
         return (
             <EnvironmentalNodeProvider
-                key={`${metadata.nodeId}-${key}`}
-                isSelected={selectedNodeId === metadata.nodeId}
-                nodeStateCode={node.nodeStateCode}
-                metadata={metadata}
-                data={node.data}
+                key={`${nodeId}-${key}`}
+                isSelected={selectedNodeId === nodeId}
+                nodeProperties={node}
             >
                 <NodeCard />
             </EnvironmentalNodeProvider>

@@ -14,7 +14,7 @@ import './style.css';
 
 
 function StateInfoHeader() {
-    const { nodeStateCode } = useContext(EnvironmentalNodeContext);
+    const { nodeProperties: { nodeStateCode } } = useContext(EnvironmentalNodeContext);
 
     const svgIconProps = {
         [NODE_STATE_LOGGED_IN]: 'wirelessSignal',

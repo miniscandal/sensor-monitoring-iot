@@ -15,8 +15,8 @@ import './style.css';
 
 
 function IdentityInfoPanel() {
-    const { metadata, nodeStateCode } = useContext(EnvironmentalNodeContext);
-    const { nodeId } = metadata;
+    const { nodeProperties } = useContext(EnvironmentalNodeContext);
+    const { nodeStateCode, metadata: { nodeId } } = nodeProperties
 
     const svgIconName = {
         [NODE_STATE_LOGGED_IN]: 'motionSensorActive',
