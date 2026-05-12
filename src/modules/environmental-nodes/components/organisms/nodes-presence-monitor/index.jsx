@@ -21,7 +21,7 @@ import { handleNodesMonitorInteraction } from './handlers/nodes-monitor-interact
 import './style.css';
 
 
-function NodesMonitor() {
+function NodesPresenceMonitor() {
     const { nodes } = useContext(EnvironmentalNodesContext);
     const [selectedNodeId, setSelectedNodeId] = useState(null);
     const ref = useClickOutside(() => setSelectedNodeId(null));
@@ -45,10 +45,10 @@ function NodesMonitor() {
 
 
     return (
-        <ul ref={ref} class="nodes-monitor" onClick={handleClick}>
+        <ul ref={ref} class="nodes-presence-monitor" onClick={handleClick}>
             {nodeCards}
         </ul>
     );
 }
 
-export { NodesMonitor };
+export { NodesPresenceMonitor };
