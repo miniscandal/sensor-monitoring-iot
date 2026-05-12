@@ -13,7 +13,11 @@ import './style.css';
 
 function Properties({ connected, properties }) {
     const iconStatComponents = PROPERTIES_DISPLAY_CONFIG.map(property => (
-        <IconStat key={property.name} {...property} value={connected ? properties[property.name] : 'N/A'} />
+        <IconStat
+            key={property.name}
+            {...property}
+            value={connected ? properties[property.name] : 'N/A'}
+        />
     ));
 
 
