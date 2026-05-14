@@ -11,7 +11,6 @@ function EnvironmentalNodes() {
         <EnvironmentalNodesProvider>
             <NodesManagement />
         </EnvironmentalNodesProvider>
-
     );
 }
 
