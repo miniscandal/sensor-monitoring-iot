@@ -10,7 +10,7 @@ import {
     MQTT_TOPIC_NODE_METADATA,
     MQTT_TOPIC_NODE_STATE_CODE,
     MQTT_TOPIC_NODE_OPERATION_RESULT_CODE,
-} from '@infrastructure/mqtt-client/constants/client-topics';
+} from '@infrastructure/mqtt-client/constants/client-topics-subscription';
 
 
 function OnMqttClientConnectedObserver() {

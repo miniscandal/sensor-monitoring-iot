@@ -6,9 +6,9 @@
 
 import { OBSERVER_ENTITY_TOPICS } from '@shared-constants/observer-entities';
 
-import { MQTT_TOPIC_NODE_AUTH_LOGIN } from '@infrastructure/mqtt-client/constants/client-topics';
+import { MQTT_TOPIC_NODE_AUTH_LOGIN } from '@infrastructure/mqtt-client/constants/client-topics-subscription';
 
-import { MQTT_TOPIC_ENVIRONMENTAL_NODE_ALL_COMMAND } from '@modules/mqtt-client-publish-topics/constants/topics-publishes';
+import { MQTT_TOPIC_ENVIRONMENTAL_NODE_ALL_COMMAND } from '@infrastructure/mqtt-client/constants/client-topics-publishes';
 
 import { NODE_CMD_RECONNECT } from '@infrastructure/environmental-nodes/constants/node-command-codes';
 

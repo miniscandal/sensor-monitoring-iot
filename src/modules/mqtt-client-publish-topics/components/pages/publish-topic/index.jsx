@@ -7,7 +7,7 @@ import { TopicsPublishes } from '../../templates/topics-publishes';
 import {
     MQTT_TOPIC_ENVIRONMENTAL_NODE_COMMAND,
     MQTT_TOPIC_ENVIRONMENTAL_NODE_ALL_COMMAND,
-} from '@modules/mqtt-client-publish-topics/constants/topics-publishes';
+} from '@infrastructure/mqtt-client/constants/client-topics-publishes';
 
 import './style.css';
 
