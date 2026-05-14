@@ -4,11 +4,11 @@ import { TopicsPublishExplorer } from '../../organisms/topics-publish-explorer';
 import './style.css';
 
 
-function TopicsPublishes({ count, topics }) {
+function TopicsPublishes({ topics }) {
 
     return (
         <article class="topics-publishes">
-            <TopicsPublishCount count={count} />
+            <TopicsPublishCount count={topics.length} />
             <TopicsPublishExplorer topics={topics} />
         </article>
     );

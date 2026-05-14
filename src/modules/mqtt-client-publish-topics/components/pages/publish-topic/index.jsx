@@ -22,7 +22,7 @@ function MqttClientPublishTopics() {
 
 
     return (
-        <TopicsPublishes count={topics.length} topics={topics} />
+        <TopicsPublishes topics={topics} />
     );
 }
 
