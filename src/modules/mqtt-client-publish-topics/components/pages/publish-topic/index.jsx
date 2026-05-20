@@ -5,8 +5,8 @@ import { SubscribedEnvironmentalNodeStatusTopicObserver } from '@modules/mqtt-cl
 import { TopicsPublishes } from '../../templates/topics-publishes';
 
 import {
-    MQTT_TOPIC_ENVIRONMENTAL_NODE_COMMAND,
-    MQTT_TOPIC_ENVIRONMENTAL_NODE_ALL_COMMAND,
+    MQTT_TOPIC_ENV_NODE_COMMAND,
+    MQTT_TOPIC_ALL_ENV_NODE_COMMAND,
 } from '@infrastructure/mqtt-client/constants/client-topics-publishes';
 
 import './style.css';
@@ -14,8 +14,8 @@ import './style.css';
 
 function MqttClientPublishTopics() {
     const topics = [
-        MQTT_TOPIC_ENVIRONMENTAL_NODE_COMMAND(),
-        MQTT_TOPIC_ENVIRONMENTAL_NODE_ALL_COMMAND,
+        MQTT_TOPIC_ENV_NODE_COMMAND(),
+        MQTT_TOPIC_ALL_ENV_NODE_COMMAND,
     ];
 
     useSubscribeObserverMqttClient(SubscribedEnvironmentalNodeStatusTopicObserver());
