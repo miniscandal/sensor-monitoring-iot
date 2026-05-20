@@ -1,5 +1,6 @@
 import mqtt from 'mqtt';
 
+
 import {
     MQTT_BROKER_HOST,
     MQTT_BROKER_PORT,
@@ -8,7 +9,7 @@ import {
 
 class MqttClientAdapter {
     constructor() {
-        this.client = mqtt.connect(`${MQTT_BROKER_HOST}/${MQTT_BROKER_PORT}`);
+        this.client = mqtt.connect(`${MQTT_BROKER_HOST}:${MQTT_BROKER_PORT}`);
     }
 
     connect() {
