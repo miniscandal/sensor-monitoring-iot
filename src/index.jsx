@@ -1,20 +1,21 @@
-/**
- * Module responsibility
- * 
- */
-
 import { render } from 'preact';
 import { useEffect } from 'preact/hooks';
 
+import { useSubscribeObserverMqttClient } from '@infrastructure/mqtt-client/hooks/use-subscribe-observer';
+
 import { mqttClientProviderFactory } from '@infrastructure/mqtt-client/factories/client';
+
+import { OnMqttClientConnectedObserver } from '@modules/mqtt-client-subscription-topics/observers/connected';
 
 import { MqttClientProperties } from '@modules/mqtt-client/components/pages/mqtt-client-properties';
 import { MqttClientSubscriptionTopics } from '@modules/mqtt-client-subscription-topics/components/pages/subscription-topics';
 import { MqttClientPublishTopics } from '@modules/mqtt-client-publish-topics/components/pages/publish-topic';
 import { EnvironmentalNodes } from '@modules/environmental-nodes/components/pages/environmental-nodes';
-import { EnvironmentalNodesMessages } from '@modules/environmental-nodes-messages/components/pages/environmental-nodes-messages';
+// import { EnvironmentalNodesMessages } from '@modules/environmental-nodes-messages/components/pages/environmental-nodes-messages';
 
 import { Header } from '@shared-components/organisms/header';
+
+
 
 import './style.css';
 
@@ -27,6 +28,8 @@ export function App() {
         return () => mqttService.end();
     }, []);
 
+    useSubscribeObserverMqttClient(OnMqttClientConnectedObserver());
+
 
     return (
         <>
@@ -36,7 +39,7 @@ export function App() {
                 <MqttClientSubscriptionTopics />
                 <MqttClientPublishTopics />
                 <EnvironmentalNodes />
-                <EnvironmentalNodesMessages />
+                {/* <EnvironmentalNodesMessages /> */}
             </main>
         </>
     );
