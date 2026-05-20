@@ -1,5 +1,5 @@
-const MQTT_TOPIC_ENVIRONMENTAL_NODE_COMMAND = (params) => {
-    const template = import.meta.env.VITE_TOPIC_ENVIRONMENTAL_NODE_COMMAND;
+const MQTT_TOPIC_ENV_NODE_COMMAND = (params) => {
+    const template = import.meta.env.VITE_TOPIC_ENV_NODE_COMMAND;
 
     if (!params || !params.plant || !params.line || !params.nodeId) {
         return template;
@@ -13,10 +13,10 @@ const MQTT_TOPIC_ENVIRONMENTAL_NODE_COMMAND = (params) => {
         .replace('{id}', nodeId);
 };
 
-const MQTT_TOPIC_ENVIRONMENTAL_NODE_ALL_COMMAND = import.meta.env.VITE_TOPIC_ENVIRONMENTAL_NODE_ALL_COMMAND;
+const MQTT_TOPIC_ALL_ENV_NODE_COMMAND = import.meta.env.VITE_TOPIC_ALL_ENV_NODE_COMMAND;
 
 
 export {
-    MQTT_TOPIC_ENVIRONMENTAL_NODE_COMMAND,
-    MQTT_TOPIC_ENVIRONMENTAL_NODE_ALL_COMMAND,
+    MQTT_TOPIC_ENV_NODE_COMMAND,
+    MQTT_TOPIC_ALL_ENV_NODE_COMMAND,
 };
