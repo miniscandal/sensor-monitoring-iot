@@ -38,10 +38,8 @@ function NodeLoggedInObserver() {
     return {
         entity: OBSERVER_ENTITY_NODE_STATE_CODE,
         instanceId: NODE_STATE_LOGGED_IN,
-        listener: ({ data, nodes }) => {
-            const { message } = data;
-            const { nodeStateCode, metadata } = message;
-            const { nodeId } = metadata;
+        listener: ({ data: { message }, nodes }) => {
+            const { nodeStateCode, metadata: { nodeId } } = message;
             const node = {
                 ...message,
                 nodeStateCode: signal(nodeStateCode),
