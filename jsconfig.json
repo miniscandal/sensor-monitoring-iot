@@ -12,18 +12,6 @@
             "react-dom": [
                 "./node_modules/preact/compat/"
             ],
-            "@core-constants/*": [
-                "./src/core/constants/*"
-            ],
-            "@core-interfaces/*": [
-                "./src/core/interfaces/*"
-            ],
-            "@core-mqtt/*": [
-                "./src/core/mqtt/*"
-            ],
-            "@core-services/*": [
-                "./src/core/services/*"
-            ],
             "@domain/*": [
                 "./src/domain/*"
             ],
