@@ -1,4 +1,6 @@
 import { deepCamel } from '@shared-utils/deep-camel';
+import { adaptMqttMessage } from '@shared-utils/adapt-mqtt-message';
+import { extractNodeId } from '@shared-utils/extract-node-id';
 
 import {
     OBSERVER_ENTITY_MQTT_EVENTS,
@@ -51,27 +53,53 @@ class MqttClientEventDispatcher {
     }
 
     onMessage(topic, message) {
-        const parsed = deepCamel(JSON.parse(message.toString()));
+        const adaptMessage = adaptMqttMessage(deepCamel(JSON.parse(message.toString())));
+
+        const {
+            nodeStateCode,
+            nodeOperationResult,
+            timestamp,
+            firmwareVersion,
+            location,
+            status,
+            reason,
+        } = adaptMessage;
 
         this.mqttClientSubject.notifyObservers({
             entity: OBSERVER_ENTITY_MQTT_EVENTS,
             instanceId: MQTT_CLIENT_EVENT_MESSAGE,
             actions: null,
-            data: { topic, message },
+            data: { topic, message: adaptMessage },
         });
 
         this.mqttClientSubject.notifyObservers({
             entity: OBSERVER_ENTITY_NODE_STATE_CODE,
-            instanceId: parsed?.nodeStateCode,
+            instanceId: nodeStateCode,
             actions: null,
-            data: { topic, message: parsed },
+            data: {
+                topic,
+                message: {
+                    nodeStateCode,
+                    nodeOperationResult,
+                    metadata: {
+                        nodeId: extractNodeId(topic),
+                        timestamp,
+                        firmwareVersion,
+                        location,
+                    },
+                    connection: {
+                        status,
+                        reason,
+                    },
+                },
+            },
         });
 
         this.mqttClientSubject.notifyObservers({
             entity: OBSERVER_ENTITY_OPERATION_RESULT,
-            instanceId: parsed?.operationResult,
+            instanceId: nodeOperationResult,
             actions: null,
-            data: { topic, message: parsed },
+            data: { topic, message: adaptMessage },
         });
     }
 
