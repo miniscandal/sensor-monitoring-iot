@@ -1,7 +1,7 @@
 @font-face {
-    font-family: 'IBMPlex-Thin';
+    font-family: 'ibmplexsans-variablefont';
     font-display: block;
-    src: url('./assets/fonts/IBMPlexSans-Thin.ttf');
+    src: url('./assets/fonts/ibmplexsans-variablefont-width-wght-subset.ttf');
 }
 
 :root {
@@ -110,7 +110,7 @@ html {
 
 body {
     background-color: var(--bg-body);
-    font-family: IBMPlex-Thin_, helvetica;
+    font-family: ibmplexsans-variablefont, helvetica;
 
     main {
         padding: 0 var(--padding-viewport);
