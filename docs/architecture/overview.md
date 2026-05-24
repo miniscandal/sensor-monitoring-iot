@@ -1,78 +1,141 @@
 # Arquitectura del Proyecto
 
-Este documento describe la organización de carpetas, convenciones de nombres y principios arquitectónicos del proyecto. Su objetivo es mantener consistencia, escalabilidad y claridad en el desarrollo.
+✰ Este documento describe la organización de carpetas, convenciones de nombres y principios arquitectónicos del proyecto. Su objetivo es mantener consistencia, escalabilidad y claridad en el desarrollo.
 
 ---
 
-## 📂 Capas principales
+## Capas principales
 
 - **`domain/`**  
   Contiene entidades, eventos, repositorios y servicios. Define el **modelo de negocio** y contratos semánticos.  
-  Ejemplo: `domain/mqtt-message/entities`, `domain/mqtt-message/services`.
+  Ejemplo:
+
+```text
+  .\domain
+  └── mqtt-message
+      ├── entities
+      ├── events
+      ├── repositories
+      └── services
+```
 
 - **`infrastructure/`**  
   Implementa adaptadores, factories, providers, dispatcher, singleton y subjects.  
   Encapsula la **conexión con sistemas externos** (MQTT client, nodos ambientales).  
-  Ejemplo: `infrastructure/mqtt-client/adapters/client`.
+  Ejemplo:
+
+ ```text
+ .\infrastructure
+ └── mqtt-client
+    ├── adapters
+    ├── constants
+    ├── dispatcher
+    ├── factories
+    ├── hooks
+    ├── singleton
+    └── subjects
+```
 
 - **`modules/`**  
   Cada módulo es un **slice autocontenido** con UI (atomic design), hooks, constants, observers y utils.  
-  Ejemplo:  
-modules/environmental-nodes
-├── components (atoms, molecules, organisms, pages, templates)
-├── hooks
-├── constants
-├── observers
-└── utils
+  Ejemplo:
 
+```text
+.\modules
+├── environmental-nodes
+│   ├── components
+│   ├── constants
+│   ├── contexts
+│   ├── hooks
+│   └── observers
+```
 
 - **`shared/`**  
 Recursos transversales reutilizables: componentes, constantes, contexts, hooks y utils.  
-Ejemplo: `shared/components/atoms/heading`, `shared/utils/deep-camel`.
+Ejemplo:
+
+```text
+.\shared
+├── components
+│   ├── atoms
+│   ├── molecules
+│   └── organisms
+├── constants
+│   ├── formatter.js
+│   ├── iot-control-panel-operation-codes.js
+│   └── observer-entities.js
+├── contexts
+├── hooks
+└── utils
+    ├── class-names
+    ├── deep-camel
+    └── safe-round
+```
 
 - **`mocks/`**  
 Datos y providers simulados para pruebas.  
-Ejemplo: `mocks/environmental-nodes/data/node-collection.json`.
+Ejemplo:
+
+```text
+.\mocks
+├── environmental-nodes
+│   ├── data
+│   │   └── node-collection.json
+│   └── providers
+│       └── nodes
+├── mqtt-client
+│   └── adapters
+│       └── client
+└── mqtt-messages
+    └── data
+        ├── json-format
+        └── plain-text
+```
 
 - **`assets/`**  
 Recursos estáticos como fuentes e imágenes.
+Ejemplo:
+
+```text
+.\assets
+└── fonts
+```
 
 ---
 
-## 📑 Convenciones de nombres
+## Convenciones de nombres
 
 - **Plural para contenedores**:  
 `components`, `atoms`, `molecules`, `organisms`, `pages`, `templates`, `hooks`, `constants`, `observers`, `utils`, `factories`, `providers`, `adapters`, `subjects`.
 
 - **Singular para entidades únicas**:  
-Archivos específicos (`formatter.js`, `safe-round`, `extract-status`) o subcarpetas que representan un único tipo (`client` dentro de `adapters`).
+`formatter`, `safe-round`, `extract-status`, `mqtt-client`, `client`.
 
-- **Hooks**: siempre prefijados con `use` → `use-connected-nodes-count`, `use-properties`.  
-- **Observers**: sufijo descriptivo → `node-monitor`, `node-presence/logged-in`.  
-- **Constants**: nombres claros y semánticos → `mqtt-client-operation-codes.js`, `node-controls.js`.
+- **Prefijo descriptivo**
+- **Sufijo descriptivo**
 
 ---
 
-## 🧩 Contexts
+## Contexts
 
 - Los **contexts transversales** viven en `shared/contexts`.  
-- Los **contexts específicos de un módulo** deben residir dentro del propio módulo (`modules/<modulo>/contexts`).
+- Los **contexts específicos de un módulo** deben residir dentro del propio módulo `modules/<modulo>/contexts`.
 
 ---
 
-## 🧪 Mocks
+## Mocks
 
 - Los mocks globales viven en `mocks/`.  
-- Cada módulo puede tener mocks locales si son exclusivos de ese módulo.  
 - Convención: mantener **simetría** con la estructura de `modules`.  
-Ejemplo:  
-modules/environmental-node-messages/hooks/use-messages
-mocks/environmental-node-messages/hooks/use-messages.mock.js
+Ejemplo:
 
+    `modules/environmental-nodes-messages/hooks/use-messages`
+
+    `mocks/environmental-nodes-messages/hooks/use-messages.mock.js`
 
 ---
 
-## 🎯 Principios arquitectónicos
+## Principios arquitectónicos
 
 1. **Separación de capas**: dominio, infraestructura y módulos claramente diferenciados.  
 2. **Autocontenidos**: cada módulo debe incluir todo lo necesario para su UI y lógica de aplicación.  
@@ -83,22 +146,17 @@ mocks/environmental-node-messages/hooks/use-messages.mock.js
 
 ---
 
-## 📌 Alias configurados
+## Alias configurados
 
-- `@domain/*` → `./src/domain/*`  
-- `@infrastructure/*` → `./src/infrastructure/*`  
-- `@modules/*` → `./src/modules/*`  
-- `@shared-*` → `./src/shared/*`  
-- `@mocks/*` → `./src/mocks/*`  
-- `@assets/*` → `./src/assets/*`
+- `'@domain'`: '/src/domain',
+- `'@infrastructure'`: '/src/infrastructure',
+- `'@modules`': '/src/modules',
+- `'@assets'`: '/src/assets',
+- `'@mocks':` '/src/mocks',
+- `'@shared-components'`: '/src/shared/components',
+- `'@shared-constants'`: '/src/shared/constants',
+- `'@shared-contexts'`: '/src/shared/contexts',
+- `'@shared-hooks'`: '/src/shared/hooks',
+- `'@shared-utils'`: '/src/shared/utils',
 
 ---
-
-## ✅ Checklist rápido
-
-- [ ] ¿El contenedor está en plural?  
-- [ ] ¿Los hooks empiezan con `use`?  
-- [ ] ¿Los observers tienen sufijo descriptivo?  
-- [ ] ¿Los contexts están en el lugar correcto (shared vs módulo)?  
-- [ ] ¿Los mocks reflejan la estructura del módulo?  
-- [ ] ¿El alias corresponde a la capa correcta?
