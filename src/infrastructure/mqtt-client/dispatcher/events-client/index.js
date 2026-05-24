@@ -19,60 +19,63 @@ import {
 
 
 class MqttClientEventDispatcher {
-    constructor(clientAdapter, mqttClientSubject) {
-        this.client = clientAdapter;
-        this.mqttClientSubject = mqttClientSubject;
+    #client;
+    #subject;
 
-        this.client.on(MQTT_CLIENT_EVENT_CONNECT, this.onConnect.bind(this));
-        this.client.on(MQTT_CLIENT_EVENT_OFFLINE, this.onOffline.bind(this));
-        this.client.on(MQTT_CLIENT_EVENT_MESSAGE, this.onMessage.bind(this));
-        this.client.on(MQTT_CLIENT_EVENT_ERROR, (err) => console.error('MQTT error:', err));
+    constructor(clientAdapter, mqttClientSubject) {
+        this.#client = clientAdapter;
+        this.#subject = mqttClientSubject;
+
+        this.#client.on(MQTT_CLIENT_EVENT_CONNECT, this.#onConnect.bind(this));
+        this.#client.on(MQTT_CLIENT_EVENT_OFFLINE, this.#onOffline.bind(this));
+        this.#client.on(MQTT_CLIENT_EVENT_MESSAGE, this.#onMessage.bind(this));
+        this.#client.on(MQTT_CLIENT_EVENT_ERROR, (err) => console.error('MQTT error:', err));
     }
 
-    onConnect() {
-        this.mqttClientSubject.notifyObservers({
+    #onConnect() {
+        this.#subject.notifyObservers({
             entity: OBSERVER_ENTITY_MQTT_EVENTS,
             instanceId: MQTT_CLIENT_EVENT_CONNECT,
             actions: {
-                getClientProperties: this.client.getClientProperties.bind(this.client),
+                getClientProperties: this.#client.getClientProperties.bind(this.#client),
                 subscribe: this.subscribe.bind(this),
             },
             data: null,
         });
     }
 
-    onOffline() {
-        this.mqttClientSubject.notifyObservers({
+    #onOffline() {
+        this.#subject.notifyObservers({
             entity: OBSERVER_ENTITY_MQTT_EVENTS,
             instanceId: MQTT_CLIENT_EVENT_OFFLINE,
             actions: {
-                getClientProperties: this.client.getClientProperties.bind(this.client),
+                getClientProperties: this.#client.getClientProperties.bind(this.#client),
             },
             data: null,
         });
     }
 
-    onMessage(topic, message) {
-        const adaptMessage = adaptMqttMessage(deepCamel(JSON.parse(message.toString())));
+    #onMessage(topic, rawMessage) {
+        const message = adaptMqttMessage(deepCamel(JSON.parse(rawMessage.toString())));
 
-        const {
-            nodeStateCode,
-            nodeOperationResult,
-            timestamp,
-            firmwareVersion,
-            location,
-            status,
-            reason,
-        } = adaptMessage;
+        this.#subject.notifyObservers(this.#buildRawMessageEvent(topic, message));
+        this.#subject.notifyObservers(this.#buildNodeStateEvent(topic, message));
+        this.#subject.notifyObservers(this.#buildOperationResultEvent(topic, message));
+    }
 
-        this.mqttClientSubject.notifyObservers({
+    #buildRawMessageEvent(topic, message) {
+        return {
             entity: OBSERVER_ENTITY_MQTT_EVENTS,
             instanceId: MQTT_CLIENT_EVENT_MESSAGE,
             actions: null,
-            data: { topic, message: adaptMessage },
-        });
+            data: { topic, message },
+        };
+    }
 
-        this.mqttClientSubject.notifyObservers({
+    #buildNodeStateEvent(topic, message) {
+        const { nodeStateCode, nodeOperationResult, timestamp, firmwareVersion, location, status, reason } = message;
+
+        return {
             entity: OBSERVER_ENTITY_NODE_STATE_CODE,
             instanceId: nodeStateCode,
             actions: null,
@@ -87,48 +90,45 @@ class MqttClientEventDispatcher {
                         firmwareVersion,
                         location,
                     },
-                    connection: {
-                        status,
-                        reason,
-                    },
+                    connection: { status, reason },
                 },
             },
-        });
+        };
+    }
 
-        this.mqttClientSubject.notifyObservers({
+    #buildOperationResultEvent(topic, message) {
+        return {
             entity: OBSERVER_ENTITY_OPERATION_RESULT,
-            instanceId: nodeOperationResult,
+            instanceId: message.nodeOperationResult,
             actions: null,
-            data: { topic, message: adaptMessage },
-        });
+            data: { topic, message },
+        };
     }
 
     subscribe(topic) {
-        this.client.subscribe(topic, () => {
-            const data = { topic };
-
-            this.mqttClientSubject.notifyObservers({
+        this.#client.subscribe(topic, () => {
+            this.#subject.notifyObservers({
                 entity: OBSERVER_ENTITY_MQTT_EVENTS,
                 instanceId: MQTT_CLIENT_EVENT_SUBSCRIBE,
                 actions: { subscribe: this.subscribe.bind(this) },
-                data,
+                data: { topic },
             });
 
-            this.mqttClientSubject.notifyObservers({
+            this.#subject.notifyObservers({
                 entity: OBSERVER_ENTITY_TOPICS,
                 instanceId: topic,
                 actions: { publish: this.publish.bind(this) },
-                data,
+                data: { topic },
             });
         });
     }
 
     publish({ topic, data }) {
-        this.client.publish(topic, data);
+        this.#client.publish(topic, data);
     }
 
     end() {
-        this.client.end();
+        this.#client.end();
     }
 }
 
