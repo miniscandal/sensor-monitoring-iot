@@ -1,7 +1,9 @@
-import { MqttClientMockAdapter } from '@mocks/mqtt-client/adapters/client';
 import { MqttClientAdapter } from '@infrastructure/mqtt-client/adapters/client';
 import { MqttClientEventDispatcher } from '@infrastructure/mqtt-client/dispatcher/events-client';
+
 import { mqttClientSubject } from '@infrastructure/mqtt-client/subjects/mqtt-client-subject';
+
+import { MqttClientMockAdapter } from '@mocks/mqtt-client/adapters/client';
 
 import { USE_MQTT_CLIENT_MOCK } from '@infrastructure/mqtt-client/constants/client-config';
 

@@ -31,33 +31,34 @@ entities = {
 };
 
 Notes:
-- Each key in `entities` corresponds to one of the valid entities defined in `OBSERVER_ENTITY_*`.
+- Each key in `entities` corresponds to one of the valid entities defined in `ENTITY_*`.
 - Each instanceId within an entity can have an array of `observerId`s representing the registered observers.
 - This setup allows selective notification of observers associated with a specific event, status code, operation code, or topic.
 - The data above is a **possible runtime state** of an instance of ObserverRegistry, not hardcoded.
 */
+
 import {
-    OBSERVER_ENTITY_MQTT_EVENTS,
-    OBSERVER_ENTITY_NODE_STATE_CODE,
-    OBSERVER_ENTITY_OPERATION_RESULT,
-    OBSERVER_ENTITY_TOPICS,
+    ENTITY_MQTT_CLIENT_EVENTS,
+    ENTITY_ENV_NODE_STATE_CODE,
+    ENTITY_ENV_NODE_OPERATION_RESULT_CODE,
+    ENTITY_MQTT_CLIENT_TOPICS,
 } from '@shared-constants/observer-entities';
 
 
 class ObserverRegistry {
     static VALID_ENTITIES = [
-        OBSERVER_ENTITY_MQTT_EVENTS,
-        OBSERVER_ENTITY_NODE_STATE_CODE,
-        OBSERVER_ENTITY_OPERATION_RESULT,
-        OBSERVER_ENTITY_TOPICS,
+        ENTITY_MQTT_CLIENT_EVENTS,
+        ENTITY_ENV_NODE_STATE_CODE,
+        ENTITY_ENV_NODE_OPERATION_RESULT_CODE,
+        ENTITY_MQTT_CLIENT_TOPICS,
     ];
 
     constructor() {
         this.entities = {
-            [OBSERVER_ENTITY_MQTT_EVENTS]: new Map(),
-            [OBSERVER_ENTITY_NODE_STATE_CODE]: new Map(),
-            [OBSERVER_ENTITY_OPERATION_RESULT]: new Map(),
-            [OBSERVER_ENTITY_TOPICS]: new Map(),
+            [ENTITY_MQTT_CLIENT_EVENTS]: new Map(),
+            [ENTITY_ENV_NODE_STATE_CODE]: new Map(),
+            [ENTITY_ENV_NODE_OPERATION_RESULT_CODE]: new Map(),
+            [ENTITY_MQTT_CLIENT_TOPICS]: new Map(),
         };
     }
 

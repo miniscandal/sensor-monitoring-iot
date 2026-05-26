@@ -1,0 +1,5 @@
+const ENV_NODE_CMD_RECONNECT = 705;
+
+export {
+    ENV_NODE_CMD_RECONNECT,
+};

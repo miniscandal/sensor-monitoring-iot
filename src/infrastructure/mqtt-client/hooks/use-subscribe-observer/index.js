@@ -23,26 +23,3 @@ function useSubscribeObserverMqttClient({ entity, instanceId, listener }) {
 }
 
 export { useSubscribeObserverMqttClient };
-
-
-/*
-import { useEffect } from 'preact/hooks';
-
-import { mqttClientSubject } from '@infrastructure/mqtt-client/subjects/mqtt-client-subject';
-
-
-function useSubscribeObserverMqttClient({ entity, instanceId, listener }) {
-    useEffect(() => {
-        const observerId = mqttClientSubject.subscribe({
-            entity,
-            instanceId,
-            listener,
-        });
-
-
-        return () => mqttClientSubject.unsubscribe(observerId);
-    }, [entity, instanceId, listener]);
-}
-
-export { useSubscribeObserverMqttClient };
-*/

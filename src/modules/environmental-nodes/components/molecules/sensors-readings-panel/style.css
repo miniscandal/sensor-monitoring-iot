@@ -1,4 +1,4 @@
-.sensor-readings-panel {
+.sensors-readings-panel {
     display: flex;
 
     > .metric-item {

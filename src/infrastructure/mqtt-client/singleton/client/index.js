@@ -1,17 +1,12 @@
-/**
- * Module responsibility
- * 
- */
-
 import mqtt from 'mqtt';
 
 import { mqttClientSubject } from '@infrastructure/mqtt-client/subjects/mqtt-client-subject';
 
 import {
-    OBSERVER_ENTITY_MQTT_EVENTS,
-    OBSERVER_ENTITY_NODE_STATE_CODE,
-    OBSERVER_ENTITY_TOPICS,
-} from '@core-constants/observer-entities';
+    ENTITY_MQTT_CLIENT_EVENTS,
+    ENTITY_ENV_NODE_STATE_CODE,
+    ENTITY_MQTT_CLIENT_TOPICS,
+} from '@shared-constants/observer-entities';
 
 import {
     MQTT_CLIENT_EVENT_CONNECT,
@@ -48,7 +43,7 @@ class MqttClientSingleton {
 
     onConnect() {
         mqttClientSubject.notifyObservers({
-            entity: OBSERVER_ENTITY_MQTT_EVENTS,
+            entity: ENTITY_MQTT_CLIENT_EVENTS,
             instanceId: MQTT_CLIENT_EVENT_CONNECT,
             actions: {
                 getClientProperties: this.getClientProperties.bind(this),
@@ -60,7 +55,7 @@ class MqttClientSingleton {
 
     onOffline() {
         mqttClientSubject.notifyObservers({
-            entity: OBSERVER_ENTITY_MQTT_EVENTS,
+            entity: ENTITY_ENV_NODE_STATE_CODE,
             instanceId: MQTT_CLIENT_EVENT_OFFLINE,
             actions: {
                 getClientProperties: this.getClientProperties.bind(this),
@@ -73,7 +68,7 @@ class MqttClientSingleton {
         const parseMessage = JSON.parse(message.toString());
 
         mqttClientSubject.notifyObservers({
-            entity: OBSERVER_ENTITY_MQTT_EVENTS,
+            entity: ENTITY_MQTT_CLIENT_EVENTS,
             instanceId: MQTT_CLIENT_EVENT_MESSAGE,
             actions: null,
             data: {
@@ -83,7 +78,7 @@ class MqttClientSingleton {
         });
 
         mqttClientSubject.notifyObservers({
-            entity: OBSERVER_ENTITY_NODE_STATE_CODE,
+            entity: ENTITY_ENV_NODE_STATE_CODE,
             instanceId: parseMessage?.data?.statusCode,
             actions: null,
             data: {
@@ -98,7 +93,7 @@ class MqttClientSingleton {
             const data = { topic };
 
             mqttClientSubject.notifyObservers({
-                entity: OBSERVER_ENTITY_MQTT_EVENTS,
+                entity: ENTITY_MQTT_CLIENT_EVENTS,
                 instanceId: MQTT_CLIENT_EVENT_SUBSCRIBE,
                 actions: {
                     subscribe: this.subscribe.bind(this),
@@ -107,7 +102,7 @@ class MqttClientSingleton {
             });
 
             mqttClientSubject.notifyObservers({
-                entity: OBSERVER_ENTITY_TOPICS,
+                entity: ENTITY_MQTT_CLIENT_TOPICS,
                 instanceId: topic,
                 actions: {
                     publish: this.publish.bind(this),

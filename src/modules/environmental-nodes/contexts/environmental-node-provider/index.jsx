@@ -17,7 +17,7 @@ metadata: {
 } = { },
 connection: { state = 'online', reason = 'boot' } = { },
 data: {
-    sensorReadings: {
+    sensorsReadings: {
         humidity: { value: humidityValue = null } = { },
         temperature: { value: temperatureValue = null } = { },
     } = { },
@@ -35,7 +35,7 @@ const EnvironmentalNodeContext = createContext({
         operationResult: null,
         metadata: {},
         data: {
-            sensorReadings: {
+            sensorsReadings: {
                 humidity: {
                     value: null,
                 },
@@ -66,7 +66,7 @@ function EnvironmentalNodeProvider({
             } = {},
         } = {},
         data: {
-            sensorReadings: {
+            sensorsReadings: {
                 humidity,
                 temperature,
             } = {},
@@ -83,7 +83,7 @@ function EnvironmentalNodeProvider({
                 nodeId,
             },
             data: {
-                sensorReadings: {
+                sensorsReadings: {
                     humidity,
                     temperature,
                 },

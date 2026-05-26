@@ -5,10 +5,10 @@ import { EnvironmentalNodeContext } from '@modules/environmental-nodes/contexts/
 import { SvgIcon } from '@shared-components/atoms/svg-icon';
 
 import {
-    NODE_STATE_LOGGED_IN,
-    NODE_STATE_IDLE,
-    NODE_STATE_STREAMING_SENSORS,
-} from '@infrastructure/environmental-nodes/constants/node-state-codes';
+    ENV_NODE_STATE_BIRTH,
+    ENV_NODE_STATE_IDLE,
+    ENV_NODE_STATE_STREAMING_SENSOR_ALL,
+} from '@shared-constants/env-node-states-codes';
 
 import './style.css';
 
@@ -17,9 +17,9 @@ function StateInfoHeader() {
     const { nodeProperties: { nodeStateCode } } = useContext(EnvironmentalNodeContext);
 
     const svgIconProps = {
-        [NODE_STATE_LOGGED_IN]: 'wirelessSignal',
-        [NODE_STATE_STREAMING_SENSORS]: 'wirelessSignal',
-        [NODE_STATE_IDLE]: 'sensorsOff',
+        [ENV_NODE_STATE_BIRTH]: 'wirelessSignal',
+        [ENV_NODE_STATE_IDLE]: 'sensorsOff',
+        [ENV_NODE_STATE_STREAMING_SENSOR_ALL]: 'wirelessSignal',
     }[nodeStateCode];
 
     return (

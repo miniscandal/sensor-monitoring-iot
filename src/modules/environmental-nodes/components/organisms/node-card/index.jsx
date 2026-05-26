@@ -4,7 +4,7 @@ import { EnvironmentalNodeContext } from '@modules/environmental-nodes/contexts/
 
 import { ControlsToolbar } from '../../molecules/controls-toolbar';
 import { IdentityInfoPanel } from '../../molecules/identity-info-panel';
-import { SensorReadingsPanel } from '../../molecules/sensor-readings-panel';
+import { SensorsReadingsPanel } from '../../molecules/sensors-readings-panel';
 import { StateInfoHeader } from '../../molecules/state-info-header';
 
 import { classNames } from '@shared-utils/class-names';
@@ -26,7 +26,7 @@ function NodeCard() {
         >
             <StateInfoHeader />
             <IdentityInfoPanel />
-            <SensorReadingsPanel />
+            <SensorsReadingsPanel />
             <ControlsToolbar />
         </li>
     );

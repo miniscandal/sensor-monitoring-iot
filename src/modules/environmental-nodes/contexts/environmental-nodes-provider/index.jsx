@@ -1,9 +1,9 @@
 import { createContext } from 'preact';
 
-import { useNodesPresenceCount } from '@modules/environmental-nodes/hooks/use-nodes-presence-count';
+import { useEnvNodesPresenceCount } from '@modules/environmental-nodes/hooks/use-env-nodes-presence-count';
+import { useEnvNodesPresence } from '@modules/environmental-nodes/hooks/use-env-nodes-presence';
 
 import { environmentalNodesProviderFactory } from '@infrastructure/environmental-nodes/factories/nodes';
-import { useNodesPresence } from '@modules/environmental-nodes/hooks/use-nodes-presence';
 
 
 const EnvironmentalNodesContext = createContext({
@@ -17,8 +17,8 @@ function EnvironmentalNodesProvider({ children }) {
     const { nodes, nodeIds } = provider;
 
     const value = {
-        nodes: useNodesPresence({ nodes }),
-        nodesCount: useNodesPresenceCount({ nodeIds }),
+        nodes: useEnvNodesPresence({ nodes }),
+        nodesCount: useEnvNodesPresenceCount({ nodeIds }),
     };
 
 

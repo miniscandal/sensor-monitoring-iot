@@ -1,11 +1,15 @@
 const IOT_TO_FRONTEND_MAP = Object.freeze({
     nsc: 'nodeStateCode',
-    nor: 'nodeOpResCode',
+    norc: 'nodeOperationResultCode',
+    seq: 'sequenceNumber',
     ts: 'timestamp',
     v: 'firmwareVersion',
     status: 'status',
     reason: 'reason',
     loc: 'location',
+    srds: 'sensorsReadings',
+    temp: 'temperature',
+    hum: 'humidity',
 });
 
 

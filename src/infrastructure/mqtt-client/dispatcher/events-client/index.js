@@ -1,13 +1,5 @@
 import { deepCamel } from '@shared-utils/deep-camel';
 import { adaptMqttMessage } from '@shared-utils/adapt-mqtt-message';
-import { extractNodeId } from '@shared-utils/extract-node-id';
-
-import {
-    OBSERVER_ENTITY_MQTT_EVENTS,
-    OBSERVER_ENTITY_NODE_STATE_CODE,
-    OBSERVER_ENTITY_OPERATION_RESULT,
-    OBSERVER_ENTITY_TOPICS,
-} from '@shared-constants/observer-entities';
 
 import {
     MQTT_CLIENT_EVENT_CONNECT,
@@ -16,6 +8,21 @@ import {
     MQTT_CLIENT_EVENT_MESSAGE,
     MQTT_CLIENT_EVENT_ERROR,
 } from '@infrastructure/mqtt-client/constants/client-events';
+
+import { extractNodeId } from '@shared-utils/extract-node-id';
+
+import {
+    ENV_NODE_STATE_BIRTH,
+    ENV_NODE_STATE_DEATH,
+    ENV_NODE_STATE_STREAMING_SENSOR_ALL,
+} from '@shared-constants/env-node-states-codes';
+
+import {
+    ENTITY_MQTT_CLIENT_EVENTS,
+    ENTITY_ENV_NODE_STATE_CODE,
+    ENTITY_ENV_NODE_OPERATION_RESULT_CODE,
+    ENTITY_MQTT_CLIENT_TOPICS,
+} from '@shared-constants/observer-entities';
 
 
 class MqttClientEventDispatcher {
@@ -34,7 +41,7 @@ class MqttClientEventDispatcher {
 
     #onConnect() {
         this.#subject.notifyObservers({
-            entity: OBSERVER_ENTITY_MQTT_EVENTS,
+            entity: ENTITY_MQTT_CLIENT_EVENTS,
             instanceId: MQTT_CLIENT_EVENT_CONNECT,
             actions: {
                 getClientProperties: this.#client.getClientProperties.bind(this.#client),
@@ -46,7 +53,7 @@ class MqttClientEventDispatcher {
 
     #onOffline() {
         this.#subject.notifyObservers({
-            entity: OBSERVER_ENTITY_MQTT_EVENTS,
+            entity: ENTITY_MQTT_CLIENT_EVENTS,
             instanceId: MQTT_CLIENT_EVENT_OFFLINE,
             actions: {
                 getClientProperties: this.#client.getClientProperties.bind(this.#client),
@@ -58,64 +65,80 @@ class MqttClientEventDispatcher {
     #onMessage(topic, rawMessage) {
         const message = adaptMqttMessage(deepCamel(JSON.parse(rawMessage.toString())));
 
-        this.#subject.notifyObservers(this.#buildRawMessageEvent(topic, message));
-        this.#subject.notifyObservers(this.#buildNodeStateEvent(topic, message));
-        this.#subject.notifyObservers(this.#buildOperationResultEvent(topic, message));
-    }
-
-    #buildRawMessageEvent(topic, message) {
-        return {
-            entity: OBSERVER_ENTITY_MQTT_EVENTS,
-            instanceId: MQTT_CLIENT_EVENT_MESSAGE,
-            actions: null,
-            data: { topic, message },
-        };
-    }
-
-    #buildNodeStateEvent(topic, message) {
-        const { nodeStateCode, nodeOperationResult, timestamp, firmwareVersion, location, status, reason } = message;
-
-        return {
-            entity: OBSERVER_ENTITY_NODE_STATE_CODE,
-            instanceId: nodeStateCode,
-            actions: null,
-            data: {
-                topic,
-                message: {
-                    nodeStateCode,
-                    nodeOperationResult,
-                    metadata: {
-                        nodeId: extractNodeId(topic),
-                        timestamp,
-                        firmwareVersion,
-                        location,
-                    },
-                    connection: { status, reason },
-                },
-            },
-        };
-    }
-
-    #buildOperationResultEvent(topic, message) {
-        return {
-            entity: OBSERVER_ENTITY_OPERATION_RESULT,
+        this.#subject.notifyObservers({
+            entity: ENTITY_ENV_NODE_OPERATION_RESULT_CODE,
             instanceId: message.nodeOperationResult,
             actions: null,
             data: { topic, message },
-        };
+        });
+
+        this.#subject.notifyObservers({
+            entity: ENTITY_MQTT_CLIENT_EVENTS,
+            instanceId: MQTT_CLIENT_EVENT_MESSAGE,
+            actions: null,
+            data: { topic, message },
+        });
+
+        const nodeId = extractNodeId(topic);
+        const { nodeStateCode } = message;
+
+        const eventBuilders = new Map([
+            [ENV_NODE_STATE_BIRTH, () => {
+                const { timestamp, firmwareVersion, location, sequenceNumber, status, reason } = message;
+
+
+                return {
+                    nodeStateCode,
+                    metadata: { nodeId, timestamp, firmwareVersion, location },
+                    sequenceNumber,
+                    connection: { status, reason },
+                };
+            }],
+            [ENV_NODE_STATE_DEATH, () => {
+                const { timestamp, sequenceNumber, status, reason } = message;
+
+
+                return {
+                    nodeStateCode,
+                    metadata: { nodeId, timestamp },
+                    sequenceNumber,
+                    connection: { status, reason },
+                };
+            }],
+            [ENV_NODE_STATE_STREAMING_SENSOR_ALL, () => {
+                const { timestamp, sequenceNumber, sensorsReadings: { humidity, temperature } } = message;
+
+
+                return {
+                    nodeStateCode,
+                    metadata: { nodeId, timestamp },
+                    sequenceNumber,
+                    data: { sensorsReadings: { humidity, temperature } },
+                };
+            }],
+        ]);
+
+        const buildMessage = eventBuilders.get(nodeStateCode);
+
+        this.#subject.notifyObservers({
+            entity: ENTITY_ENV_NODE_STATE_CODE,
+            instanceId: nodeStateCode,
+            actions: null,
+            data: { topic, message: buildMessage() },
+        });
     }
 
     subscribe(topic) {
         this.#client.subscribe(topic, () => {
             this.#subject.notifyObservers({
-                entity: OBSERVER_ENTITY_MQTT_EVENTS,
+                entity: ENTITY_MQTT_CLIENT_EVENTS,
                 instanceId: MQTT_CLIENT_EVENT_SUBSCRIBE,
                 actions: { subscribe: this.subscribe.bind(this) },
                 data: { topic },
             });
 
             this.#subject.notifyObservers({
-                entity: OBSERVER_ENTITY_TOPICS,
+                entity: ENTITY_MQTT_CLIENT_TOPICS,
                 instanceId: topic,
                 actions: { publish: this.publish.bind(this) },
                 data: { topic },

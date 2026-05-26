@@ -13,15 +13,15 @@ import {
 import './style.css';
 
 
-function SensorReadingsPanel() {
+function SensorsReadingsPanel() {
     const { nodeProperties: { nodeStateCode, data } } = useContext(EnvironmentalNodeContext);
-    const { sensorReadings: { humidity, temperature } } = data;
+    const { sensorsReadings: { humidity, temperature } } = data;
     const safeHumidity = useComputed(() => humidity.value ?? 'N/A');
     const safeTemperature = useComputed(() => temperature.value ?? 'N/A');
 
 
     return (
-        <section class="sensor-readings-panel" data-node-state-code={nodeStateCode}>
+        <section class="sensors-readings-panel" data-node-state-code={nodeStateCode}>
             <MetricItem
                 svgIconName={HUMIDITY_SENSOR_CONFIG.svgIconName}
                 value={safeHumidity}
@@ -36,4 +36,4 @@ function SensorReadingsPanel() {
     );
 }
 
-export { SensorReadingsPanel };
+export { SensorsReadingsPanel };

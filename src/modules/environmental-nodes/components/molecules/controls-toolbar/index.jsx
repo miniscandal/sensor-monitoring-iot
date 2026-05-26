@@ -7,16 +7,16 @@ import { SvgIcon } from '@shared-components/atoms/svg-icon';
 import { classNames } from '@shared-utils/class-names';
 
 import {
-    NODE_STATE_LOGGED_IN,
-    NODE_STATE_IDLE,
-    NODE_STATE_STREAMING_SENSORS,
-} from '@infrastructure/environmental-nodes/constants/node-state-codes';
-
-import {
     DATA_ATTR_NODE_CONTROL_TERMINAL,
     DATA_ATTR_NODE_CONTROL_STREAMING_DATA,
     DATA_ATTR_NODE_CONTROL_ANALYTICS,
 } from '@modules/environmental-nodes/constants/node-controls';
+
+import {
+    ENV_NODE_STATE_BIRTH,
+    ENV_NODE_STATE_IDLE,
+    ENV_NODE_STATE_STREAMING_SENSOR_ALL,
+} from '@shared-constants/env-node-states-codes';
 
 import './style.css';
 
@@ -25,9 +25,9 @@ function ControlsToolbar() {
     const { nodeStateCode, isSelected } = useContext(EnvironmentalNodeContext);
 
     const svgIconName = {
-        [NODE_STATE_LOGGED_IN]: 'stopCircle',
-        [NODE_STATE_STREAMING_SENSORS]: 'stopCircle',
-        [NODE_STATE_IDLE]: 'playCircle',
+        [ENV_NODE_STATE_BIRTH]: 'stopCircle',
+        [ENV_NODE_STATE_STREAMING_SENSOR_ALL]: 'stopCircle',
+        [ENV_NODE_STATE_IDLE]: 'playCircle',
     }[nodeStateCode];
 
 

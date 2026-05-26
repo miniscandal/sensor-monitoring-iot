@@ -6,22 +6,22 @@ import { StatItem } from '@shared-components/molecules/stat-item';
 import { SvgIcon } from '@shared-components/atoms/svg-icon';
 
 import {
-    NODE_STATE_LOGGED_IN,
-    NODE_STATE_IDLE,
-    NODE_STATE_STREAMING_SENSORS,
-} from '@infrastructure/environmental-nodes/constants/node-state-codes';
+    ENV_NODE_STATE_BIRTH,
+    ENV_NODE_STATE_IDLE,
+    ENV_NODE_STATE_STREAMING_SENSOR_ALL,
+} from '@shared-constants/env-node-states-codes';
 
 import './style.css';
 
 
 function IdentityInfoPanel() {
     const { nodeProperties } = useContext(EnvironmentalNodeContext);
-    const { nodeStateCode, metadata: { nodeId } } = nodeProperties
+    const { nodeStateCode, metadata: { nodeId } } = nodeProperties;
 
     const svgIconName = {
-        [NODE_STATE_LOGGED_IN]: 'motionSensorActive',
-        [NODE_STATE_STREAMING_SENSORS]: 'motionSensorActive',
-        [NODE_STATE_IDLE]: 'motionSensorIdle',
+        [ENV_NODE_STATE_BIRTH]: 'motionSensorActive',
+        [ENV_NODE_STATE_IDLE]: 'motionSensorIdle',
+        [ENV_NODE_STATE_STREAMING_SENSOR_ALL]: 'motionSensorActive',
     }[nodeStateCode];
 
 

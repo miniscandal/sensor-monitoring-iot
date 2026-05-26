@@ -1,6 +1,5 @@
 import mqtt from 'mqtt';
 
-
 import {
     MQTT_BROKER_HOST,
     MQTT_BROKER_PORT,

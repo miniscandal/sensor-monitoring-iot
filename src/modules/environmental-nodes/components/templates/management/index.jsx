@@ -1,17 +1,17 @@
-import { NodesPresenceCount } from '../../organisms/nodes-presence-count';
-import { NodesPresenceMonitor } from '../../organisms/nodes-presence-monitor';
+import { EnvNodesPresenceCount } from '../../organisms/nodes-presence-count';
+import { EnvNodesPresenceMonitor } from '../../organisms/nodes-presence-monitor';
 
 import './style.css';
 
 
-function NodesManagement() {
+function EnvNodesManagement() {
 
     return (
-        <article class="nodes-management">
-            <NodesPresenceCount />
-            <NodesPresenceMonitor />
+        <article class="env-nodes-management">
+            <EnvNodesPresenceCount />
+            <EnvNodesPresenceMonitor />
         </article>
     );
 }
 
-export { NodesManagement };
+export { EnvNodesManagement };
