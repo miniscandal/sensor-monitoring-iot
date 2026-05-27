@@ -1,3 +1,4 @@
+
 # Arquitectura del Proyecto
 
 ✰ Este documento describe la organización de carpetas, convenciones de nombres y principios arquitectónicos del proyecto. Su objetivo es mantener consistencia, escalabilidad y claridad en el desarrollo.
@@ -100,40 +101,6 @@ Ejemplo:
 .\assets
 └── fonts
 ```
-
----
-
-## Convenciones de nombres
-
-- **Plural para contenedores**:  
-`components`, `atoms`, `molecules`, `organisms`, `pages`, `templates`, `hooks`, `constants`, `observers`, `utils`, `factories`, `providers`, `adapters`, `subjects`.
-
-- **Singular para entidades únicas**:  
-`formatter`, `safe-round`, `extract-status`, `mqtt-client`, `client`.
-
-- **Prefijo descriptivo**
-- **Sufijo descriptivo**
-
----
-
-## Contexts
-
-- Los **contexts transversales** viven en `shared/contexts`.  
-- Los **contexts específicos de un módulo** deben residir dentro del propio módulo `modules/<modulo>/contexts`.
-
----
-
-## Mocks
-
-- Los mocks globales viven en `mocks/`.  
-- Convención: mantener **simetría** con la estructura de `modules`.  
-Ejemplo:
-
-    `modules/environmental-nodes-messages/hooks/use-messages`
-
-    `mocks/environmental-nodes-messages/hooks/use-messages.mock.js`
-
----
 
 ## Principios arquitectónicos
 

@@ -1,7 +1,6 @@
 # TODO
 
-✰ rename NodeLoggedInObserver
-✰ rafactor MqttClientEventDispatcher
+✰
 
 <!--
 /** ************************************************************************ **/
