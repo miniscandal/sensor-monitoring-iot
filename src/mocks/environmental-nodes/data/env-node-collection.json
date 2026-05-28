@@ -1,0 +1,96 @@
+[
+    {
+        "nodeStateCode": 201,
+        "metadata": {
+            "nodeId": "a001",
+            "timestamp": "1711749061",
+            "firmwareVersion": "1.3.0",
+            "location": "L3-WELD-01"
+        },
+        "sequenceNumber": 1,
+        "connection": {
+            "state": "online",
+            "reason": "boot"
+        }
+    },
+    {
+        "nodeStateCode": 201,
+        "metadata": {
+            "nodeId": "a002",
+            "timestamp": "1711749061",
+            "firmwareVersion": "1.3.0",
+            "location": "L3-WELD-01"
+        },
+        "sequenceNumber": 1,
+        "connection": {
+            "state": "online",
+            "reason": "boot"
+        }
+    },
+    {
+        "nodeStateCode": 307,
+        "metadata": {
+            "nodeId": "a003",
+            "timestamp": "1711749061",
+            "firmwareVersion": "1.3.0",
+            "location": "L3-WELD-01"
+        },
+        "sequenceNumber": 1,
+        "data": {
+            "sensorsReadings": {
+                "humidity": {
+                    "value": 32
+                },
+                "temperature": {
+                    "value": 56
+                }
+            }
+        },
+        "connection": {
+            "state": "online",
+            "reason": "boot"
+        }
+    },
+    {
+        "nodeStateCode": 201,
+        "metadata": {
+            "nodeId": "a004",
+            "timestamp": "1711749061",
+            "firmwareVersion": "1.3.0",
+            "location": "L3-WELD-01"
+        },
+        "sequenceNumber": 1,
+        "connection": {
+            "state": "online",
+            "reason": "boot"
+        }
+    },
+    {
+        "nodeStateCode": 201,
+        "metadata": {
+            "nodeId": "a005",
+            "timestamp": "1711749061",
+            "firmwareVersion": "1.3.0",
+            "location": "L3-WELD-01"
+        },
+        "sequenceNumber": 1,
+        "connection": {
+            "state": "online",
+            "reason": "boot"
+        }
+    },
+    {
+        "nodeStateCode": 201,
+        "metadata": {
+            "nodeId": "a006",
+            "timestamp": "1711749061",
+            "firmwareVersion": "1.3.0",
+            "location": "L3-WELD-01"
+        },
+        "sequenceNumber": 1,
+        "connection": {
+            "state": "online",
+            "reason": "boot"
+        }
+    }
+]

@@ -1,9 +1,9 @@
 import { deepCamel } from '@shared-utils/deep-camel';
 
-import nodeCollection from '@mocks/environmental-nodes/data/node-collection.json';
+import envNodeCollection from '@mocks/environmental-nodes/data/env-node-collection.json';
 
 
-const nodes = nodeCollection.map(deepCamel);
+const nodes = envNodeCollection.map(deepCamel);
 
 const environmentalNodesMockProvider = {
     nodes: nodes.map(node => [node.metadata.nodeId, node]),
