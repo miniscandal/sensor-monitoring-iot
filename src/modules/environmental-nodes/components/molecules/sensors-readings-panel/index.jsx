@@ -16,8 +16,8 @@ import './style.css';
 function SensorsReadingsPanel() {
     const { nodeProperties: { nodeStateCode, data } } = useContext(EnvironmentalNodeContext);
     const { sensorsReadings: { humidity, temperature } } = data;
-    const safeHumidity = useComputed(() => humidity.value ?? 'N/A');
-    const safeTemperature = useComputed(() => temperature.value ?? 'N/A');
+    const safeHumidity = useComputed(() => humidity?.value ?? 'N/A');
+    const safeTemperature = useComputed(() => temperature?.value ?? 'N/A');
 
 
     return (
