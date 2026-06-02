@@ -5,8 +5,8 @@ import './style.css';
 
 function SubscribedTopicsCount({ topicsLength }) {
     const iconStat = {
-        label: 'Subscription Topics',
-        value: `Active (${topicsLength})`,
+        label: 'Subscribed Topics',
+        value: `(${topicsLength} Active)`,
         svgIconName: 'topicSubscribe',
     };
 

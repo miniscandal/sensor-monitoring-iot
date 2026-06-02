@@ -8,7 +8,7 @@ function TopicsPublishExplorer({ topics }) {
 
     return (
         <div class="topics-publish-explorer">
-            <Details summary="Publishing Details">
+            <Details summary="Publishable Topics Paths">
                 <TopicsList topics={topics} emptyMessage="No publish topics" />
             </Details>
         </div>

@@ -6,22 +6,22 @@ const PROPERTIES_DISPLAY_CONFIG = [
     },
     {
         name: 'host',
-        label: 'Host',
+        label: 'Broker Host',
         svgIconName: 'host',
     },
     {
         name: 'port',
-        label: 'Port',
+        label: 'Broker Port',
         svgIconName: 'port',
     },
     {
         name: 'protocol',
-        label: 'Protocol',
+        label: 'Connection Protocol',
         svgIconName: 'protocol',
     },
     {
         name: 'clientId',
-        label: 'ID',
+        label: 'MQTT Client ID',
         svgIconName: 'clientId',
     },
 ];

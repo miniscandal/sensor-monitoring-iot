@@ -1,9 +1,3 @@
-/**
- * Module responsibility
- * 
- */
-
-
 import { IconStat } from '@shared-components/molecules/icon-stat';
 
 import { PROPERTIES_DISPLAY_CONFIG } from './variants';

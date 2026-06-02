@@ -8,7 +8,7 @@ function SubscribedTopicsExplorer({ topics }) {
 
     return (
         <div class="subscribed-topics-explorer">
-            <Details summary="Subscription Details">
+            <Details summary="Subscribed Topic Paths">
                 <TopicsList topics={topics} emptyMessage="No subscribed topics" />
             </Details>
         </div>

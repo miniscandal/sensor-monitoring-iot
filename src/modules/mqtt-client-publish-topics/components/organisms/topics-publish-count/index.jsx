@@ -5,8 +5,8 @@ import './style.css';
 
 function TopicsPublishCount({ count }) {
     const iconStat = {
-        label: 'Publishing Topics',
-        value: `Available (${count})`,
+        label: 'Publishable Topics',
+        value: `(${count} Available)`,
         svgIconName: 'topicSubscribe',
     };
 
