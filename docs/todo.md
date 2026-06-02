@@ -1,6 +1,7 @@
 # TODO
 
-✰
+✰ Los observadores deben ser filtrados por: tipo de topic, env node state code, mqtt client event
+✰ No redondear los valores de los sensores
 
 <!--
 /** ************************************************************************ **/

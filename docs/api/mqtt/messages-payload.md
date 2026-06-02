@@ -26,6 +26,7 @@
 
 ```json
 {
+    "nsc": 202,
     "ts": 1711755000,
     "seq": 1,
     "status": "offline",
