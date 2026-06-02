@@ -1,6 +1,12 @@
 import { deepCamel } from '@shared-utils/deep-camel';
 import { adaptMqttMessage } from '@shared-utils/adapt-mqtt-message';
 
+import { nodeStateBirthPayloadBuilder } from '../builders/node-state-birth-payload';
+import { nodeStateDeathPayloadBuilder } from '../builders/node-state-death-payload';
+import { nodeStateStreamingSensorAllPayloadBuilder } from '../builders/node-state-streaming-sensor-all-payload';
+
+import { extractNodeId } from '@shared-utils/extract-node-id';
+
 import {
     MQTT_CLIENT_EVENT_CONNECT,
     MQTT_CLIENT_EVENT_OFFLINE,
@@ -8,8 +14,6 @@ import {
     MQTT_CLIENT_EVENT_MESSAGE,
     MQTT_CLIENT_EVENT_ERROR,
 } from '@infrastructure/mqtt-client/constants/client-events';
-
-import { extractNodeId } from '@shared-utils/extract-node-id';
 
 import {
     ENV_NODE_STATE_BIRTH,
@@ -23,6 +27,13 @@ import {
     ENTITY_ENV_NODE_OPERATION_RESULT_CODE,
     ENTITY_MQTT_CLIENT_TOPICS,
 } from '@shared-constants/observer-entities';
+
+
+const eventBuilders = new Map([
+    [ENV_NODE_STATE_BIRTH, nodeStateBirthPayloadBuilder],
+    [ENV_NODE_STATE_DEATH, nodeStateDeathPayloadBuilder],
+    [ENV_NODE_STATE_STREAMING_SENSOR_ALL, nodeStateStreamingSensorAllPayloadBuilder],
+]);
 
 
 class MqttClientEventDispatcher {
@@ -69,54 +80,23 @@ class MqttClientEventDispatcher {
             entity: ENTITY_ENV_NODE_OPERATION_RESULT_CODE,
             instanceId: message.nodeOperationResult,
             actions: null,
-            data: { topic, message },
+            data: {
+                topic,
+                message,
+            },
         });
 
         this.#subject.notifyObservers({
             entity: ENTITY_MQTT_CLIENT_EVENTS,
             instanceId: MQTT_CLIENT_EVENT_MESSAGE,
             actions: null,
-            data: { topic, message },
+            data: {
+                topic,
+                message,
+            },
         });
 
-        const nodeId = extractNodeId(topic);
         const { nodeStateCode } = message;
-
-        const eventBuilders = new Map([
-            [ENV_NODE_STATE_BIRTH, () => {
-                const { timestamp, firmwareVersion, location, sequenceNumber, status, reason } = message;
-
-
-                return {
-                    nodeStateCode,
-                    metadata: { nodeId, timestamp, firmwareVersion, location },
-                    sequenceNumber,
-                    connection: { status, reason },
-                };
-            }],
-            [ENV_NODE_STATE_DEATH, () => {
-                const { timestamp, sequenceNumber, status, reason } = message;
-
-
-                return {
-                    nodeStateCode,
-                    metadata: { nodeId, timestamp },
-                    sequenceNumber,
-                    connection: { status, reason },
-                };
-            }],
-            [ENV_NODE_STATE_STREAMING_SENSOR_ALL, () => {
-                const { timestamp, sequenceNumber, sensorsReadings: { humidity, temperature } } = message;
-
-
-                return {
-                    nodeStateCode,
-                    metadata: { nodeId, timestamp },
-                    sequenceNumber,
-                    data: { sensorsReadings: { humidity, temperature } },
-                };
-            }],
-        ]);
 
         const buildMessage = eventBuilders.get(nodeStateCode);
 
@@ -124,7 +104,13 @@ class MqttClientEventDispatcher {
             entity: ENTITY_ENV_NODE_STATE_CODE,
             instanceId: nodeStateCode,
             actions: null,
-            data: { topic, message: buildMessage() },
+            data: {
+                topic,
+                message: buildMessage({
+                    message,
+                    nodeId: extractNodeId(topic),
+                }),
+            },
         });
     }
 
@@ -133,15 +119,23 @@ class MqttClientEventDispatcher {
             this.#subject.notifyObservers({
                 entity: ENTITY_MQTT_CLIENT_EVENTS,
                 instanceId: MQTT_CLIENT_EVENT_SUBSCRIBE,
-                actions: { subscribe: this.subscribe.bind(this) },
-                data: { topic },
+                actions: {
+                    subscribe: this.subscribe.bind(this),
+                },
+                data: {
+                    topic,
+                },
             });
 
             this.#subject.notifyObservers({
                 entity: ENTITY_MQTT_CLIENT_TOPICS,
                 instanceId: topic,
-                actions: { publish: this.publish.bind(this) },
-                data: { topic },
+                actions: {
+                    publish: this.publish.bind(this),
+                },
+                data: {
+                    topic,
+                },
             });
         });
     }
