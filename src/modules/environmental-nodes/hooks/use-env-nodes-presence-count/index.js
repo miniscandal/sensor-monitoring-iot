@@ -10,8 +10,8 @@ import { envNodePresenceCountResetStateListener } from '@modules/environmental-n
 
 
 const mqttClientStateOfflineObserver = MqttClientStateOfflineObserver();
-const loggedInCountObserver = EnvNodePresenceCountStateBirthObserver();
-const loggedOutCountObserver = EnvNodePresenceCountStateDeathObserver();
+const envNodePresenceCountStateBirthObserver = EnvNodePresenceCountStateBirthObserver();
+const envNodePresenceCountStateDeathObserver = EnvNodePresenceCountStateDeathObserver();
 
 
 function useEnvNodesPresenceCount({ nodeIds }) {
@@ -24,18 +24,24 @@ function useEnvNodesPresenceCount({ nodeIds }) {
     });
 
     useSubscribeObserverMqttClient({
-        entity: loggedInCountObserver.entity,
-        instanceId: loggedInCountObserver.instanceId,
+        entity: envNodePresenceCountStateBirthObserver.entity,
+        instanceId: envNodePresenceCountStateBirthObserver.instanceId,
         listener: ({ data }) => (
-            setConnectedNodeIds(loggedInCountObserver.listener({ data, nodeIds: connectedNodeIds }))
+            setConnectedNodeIds(envNodePresenceCountStateBirthObserver.listener({
+                data,
+                nodeIds: connectedNodeIds,
+            }))
         ),
     });
 
     useSubscribeObserverMqttClient({
-        entity: loggedOutCountObserver.entity,
-        instanceId: loggedOutCountObserver.instanceId,
+        entity: envNodePresenceCountStateDeathObserver.entity,
+        instanceId: envNodePresenceCountStateDeathObserver.instanceId,
         listener: ({ data }) => (
-            setConnectedNodeIds(loggedOutCountObserver.listener({ data, nodeIds: connectedNodeIds }))
+            setConnectedNodeIds(envNodePresenceCountStateDeathObserver.listener({
+                data,
+                nodeIds: connectedNodeIds,
+            }))
         ),
     });
 

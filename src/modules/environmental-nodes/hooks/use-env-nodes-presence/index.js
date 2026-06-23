@@ -29,7 +29,10 @@ function useEnvNodesPresence({ nodes: initialNodes }) {
         entity: envNodePresenceStateBirthObserver.entity,
         instanceId: envNodePresenceStateBirthObserver.instanceId,
         listener: ({ data }) => (
-            setNodes(prevState => envNodePresenceStateBirthObserver.listener({ data, nodes: prevState }))
+            setNodes(prevState => envNodePresenceStateBirthObserver.listener({
+                data,
+                nodes: prevState,
+            }))
         ),
     });
 
@@ -37,7 +40,10 @@ function useEnvNodesPresence({ nodes: initialNodes }) {
         entity: envNodePresenceStateDeathObserver.entity,
         instanceId: envNodePresenceStateDeathObserver.instanceId,
         listener: ({ data }) => (
-            setNodes(prevState => envNodePresenceStateDeathObserver.listener({ data, nodes: prevState }))
+            setNodes(prevState => envNodePresenceStateDeathObserver.listener({
+                data,
+                nodes: prevState,
+            }))
         ),
     });
 
@@ -45,7 +51,10 @@ function useEnvNodesPresence({ nodes: initialNodes }) {
         entity: envNodeStreamingSensorAllObserver.entity,
         instanceId: envNodeStreamingSensorAllObserver.instanceId,
         listener: ({ data }) => (
-            setNodes(prevState => envNodeStreamingSensorAllObserver.listener({ data, nodes: prevState }))
+            setNodes(prevState => envNodeStreamingSensorAllObserver.listener({
+                data,
+                nodes: prevState,
+            }))
         ),
     });
 
