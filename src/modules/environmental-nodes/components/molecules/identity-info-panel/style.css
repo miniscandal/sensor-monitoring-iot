@@ -2,6 +2,7 @@
 
     > .svg-icon {
         margin-bottom: var(--margin-atom);
+        color: var(--icon-state-node);
     }
 
     > div {
@@ -15,30 +16,6 @@
         > .svg-icon {
             margin-left: var(--margin-atom);
             color: var(--icon-color);
-        }
-    }
-
-    /* node state code 201 (logged in) */
-    &[data-node-state-code="201"] {
-
-        > .svg-icon {
-            color: var(--color-logged-in);
-        }
-    }
-
-    /* node state code 301 (idle) */
-    &[data-node-state-code="301"] {
-
-        > .svg-icon {
-            color: var(--color-logged-in);
-        }
-    }
-
-    /* node state code 307 (streaming sensors) */
-    &[data-node-state-code="307"] {
-
-        > .svg-icon {
-            color: var(--color-streaming);
         }
     }
 }

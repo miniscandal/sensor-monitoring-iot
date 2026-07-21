@@ -1,53 +1,72 @@
 .node-card {
-    width: 12.5rem;
-    height: 17rem;
+    --icon-color-base: var(--icon-color);
+
+    --icon-health: var(--icon-color-base);
+    --icon-streaming: var(--icon-color-base);
+    --icon-state-node: var(--icon-color-base);
+    --icon-humidity: var(--icon-color-base);
+    --icon-temperature: var(--icon-color-base);
+    --icon-command-terminal: var(--icon-color-base);
+    --icon-power: var(--icon-color-base);
+    --icon-monitoring: var(--icon-color-base);
+
+    --card-bg: var(--card-bg-default);
+
+    --toolbar-icon-cursor: no-drop;
+    --toolbar-icon-filter: none;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-radius: var(--border-radius-organism);
+    width: 12.5rem;
+    height: 17rem;
     padding: var(--padding-molecule);
-
-    /* not selected (default) */
-    background-color: var(--card-bg-default);
-    cursor: pointer;
+    border-radius: var(--border-radius-organism);
+    background-color: var(--card-bg);
 
     &:hover {
-        background-color: var(--card-bg-hover);
+        --card-bg: var(--card-bg-hover);
+
+        cursor: pointer;
     }
 
     &.selected {
-        background-color: var(--card-bg-selected);
+        --card-bg: var(--card-bg-selected);
+
+        --toolbar-icon-cursor: pointer;
+        --toolbar-icon-filter: var(--filter-hover);
+
         cursor: default;
         transform: var(--transform-translate-y-card);
         box-shadow: var(--shadow-selected);
         transition: var(--transition-translate-y-card), var(--transition-background-color);
     }
 
-    > header {
+    > .state-info-header {
         margin-left: auto;
     }
 
-    /* node state code 201 (logged in) */
+    /* state birth */
     &[data-node-state-code="201"] {
-
-        > header {
-            color: var(--color-logged-in);
-        }
+        --icon-health: var(--color-state-birth);
+        --icon-streaming: var(--color-state-birth);
+        --icon-state-node: var(--color-state-birth);
+        --icon-humidity: var(--color-state-birth);
+        --icon-temperature: var(--color-state-birth);
+        --icon-command-terminal: var(--color-state-birth);
+        --icon-power: var(--color-state-birth);
+        --icon-monitoring: var(--color-state-birth);
     }
 
-    /* node state code 301 (idle) */
-    &[data-node-state-code="301"] {
-
-        > header {
-            color: var(--color-streaming);
-        }
-    }
-
-    /* node state code 307 (streaming sensors) */
+    /* state streaming sensors */
     &[data-node-state-code="307"] {
-
-        > header {
-            color: var(--color-streaming);
-        }
+        --icon-health: var(--color-health);
+        --icon-streaming: var(--color-streaming);
+        --icon-state-node: var(--color-streaming);
+        --icon-humidity: var(--color-humidity);
+        --icon-temperature: var(--color-temperature);
+        --icon-command-terminal: var(--color-command-terminal);
+        --icon-power: var(--color-power);
+        --icon-monitoring: var(--color-monitoring);
     }
 }

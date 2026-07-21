@@ -22,13 +22,14 @@ import './style.css';
 
 
 function ControlsToolbar() {
-    const { nodeStateCode, isSelected } = useContext(EnvironmentalNodeContext);
+    const { isSelected, nodeProperties } = useContext(EnvironmentalNodeContext);
+    const { nodeStateCode } = nodeProperties;
 
     const svgIconName = {
         [ENV_NODE_STATE_BIRTH]: 'stopCircle',
         [ENV_NODE_STATE_STREAMING_SENSOR_ALL]: 'stopCircle',
         [ENV_NODE_STATE_IDLE]: 'playCircle',
-    }[nodeStateCode];
+    }[nodeStateCode] || 'stopCircle';
 
 
     return (
@@ -38,13 +39,13 @@ function ControlsToolbar() {
             data-is-selected={isSelected}
         >
             <ul>
-                <li class="item-terminal" data-control={DATA_ATTR_NODE_CONTROL_TERMINAL}>
+                <li class="item-command-terminal" data-control={DATA_ATTR_NODE_CONTROL_TERMINAL}>
                     <SvgIcon name="terminal" size="small" enableHover={true} />
                 </li>
-                <li class="item-streaming-sensor-data" data-control={DATA_ATTR_NODE_CONTROL_STREAMING_DATA}>
+                <li class="item-power" data-control={DATA_ATTR_NODE_CONTROL_STREAMING_DATA}>
                     <SvgIcon name={svgIconName} size="small" enableHover={true} />
                 </li>
-                <li class="item-analytics" data-control={DATA_ATTR_NODE_CONTROL_ANALYTICS}>
+                <li class="item-monitoring" data-control={DATA_ATTR_NODE_CONTROL_ANALYTICS}>
                     <SvgIcon name="analytics" size="small" enableHover={true} />
                 </li>
             </ul>

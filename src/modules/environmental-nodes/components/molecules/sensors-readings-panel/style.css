@@ -3,36 +3,13 @@
 
     > .metric-item {
         flex: 1;
-    }
 
-    /* node state code 201 (logged in) */
-    &[data-node-state-code="201"] {
-
-        > .metric-item {
-            color: var(--color-logged-in);
+        &:first-child {
+            color: var(--icon-humidity);
         }
-    }
 
-    /* node state code 301 (idle) */
-    &[data-node-state-code="301"] {
-
-        > .metric-item {
-            color: var(--color-logged-in);
-        }
-    }
-
-    /* node state code 307 (streaming sensors) */
-    &[data-node-state-code="307"] {
-
-        > .metric-item {
-
-            &:first-child {
-                color: var(--color-humidity);
-            }
-
-            &:last-child {
-                color: var(--color-temperature);
-            }
+        &:last-child {
+            color: var(--icon-temperature);
         }
     }
 }

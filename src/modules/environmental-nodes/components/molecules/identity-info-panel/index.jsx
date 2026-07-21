@@ -22,7 +22,7 @@ function IdentityInfoPanel() {
         [ENV_NODE_STATE_BIRTH]: 'motionSensorActive',
         [ENV_NODE_STATE_IDLE]: 'motionSensorIdle',
         [ENV_NODE_STATE_STREAMING_SENSOR_ALL]: 'motionSensorActive',
-    }[nodeStateCode];
+    }[nodeStateCode] || 'motionSensorActive';
 
 
     return (

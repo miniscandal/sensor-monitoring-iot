@@ -20,7 +20,7 @@ function StateInfoHeader() {
         [ENV_NODE_STATE_BIRTH]: 'wirelessSignal',
         [ENV_NODE_STATE_IDLE]: 'sensorsOff',
         [ENV_NODE_STATE_STREAMING_SENSOR_ALL]: 'wirelessSignal',
-    }[nodeStateCode];
+    }[nodeStateCode] || 'wirelessSignal';
 
     return (
         <header class="state-info-header">
