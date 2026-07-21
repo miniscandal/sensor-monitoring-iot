@@ -62,13 +62,19 @@
 
     --shadow-selected: 0 0.4rem 0.5rem 0 #5a5a5a;
 
+    --color-state-birth: #357274;
+
     --color-humidity: #5499d1;
+    --color-health: #dd2c2c;
     --color-temperature: #e69142;
     --color-logged-in: #616161;
     --color-streaming: #28a745;
     --color-idle: #4682B4;
     --color-selected: #515151;
     --color-unselect: #616161;
+    --color-command-terminal: #4e4e4e;
+    --color-power: #b16b3c;
+    --color-monitoring: #1d848d;
 
     --outline-size-focus: 2px;
     --outline-style-focus: dashed;
@@ -80,8 +86,8 @@
     --text-color: #2e2e2e;
 
     --card-bg-default: #c0c0c0;
-    --card-bg-hover: #c0c0c0cc;
     --card-bg-selected: #cdcdcd;
+    --card-bg-hover: #c0c0c0cc;
 
     --pill-bg-highlight: #d0d4cc;
     --details-bg-highlight: #bfc9b6;
@@ -128,8 +134,8 @@ main {
         --text-color: #e0e0e0;
 
         --card-bg-default: #3f3f3f;
-        --card-bg-hover: #3f3f3fcc;
         --card-bg-selected: #323232;
+        --card-bg-hover: #3f3f3fcc;
 
         --pill-bg-highlight: #3d3941;
         --details-bg-highlight: #454347;
@@ -139,6 +145,7 @@ main {
         --color-sensor-control: #4dd0e1;
         --color-iot: #06dacf;
         --color-mqtt-client: #4acab3;
+        --color-command-terminal: #c0c0c0;
 
         --outline-color-focus: #a3b4c2;
     }
