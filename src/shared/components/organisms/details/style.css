@@ -1,4 +1,6 @@
 .details {
+    --outline-style-focus: dashed;
+
     background-color: var(--details-bg-highlight);
     border-radius: var(--border-radius-molecule);
 
@@ -26,7 +28,7 @@
         }
 
         &:focus {
-            outline: var(--outline-size-focus) var(--outline-style-focus) var(--outline-color-focus);
+            outline: 2px dashed var(--outline-color-focus);
         }
     }
 }
