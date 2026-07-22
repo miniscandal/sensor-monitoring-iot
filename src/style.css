@@ -18,7 +18,7 @@
     --border-light: #e0e0e0;
     --border-dark: #4e4e4e;
 
-
+    --color-idle: #4682B4;
 
     Dynamic color scheme
 
@@ -67,17 +67,9 @@
     --color-humidity: #5499d1;
     --color-health: #dd2c2c;
     --color-temperature: #e69142;
-    --color-logged-in: #616161;
     --color-streaming: #28a745;
-    --color-idle: #4682B4;
-    --color-selected: #515151;
-    --color-unselect: #616161;
-    --color-command-terminal: #4e4e4e;
     --color-power: #28a745;
     --color-monitoring: #1d848d;
-
-    --outline-size-focus: 2px;
-    --outline-style-focus: dashed;
 
 
     /* Dynamic color scheme */
@@ -94,9 +86,9 @@
 
     --icon-color: #2f3b47;
 
-    --color-sensor-control: #006377;
     --color-iot: #00819b;
     --color-mqtt-client: #186456;
+    --color-command-terminal: #4e4e4e;
 
     --outline-color-focus: #354855;
 }
@@ -142,7 +134,6 @@ main {
 
         --icon-color: #e0e0e0;
 
-        --color-sensor-control: #4dd0e1;
         --color-iot: #06dacf;
         --color-mqtt-client: #4acab3;
         --color-command-terminal: #c0c0c0;
