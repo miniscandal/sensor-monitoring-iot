@@ -19,10 +19,10 @@ function IdentityInfoPanel() {
     const { nodeStateCode, metadata: { nodeId } } = nodeProperties;
 
     const svgIconName = {
-        [ENV_NODE_STATE_BIRTH]: 'motionSensorActive',
+        [ENV_NODE_STATE_BIRTH]: 'motionSensorIdle',
         [ENV_NODE_STATE_IDLE]: 'motionSensorIdle',
         [ENV_NODE_STATE_STREAMING_SENSOR_ALL]: 'motionSensorActive',
-    }[nodeStateCode] || 'motionSensorActive';
+    }[nodeStateCode] || 'motionSensorIdle';
 
 
     return (

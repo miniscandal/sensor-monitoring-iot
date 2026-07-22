@@ -17,14 +17,14 @@ function StateInfoHeader() {
     const { nodeProperties: { nodeStateCode } } = useContext(EnvironmentalNodeContext);
 
     const svgIconProps = {
-        [ENV_NODE_STATE_BIRTH]: 'wirelessSignal',
+        [ENV_NODE_STATE_BIRTH]: 'sensorsOff',
         [ENV_NODE_STATE_IDLE]: 'sensorsOff',
-        [ENV_NODE_STATE_STREAMING_SENSOR_ALL]: 'wirelessSignal',
-    }[nodeStateCode] || 'wirelessSignal';
+        [ENV_NODE_STATE_STREAMING_SENSOR_ALL]: 'sensors',
+    }[nodeStateCode] || 'sensorsOff';
 
     return (
         <header class="state-info-header">
-            <SvgIcon name="ecg" size="tiny" />
+            <SvgIcon name="health" size="tiny" />
             <SvgIcon name={svgIconProps} size="tiny" />
         </header>
     );

@@ -1,6 +1,11 @@
 .node-card {
     --icon-color-base: var(--icon-color);
 
+    --card-bg: var(--card-bg-default);
+
+    --toolbar-icon-cursor: no-drop;
+    --toolbar-icon-filter: none;
+
     --icon-health: var(--icon-color-base);
     --icon-streaming: var(--icon-color-base);
     --icon-state-node: var(--icon-color-base);
@@ -9,11 +14,6 @@
     --icon-command-terminal: var(--icon-color-base);
     --icon-power: var(--icon-color-base);
     --icon-monitoring: var(--icon-color-base);
-
-    --card-bg: var(--card-bg-default);
-
-    --toolbar-icon-cursor: no-drop;
-    --toolbar-icon-filter: none;
 
     display: flex;
     flex-direction: column;

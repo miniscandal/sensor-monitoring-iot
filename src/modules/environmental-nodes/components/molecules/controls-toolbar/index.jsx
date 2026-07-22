@@ -26,10 +26,10 @@ function ControlsToolbar() {
     const { nodeStateCode } = nodeProperties;
 
     const svgIconName = {
-        [ENV_NODE_STATE_BIRTH]: 'stopCircle',
-        [ENV_NODE_STATE_STREAMING_SENSOR_ALL]: 'stopCircle',
-        [ENV_NODE_STATE_IDLE]: 'playCircle',
-    }[nodeStateCode] || 'stopCircle';
+        [ENV_NODE_STATE_BIRTH]: 'modeOffOn',
+        [ENV_NODE_STATE_IDLE]: 'modeOffOn',
+        [ENV_NODE_STATE_STREAMING_SENSOR_ALL]: 'modeOffOn',
+    }[nodeStateCode] || 'modeOffOn';
 
 
     return (
@@ -46,7 +46,7 @@ function ControlsToolbar() {
                     <SvgIcon name={svgIconName} size="small" enableHover={true} />
                 </li>
                 <li class="item-monitoring" data-control={DATA_ATTR_NODE_CONTROL_ANALYTICS}>
-                    <SvgIcon name="analytics" size="small" enableHover={true} />
+                    <SvgIcon name="monitoring" size="small" enableHover={true} />
                 </li>
             </ul>
         </footer >
