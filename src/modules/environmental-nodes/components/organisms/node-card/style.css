@@ -6,14 +6,16 @@
     --toolbar-icon-cursor: no-drop;
     --toolbar-icon-filter: none;
 
+    --toolbar-icon-power-cursor: no-drop;
+
     --icon-health: var(--icon-color-base);
     --icon-streaming: var(--icon-color-base);
     --icon-state-node: var(--icon-color-base);
     --icon-humidity: var(--icon-color-base);
     --icon-temperature: var(--icon-color-base);
-    --icon-command-terminal: var(--icon-color-base);
+    --icon-terminal: var(--icon-color-base);
     --icon-power: var(--icon-color-base);
-    --icon-monitoring: var(--icon-color-base);
+    --icon-monitor: var(--icon-color-base);
 
     display: flex;
     flex-direction: column;
@@ -34,6 +36,7 @@
         --card-bg: var(--card-bg-selected);
 
         --toolbar-icon-cursor: pointer;
+
         --toolbar-icon-filter: var(--filter-hover);
 
         cursor: default;
@@ -53,9 +56,9 @@
         --icon-state-node: var(--color-state-birth);
         --icon-humidity: var(--color-state-birth);
         --icon-temperature: var(--color-state-birth);
-        --icon-command-terminal: var(--color-state-birth);
+        --icon-terminal: var(--color-state-birth);
         --icon-power: var(--color-state-birth);
-        --icon-monitoring: var(--color-state-birth);
+        --icon-monitor: var(--color-state-birth);
     }
 
     /* state streaming sensors */
@@ -65,8 +68,12 @@
         --icon-state-node: var(--color-streaming);
         --icon-humidity: var(--color-humidity);
         --icon-temperature: var(--color-temperature);
-        --icon-command-terminal: var(--color-command-terminal);
+        --icon-terminal: var(--color-command-terminal);
         --icon-power: var(--color-power);
-        --icon-monitoring: var(--color-monitoring);
+        --icon-monitor: var(--color-monitoring);
+
+        &.selected {
+            --toolbar-icon-power-cursor: pointer;
+        }
     }
 }

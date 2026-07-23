@@ -8,6 +8,11 @@ import { DATA_ATTR_NODE_ID_SELECTOR } from '@modules/environmental-nodes/constan
 
 function handleNodeControl(targetElement, prevSelectedNodeId) {
     const nodeElement = targetElement.closest(DATA_ATTR_NODE_ID_SELECTOR);
+
+    if (!nodeElement) {
+        return prevSelectedNodeId;
+    }
+
     const nodeId = nodeElement.dataset.nodeId;
 
     if (nodeId !== prevSelectedNodeId) {

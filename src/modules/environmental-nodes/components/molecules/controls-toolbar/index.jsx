@@ -4,12 +4,10 @@ import { EnvironmentalNodeContext } from '@modules/environmental-nodes/contexts/
 
 import { SvgIcon } from '@shared-components/atoms/svg-icon';
 
-import { classNames } from '@shared-utils/class-names';
-
 import {
     DATA_ATTR_NODE_CONTROL_TERMINAL,
-    DATA_ATTR_NODE_CONTROL_STREAMING_DATA,
-    DATA_ATTR_NODE_CONTROL_ANALYTICS,
+    DATA_ATTR_NODE_CONTROL_POWER,
+    DATA_ATTR_NODE_CONTROL_MONITOR,
 } from '@modules/environmental-nodes/constants/node-controls';
 
 import {
@@ -22,7 +20,7 @@ import './style.css';
 
 
 function ControlsToolbar() {
-    const { isSelected, nodeProperties } = useContext(EnvironmentalNodeContext);
+    const { nodeProperties } = useContext(EnvironmentalNodeContext);
     const { nodeStateCode } = nodeProperties;
 
     const svgIconName = {
@@ -34,18 +32,17 @@ function ControlsToolbar() {
 
     return (
         <footer
-            class={classNames('controls-toolbar', isSelected && 'selected')}
+            class="controls-toolbar"
             data-node-state-code={nodeStateCode}
-            data-is-selected={isSelected}
         >
             <ul>
-                <li class="item-command-terminal" data-control={DATA_ATTR_NODE_CONTROL_TERMINAL}>
+                <li class="item-terminal" data-control={DATA_ATTR_NODE_CONTROL_TERMINAL}>
                     <SvgIcon name="terminal" size="small" enableHover={true} />
                 </li>
-                <li class="item-power" data-control={DATA_ATTR_NODE_CONTROL_STREAMING_DATA}>
+                <li class="item-power" data-control={DATA_ATTR_NODE_CONTROL_POWER}>
                     <SvgIcon name={svgIconName} size="small" enableHover={true} />
                 </li>
-                <li class="item-monitoring" data-control={DATA_ATTR_NODE_CONTROL_ANALYTICS}>
+                <li class="item-monitor" data-control={DATA_ATTR_NODE_CONTROL_MONITOR}>
                     <SvgIcon name="monitoring" size="small" enableHover={true} />
                 </li>
             </ul>

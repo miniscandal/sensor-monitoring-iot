@@ -13,16 +13,20 @@
 
         > li {
 
-            &.item-command-terminal {
-                color: var(--icon-command-terminal);
+            &.item-terminal {
+                color: var(--icon-terminal);
             }
 
             &.item-power {
                 color: var(--icon-power);
+
+                &:hover {
+                    cursor: var(--toolbar-icon-power-cursor);
+                }
             }
 
-            &.item-monitoring {
-                color: var(--icon-monitoring);
+            &.item-monitor {
+                color: var(--icon-monitor);
             }
 
             &:hover {

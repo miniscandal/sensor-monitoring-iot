@@ -21,7 +21,6 @@ function NodeCard() {
         <li
             class={classNames('node-card', isSelected && 'selected')}
             data-node-id={nodeId}
-            data-is-selected={isSelected}
             data-node-state-code={nodeStateCode}
         >
             <StateInfoHeader />
