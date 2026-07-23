@@ -60,7 +60,7 @@
 
     --filter-hover: opacity(0.6);
 
-    --shadow-selected: 0 0.4rem 0.5rem 0 #5a5a5a;
+    --shadow-selected: 0 0.2rem 0.4rem 0 #5a5a5a;
 
     --color-state-birth: #357274;
 
@@ -126,7 +126,7 @@ main {
         --text-color: #e0e0e0;
 
         --card-bg-default: #3f3f3f;
-        --card-bg-selected: #323232;
+        --card-bg-selected: #383838;
         --card-bg-hover: #3f3f3fcc;
 
         --pill-bg-highlight: #3d3941;
