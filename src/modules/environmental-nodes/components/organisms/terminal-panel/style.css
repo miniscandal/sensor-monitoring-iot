@@ -1,0 +1,52 @@
+.terminal-panel {
+    --bg-terminal: #363636;
+    --color-prompt: #b0bec5;
+    --color-command: #4caf50;
+    --color-caret: #90caf9;
+
+    width: 100vw;
+    font-family: monospace;
+    padding: var(--padding-molecule);
+    background-color: var(--bg-terminal);
+
+    > header {
+        width: fit-content;
+        margin-left: auto;
+        color: tan;
+    }
+
+    > .terminal-panel-body {
+        height: 14rem;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            width: 0;
+            background: transparent;
+        }
+
+        > pre {
+            caret-color: transparent;
+        }
+
+        > form {
+            display: flex;
+            caret-color: transparent;
+
+            > label {
+                color: var(--color-prompt);
+            }
+
+            > input {
+                width: 100%;
+                background-color: transparent;
+                outline: none;
+                border: none;
+                font-family: inherit;
+                font-size: 1rem;
+                color: var(--color-command);
+                caret-shape: block;
+                caret-color: var(--color-caret);
+            }
+        }
+    }
+}
