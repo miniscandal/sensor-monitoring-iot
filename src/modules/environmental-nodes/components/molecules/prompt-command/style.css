@@ -1,0 +1,13 @@
+.prompt-command {
+
+    > .label {
+
+        &:first-child {
+            color: var(--color-prompt);
+        }
+
+        &:last-child {
+            color: var(--color-command);
+        }
+    }
+}
