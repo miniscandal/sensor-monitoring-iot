@@ -3,27 +3,38 @@ import {
     DATA_ATTR_NODE_ID_SELECTOR,
 } from '@modules/environmental-nodes/constants/selectors';
 
-import { computeNextSelectedNode } from '../logic/compute-next-selected-node';
-import { handleNodeControl } from '../logic/handle-node-control';
 
+function handleNodesMonitorInteraction({
+    event,
+    selectedNodeId,
+    setSelectedNodeId,
+    setActiveControl,
+}) {
+    const nodeCardElement = event.target.closest(DATA_ATTR_NODE_ID_SELECTOR);
 
-function handleNodesMonitorInteraction(event, setSelectedNodeId) {
-    const selectors = `${DATA_ATTR_NODE_ID_SELECTOR}, ${DATA_ATTR_NODE_CONTROL_SELECTOR}`;
-    const targetElement = event.target.closest(selectors);
-
-    if (!targetElement) {
-
-        return;
-    }
-
-    if (targetElement.matches(DATA_ATTR_NODE_ID_SELECTOR)) {
-        setSelectedNodeId(prevState => computeNextSelectedNode(targetElement.dataset.nodeId, prevState));
-
+    if (!nodeCardElement) {
 
         return;
     }
 
-    setSelectedNodeId(prevState => handleNodeControl(targetElement, prevState));
-};
+    const nodeId = nodeCardElement.dataset.nodeId;
+
+    if (selectedNodeId !== nodeId) {
+        setSelectedNodeId(nodeId);
+
+        return;
+    }
+
+    const nodeControlElement = event.target.closest(DATA_ATTR_NODE_CONTROL_SELECTOR);
+
+    if (!nodeControlElement) {
+
+        return;
+    }
+
+    const control = nodeControlElement.dataset.control;
+
+    setActiveControl(control);
+}
 
 export { handleNodesMonitorInteraction };

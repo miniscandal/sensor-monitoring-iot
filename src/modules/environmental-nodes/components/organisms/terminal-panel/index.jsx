@@ -9,7 +9,7 @@ import './style.css';
 import { ButtonSvgIcon } from '@shared-components/molecules/button-svg-icon';
 
 
-function TerminalPanel({ nodeId, setSelectedNodeId }) {
+function TerminalPanel({ nodeId, setActiveControl }) {
     const [inputCommand, setInputCommand] = useState('');
     const [history, setHistory] = useState([]);
 
@@ -47,7 +47,7 @@ function TerminalPanel({ nodeId, setSelectedNodeId }) {
         inputRef.current.focus();
     };
 
-    const handleButtonClose = () => setSelectedNodeId(null);
+    const handleButtonClose = () => setActiveControl(null);
 
 
     return (

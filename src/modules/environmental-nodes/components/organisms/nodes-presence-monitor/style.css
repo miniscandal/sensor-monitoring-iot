@@ -1,6 +1,17 @@
 .env-nodes-presence-monitor {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
-    gap: var(--gap-organism);
-    justify-items: center;
+    position: relative;
+
+    > ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+        gap: var(--gap-organism);
+        justify-items: center;
+    }
+
+    > .terminal-panel {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
