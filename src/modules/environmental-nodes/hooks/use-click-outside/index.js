@@ -12,10 +12,10 @@ function useClickOutside(onClickOutside) {
             }
         };
 
-        document.addEventListener('click', handleClick);
+        document.addEventListener('pointerdown', handleClick);
 
 
-        return () => document.removeEventListener('click', handleClick);
+        return () => document.removeEventListener('pointerdown', handleClick);
     }, [onClickOutside]);
 
 
