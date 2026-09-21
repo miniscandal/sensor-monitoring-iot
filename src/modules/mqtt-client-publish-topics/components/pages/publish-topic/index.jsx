@@ -1,4 +1,4 @@
-import { useSubscribeObserverMqttClient } from '@infrastructure/mqtt-client/hooks/use-subscribe-observer';
+import { useSubscribeObserverMqttClient } from '@core/mqtt-client/hooks/use-subscribe-observer';
 
 import { SubscribedEnvironmentalNodeStatusTopicObserver } from '@modules/mqtt-client-operations/observers/topics/environmental-node-data';
 
@@ -7,7 +7,7 @@ import { TopicsPublishes } from '../../templates/topics-publishes';
 import {
     MQTT_TOPIC_ENV_NODE_COMMAND,
     MQTT_TOPIC_ALL_ENV_NODE_COMMAND,
-} from '@infrastructure/mqtt-client/constants/client-topics-publishes';
+} from '@core/mqtt-client/constants/client-topics-publishes';
 
 import './style.css';
 

@@ -1,6 +1,6 @@
 import mqtt from 'mqtt';
 
-import { mqttClientSubject } from '@infrastructure/mqtt-client/subjects/mqtt-client-subject';
+import { mqttClientSubject } from '@core/mqtt-client/subjects/mqtt-client-subject';
 
 import {
     ENTITY_MQTT_CLIENT_EVENTS,
@@ -14,9 +14,9 @@ import {
     MQTT_CLIENT_EVENT_SUBSCRIBE,
     MQTT_CLIENT_EVENT_MESSAGE,
     MQTT_CLIENT_EVENT_ERROR,
-} from '@infrastructure/mqtt-client/constants/client-events';
+} from '@core/mqtt-client/constants/client-events';
 
-import { MQTT_BROKER_HOST, MQTT_BROKER_PORT } from '@infrastructure/mqtt-client/constants/client-config';
+import { MQTT_BROKER_HOST, MQTT_BROKER_PORT } from '@core/mqtt-client/constants/client-config';
 
 
 class MqttClientSingleton {

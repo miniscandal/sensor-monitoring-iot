@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'preact/hooks';
 
-import { mqttClientSubject } from '@infrastructure/mqtt-client/subjects/mqtt-client-subject';
+import { mqttClientSubject } from '@core/mqtt-client/subjects/mqtt-client-subject';
 
 
 function useSubscribeObserverMqttClient({ entity, instanceId, listener }) {

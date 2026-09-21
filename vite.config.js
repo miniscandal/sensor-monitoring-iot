@@ -5,11 +5,10 @@ export default defineConfig({
     plugins: [preact()],
     resolve: {
         alias: {
-            '@domain': '/src/domain',
-            '@infrastructure': '/src/infrastructure',
-            '@modules': '/src/modules',
             '@assets': '/src/assets',
+            '@core': '/src/core',
             '@mocks': '/src/mocks',
+            '@modules': '/src/modules',
             '@shared-components': '/src/shared/components',
             '@shared-constants': '/src/shared/constants',
             '@shared-contexts': '/src/shared/contexts',

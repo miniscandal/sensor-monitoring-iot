@@ -12,20 +12,17 @@
             "react-dom": [
                 "./node_modules/preact/compat/"
             ],
-            "@domain/*": [
-                "./src/domain/*"
-            ],
-            "@infrastructure/*": [
-                "./src/infrastructure/*"
-            ],
-            "@modules/*": [
-                "./src/modules/*"
-            ],
             "@assets/*": [
                 "./src/assets/*"
             ],
+            "@core/*": [
+                "./src/core/*"
+            ],
             "@mocks/*": [
                 "./src/mocks/*"
+            ],
+            "@modules/*": [
+                "./src/modules/*"
             ],
             "@shared-components/*": [
                 "./src/shared/components/*"

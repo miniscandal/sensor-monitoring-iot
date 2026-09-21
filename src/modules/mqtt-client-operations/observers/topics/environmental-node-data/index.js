@@ -1,8 +1,8 @@
 import { ENTITY_MQTT_CLIENT_TOPICS } from '@shared-constants/observer-entities';
 
-import { MQTT_TOPIC_ENV_NODE_STATE_BIRTH } from '@infrastructure/mqtt-client/constants/client-topics-subscription';
+import { MQTT_TOPIC_ENV_NODE_STATE_BIRTH } from '@core/mqtt-client/constants/client-topics-subscription';
 
-import { MQTT_TOPIC_ALL_ENV_NODE_COMMAND } from '@infrastructure/mqtt-client/constants/client-topics-publishes';
+import { MQTT_TOPIC_ALL_ENV_NODE_COMMAND } from '@core/mqtt-client/constants/client-topics-publishes';
 
 import { ENV_NODE_CMD_RECONNECT } from '@modules/mqtt-client-operations/constants/env-node-commands-codes';
 

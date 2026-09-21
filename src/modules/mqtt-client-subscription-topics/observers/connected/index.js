@@ -1,6 +1,6 @@
 import { ENTITY_MQTT_CLIENT_EVENTS } from '@shared-constants/observer-entities';
 
-import { MQTT_CLIENT_EVENT_CONNECT } from '@infrastructure/mqtt-client/constants/client-events';
+import { MQTT_CLIENT_EVENT_CONNECT } from '@core/mqtt-client/constants/client-events';
 
 import {
     MQTT_TOPIC_ENV_NODE_STATE_BIRTH,
@@ -9,7 +9,7 @@ import {
     MQTT_TOPIC_ENV_NODE_METADATA,
     MQTT_TOPIC_ENV_NODE_STATE_CODE,
     MQTT_TOPIC_ENV_NODE_OP_RESULT_CODE,
-} from '@infrastructure/mqtt-client/constants/client-topics-subscription';
+} from '@core/mqtt-client/constants/client-topics-subscription';
 
 
 function OnMqttClientConnectedObserver() {

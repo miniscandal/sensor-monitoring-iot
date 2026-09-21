@@ -13,7 +13,7 @@ import {
     MQTT_CLIENT_EVENT_SUBSCRIBE,
     MQTT_CLIENT_EVENT_MESSAGE,
     MQTT_CLIENT_EVENT_ERROR,
-} from '@infrastructure/mqtt-client/constants/client-events';
+} from '@core/mqtt-client/constants/client-events';
 
 import {
     ENV_NODE_STATE_BIRTH,

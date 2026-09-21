@@ -1,13 +1,13 @@
 import { useState } from 'preact/hooks';
 
-import { useSubscribeObserverMqttClient } from '@infrastructure/mqtt-client/hooks/use-subscribe-observer';
+import { useSubscribeObserverMqttClient } from '@core/mqtt-client/hooks/use-subscribe-observer';
 
 import { ENTITY_MQTT_CLIENT_EVENTS } from '@shared-constants/observer-entities';
 
 import {
     MQTT_CLIENT_EVENT_SUBSCRIBE,
     MQTT_CLIENT_EVENT_OFFLINE,
-} from '@infrastructure/mqtt-client/constants/client-events';
+} from '@core/mqtt-client/constants/client-events';
 
 
 function useSubscribedTopics() {

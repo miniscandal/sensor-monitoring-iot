@@ -3,7 +3,7 @@ import { createContext } from 'preact';
 import { useEnvNodesPresenceCount } from '@modules/environmental-nodes/hooks/use-env-nodes-presence-count';
 import { useEnvNodesPresence } from '@modules/environmental-nodes/hooks/use-env-nodes-presence';
 
-import { environmentalNodesProviderFactory } from '@infrastructure/environmental-nodes/factories/nodes';
+import { environmentalNodesProviderFactory } from '@modules/environmental-nodes/infrastructure/factories/nodes';
 
 
 const EnvironmentalNodesContext = createContext({

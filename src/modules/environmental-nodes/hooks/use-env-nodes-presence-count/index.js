@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks';
 
-import { useSubscribeObserverMqttClient } from '@infrastructure/mqtt-client/hooks/use-subscribe-observer';
+import { useSubscribeObserverMqttClient } from '@core/mqtt-client/hooks/use-subscribe-observer';
 
 import { MqttClientStateOfflineObserver } from '@modules/environmental-nodes/observers/node-presence/mqtt-client/state-offline';
 import { EnvNodePresenceCountStateBirthObserver } from '@modules/environmental-nodes/observers/node-presence-count/state-birth';
