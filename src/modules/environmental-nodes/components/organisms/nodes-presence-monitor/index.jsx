@@ -1,12 +1,3 @@
-/**
- * EnvNodesPresenceMonitor
- *
- * Displays environmental nodes and handles:
- * - Node selection
- * - Node control interactions
- * - Closing the selected node when clicking outside the monitor
- */
-
 import { useContext, useState } from 'preact/hooks';
 
 import { useClickOutside } from '@modules/environmental-nodes/hooks/use-click-outside';
@@ -17,7 +8,12 @@ import { EnvironmentalNodesContext } from '@modules/environmental-nodes/contexts
 import { NodeCard } from '../node-card';
 import { TerminalPanel } from '../terminal-panel';
 
-import { handleNodesMonitorInteraction } from './handlers/nodes-monitor-interaction';
+import {
+    DATA_ATTR_NODE_CONTROL_SELECTOR,
+    DATA_ATTR_NODE_ID_SELECTOR,
+} from '@modules/environmental-nodes/constants/selectors';
+
+import { DATA_ATTR_NODE_CONTROL_TERMINAL } from '@modules/environmental-nodes/constants/node-controls';
 
 import './style.css';
 
@@ -30,19 +26,41 @@ function EnvNodesPresenceMonitor() {
 
     const monitorRef = useClickOutside(() => setSelectedNodeId(null));
 
-    const handleMonitorClick = (event) => handleNodesMonitorInteraction({
-        event,
-        selectedNodeId,
-        setSelectedNodeId,
-        setActiveControl,
-    });
+    const handleClick = (event) => {
+        const nodeCardElement = event.target.closest(DATA_ATTR_NODE_ID_SELECTOR);
 
-    const nodeCards = Array.from(nodes).map(([key, node]) => {
+        if (!nodeCardElement) {
+
+            return;
+        }
+
+        const { nodeId } = nodeCardElement.dataset;
+
+        if (selectedNodeId !== nodeId) {
+            setSelectedNodeId(nodeId);
+            setActiveControl(null);
+
+
+            return;
+        }
+
+        const nodeControlElement = event.target.closest(DATA_ATTR_NODE_CONTROL_SELECTOR);
+
+        if (!nodeControlElement) {
+
+            return;
+        }
+
+        setActiveControl(nodeControlElement.dataset.control);
+    };
+
+    const nodeCards = Array.from(nodes.values()).map((node) => {
         const { metadata: { nodeId } } = node;
+
 
         return (
             <EnvironmentalNodeProvider
-                key={`${nodeId}-${key}`}
+                key={nodeId}
                 isSelected={selectedNodeId === nodeId}
                 nodeProperties={node}
             >
@@ -51,13 +69,14 @@ function EnvNodesPresenceMonitor() {
         );
     });
 
+
     return (
         <div ref={monitorRef} class="env-nodes-presence-monitor">
-            <ul onClick={handleMonitorClick}>
+            <ul onClick={handleClick}>
                 {nodeCards}
             </ul>
             {
-                activeControl === 'terminal'
+                activeControl === DATA_ATTR_NODE_CONTROL_TERMINAL
                 &&
                 <TerminalPanel
                     nodeId={selectedNodeId}
