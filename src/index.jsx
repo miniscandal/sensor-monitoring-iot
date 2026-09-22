@@ -10,8 +10,8 @@ import { OnMqttClientConnectedObserver } from '@modules/mqtt-client-subscription
 import { MqttClientAttributesPage } from '@modules/mqtt-client-attributes/ui/components/pages/mqtt-client-attributes';
 import { MqttClientSubscriptionTopicsPage } from '@modules/mqtt-client-subscription-topics/ui/components/pages/mqtt-client-subscription-topics';
 import { MqttClientPublishTopicsPage } from '@modules/mqtt-client-publish-topics/ui/components/pages/mqtt-client-publish-topics';
-import { EnvironmentalNodesPage } from '@modules/environmental-nodes/ui/components/pages/environmental-nodes';
-// import { EnvironmentalNodesMessages } from '@modules/environmental-nodes-messages/components/pages/environmental-nodes-messages';
+import { EnvMonitoringNodesPage } from '@modules/env-monitoring-nodes/ui/components/pages/env-monitoring-nodes';
+// import { EnvironmentalNodesMessages } from '@modules/env-monitoring-nodes-messages/components/pages/environmental-nodes-messages';
 
 import { Header } from '@shared-components/organisms/header';
 
@@ -36,8 +36,8 @@ export function App() {
                 <MqttClientAttributesPage />
                 <MqttClientSubscriptionTopicsPage />
                 <MqttClientPublishTopicsPage />
-                <EnvironmentalNodesPage />
-                {/* <EnvironmentalNodesMessages /> */}
+                <EnvMonitoringNodesPage />
+                {/* <EnvironmentalN odesMessages /> */}
             </main>
         </>
     );
