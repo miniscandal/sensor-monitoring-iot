@@ -1,0 +1,10 @@
+.env-monitoring-nodes {
+    width: min(100%, 80rem);
+    margin: 0 auto;
+
+    > .env-nodes-presence-count {
+        width: min(100%, 15rem);
+        margin: auto;
+        padding-bottom: var(--padding-organism);
+    }
+}
