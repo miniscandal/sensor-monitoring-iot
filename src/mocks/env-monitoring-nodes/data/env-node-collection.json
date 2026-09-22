@@ -1,6 +1,6 @@
 [
     {
-        "nodeStateCode": 201,
+        "nodeStateCode": 1,
         "metadata": {
             "nodeId": "a001",
             "timestamp": "1711749061",
@@ -52,7 +52,7 @@
         }
     },
     {
-        "nodeStateCode": 201,
+        "nodeStateCode": 307,
         "metadata": {
             "nodeId": "a004",
             "timestamp": "1711749061",
