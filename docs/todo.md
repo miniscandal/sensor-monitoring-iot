@@ -2,6 +2,8 @@
 
 ✰ Los observadores deben ser filtrados por: tipo de topic, env node state code, mqtt client event
 ✰ No redondear los valores de los sensores
+✰ Optimize Map iteration in EnvNodesPresenceMonitor using entries()
+✰ Arreglar los estilos css del componente NodeCard durante la transition del cambio de tema dark a light
 
 <!--
 /** ************************************************************************ **/
