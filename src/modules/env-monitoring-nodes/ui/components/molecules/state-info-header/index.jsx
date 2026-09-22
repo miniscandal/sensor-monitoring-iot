@@ -1,6 +1,6 @@
 import { useContext } from 'preact/hooks';
 
-import { EnvironmentalNodeContext } from '@modules/env-monitoring-nodes/ui/contexts/environmental-node-provider';
+import { EnvMonitoringNodeContext } from '@modules/env-monitoring-nodes/ui/contexts/env-monitoring-node-provider';
 
 import { SvgIcon } from '@shared-components/atoms/svg-icon';
 
@@ -14,7 +14,7 @@ import './style.css';
 
 
 function StateInfoHeader() {
-    const { nodeProperties: { nodeStateCode } } = useContext(EnvironmentalNodeContext);
+    const { nodeProperties: { nodeStateCode } } = useContext(EnvMonitoringNodeContext);
 
     const svgIconProps = {
         [ENV_NODE_STATE_BIRTH]: 'sensorsOff',

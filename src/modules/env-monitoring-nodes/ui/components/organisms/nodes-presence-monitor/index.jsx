@@ -2,8 +2,8 @@ import { useContext, useState } from 'preact/hooks';
 
 import { useClickOutside } from '@modules/env-monitoring-nodes/ui/hooks/use-click-outside';
 
-import { EnvironmentalNodeProvider } from '@modules/env-monitoring-nodes/ui/contexts/environmental-node-provider';
-import { EnvironmentalNodesContext } from '@modules/env-monitoring-nodes/ui/contexts/environmental-nodes-provider';
+import { EnvMonitoringNodeProvider } from '@modules/env-monitoring-nodes/ui/contexts/env-monitoring-node-provider';
+import { EnvMonitoringNodesContext } from '@modules/env-monitoring-nodes/ui/contexts/env-monitoring-nodes-provider';
 
 import { NodeCard } from '../node-card';
 import { TerminalPanel } from '../terminal-panel';
@@ -19,7 +19,7 @@ import './style.css';
 
 
 function EnvNodesPresenceMonitor() {
-    const { nodes } = useContext(EnvironmentalNodesContext);
+    const { nodes } = useContext(EnvMonitoringNodesContext);
 
     const [selectedNodeId, setSelectedNodeId] = useState(null);
     const [activeControl, setActiveControl] = useState(null);
@@ -59,13 +59,13 @@ function EnvNodesPresenceMonitor() {
 
 
         return (
-            <EnvironmentalNodeProvider
+            <EnvMonitoringNodeProvider
                 key={nodeId}
                 isSelected={selectedNodeId === nodeId}
                 nodeProperties={node}
             >
                 <NodeCard />
-            </EnvironmentalNodeProvider>
+            </EnvMonitoringNodeProvider>
         );
     });
 

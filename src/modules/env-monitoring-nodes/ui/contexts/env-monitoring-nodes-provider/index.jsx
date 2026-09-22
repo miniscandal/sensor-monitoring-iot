@@ -3,17 +3,17 @@ import { createContext } from 'preact';
 import { useEnvNodesPresenceCount } from '@modules/env-monitoring-nodes/ui/hooks/use-env-nodes-presence-count';
 import { useEnvNodesPresence } from '@modules/env-monitoring-nodes/ui/hooks/use-env-nodes-presence';
 
-import { environmentalNodesProviderFactory } from '@modules/env-monitoring-nodes/infrastructure/factories/nodes';
+import { envMonitoringNodesProviderFactory } from '@modules/env-monitoring-nodes/infrastructure/factories/nodes';
 
 
-const EnvironmentalNodesContext = createContext({
+const EnvMonitoringNodesContext = createContext({
     nodes: new Map(),
     nodesCount: 0,
 });
 
 
-function EnvironmentalNodesProvider({ children }) {
-    const provider = environmentalNodesProviderFactory();
+function EnvMonitoringNodesProvider({ children }) {
+    const provider = envMonitoringNodesProviderFactory();
     const { nodes, nodeIds } = provider;
 
     const value = {
@@ -23,10 +23,10 @@ function EnvironmentalNodesProvider({ children }) {
 
 
     return (
-        <EnvironmentalNodesContext.Provider value={value}>
+        <EnvMonitoringNodesContext.Provider value={value}>
             {children}
-        </EnvironmentalNodesContext.Provider>
+        </EnvMonitoringNodesContext.Provider>
     );
 }
 
-export { EnvironmentalNodesContext, EnvironmentalNodesProvider };
+export { EnvMonitoringNodesContext, EnvMonitoringNodesProvider };

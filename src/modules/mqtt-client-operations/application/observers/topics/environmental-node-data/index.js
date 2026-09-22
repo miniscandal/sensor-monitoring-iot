@@ -7,7 +7,7 @@ import { MQTT_TOPIC_ALL_ENV_NODE_COMMAND } from '@core/mqtt-client/constants/cli
 import { ENV_NODE_CMD_RECONNECT } from '@modules/mqtt-client-operations/constants/env-node-commands-codes';
 
 
-function SubscribedEnvironmentalNodeStatusTopicObserver() {
+function SubscribedEnvMonitoringNodeStatusTopicObserver() {
 
     return {
         entity: ENTITY_MQTT_CLIENT_TOPICS,
@@ -26,4 +26,4 @@ function SubscribedEnvironmentalNodeStatusTopicObserver() {
     };
 }
 
-export { SubscribedEnvironmentalNodeStatusTopicObserver };
+export { SubscribedEnvMonitoringNodeStatusTopicObserver };

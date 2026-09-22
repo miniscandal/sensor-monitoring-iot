@@ -27,7 +27,7 @@ data: {
 
 import { createContext } from 'preact';
 
-const EnvironmentalNodeContext = createContext({
+const EnvMonitoringNodeContext = createContext({
     key: null,
     isSelected: false,
     nodeProperties: {
@@ -48,7 +48,7 @@ const EnvironmentalNodeContext = createContext({
 });
 
 
-function EnvironmentalNodeProvider({
+function EnvMonitoringNodeProvider({
     isSelected = false,
     nodeProperties: {
         nodeStateCode = 201,
@@ -92,10 +92,10 @@ function EnvironmentalNodeProvider({
     };
 
     return (
-        <EnvironmentalNodeContext.Provider value={value}>
+        <EnvMonitoringNodeContext.Provider value={value}>
             {children}
-        </EnvironmentalNodeContext.Provider>
+        </EnvMonitoringNodeContext.Provider>
     );
 }
 
-export { EnvironmentalNodeContext, EnvironmentalNodeProvider };
+export { EnvMonitoringNodeContext, EnvMonitoringNodeProvider };

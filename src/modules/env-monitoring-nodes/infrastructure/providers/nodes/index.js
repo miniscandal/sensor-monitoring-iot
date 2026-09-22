@@ -1,6 +1,6 @@
-const environmentalNodesProvider = {
+const envMonitoringNodesProvider = {
     nodes: [],
     nodeIds: [],
 };
 
-export { environmentalNodesProvider };
+export { envMonitoringNodesProvider };

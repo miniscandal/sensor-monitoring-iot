@@ -1,6 +1,6 @@
 import { useContext } from 'preact/hooks';
 
-import { EnvironmentalNodeContext } from '@modules/env-monitoring-nodes/ui/contexts/environmental-node-provider';
+import { EnvMonitoringNodeContext } from '@modules/env-monitoring-nodes/ui/contexts/env-monitoring-node-provider';
 
 import { ControlsToolbar } from '../../molecules/controls-toolbar';
 import { IdentityInfoPanel } from '../../molecules/identity-info-panel';
@@ -13,7 +13,7 @@ import './style.css';
 
 
 function NodeCard() {
-    const { isSelected, nodeProperties } = useContext(EnvironmentalNodeContext);
+    const { isSelected, nodeProperties } = useContext(EnvMonitoringNodeContext);
     const { nodeStateCode, metadata: { nodeId } } = nodeProperties;
 
 

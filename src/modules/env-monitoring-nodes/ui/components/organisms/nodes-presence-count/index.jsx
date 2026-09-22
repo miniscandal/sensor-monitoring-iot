@@ -5,7 +5,7 @@
 
 import { useContext } from 'preact/hooks';
 
-import { EnvironmentalNodesContext } from '@modules/env-monitoring-nodes/ui/contexts/environmental-nodes-provider';
+import { EnvMonitoringNodesContext } from '@modules/env-monitoring-nodes/ui/contexts/env-monitoring-nodes-provider';
 
 import { IconStat } from '@shared-components/molecules/icon-stat';
 
@@ -13,7 +13,7 @@ import './style.css';
 
 
 function EnvNodesPresenceCount() {
-    const { nodesCount } = useContext(EnvironmentalNodesContext);
+    const { nodesCount } = useContext(EnvMonitoringNodesContext);
 
 
     return (

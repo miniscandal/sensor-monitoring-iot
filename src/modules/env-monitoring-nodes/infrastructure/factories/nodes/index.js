@@ -1,12 +1,12 @@
 import { USE_ENV_NODE_MOCK } from '@core/mqtt-client/constants/client-config';
 
-import { environmentalNodesMockProvider } from '@mocks/environmental-nodes/providers/nodes';
-import { environmentalNodesProvider } from '../../providers/nodes';
+import { envMonitoringNodesMockProvider } from '@mocks/env-monitoring-nodes/providers/nodes';
+import { envMonitoringNodesProvider } from '../../providers/nodes';
 
 
-function environmentalNodesProviderFactory(useMock = USE_ENV_NODE_MOCK) {
+function envMonitoringNodesProviderFactory(useMock = USE_ENV_NODE_MOCK) {
 
-    return useMock ? environmentalNodesMockProvider : environmentalNodesProvider;
+    return useMock ? envMonitoringNodesMockProvider : envMonitoringNodesProvider;
 }
 
-export { environmentalNodesProviderFactory };
+export { envMonitoringNodesProviderFactory };

@@ -1,6 +1,6 @@
 import { useContext } from 'preact/hooks';
 
-import { EnvironmentalNodeContext } from '@modules/env-monitoring-nodes/ui/contexts/environmental-node-provider';
+import { EnvMonitoringNodeContext } from '@modules/env-monitoring-nodes/ui/contexts/env-monitoring-node-provider';
 
 import { SvgIcon } from '@shared-components/atoms/svg-icon';
 
@@ -20,7 +20,7 @@ import './style.css';
 
 
 function ControlsToolbar() {
-    const { nodeProperties } = useContext(EnvironmentalNodeContext);
+    const { nodeProperties } = useContext(EnvMonitoringNodeContext);
     const { nodeStateCode } = nodeProperties;
 
     const svgIconName = {

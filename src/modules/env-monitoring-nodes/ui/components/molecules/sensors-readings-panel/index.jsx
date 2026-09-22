@@ -1,7 +1,7 @@
 import { useContext } from 'preact/hooks';
 import { useComputed } from '@preact/signals';
 
-import { EnvironmentalNodeContext } from '@modules/env-monitoring-nodes/ui/contexts/environmental-node-provider';
+import { EnvMonitoringNodeContext } from '@modules/env-monitoring-nodes/ui/contexts/env-monitoring-node-provider';
 
 import { MetricItem } from '../metric-item';
 
@@ -14,7 +14,7 @@ import './style.css';
 
 
 function SensorsReadingsPanel() {
-    const { nodeProperties: { nodeStateCode, data } } = useContext(EnvironmentalNodeContext);
+    const { nodeProperties: { nodeStateCode, data } } = useContext(EnvMonitoringNodeContext);
     const { sensorsReadings: { humidity, temperature } } = data;
     const safeHumidity = useComputed(() => humidity?.value ?? 'N/A');
     const safeTemperature = useComputed(() => temperature?.value ?? 'N/A');
