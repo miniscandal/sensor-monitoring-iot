@@ -4,7 +4,7 @@ import { EnvNodesPresenceMonitor } from '../../organisms/nodes-presence-monitor'
 import './style.css';
 
 
-function EnvNodesManagement() {
+function EnvironmentalNodesTemplate() {
 
     return (
         <article class="env-nodes-management">
@@ -14,4 +14,4 @@ function EnvNodesManagement() {
     );
 }
 
-export { EnvNodesManagement };
+export { EnvironmentalNodesTemplate };

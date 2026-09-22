@@ -1,17 +1,17 @@
 import { EnvironmentalNodesProvider } from '@modules/environmental-nodes/ui/contexts/environmental-nodes-provider';
 
-import { EnvNodesManagement } from '../../templates/management';
+import { EnvironmentalNodesTemplate } from '../../templates/environmental-nodes';
 
 import './style.css';
 
 
-function EnvironmentalNodes() {
+function EnvironmentalNodesPage() {
 
     return (
         <EnvironmentalNodesProvider>
-            <EnvNodesManagement />
+            <EnvironmentalNodesTemplate />
         </EnvironmentalNodesProvider>
     );
 }
 
-export { EnvironmentalNodes };
+export { EnvironmentalNodesPage };

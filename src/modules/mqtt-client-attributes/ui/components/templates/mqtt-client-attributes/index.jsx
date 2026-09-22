@@ -3,7 +3,7 @@ import { Properties } from '../../organisms/properties';
 import './style.css';
 
 
-function ClientDetails({ connected, properties }) {
+function MqttClientAttributesTemplate({ connected, properties }) {
 
     return (
         <article class="client-details">
@@ -12,4 +12,4 @@ function ClientDetails({ connected, properties }) {
     );
 }
 
-export { ClientDetails };
+export { MqttClientAttributesTemplate };

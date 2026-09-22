@@ -4,7 +4,7 @@ import { TopicsPublishExplorer } from '../../organisms/topics-publish-explorer';
 import './style.css';
 
 
-function TopicsPublishes({ topics }) {
+function MqttClientPublishTopicsTemplate({ topics }) {
 
     return (
         <article class="topics-publishes">
@@ -14,4 +14,4 @@ function TopicsPublishes({ topics }) {
     );
 }
 
-export { TopicsPublishes };
+export { MqttClientPublishTopicsTemplate };

@@ -7,10 +7,10 @@ import { mqttClientProviderFactory } from '@core/mqtt-client/factories/client';
 
 import { OnMqttClientConnectedObserver } from '@modules/mqtt-client-subscription-topics/application/observers/connected';
 
-import { MqttClientProperties } from '@modules/mqtt-client/ui/components/pages/mqtt-client-properties';
-import { MqttClientSubscriptionTopics } from '@modules/mqtt-client-subscription-topics/ui/components/pages/subscription-topics';
-import { MqttClientPublishTopics } from '@modules/mqtt-client-publish-topics/ui/components/pages/publish-topic';
-import { EnvironmentalNodes } from '@modules/environmental-nodes/ui/components/pages/environmental-nodes';
+import { MqttClientAttributesPage } from '@modules/mqtt-client-attributes/ui/components/pages/mqtt-client-attributes';
+import { MqttClientSubscriptionTopicsPage } from '@modules/mqtt-client-subscription-topics/ui/components/pages/mqtt-client-subscription-topics';
+import { MqttClientPublishTopicsPage } from '@modules/mqtt-client-publish-topics/ui/components/pages/mqtt-client-publish-topics';
+import { EnvironmentalNodesPage } from '@modules/environmental-nodes/ui/components/pages/environmental-nodes';
 // import { EnvironmentalNodesMessages } from '@modules/environmental-nodes-messages/components/pages/environmental-nodes-messages';
 
 import { Header } from '@shared-components/organisms/header';
@@ -33,10 +33,10 @@ export function App() {
         <>
             <Header />
             <main>
-                <MqttClientProperties />
-                <MqttClientSubscriptionTopics />
-                <MqttClientPublishTopics />
-                <EnvironmentalNodes />
+                <MqttClientAttributesPage />
+                <MqttClientSubscriptionTopicsPage />
+                <MqttClientPublishTopicsPage />
+                <EnvironmentalNodesPage />
                 {/* <EnvironmentalNodesMessages /> */}
             </main>
         </>

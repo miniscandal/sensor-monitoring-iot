@@ -2,7 +2,7 @@ import { useSubscribeObserverMqttClient } from '@core/mqtt-client/hooks/use-subs
 
 import { SubscribedEnvironmentalNodeStatusTopicObserver } from '@modules/mqtt-client-operations/application/observers/topics/environmental-node-data';
 
-import { TopicsPublishes } from '../../templates/topics-publishes';
+import { MqttClientPublishTopicsTemplate } from '../../templates/mqtt-client-publish-topics';
 
 import {
     MQTT_TOPIC_ENV_NODE_COMMAND,
@@ -12,7 +12,7 @@ import {
 import './style.css';
 
 
-function MqttClientPublishTopics() {
+function MqttClientPublishTopicsPage() {
     const topics = [
         MQTT_TOPIC_ENV_NODE_COMMAND(),
         MQTT_TOPIC_ALL_ENV_NODE_COMMAND,
@@ -22,8 +22,8 @@ function MqttClientPublishTopics() {
 
 
     return (
-        <TopicsPublishes topics={topics} />
+        <MqttClientPublishTopicsTemplate topics={topics} />
     );
 }
 
-export { MqttClientPublishTopics };
+export { MqttClientPublishTopicsPage };

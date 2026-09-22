@@ -4,7 +4,7 @@ import { SubscribedTopicsExplorer } from '../../organisms/subscribed-topics-expl
 import './style.css';
 
 
-function SubscribedTopics({ topics }) {
+function MqttClientSubscriptionTopicsTemplate({ topics }) {
 
     return (
         <article class="subscribed-topics">
@@ -14,4 +14,4 @@ function SubscribedTopics({ topics }) {
     );
 }
 
-export { SubscribedTopics };
+export { MqttClientSubscriptionTopicsTemplate };
