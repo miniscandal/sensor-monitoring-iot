@@ -7,7 +7,7 @@ import './style.css';
 function MqttClientPublishTopicsTemplate({ topics }) {
 
     return (
-        <article class="topics-publishes">
+        <article class="mqtt-client-publish-topics">
             <TopicsPublishCount count={topics.length} />
             <TopicsPublishExplorer topics={topics} />
         </article>

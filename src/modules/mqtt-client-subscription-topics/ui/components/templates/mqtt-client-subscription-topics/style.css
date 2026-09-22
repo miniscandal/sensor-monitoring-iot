@@ -1,4 +1,4 @@
-.subscribed-topics {
+.mqtt-client-subscription-topics {
     width: min(100%, 65rem);
     margin: 0 auto;
     display: flex;

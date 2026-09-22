@@ -7,7 +7,7 @@ import './style.css';
 function EnvironmentalNodesTemplate() {
 
     return (
-        <article class="env-nodes-management">
+        <article class="environmental-nodes-template">
             <EnvNodesPresenceCount />
             <EnvNodesPresenceMonitor />
         </article>

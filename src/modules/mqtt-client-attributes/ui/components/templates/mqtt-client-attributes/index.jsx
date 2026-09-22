@@ -6,7 +6,7 @@ import './style.css';
 function MqttClientAttributesTemplate({ connected, properties }) {
 
     return (
-        <article class="client-details">
+        <article class="mqtt-client-attributes">
             <Properties connected={connected} properties={properties} />
         </article>
     );

@@ -7,7 +7,7 @@ import './style.css';
 function MqttClientSubscriptionTopicsTemplate({ topics }) {
 
     return (
-        <article class="subscribed-topics">
+        <article class="mqtt-client-subscription-topics">
             <SubscribedTopicsCount topicsLength={topics.length} />
             <SubscribedTopicsExplorer topics={topics} />
         </article>
